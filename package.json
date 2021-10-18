@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "action": "node ./action.js"
+  },
+  "dependencies": {
+    "axios": "^0.23.0",
+    "cheerio": "^1.0.0-rc.10",
+    "random-user": "^2.0.2"
+  }
+}
