@@ -8,12 +8,14 @@ module.exports = {
             var items = (function (v) {
                 return Object.values(v).slice(0, v.length);
             })(data('item'));
-            var dataTime = (data('dataTime').text()).replaceAll(".", "-");
-            dataTime = new Intl.DateTimeFormat('ja-JP').format(new Date(Date.parse(dataTime))).replaceAll("/", "-");
+            var dataTime = (data('dataTime').text());
+            while(dataTime.includes(".")) dataTime = dataTime.replace("\.", "\-");
+            dataTime = new Intl.DateTimeFormat('ja-JP').format(new Date(Date.parse(dataTime)));
+            while(dataTime.includes("\/")) dataTime = dataTime.replace("\/", "\-");
             data = {};
             items.forEach((item) => {
-                const tpcd = cheerio.load(item)('tpcd').text().replaceAll(/[^a-zA-Z]/g, "")[0]
-                , _tpcd = {
+                var tpcd = Object.values(cheerio.load(item)('tpcd').text().split(/[^a-zA-Z]/)).filter((__i)=>__i!='')[0];
+                const _tpcd = {
                     'A': { 'to': 'day' },    //Today         TZ=>KST
                     'B': { 'yes': 'cum' },   //Yesterday's Cumulative
                     'C': { 'to': 'cum' },    //Today's Cumulative
