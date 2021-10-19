@@ -22,7 +22,6 @@ function scrap(fnNm, type) {
     })
     .then((data)=>(data))
     .then((data) => {
-      console.log(data)
       Object.entries(data).forEach(([k,v])=>{
 
         writeJson(v, dataDir+k);

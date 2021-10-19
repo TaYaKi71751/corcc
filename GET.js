@@ -64,7 +64,6 @@ async function mohwJson(res) {
   data['simple'] = (function () {
     var simpleData = {};
     _slice(_$(res.data)(type['simple'])).forEach((_map) => {
-      // console.log(_$(_map)('.cityname')[0]);
       _slice(_$(_map)('li')).forEach((case_) => {
         const _tit = _$(case_)('span.tit').text()[0];
         const value = filterDigit(_$(case_)('span.num').text());
@@ -92,7 +91,6 @@ async function mohwJson(res) {
     cityData['dataTime'] = mohwTime(_$(res.data));
     return cityData;
   })();
-  console.log(data);
   return data;
 }
 
@@ -137,9 +135,7 @@ module.exports = {
     return (async function (type) {
       const url = `http://ncov.mohw.go.kr/${type.lang}/bdBoardList.do?brdGubun=${type['brdGubun']}`;
       const res = await axios.get(url);
-      console.log(type.name);
       var data = await mohwJson(res);
-      data['dataTime'] = await mohwTime(_$(res.data));
       return data;
     });
   },
