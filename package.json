@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "action": "node ./action.js --unhandled-rejections=strict"
+    "vaccination": "node ./vaccination.js --unhandled-rejections=strict",
+    "case": "node ./case.js --unhandled-rejections=strict"
   },
   "dependencies": {
     "axios": "^0.23.0",
