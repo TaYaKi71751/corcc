@@ -10,6 +10,10 @@ function _dataTime(dataTime, a, b) {
   return __d;
 }
 
+function isUndefined(v) {
+  return typeof v == 'undefined' || v == undefined;
+}
+
 function yester(dataTime) {
   return dateFormat(new Date(Date.parse(dataTime) - (_24HoursInMillis = 86400000)));
 }
@@ -47,8 +51,49 @@ function mohwTime(_data) {
   return v;
 }
 
-function mohw(response){
-
+async function mohwJson(res) {
+  const type = {
+    'simple': '.rpsa_detail > div > #mapAll',
+    'city': '.rpsa_detail > div > div',
+  }, _case = {
+    'C': 'confirmed',
+    'R': 'recovered',
+    'D': 'death',
+  };
+  var data = {};
+  data['simple'] = (function () {
+    var simpleData = {};
+    _slice(_$(res.data)(type['simple'])).forEach((_map) => {
+      // console.log(_$(_map)('.cityname')[0]);
+      _slice(_$(_map)('li')).forEach((case_) => {
+        const _tit = _$(case_)('span.tit').text()[0];
+        const value = filterDigit(_$(case_)('span.num').text());
+        if (isUndefined(_case[_tit])) { return; }
+        simpleData[_case[_tit]] = value;
+      });
+    });
+    simpleData['dataTime'] = mohwTime(_$(res.data));
+    return simpleData;
+  })();
+  data['city'] = (function () {
+    var cityData = {};
+    _slice(_$(res.data)(type['city'])).forEach((_map) => {
+      cityData[_$(_map)('.cityname').text()]=(function(){
+        var caseData = {};
+        _slice(_$(_map)('li')).forEach((case_) => {
+          const _tit = _$(case_)('span.tit').text()[0];
+          const value = filterDigit(_$(case_)('span.num').text());
+          if (isUndefined(_case[_tit])) { return; }
+          caseData[_case[_tit]] = value;
+        });
+        return caseData;
+      })();
+    });
+    cityData['dataTime'] = mohwTime(_$(res.data));
+    return cityData;
+  })();
+  console.log(data);
+  return data;
 }
 
 module.exports = {
@@ -90,45 +135,11 @@ module.exports = {
     });
   }, "getCases": async function () {
     return (async function (type) {
-      //TODO
-      const tags = {
-        'simple': '.rpsa_detail > div > #mapAll',
-        'city': '.rpsa_detail',
-      };
       const url = `http://ncov.mohw.go.kr/${type.lang}/bdBoardList.do?brdGubun=${type['brdGubun']}`;
       const res = await axios.get(url);
       console.log(type.name);
-      // _$(res.data);
-      var data = {};
-      data['dataTime'] = mohwTime(_$(res.data));
-      Object.entries(tags).forEach(([k, v]) => {
-        // console.log(_$(res.data)(v), k, v);
-        Object.values(_$(res.data)(v)).forEach((mps) => {
-          Object.values(_$(mps)('.cityname')).forEach((cityNm) => {
-            console.log(_$(cityNm).text());
-          });
-          (function () {
-            var _name = type.name == 'simple' ? _$(mps)('.cityname').text() : '';
-            var _tmp = {};
-  
-            _slice(_$(mps)('li')).forEach((list) => {
-              const _case = {
-                'C': 'confirmed',
-                'R': 'recovered',
-                'D': 'death',
-              };
-              const tit = (function () { return _$(list)('span.tit'); })().text();
-              if (typeof _case[tit[0]] == 'undefined') {
-                return;
-              }
-              const value = filterDigit((function () { return _$(list)('span.num'); })().text());
-              _tmp[_case[tit[0]]] = value;
-            });
-            console.log(_tmp);
-          })();
-        });
-      });
-      
+      var data = await mohwJson(res);
+      data['dataTime'] = await mohwTime(_$(res.data));
       return data;
     });
   },

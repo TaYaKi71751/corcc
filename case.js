@@ -20,11 +20,14 @@ function scrap(fnNm, type) {
       console.error(error);
       exit(-1);
     })
+    .then((data)=>(data))
     .then((data) => {
+      console.log(data)
       Object.entries(data).forEach(([k,v])=>{
+
         writeJson(v, dataDir+k);
         writeJson(v, dataDir+k, v['dataTime']);
-      });
+      })
     });
 }
 
