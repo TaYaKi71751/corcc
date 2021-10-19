@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { exit } = require('process');
 const _types = {
   "simple": {
     "path": "simple",
@@ -39,6 +40,10 @@ async function scrap(type) {
     return _function;
   })()
     .then((_function) => (_function(type)))
+    .catch((error)=>{
+      console.error(error);
+      exit(-1);
+    })
     .then((data) => {
       writeJson(data, dataDir);
       writeJson(data, dataDir, data['dataTime']);
