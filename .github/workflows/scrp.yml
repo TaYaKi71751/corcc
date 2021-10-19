@@ -2,17 +2,30 @@ on:
   workflow_dispatch:
   schedule:
     - cron:  '0 */12 * * *'
-name: Scrp Dt
+name: Vaccination & Case
 jobs:
-  build:
-    name: Bld
+  vaccination:
+    name: Vaccinations
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: Bld
+    - name: Build
       run: npm install
-    - name: Scrp
-      run: npm run action 
+    - name: Scrape Vaccinations
+      run: npm run vaccination 
+    - uses: mikeal/publish-to-github-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+
+  case:
+    name: Cases
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Build
+      run: npm install
+    - name: Scrape Cases
+      run: npm run todo 
     - uses: mikeal/publish-to-github-action@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
