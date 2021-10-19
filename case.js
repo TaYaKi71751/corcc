@@ -1,25 +1,14 @@
-//TODO
-const brdGubun = {
-  'ko': '13',
-  'en': '162',
-  'cn': '262'
-};
-const _type = {
+const { exit } = require('process');
+const writeJson = require('./write');
+const _types = {
   "getCases": {
-    "daily": {
-      "lang": Object.keys(brdGubun),
-      "path": `case//daily`
-    },
-    "regions": {
-      "lang": Object.keys(brdGubun),
-      "path": `case//regions`,
-      "brdGubun": Object.values(brdGubun),
-    },
+    'lang': 'en',
+    'brdGubun': '162'
   },
 };
 
-async function scrap(fnNm, type) {
-  const dataDir = `/data/${type.path}`;
+function scrap(fnNm, type) {
+  const dataDir = `/data/case/`;
   var jsonPath = undefined;
 
   (async function () {
@@ -32,14 +21,13 @@ async function scrap(fnNm, type) {
       exit(-1);
     })
     .then((data) => {
-      if (data[''])
-        writeJson(data, dataDir);
-      writeJson(data, dataDir, data['dataTime']);
+      Object.entries(data).forEach(([k,v])=>{
+        writeJson(v, dataDir+k);
+        writeJson(v, dataDir+k, v['dataTime']);
+      });
     });
 }
 
 Object.entries(_types).forEach(([fnNm, v]) => {
-  Object.values(v).forEach((v) => {
-    scrap(fnNm, v);
-  });
+  scrap(fnNm, v);
 })

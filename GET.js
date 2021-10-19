@@ -14,6 +14,10 @@ function yester(dataTime) {
   return dateFormat(new Date(Date.parse(dataTime) - (_24HoursInMillis = 86400000)));
 }
 
+function filterDigit(v) {
+  while (v != v.replace(/[^\d]/, "")) { v = v.replace(/[^\d]/, ""); }
+  return v;
+}
 
 function __tpcd(item) {
   return Object.values(_$(item)('tpcd').text().split(/[^a-zA-Z]/)).filter((__i) => __i != '')[0];
@@ -31,9 +35,25 @@ function _Date(_date) {
   return new Date(Date.parse(_date))
 }
 
+function mohwTime(_data) {
+  var v = _data('.timetable');
+  v = v.text();
+  v = v.split(/[^\d]/).filter((_) => _ != '');
+  v = (function () {
+    var _tmp = v;
+    _tmp = _tmp[0].length < 3 ? _tmp.slice(1) : _tmp;
+    return `${_tmp[0]}-${_tmp[1]}-${_tmp[2]}`;
+  })();
+  return v;
+}
+
+function mohw(response){
+
+}
+
 module.exports = {
   "getVaccinationGiven": async function () {
-    return (async function getData(type) {
+    return (async function (type) {
       const isExistTpcd = typeof type.tpcd != 'undefined';
       var data = await axios.get(`https://nip.kdca.go.kr/irgd/cov19stats.do?list=${type.list}`);
       data = _$(data.data);
@@ -69,9 +89,47 @@ module.exports = {
       return data;
     });
   }, "getCases": async function () {
-    (async function getData(type) {
-      const host = 'http://ncov.mohw.go.kr';
-      var data = await axios.get(`/${(type.lang == 'ko') ? (type.lang + '/') : ''}bdBoardList.do?brdGubun=${tyoe.brdGubun}`);
-    })
-  }
+    return (async function (type) {
+      //TODO
+      const tags = {
+        'simple': '.rpsa_detail > div > #mapAll',
+        'city': '.rpsa_detail',
+      };
+      const url = `http://ncov.mohw.go.kr/${type.lang}/bdBoardList.do?brdGubun=${type['brdGubun']}`;
+      const res = await axios.get(url);
+      console.log(type.name);
+      // _$(res.data);
+      var data = {};
+      data['dataTime'] = mohwTime(_$(res.data));
+      Object.entries(tags).forEach(([k, v]) => {
+        // console.log(_$(res.data)(v), k, v);
+        Object.values(_$(res.data)(v)).forEach((mps) => {
+          Object.values(_$(mps)('.cityname')).forEach((cityNm) => {
+            console.log(_$(cityNm).text());
+          });
+          (function () {
+            var _name = type.name == 'simple' ? _$(mps)('.cityname').text() : '';
+            var _tmp = {};
+  
+            _slice(_$(mps)('li')).forEach((list) => {
+              const _case = {
+                'C': 'confirmed',
+                'R': 'recovered',
+                'D': 'death',
+              };
+              const tit = (function () { return _$(list)('span.tit'); })().text();
+              if (typeof _case[tit[0]] == 'undefined') {
+                return;
+              }
+              const value = filterDigit((function () { return _$(list)('span.num'); })().text());
+              _tmp[_case[tit[0]]] = value;
+            });
+            console.log(_tmp);
+          })();
+        });
+      });
+      
+      return data;
+    });
+  },
 }

@@ -4,13 +4,13 @@
 > 
 > http://ncov.mohw.go.kr/en/ (HTML) (TODO)
 > 
-> http://ncov.mohw.go.kr/cn/ (HTML) (TODO)
+<!-- > http://ncov.mohw.go.kr/cn/ (HTML) (TODO) -->
 > 
 <!-- > http://ncov.mohw.go.kr/ (HTML) (TODO) -->
 > 
 > http://ncov.mohw.go.kr/en/bdBoardList.do?brdGubun=162 (HTML) (TODO)
 > 
-> http://ncov.mohw.go.kr/cn/bdBoardList.do?brdGubun=262 (HTML) (TODO)
+<!-- > http://ncov.mohw.go.kr/cn/bdBoardList.do?brdGubun=262 (HTML) (TODO) -->
 <!-- > http://ncov.mohw.go.kr/bdBoardList.do?brdGubun=13 -->
 > 
 ## ]
