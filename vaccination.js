@@ -15,8 +15,8 @@ const _types = {
         "secondCnt": "",
         "thirdCnt": "",
       },
-    }, "regions": {
-      "path": "vaccination/regions",
+    }, "city": {
+      "path": "vaccination/city",
       "list": "sido",
       "_tags": {
         "firstCnt": "",
