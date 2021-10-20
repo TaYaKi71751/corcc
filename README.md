@@ -2,7 +2,7 @@
 ## FROM \[
 > https://nip.kdca.go.kr/irgd/cov19stats.do (XML)
 > 
-> [South_Korea \[ MOHW \] ](http://ncov.mohw.go.kr/en/bdBoardList.do?brdGubun=162) (HTML)
+> [ Cases in Korea by City/Province (**NOT-SECURED**) ](http://ncov.mohw.go.kr/en/bdBoardList.do?brdGubun=162) (HTML)
 > 
 ## \]
 to json() things
