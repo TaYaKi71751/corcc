@@ -6,7 +6,6 @@
 > 
 ## \]
 to json() thngs
-> 
 >
 > [![Scrape](https://github.com/TaYaKi71751/gh-action-data-scraping/actions/workflows/scrp.yml/badge.svg)](https://github.com/TaYaKi71751/gh-action-data-scraping/actions/workflows/scrp.yml)
 > #
@@ -23,3 +22,5 @@ to json() thngs
 >> [ sw-yx / gh-action-data-scraping ](https://github.com/sw-yx/gh-action-data-scraping)
 >> 
 > \]
+> 
+> **TZ : UTC+0900**
