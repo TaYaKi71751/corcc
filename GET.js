@@ -60,7 +60,7 @@ function mohwParseCase(_map) {
   const _case = {
     'C': 'confirmed',
     'R': 'recovered',
-    'D': 'death',
+    'D': 'deaths',
   };
   var caseData = {};
   _slice(_$(_map)('li')).forEach((case_) => {
@@ -92,22 +92,21 @@ async function mohwJson(res) {
           typeData[k] = v;
         });
       });
-      typeData['dataTime'] = mohwTime(_$(res.data));
+      typeData = JSON.parse(JSON.stringify(typeData).replace("{", "{" + `"dataTime":"${mohwTime(_$(res.data))}",`));
       return typeData;
     })();
   });
-  Object.entries(data).forEach(([typeNm,typeData])=>{
+  Object.entries(data).forEach(([typeNm, typeData]) => {
     const _typeData = Object.entries(typeData);
-    const isSimple = !(_typeData.filter(([_])=>(!_.includes('ime'))).length > 1);
-    if(!isSimple) return;
-    
+    const isSimple = !(_typeData.filter(([_]) => (!_.includes('ime'))).length > 1);
+    if (!isSimple) return;
+
     _typeData
-      .filter(([_])=>(!_.includes('ime')))
-      .forEach(([_ctNm,_value])=>{
-        data[typeNm][_ctNm]['dataTime'] = data[typeNm]['dataTime'];
-        data[typeNm] = data[typeNm][_ctNm];
-    });
-  })
+      .filter(([_]) => (!_.includes('ime')))
+      .forEach(([_ctNm, _value]) => {
+        data[typeNm] = JSON.parse(JSON.stringify(data[typeNm][_ctNm]).replace("{", "{" + `"dataTime":"${data[typeNm]['dataTime']}",`));
+      });
+  });
   return data;
 }
 
