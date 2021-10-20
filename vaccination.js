@@ -43,8 +43,7 @@ async function scrap(fnNm, type) {
       exit(-1);
     })
     .then((data) => {
-      if (data[''])
-        writeJson(data, dataDir);
+      writeJson(data, dataDir);
       writeJson(data, dataDir, data['dataTime']);
     });
 }
