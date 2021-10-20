@@ -51,46 +51,63 @@ function mohwTime(_data) {
   return v;
 }
 
-async function mohwJson(res) {
-  const type = {
-    'simple': '.rpsa_detail > div > #mapAll',
-    'city': '.rpsa_detail > div > div',
-  }, _case = {
+function mohwParseCtNm(_map) {
+  const cityNm = _$(_map)('.cityname').text();
+  return cityNm;
+}
+
+function mohwParseCase(_map) {
+  const _case = {
     'C': 'confirmed',
     'R': 'recovered',
     'D': 'death',
   };
+  var caseData = {};
+  _slice(_$(_map)('li')).forEach((case_) => {
+    const _tit = _$(case_)('span.tit').text()[0];
+    const value = filterDigit(_$(case_)('span.num').text());
+    if (isUndefined(_case[_tit])) { return; }
+    caseData[_case[_tit]] = value;
+  });
+  return caseData;
+}
+
+function mohwParseCaseDataWCtNm(_map) {
+  var caseWCtNmData = {};
+  caseWCtNmData[mohwParseCtNm(_map)] = mohwParseCase(_map);
+  return caseWCtNmData;
+}
+
+async function mohwJson(res) {
+  const type = {
+    'simple': '.rpsa_detail > div > #mapAll',
+    'city': '.rpsa_detail > div > div',
+  };
   var data = {};
-  data['simple'] = (function () {
-    var simpleData = {};
-    _slice(_$(res.data)(type['simple'])).forEach((_map) => {
-      _slice(_$(_map)('li')).forEach((case_) => {
-        const _tit = _$(case_)('span.tit').text()[0];
-        const value = filterDigit(_$(case_)('span.num').text());
-        if (isUndefined(_case[_tit])) { return; }
-        simpleData[_case[_tit]] = value;
-      });
-    });
-    simpleData['dataTime'] = mohwTime(_$(res.data));
-    return simpleData;
-  })();
-  data['city'] = (function () {
-    var cityData = {};
-    _slice(_$(res.data)(type['city'])).forEach((_map) => {
-      cityData[_$(_map)('.cityname').text()]=(function(){
-        var caseData = {};
-        _slice(_$(_map)('li')).forEach((case_) => {
-          const _tit = _$(case_)('span.tit').text()[0];
-          const value = filterDigit(_$(case_)('span.num').text());
-          if (isUndefined(_case[_tit])) { return; }
-          caseData[_case[_tit]] = value;
+  Object.entries(type).forEach(([dataType, selectors]) => {
+    data[dataType] = (function () {
+      var typeData = {};
+      _slice(_$(res.data)(selectors)).forEach((_map) => {
+        Object.entries(mohwParseCaseDataWCtNm(_map)).forEach(([k, v]) => {
+          typeData[k] = v;
         });
-        return caseData;
-      })();
+      });
+      typeData['dataTime'] = mohwTime(_$(res.data));
+      return typeData;
+    })();
+  });
+  Object.entries(data).forEach(([typeNm,typeData])=>{
+    const _typeData = Object.entries(typeData);
+    const isSimple = !(_typeData.filter(([_])=>(!_.includes('ime'))).length > 1);
+    if(!isSimple) return;
+    
+    _typeData
+      .filter(([_])=>(!_.includes('ime')))
+      .forEach(([_ctNm,_value])=>{
+        data[typeNm][_ctNm]['dataTime'] = data[typeNm]['dataTime'];
+        data[typeNm] = data[typeNm][_ctNm];
     });
-    cityData['dataTime'] = mohwTime(_$(res.data));
-    return cityData;
-  })();
+  })
   return data;
 }
 
