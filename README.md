@@ -1,6 +1,6 @@
 # Scraps COVID-19 ['Vaccinations','Case'] data
 ## FROM \[
-> https://nip.kdca.go.kr/irgd/cov19stats.do (XML)
+> [ COVID-19 Vaccination ](https://nip.kdca.go.kr/irgd/cov19stats.do) (XML)
 > 
 > [ Cases in Korea by City/Province (**NOT-SECURED**) ](http://ncov.mohw.go.kr/en/bdBoardList.do?brdGubun=162) (HTML)
 > 
