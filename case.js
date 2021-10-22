@@ -8,7 +8,7 @@ const _types = {
 };
 
 function scrap(fnNm, type) {
-  const dataDir = `/data/case/`;
+  const dataDir = `/case/`;
   var jsonPath = undefined;
 
   (async function () {

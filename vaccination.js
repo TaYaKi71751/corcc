@@ -30,7 +30,7 @@ const _types = {
   },
 };
 async function scrap(fnNm, type) {
-  const dataDir = `/data/${type.path}`;
+  const dataDir = `/${type.path}`;
   var jsonPath = undefined;
 
   (async function () {
