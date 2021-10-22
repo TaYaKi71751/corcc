@@ -1,4 +1,4 @@
-# Scraps COVID-19 ['Vaccinations','Cases'] data
+# Scraps COVID-19 ['SOUTH_KOREA']['Vaccinations','Cases'] data
 ## FROM \[
 > [ COVID-19 Vaccination ](https://nip.kdca.go.kr/irgd/cov19stats.do) (XML)
 > 
