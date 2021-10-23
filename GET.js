@@ -15,7 +15,9 @@ function isUndefined(v) {
 }
 
 function yester(dataTime) {
-  return dateFormat(new Date(Date.parse(dataTime) - (_24HoursInMillis = 86400000)));
+  var _yester = dateFormat(new Date(Date.parse(dataTime) - (_24HoursInMillis = 86400000)));
+  while(_yester.includes("/")) { _yester = _yester.replace("/","-"); }
+  return _yester;
 }
 
 function filterDigit(v) {
