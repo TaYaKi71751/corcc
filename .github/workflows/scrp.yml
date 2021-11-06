@@ -1,5 +1,9 @@
 on: 
   workflow_dispatch:
+  push:
+    paths-ignore:
+      - 'case/**'
+      - 'vaccination/**'
   schedule:
     - cron:  '0 */12 * * *'
 name: Vaccination & Case
