@@ -6,28 +6,33 @@ name: Vaccination & Case
 jobs:
   vaccination:
     name: Vaccinations
-    runs-on: [ubuntu-latest,self-hosted]
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
     - name: Build
       run: npm install
     - name: Scrape Vaccinations
       run: npm run vaccination 
-    - uses: mikeal/publish-to-github-action@master
+    - name: Pull
+      run: git pull
+    - uses: corcc/publish-to-github-action@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         BRANCH_NAME: 'with-nodejs'
 
   case:
     name: Cases
-    runs-on: [ubuntu-latest]
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
     - name: Build
       run: npm install
     - name: Scrape Cases
       run: npm run case 
-    - uses: mikeal/publish-to-github-action@master
+    - name: Pull
+      run: git pull
+    - uses: corcc/publish-to-github-action@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         BRANCH_NAME: 'with-nodejs'
+
