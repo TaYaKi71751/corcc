@@ -18,6 +18,8 @@ jobs:
     - uses: corcc/publish-to-github-action@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        TASK_NAME: 'Scrape Vaccinations'
+        TIMEZONE: 'Asia/Tokyo'
         BRANCH_NAME: 'with-nodejs'
 
   case:
@@ -34,5 +36,7 @@ jobs:
     - uses: corcc/publish-to-github-action@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        TASK_NAME: 'Scrape Cases'
+        TIMEZONE: 'Asia/Tokyo'
         BRANCH_NAME: 'with-nodejs'
 
