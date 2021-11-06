@@ -6,7 +6,7 @@ name: Vaccination & Case
 jobs:
   vaccination:
     name: Vaccinations
-    runs-on: [ubuntu-latest]
+    runs-on: [ubuntu-latest,self-hosted]
     steps:
     - uses: actions/checkout@master
     - name: Build
