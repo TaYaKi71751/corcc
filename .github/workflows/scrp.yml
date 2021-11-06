@@ -15,8 +15,8 @@ jobs:
       run: npm run vaccination 
     - name: Pull
       run: git pull
-    - name: Publish
     - uses: corcc/publish@master
+    - name: Publish
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         TASK_NAME: 'Scrape Vaccinations'
@@ -34,8 +34,8 @@ jobs:
       run: npm run case 
     - name: Pull
       run: git pull
-    - name: Publish
     - uses: corcc/publish@master
+    - name: Publish
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         TASK_NAME: 'Scrape Cases'
