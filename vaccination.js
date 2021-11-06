@@ -43,6 +43,9 @@ async function scrap(fnNm, type) {
       exit(-1);
     })
     .then((data) => {
+      if(dataDir.indexOf('simple') > 0){
+        writeJson(data, dataDir.replace('/simple',''));
+      }
       writeJson(data, dataDir);
       writeJson(data, dataDir, data['dataTime']);
     });

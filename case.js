@@ -23,7 +23,9 @@ function scrap(fnNm, type) {
     .then((data)=>(data))
     .then((data) => {
       Object.entries(data).forEach(([k,v])=>{
-
+        if(k=='simple'){
+          writeJson(v, dataDir);
+        }
         writeJson(v, dataDir+k);
         writeJson(v, dataDir+k, v['dataTime']);
       })
