@@ -15,6 +15,7 @@ jobs:
       run: npm run vaccination 
     - name: Pull
       run: git pull
+    - name: Publish
     - uses: corcc/publish@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
@@ -33,6 +34,7 @@ jobs:
       run: npm run case 
     - name: Pull
       run: git pull
+    - name: Publish
     - uses: corcc/publish@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
