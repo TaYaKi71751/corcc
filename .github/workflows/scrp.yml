@@ -16,7 +16,6 @@ jobs:
     - name: Pull
       run: git pull
     - uses: corcc/publish@master
-    - name: Publish
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         TASK_NAME: 'Scrape Vaccinations'
@@ -35,7 +34,6 @@ jobs:
     - name: Pull
       run: git pull
     - uses: corcc/publish@master
-    - name: Publish
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         TASK_NAME: 'Scrape Cases'
