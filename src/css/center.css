@@ -1,0 +1,33 @@
+body {
+    /* height: 120vh; */
+    height: 98vh;
+    /* width: 150vw;  */
+    flex-wrap:wrap;
+    /* text-align: center; */
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.center-width {
+    display: flex;
+    justify-content: center;
+}
+.center-height {
+    display: flex;
+    align-items: center;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.pad-1pc {
+    height: fit-content;
+    padding: 2em;
+}

@@ -1,0 +1,92 @@
+.🦠🦠,.💉💉 {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.covid {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.source,.sym {
+    display: flex;
+    justify-content: center;
+    height: fit-content;
+    width: inherit;
+    font-size: 1.75em;
+    border-bottom: solid #24242424 0.01em;
+    background: #DBDBDB08;
+    padding: inherit;
+    /* border-radius: 9999px; */
+}
+
+.💀,.🦠,.😊,.📅,.☝️,.✌️,.🤟,.💉 {
+    font-size: 2.25em;
+}
+
+.value {
+    justify-content: center;
+    width: 10pc;
+    padding: 0.125em;
+    display: flex;
+    align-items: center;
+    font-size: 0.7em;
+}
+
+.item {
+    background: #DBDBDB40;
+}
+
+.item {
+    flex-direction: column;
+    display: flex;
+    margin: 0.5em;
+    height: 5em;
+    width: 5em;
+    border-radius: 1.5em;
+    text-align: center;
+    color: black;
+    font-size: 2em;
+}
+.items {
+    margin: 1.42pc;
+    height: 20em;
+    width: 50em;
+    justify-content: center;
+    display: flex;
+    border-radius: 4em;
+    flex-wrap: wrap;
+    overflow:hidden;
+    /* overflow-inline: -moz-hidden-unscrollable; */
+}
+@media (max-width : 50em){
+    .items {
+        margin: 1.42pc;
+        height: 30em;
+        width: 25em;
+        justify-content: center;
+        display: flex;
+        border-radius: 4em;
+        flex-wrap: wrap;
+        overflow:hidden;
+        /* overflow-inline: -moz-hidden-unscrollable; */
+    }   
+}
+@media (max-width : 25em){
+    .items {
+        margin: 1.42pc;
+        height: 60em;
+        width: 15em;
+        justify-content: center;
+        display: flex;
+        border-radius: 4em;
+        flex-wrap: wrap;
+        overflow:hidden;
+        /* overflow-inline: -moz-hidden-unscrollable; */
+    }
+
+    .💀,.🦠,.😊,.📅,.☝️,.✌️,.🤟,.💉 {
+        font-size: 1.75em;
+    }
+
+}
