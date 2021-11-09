@@ -1,17 +1,17 @@
 {
-  "name": "coriv",
+  "name": "react-gh-pages",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://corcc.github.io/coriv",
+  "homepage": "http://gitname.github.io/react-gh-pages",
   "dependencies": {
-    "react": "latest",
-    "react-dom":"latest",
-    "react-twemoji": "latest",
-    "thousands": "latest"
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "react-twemoji":"0.3.0",
+    "thousands": "^1.0.1"
   },
   "devDependencies": {
-    "gh-pages": "latest",
-    "react-scripts": "latest"
+    "gh-pages": "^1.0.0",
+    "react-scripts": "1.0.7"
   },
   "scripts": {
     "start": "react-scripts start",
