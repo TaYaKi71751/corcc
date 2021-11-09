@@ -76,7 +76,7 @@ class Cases extends Component {
                           </Twemoji>
                           <div
                             className="value">
-                            {v == v.replaceAll(/[^0-9]/g,"")?thousands(v):v}
+                            {v.lastIndexOf("-") != v.indexOf("-") ? thousands(v) : v}
                           </div>
                         </div>)
                       }
