@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: Build
+    - name: Install Dependencies
       run: npm install
     - name: Scrape Vaccinations
       run: npm run vaccination 
@@ -29,7 +29,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: Build
+    - name: Install Dependencies
       run: npm install
     - name: Scrape Cases
       run: npm run case 
@@ -40,3 +40,19 @@ jobs:
         TIMEZONE: 'Asia/Tokyo'
         BRANCH_NAME: 'with-nodejs'
 
+  vc:
+    name: Latest Vaccinations + Cases
+    needs: [vaccination,case]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Install Dependencies
+      run: npm install
+    - name: Latest Vaccinations + Cases
+      run: npm run vc
+    - uses: corcc/publish@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        TASK_NAME: 'Latest Vaccinations + Cases'
+        TIMEZONE: 'Asia/Tokyo'
+        BRANCH_NAME: 'with-nodejs'
