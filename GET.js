@@ -2,7 +2,19 @@ const axios = require('axios');
 const cheerio = require("cheerio");
 const _$ = cheerio.load;
 
-const dateFormat = new Intl.DateTimeFormat('ja-JP').format;
+const dateFormat = function(date){
+  var d = new Date(date),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
+
+  if (month.length < 2) 
+      month = '0' + month;
+  if (day.length < 2) 
+      day = '0' + day;
+
+  return [year, month, day].join('-');
+};
 
 function _dataTime(dataTime, a, b) {
   var __d = dataTime;

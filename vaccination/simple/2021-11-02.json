@@ -1,19 +1,19 @@
 {
-  "dataTime": "2021-11-2",
+  "dataTime": "2021-11-02",
   "today": {
-    "dataTime": "2021-11-2",
+    "dataTime": "2021-11-02",
     "firstcnt": "82747",
     "secondcnt": "118436",
     "thirdcnt": "34010"
   },
   "yesterday_c": {
-    "dataTime": "2021-11-1",
+    "dataTime": "2021-11-01",
     "firstcnt": "41141814",
     "secondcnt": "38686286",
     "thirdcnt": "81896"
   },
   "today_c": {
-    "dataTime": "2021-11-2",
+    "dataTime": "2021-11-02",
     "firstcnt": "41224561",
     "secondcnt": "38804722",
     "thirdcnt": "115906"
