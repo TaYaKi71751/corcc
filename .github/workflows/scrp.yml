@@ -17,8 +17,6 @@ jobs:
       run: npm install
     - name: Scrape Vaccinations
       run: npm run vaccination 
-    - name: Pull
-      run: git pull
     - uses: corcc/publish@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
@@ -35,8 +33,6 @@ jobs:
       run: npm install
     - name: Scrape Cases
       run: npm run case 
-    - name: Pull
-      run: git pull
     - uses: corcc/publish@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
