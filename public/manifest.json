@@ -1,13 +1,6 @@
 {
   "short_name": "coriv",
   "name": "",
-  "icons": [
-    {
-      "src": "corcc.ico",
-      "sizes": "192x192",
-      "type": "image/png"
-    }
-  ],
   "start_url": "./index.html",
   "display": "standalone"
 }
