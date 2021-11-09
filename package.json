@@ -1,8 +1,8 @@
 {
-  "name": "react-gh-pages",
+  "name": "coriv",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://gitname.github.io/react-gh-pages",
+  "homepage": "http://corcc.github.io/coriv",
   "dependencies": {
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
