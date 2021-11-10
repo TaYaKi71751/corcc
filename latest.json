@@ -1,29 +1,29 @@
 {
   "case": {
-    "dataTime": "2021-11-09",
-    "confirmed": "383407",
-    "recovered": "350658",
-    "deaths": "2998"
+    "dataTime": "2021-11-10",
+    "confirmed": "385831",
+    "recovered": "352940",
+    "deaths": "3012"
   },
   "vaccination": {
-    "dataTime": "2021-11-09",
+    "dataTime": "2021-11-10",
     "today": {
-      "dataTime": "2021-11-09",
-      "firstcnt": "115687",
-      "secondcnt": "161647",
-      "thirdcnt": "182281"
+      "dataTime": "2021-11-10",
+      "firstcnt": "45537",
+      "secondcnt": "125011",
+      "thirdcnt": "99558"
     },
     "yesterday_c": {
-      "dataTime": "2021-11-08",
-      "firstcnt": "41522679",
-      "secondcnt": "39335162",
-      "thirdcnt": "356399"
+      "dataTime": "2021-11-09",
+      "firstcnt": "41641306",
+      "secondcnt": "39501023",
+      "thirdcnt": "540674"
     },
     "today_c": {
-      "dataTime": "2021-11-09",
-      "firstcnt": "41638366",
-      "secondcnt": "39496809",
-      "thirdcnt": "538680"
+      "dataTime": "2021-11-10",
+      "firstcnt": "41686843",
+      "secondcnt": "39626034",
+      "thirdcnt": "640232"
     }
   }
 }
