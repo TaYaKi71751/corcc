@@ -5,9 +5,9 @@ function emoji() {
     "firstcnt": "☝️",
     "secondcnt": "✌️",
     "thirdcnt": "🤟",
-    "today": "🇰🇷🆕",
-    "today_c": "🇰🇷🆕🗓️",
-    "yesterday_c": "🇰🇷🗓️"
+    "today": "🆕",
+    "today_c": "🆕🗓️",
+    "yesterday_c": "🗓️"
   }
 }
 function desc() {

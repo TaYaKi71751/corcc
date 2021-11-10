@@ -5,6 +5,7 @@ function emoji() {
     "deaths": "💀",
     "recovered": "😊",
     "dataTime": "📅",
+    "latest":"🆕🗓️",
   }
 }
 function desc() {

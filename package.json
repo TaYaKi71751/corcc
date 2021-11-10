@@ -6,7 +6,8 @@
   "dependencies": {
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
-    "react-twemoji":"0.3.0",
+    "react-loading-icons": "^1.0.6",
+    "react-twemoji": "0.3.0",
     "thousands": "^1.0.1"
   },
   "devDependencies": {
