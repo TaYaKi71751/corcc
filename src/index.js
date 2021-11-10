@@ -1,8 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Index from './app/covid/Index';
-// import registerServiceWorker from './registerServiceWorker';
+import Page from './app/covid/Page';
 
-ReactDOM.render(<Index />, document.body);
+// import registerServiceWorker from './registerServiceWorker';
+if(document.location.href.includes("case")){
+  ReactDOM.render(<Page case="case" />, document.body);
+}else 
+if(document.location.href.includes("vaccination")){
+  ReactDOM.render(<Page vaccination="vaccination" />, document.body);
+}else {
+  ReactDOM.render(<Page case="case" vaccination="vaccination" />, document.body);
+}
 
 // registerServiceWorker();
