@@ -13,8 +13,17 @@ jobs:
 
       - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
         run: |
-          npm install
-          npm run build
+          sudo apt-get update
+          sudo ln -fs /usr/share/zoneinfo/Asia/Tokyo /etc/localtime 
+          sudo apt-get install tzdata -y
+          sudo dpkg-reconfigure --frontend noninteractive tzdata
+          sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common
+          curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+          sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+          sudo apt-get update && sudo apt-get install docker-ce
+          sudo usermod -aG docker $USER
+          docker build --force-rm --tag dockerfile:build .
+          docker run -i -v $(pwd):/data dockerfile:build
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.5
