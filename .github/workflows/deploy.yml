@@ -17,9 +17,9 @@ jobs:
           sudo apt-get install tzdata -y > /dev/null
           sudo dpkg-reconfigure --frontend noninteractive tzdata > /dev/null
           sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common > /dev/null
-          curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-          sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-          sudo apt-get update > /dev/null && sudo apt-get install docker-ce
+          curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - > /dev/null
+          sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" > /dev/null
+          sudo apt-get update > /dev/null && sudo apt-get install docker-ce > /dev/null
           sudo usermod -aG docker $USER
       - name: Build Dockerfile 🐳
         run: |
