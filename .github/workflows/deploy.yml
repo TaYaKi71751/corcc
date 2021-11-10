@@ -10,9 +10,8 @@ jobs:
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2.3.1
-
-      - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
-        run: |
+      - name: Install Docker 🐳
+        run: | 
           sudo apt-get update
           sudo ln -fs /usr/share/zoneinfo/Asia/Tokyo /etc/localtime 
           sudo apt-get install tzdata -y
@@ -22,7 +21,13 @@ jobs:
           sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
           sudo apt-get update && sudo apt-get install docker-ce
           sudo usermod -aG docker $USER
+      - name: Build Dockerfile 🐳
+        run: |
           docker build --force-rm --tag dockerfile:build .
+        
+
+      - name: Install and Build 🔧 on Docker 🐳 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
+        run: |
           docker run -i -v $(pwd):/data dockerfile:build
 
       - name: Deploy 🚀
