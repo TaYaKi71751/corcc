@@ -25,7 +25,7 @@ jobs:
         if: steps.cache-modules.outputs.cache-hit != 'true'
         run: npm install
     outputs: 
-      hash: ${{ steps.lock.outputs.hash }}
+      hash: "${{ steps.lock.outputs.hash }}"
   build:
     name: Build 🔧
     needs: install
