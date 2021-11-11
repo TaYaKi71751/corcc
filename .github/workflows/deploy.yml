@@ -12,17 +12,19 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 'lts/*'
+        id: lock
+      - run: echo "::set-output name=hash::${{ hashFiles('package-lock.json') }}"
       - name: Cache node_modules 🔧⚙️🟢
         uses: actions/cache@v2
         id: cache-modules
         with:
           path: node_modules
-          key: node_modules-${{ hashFiles('**/package**.*') }}
+          key: node_modules-${{ steps.lock.outputs.hash }}
       - name: Install Dependencies 🟢
         if: steps.cache-modules.outputs.cache-hit != 'true'
         run: npm install
     outputs: 
-      hash: ${{ hashFiles('package-lock.json') }}
+      hash: ${{ steps.lock.outputs.hash }}
   build:
     name: Build 🔧
     needs: install
@@ -38,7 +40,7 @@ jobs:
         id: cache-modules
         with:
           path: node_modules
-          key: node_modules-${{ needs.install.outputs.hash }}
+          key: node_modules-${{ needs.install.outputs.lock-hash }}
       - name: Cache build 🔧⚙️
         uses: actions/cache@v2
         id: cache-build
@@ -47,9 +49,11 @@ jobs:
           key: build
       - name: Build 🔧
         run: npm run build
+    outputs: 
+      lock-hash: ${{ needs.install.outputs.lock-hash }}
     
   deploy:
-    needs: [install,build]
+    needs: build
     runs-on: self-hosted
     steps:
       - name: Checkout 🛎️
@@ -62,7 +66,7 @@ jobs:
         id: cache-modules
         with:
           path: node_modules
-          key: node_modules-${{ needs.install.outputs.hash }}
+          key: node_modules-${{ needs.build.outputs.lock-hash }}
       - name: Cache build 🔧⚙️
         uses: actions/cache@v2
         id: cache-build
