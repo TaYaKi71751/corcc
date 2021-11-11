@@ -47,6 +47,8 @@ jobs:
         with:
           path: build
           key: build
+      - name: CI=false
+        run: export CI=false
       - name: Build 🔧
         run: CI=false npm run build
     outputs: 
