@@ -14,7 +14,7 @@ jobs:
           node-version: 'lts/*'
       - name: Hash package-lock.json
         id: lock
-        run: echo "::set-output name=hash::${{ hashFiles('/package-lock.json') }}"
+        run: echo "::set-output name=hash::${{ hashFiles('package-lock.json') }}"
       - name: Cache node_modules 🔧⚙️🟢
         uses: actions/cache@v2
         id: cache-modules
