@@ -8,14 +8,27 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      # - name: Checkout 🛎️
-      - uses: actions/checkout@v2.3.1
-      # - uses: actions/checkout@v1
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2.3.1
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: /
+          key: |
+            ${{ runner.os }}-archlinux
+          restore-keys: |
+            ${{ runner.os }}-archlinux
+            ${{ runner.os }}-
+
       - name: Install Archlinux 🐧
+        if: steps.cache.outputs.cache-hit != 'true'
         run: curl -L https://github.com/zaoqi/github-actions-archlinux/raw/master/install.sh | sh
       - name: Populate Keys
         run: sudo pacman-key populate archlinux
-      - run: sudo pacman --noconfirm -Syyu
+      - name: Update
+        run: sudo pacman --noconfirm -Syyu
       - name: Install Nodejs, NPM 🟢
         run: sudo pacman --noconfirm -S nodejs npm 
       - name: Get Dependencies ⬇️
