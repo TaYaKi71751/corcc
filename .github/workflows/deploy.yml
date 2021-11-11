@@ -19,7 +19,7 @@ jobs:
         id: cache-modules
         with:
           path: node_modules
-          key: ${{ steps.lock.outputs.hash }}
+          key: "${{ steps.lock.outputs.hash }}"
       - name: Install Dependencies 🟢
         if: steps.cache-modules.outputs.cache-hit != 'true'
         run: npm install
