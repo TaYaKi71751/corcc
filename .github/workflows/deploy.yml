@@ -47,7 +47,7 @@ jobs:
         id: cache-build
         with:
           path: build
-          key: build
+          key: "build-${{ needs.install.outputs.lock-hash }}"
       - name: Build 🔧 with unset CI
         run: npm run build | unset CI 
     outputs: 
@@ -74,7 +74,7 @@ jobs:
         id: cache-build
         with:
           path: build
-          key: build
+          key: "build-${{ needs.build.outputs.lock-hash }}"
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
