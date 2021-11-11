@@ -5,90 +5,18 @@ on:
   schedule:
     - cron:  '0 */3 * * *'
 jobs:
-  archlinux-install:
-    name: Install ArchLinux 🔧⚙️🐧
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check pacman ✅
-        id: pacman
-        run: echo "::set-output name=hash::${{ hashFiles('/usr/bin/pacman') }}"
-      - name: Cache ArchLinux 🔧🐧
-        uses: actions/cache@v2
-        id: cache
-        with:
-          path: /
-          key: archlinux-install-${{ steps.pacman.outputs.hash }}
-
-      - name: Install Archlinux 🔧⚙️🐧
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: curl -L https://github.com/zaoqi/github-actions-archlinux/raw/master/install.sh | sh
-    outputs:
-      hash: ${{steps.pacman.outputs.hash}}
-
-  archlinux-update:
-    name: Update ArchLinux Packages 🔧⚙️🐧⬆️
-    runs-on: ubuntu-latest
-    needs: archlinux-install
-    steps:
-      - name: Use ArchLinux cache ✅🔧🐧
-        uses: actions/cache@v2
-        with:
-          path: /
-          key: archlinux-install-${{ needs.archlinux-install.outputs.hash }}
-      - name: Check pacman ✅
-        id: pacman
-        run: echo "::set-output name=hash::${{ hashFiles('/usr/bin/pacman') }}"
-      - name: Cache ArchLinux Update 🔧⚙️🐧⬆️
-        uses: actions/cache@v2
-        id: cache
-        with:
-          path: /
-          key: archlinux-update-${{ steps.pacman.outputs.hash }}
-      - name: Populate Keys 🔧⚙️🔑
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: sudo pacman-key populate archlinux
-      - name: Update 🔧⚙️🐧⬆️
-        # if: steps.cache.outputs.cache-hit != 'true'
-        run: sudo pacman --noconfirm -Sy
-    outputs:
-      hash: ${{steps.pacman.outputs.hash}}
-
-  setup-node: 
-    name: Setup Nodejs,NPM 🔧⚙️🟢
-    runs-on: ubuntu-latest
-    needs: archlinux-update
-    steps:
-      - name: Use ArchLinux Update cache
-        uses: actions/cache@v2
-        with:
-          path: /
-          key: archlinux-update-${{ needs.archlinux-update.outputs.hash }}
-      - name: Check pacman ✅
-        id: pacman
-        run: echo "::set-output name=hash::${{ hashFiles('/usr/bin/pacman') }}"
-      - name: Cache Node 🔧⚙️🐧⬆️
-        uses: actions/cache@v2
-        id: cache
-        with:
-          path: /
-          key: setup-node-${{ steps.pacman.outputs.hash }}
-      - name: Install Nodejs, NPM 🟢
-        run: sudo pacman --noconfirm -S nodejs npm 
-    outputs:
-      hash: ${{steps.pacman.outputs.hash}}
-
   build-and-deploy:
     runs-on: ubuntu-latest
-    needs: setup-node
     steps:
-      - name: Use Nodejs,NPM
-        uses: actions/cache@v2
-        with:
-          path: /
-          key: setup-node-${{ needs.setup-node.outputs.hash }}
+      - name: Install Archlinux🔧⚙️🐧
+        run: curl -L https://github.com/zaoqi/github-actions-archlinux/raw/master/install.sh | sh
+      - name: Update 🔧⚙️🐧⬆️
+        run: sudo pacman --noconfirm -Sy
+      - name: Install Nodejs, NPM 🔧⚙️
+        run: sudo pacman --noconfirm -S nodejs npm
       - name: Checkout 🛎️
         uses: actions/checkout@v2.3.1
-      - name: Get Dependencies ⬇️
+      - name: Install Dependencies ⬇️
         run: npm install
       - name: Build 🔧
         run: npm run build
