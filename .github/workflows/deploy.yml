@@ -3,7 +3,8 @@ on:
   workflow_dispatch:
   push:
 jobs:
-  build-and-deploy:
+  install:
+    name: Install Dependencies 🟢
     runs-on: self-hosted
     steps:
       - name: Checkout 🛎️
@@ -11,12 +12,66 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 'lts/*'
-      - name: Install Dependencies ⬇️
+      - name: Cache node_modules 🔧⚙️🟢
+        uses: actions/cache@v2
+        id: cache-modules
+        with:
+          path: node_modules
+          key: node_modules-${{ hashFiles('package-lock.json') }}
+      - name: Install Dependencies 🟢
+        if: steps.cache-modules.outputs.cache-hit != 'true'
         run: npm install
+    outputs: 
+      hash: ${{ hashFiles('package-lock.json') }}
+  build:
+    name: Build 🔧
+    needs: install
+    runs-on: self-hosted
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2.3.1
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 'lts/*'
+      - name: Cache node_modules 🔧⚙️🟢
+        uses: actions/cache@v2
+        id: cache-modules
+        with:
+          path: node_modules
+          key: node_modules-${{ needs.install.outputs.hash }}
+      - name: Cache build 🔧⚙️
+        uses: actions/cache@v2
+        id: cache-build
+        with:
+          path: build
+          key: build
       - name: Build 🔧
         run: npm run build
+    
+  deploy:
+    needs: [install,build]
+    runs-on: self-hosted
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2.3.1
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 'lts/*'
+      - name: Cache node_modules 🔧⚙️🟢
+        uses: actions/cache@v2
+        id: cache-modules
+        with:
+          path: node_modules
+          key: node_modules-${{ needs.install.outputs.hash }}
+      - name: Cache build 🔧⚙️
+        uses: actions/cache@v2
+        id: cache-build
+        with:
+          path: build
+          key: build
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
           branch: gh-pages # The branch the action should deploy to.
           folder: build # The folder the action should deploy.
+    
