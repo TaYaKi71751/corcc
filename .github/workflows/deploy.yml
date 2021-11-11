@@ -17,7 +17,7 @@ jobs:
         id: cache-modules
         with:
           path: node_modules
-          key: node_modules-${{ hashFiles('package-lock.json') }}
+          key: node_modules-${{ hashFiles('**/package**.*') }}
       - name: Install Dependencies 🟢
         if: steps.cache-modules.outputs.cache-hit != 'true'
         run: npm install
