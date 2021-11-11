@@ -68,7 +68,7 @@ jobs:
         id: cache-build
         with:
           path: build
-          key: "build-${{ needs.build.outputs.lock-hash }}"
+          key: build-${{ needs.build.outputs.lock-hash }}
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
