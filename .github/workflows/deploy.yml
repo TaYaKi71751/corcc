@@ -51,7 +51,9 @@ jobs:
       - name: CI=false
         run: export CI=false
       - name: Build 🔧
-        run: CI=false npm run build
+        run: npm run build
+        env:
+          CI: false
     outputs: 
       lock-hash: ${{ needs.install.outputs.lock-hash }}
     
