@@ -48,10 +48,10 @@ jobs:
         with:
           path: build
           key: build
-      - name: CI=false
-        run: export CI=false
+      - name: unset CI
+        run: unset CI
       - name: Build 🔧
-        run: unset CI && npm run build
+        run: npm run build
     outputs: 
       lock-hash: ${{ needs.install.outputs.lock-hash }}
     
