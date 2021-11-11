@@ -48,7 +48,7 @@ jobs:
           path: build
           key: build
       - name: Build 🔧
-        run: npm run build
+        run: CI=false npm run build
     outputs: 
       lock-hash: ${{ needs.install.outputs.lock-hash }}
     
