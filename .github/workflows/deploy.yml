@@ -18,7 +18,7 @@ jobs:
         id: cache-modules
         with:
           path: node_modules
-          key: "modules"
+          key: modules
       - name: Install Dependencies 🟢
         run: npm install
   build:
@@ -36,17 +36,15 @@ jobs:
         id: cache-modules
         with:
           path: node_modules
-          key: "modules-${{ needs.install.outputs.lock-hash }}"
+          key: modules
       - name: Cache build 🔧⚙️
         uses: actions/cache@v2
         id: cache-build
         with:
           path: build
-          key: "build-${{ needs.install.outputs.lock-hash }}"
+          key: build
       - name: Build 🔧 with unset CI
         run: npm run build | unset CI 
-    outputs: 
-      lock-hash: ${{ needs.install.outputs.lock-hash }}
     
   deploy:
     name: Deploy 🚀
@@ -63,7 +61,7 @@ jobs:
         id: cache-build
         with:
           path: build
-          key: build-${{ needs.build.outputs.lock-hash }}
+          key: build
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
