@@ -52,7 +52,7 @@ jobs:
       with:
         path: node_modules
         key: ${{ runner.os }}-modules-${{ hashFiles('package-lock.json')}}
-    - name: Scrape Vaccinations
+    - name: ⬆️💉
       run: npm run vaccination 
     - uses: corcc/publish@master
       env:
@@ -76,7 +76,7 @@ jobs:
       with:
         path: node_modules
         key: ${{ runner.os }}-modules-${{ hashFiles('package-lock.json')}}
-    - name: Scrape Cases
+    - name: ⬆️🦠
       run: npm run case 
     - uses: corcc/publish@master
       env:
