@@ -23,7 +23,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         TASK_NAME: 'Scrape Vaccinations'
         TIMEZONE: 'Asia/Tokyo'
-        BRANCH_NAME: 'with-nodejs'
 
   case:
     name: Cases
@@ -39,7 +38,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         TASK_NAME: 'Scrape Cases'
         TIMEZONE: 'Asia/Tokyo'
-        BRANCH_NAME: 'with-nodejs'
 
   vc:
     name: Latest Vaccinations + Cases
@@ -58,4 +56,3 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         TASK_NAME: 'Latest Vaccinations + Cases'
         TIMEZONE: 'Asia/Tokyo'
-        BRANCH_NAME: 'with-nodejs'
