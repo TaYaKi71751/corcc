@@ -8,8 +8,6 @@ on:
     - cron:  '0 */6 * * *'
 
 name: Vaccination & Case
-env:
-  'with-nodejs'
 jobs:
   vaccination:
     name: Vaccinations
@@ -25,7 +23,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         TASK_NAME: 'Scrape Vaccinations'
         TIMEZONE: 'Asia/Tokyo'
-        BRANCH_NAME: 
+        BRANCH_NAME: 'with-nodejs'
 
   case:
     name: Cases
