@@ -6,15 +6,15 @@ on:
       - 'vaccination/**'
   schedule:
     - cron:  '0 */6 * * *'
-name: Vaccination & Case
+name: ⬆️💉🦠
 jobs:
-  install-dep:
-    name: Install Dependencies 🟢
+  node-dep:
+    name: 🔧⬆️⚙️🟢
     runs-on: ubuntu-latest
     steps:
     - name: Checkout 🛎️
       uses: actions/checkout@master
-    - name: Package-Lock 🔧⚙️🟢
+    - name: Package-Lock ⚙️🟢
       run: npm install --package-lock-only 
     - name: Cache node_modules 🔧⚙️🟢
       uses: actions/cache@v2
@@ -22,17 +22,18 @@ jobs:
       with:
         path: node_modules
         key: ${{ runner.os }}-modules-${{ hashFiles('package-lock.json')}}
-    - name: Install Dependencies 🟢
+    - name: Install Dependencies 🔧🟢
       if: steps.cache-modules.outputs.cache-hit != 'true'
       run: npm install
-    - uses: corcc/publish@master
+    - name: Publish package-lock.json ⬆️⚙️🟢
+      uses: corcc/publish@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         TASK_NAME: 'Update package-lock.json'
         TIMEZONE: 'Asia/Tokyo'
   vaccination:
-    name: Vaccinations
-    needs: install-dep
+    name: ⬆️💉
+    needs: [node-dep]
     runs-on: ubuntu-latest
     steps:
     - name: Checkout 🛎️
@@ -51,8 +52,8 @@ jobs:
         TASK_NAME: 'Scrape Vaccinations'
         TIMEZONE: 'Asia/Tokyo'
   case:
-    name: Cases
-    needs: install-dep
+    name: ⬆️🦠
+    needs: [node-dep]
     runs-on: ubuntu-latest
     steps:
     - name: Checkout 🛎️
@@ -71,12 +72,13 @@ jobs:
         TASK_NAME: 'Scrape Cases'
         TIMEZONE: 'Asia/Tokyo'
   vc:
-    name: Latest Vaccinations + Cases
-    needs: [install-dep,vaccination,case]
+    name: ⬆️💉🦠
+    needs: [node-dep,vaccination,case]
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - name: Pull (NO REBASE)
+    - name: Checkout 🛎️
+      uses: actions/checkout@master
+    - name: Pull with --no-rebase ⬆️
       run: git pull --no-rebase
     - name: Cache node_modules 🔧⚙️🟢
       uses: actions/cache@v2
@@ -84,9 +86,10 @@ jobs:
       with:
         path: node_modules
         key: ${{ runner.os }}-modules-${{ hashFiles('package-lock.json')}}
-    - name: Latest Vaccinations + Cases
+    - name: 💉🦠
       run: npm run vc
-    - uses: corcc/publish@master
+    - name: ⬆️💉🦠
+      uses: corcc/publish@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         TASK_NAME: 'Latest Vaccinations + Cases'
