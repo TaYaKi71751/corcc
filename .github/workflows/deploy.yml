@@ -18,6 +18,13 @@ jobs:
       - name: Install Dependencies 🟢
         if: steps.cache-modules.outputs.cache-hit != 'true'
         run: npm install
+      - name: Publish package-lock.json
+        uses: corcc/publish@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+          TASK_NAME: 'Update package-lock.json'
+          TIMEZONE: 'Asia/Tokyo'
+        
   build:
     name: Build 🔧
     needs: install
@@ -45,6 +52,8 @@ jobs:
     needs: build
     runs-on: [ubuntu-latest]
     steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@master
       - name: Cache build 🔧⚙️
         uses: actions/cache@v2
         id: cache-build
