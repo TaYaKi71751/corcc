@@ -16,11 +16,6 @@ const dateFormat = function (date) {
   return [year, month, day].join('-');
 };
 
-
-function isUndefined(v) {
-  return typeof v == 'undefined' || v == undefined;
-}
-
 function yester(dataTime) {
   return dateFormat(new Date(Date.parse(dataTime) - (_24HoursInMillis = 86400000)));
 }
@@ -39,10 +34,6 @@ function __sidoNm(item) {
 
 function _slice(v) {
   return Object.values(v).slice(0, v.length);
-}
-
-function _Date(_date) {
-  return new Date(Date.parse(_date))
 }
 
 function mohwTime(_data) {
