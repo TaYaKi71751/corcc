@@ -33,7 +33,7 @@ jobs:
       uses: corcc/publish@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-        TASK_NAME: 'Update package-lock.json'
+        TASK_NAME: '🔧⬆️⚙️🟢'
         TIMEZONE: 'Asia/Tokyo'
   vaccination:
     name: ⬆️💉
@@ -57,7 +57,7 @@ jobs:
     - uses: corcc/publish@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-        TASK_NAME: 'Scrape Vaccinations'
+        TASK_NAME: '⬆️💉'
         TIMEZONE: 'Asia/Tokyo'
   case:
     name: ⬆️🦠
@@ -81,7 +81,7 @@ jobs:
     - uses: corcc/publish@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-        TASK_NAME: 'Scrape Cases'
+        TASK_NAME: '⬆️🦠'
         TIMEZONE: 'Asia/Tokyo'
   vc:
     name: ⬆️💉🦠
@@ -108,5 +108,5 @@ jobs:
       uses: corcc/publish@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-        TASK_NAME: 'Latest Vaccinations + Cases'
+        TASK_NAME: '⬆️💉🦠'
         TIMEZONE: 'Asia/Tokyo'
