@@ -2,39 +2,31 @@ const axios = require('axios');
 const cheerio = require("cheerio");
 const _$ = cheerio.load;
 
-const dateFormat = function(date){
+const dateFormat = function (date) {
   var d = new Date(date),
-      month = '' + (d.getMonth() + 1),
-      day = '' + d.getDate(),
-      year = d.getFullYear();
+    month = '' + (d.getMonth() + 1),
+    day = '' + d.getDate(),
+    year = d.getFullYear();
 
-  if (month.length < 2) 
-      month = '0' + month;
-  if (day.length < 2) 
-      day = '0' + day;
+  if (month.length < 2)
+    month = '0' + month;
+  if (day.length < 2)
+    day = '0' + day;
 
   return [year, month, day].join('-');
 };
 
-function _dataTime(dataTime, a, b) {
-  var __d = dataTime;
-  while (__d.includes(a)) __d = __d.replace(a, b);
-  return __d;
-}
 
 function isUndefined(v) {
   return typeof v == 'undefined' || v == undefined;
 }
 
 function yester(dataTime) {
-  var _yester = dateFormat(new Date(Date.parse(dataTime) - (_24HoursInMillis = 86400000)));
-  while(_yester.includes("/")) { _yester = _yester.replace("/","-"); }
-  return _yester;
+  return dateFormat(new Date(Date.parse(dataTime) - (_24HoursInMillis = 86400000)));
 }
 
 function filterDigit(v) {
-  while (v != v.replace(/[^\d]/, "")) { v = v.replace(/[^\d]/, ""); }
-  return v;
+  return v.replaceAll(/[^\d]/g,"");
 }
 
 function __tpcd(item) {
@@ -80,7 +72,7 @@ function mohwParseCase(_map) {
   _slice(_$(_map)('li')).forEach((case_) => {
     const _tit = _$(case_)('span.tit').text()[0];
     const value = filterDigit(_$(case_)('span.num').text());
-    if (isUndefined(_case[_tit])) { return; }
+    if (typeof _case[_tit] == 'undefined') { return; }
     caseData[_case[_tit]] = value;
   });
   return caseData;
@@ -97,31 +89,16 @@ async function mohwJson(res) {
     'simple': '.rpsa_detail > div > #mapAll',
     'city': '.rpsa_detail > div > div',
   };
-  var data = {};
-  Object.entries(type).forEach(([dataType, selectors]) => {
-    data[dataType] = (function () {
-      var typeData = {};
-      _slice(_$(res.data)(selectors)).forEach((_map) => {
-        Object.entries(mohwParseCaseDataWCtNm(_map)).forEach(([k, v]) => {
-          typeData[k] = v;
-        });
-      });
-      typeData = JSON.parse(JSON.stringify(typeData).replace("{", "{" + `"dataTime":"${mohwTime(_$(res.data))}",`));
-      return typeData;
-    })();
-  });
-  Object.entries(data).forEach(([typeNm, typeData]) => {
-    const _typeData = Object.entries(typeData);
-    const isSimple = !(_typeData.filter(([_]) => (!_.includes('ime'))).length > 1);
-    if (!isSimple) return;
-
-    _typeData
-      .filter(([_]) => (!_.includes('ime')))
-      .forEach(([_ctNm, _value]) => {
-        data[typeNm] = JSON.parse(JSON.stringify(data[typeNm][_ctNm]).replace("{", "{" + `"dataTime":"${data[typeNm]['dataTime']}",`));
-      });
-  });
-  return data;
+  return Object.fromEntries(Object.entries(type).map(([dataType, selectors]) => {
+    console.log(dataType, selectors)
+    return [dataType, JSON.parse(JSON.stringify(_slice(_$(res.data)(selectors)).map((_map) => {
+      const rtn = mohwParseCaseDataWCtNm(_map);
+      if (!dataType.includes("sim")) {
+        return rtn;
+      }
+      return Object.entries(rtn)[0][1];
+    })).replaceAll("},{", ",").replaceAll(/[\[\]]/g, "").replace("{", "{" + `"dataTime":"${mohwTime(_$(res.data))}",`))];
+  }));
 }
 
 module.exports = {
@@ -130,36 +107,22 @@ module.exports = {
       const isExistTpcd = typeof type.tpcd != 'undefined';
       var data = await axios.get(`https://nip.kdca.go.kr/irgd/cov19stats.do?list=${type.list}`);
       data = _$(data.data);
-      const dataTime = _dataTime(dateFormat(_Date(_dataTime(data('dataTime').text(), "\.", "\-"))), "\/", "\-")
+      const dataTime = dateFormat(data('dataTime').text().replaceAll(/[(\.|\/)]/g,"-"))
         , _tpcd = isExistTpcd ? type.tpcd : undefined
         , _tags = type._tags;
-      var items = _slice(data('item'));
-      data = {};
-      data['dataTime'] = dataTime;
-      items.forEach((item) => {
+      return JSON.parse(JSON.stringify(_slice(data('item')).map((item) => {
         var tpcd = isExistTpcd ? __tpcd(item) : __sidoNm(item);
-        Object.entries(isExistTpcd ? _tpcd[tpcd] : __sidoNm(item)).forEach(([k, v]) => {
-          data[isExistTpcd ? k : v] = typeof data[isExistTpcd ? k : v] == 'undefined' ? {} : data[isExistTpcd ? k : v];
-          data[isExistTpcd ? k : v] = (function (item) {
-            return (function (_xml) {
-              var _Cnts = {};
-              Object.keys(_tags).forEach((_tag) => {
-                const cnt = _$(_xml)(_tag);
-                if (cnt.length == 0) {
-                  _Cnts[_tag] = k.includes('to') ?
-                    dataTime :
-                    yester(dataTime);
-                  return;
-                }
-                _Cnts[cnt[0].tagName] = cnt.text();
-              });
-              return _Cnts;
-            })(item);
-          })(item);
-        });
-
-      });
-      return data;
+        return Object.fromEntries(Object.entries(isExistTpcd ? _tpcd[tpcd] : __sidoNm(item)).map(([k, v]) => {
+          return [isExistTpcd ? k : v, Object.fromEntries(
+            Object.entries(_tags).map(([_tag,]) => {
+              const cnt = _$(item)(_tag);
+              if (cnt.length == 0) {
+                return [_tag, k.includes('to') ? dataTime : yester(dataTime)];
+              }
+              return [cnt[0].tagName, cnt.text()];
+            }).filter(([, v]) => (typeof v != "undefined")))];
+        }));
+      })).replaceAll("},{", ",").replaceAll(/[\[\]]/g, "").replace("{", `{"dataTime":"${dataTime}",`));
     });
   }, "getCases": async function () {
     return (async function (type) {
