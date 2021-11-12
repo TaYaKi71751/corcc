@@ -45,7 +45,7 @@ jobs:
           path: build
           key: ${{ runner.os }}-build-${{ hashFiles('package-lock.json') }}
       - name: Build 🔧 with unset CI
-        run: npm run build | unset CI 
+        run: unset CI && npm run build
     
   deploy:
     name: Deploy 🚀
