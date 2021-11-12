@@ -32,6 +32,7 @@ jobs:
         TIMEZONE: 'Asia/Tokyo'
   vaccination:
     name: Vaccinations
+    needs: install-dep
     runs-on: ubuntu-latest
     steps:
     - name: Checkout 🛎️
@@ -51,6 +52,7 @@ jobs:
         TIMEZONE: 'Asia/Tokyo'
   case:
     name: Cases
+    needs: install-dep
     runs-on: ubuntu-latest
     steps:
     - name: Checkout 🛎️
@@ -70,7 +72,7 @@ jobs:
         TIMEZONE: 'Asia/Tokyo'
   vc:
     name: Latest Vaccinations + Cases
-    needs: [vaccination,case]
+    needs: [install-dep,vaccination,case]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
