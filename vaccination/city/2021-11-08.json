@@ -1,139 +1,139 @@
 {
   "dataTime": "2021-11-08",
   "서울특별시": {
-    "firstcnt": "426",
-    "firsttot": "7755977",
-    "secondcnt": "708",
-    "secondtot": "7383658",
-    "thirdcnt": "119",
-    "thirdtot": "69107"
+    "firstcnt": 426,
+    "firsttot": 7755977,
+    "secondcnt": 708,
+    "secondtot": 7383658,
+    "thirdcnt": 119,
+    "thirdtot": 69107
   },
   "부산광역시": {
-    "firstcnt": "119",
-    "firsttot": "2662516",
-    "secondcnt": "205",
-    "secondtot": "2523913",
-    "thirdcnt": "21",
-    "thirdtot": "19484"
+    "firstcnt": 119,
+    "firsttot": 2662516,
+    "secondcnt": 205,
+    "secondtot": 2523913,
+    "thirdcnt": 21,
+    "thirdtot": 19484
   },
   "대구광역시": {
-    "firstcnt": "55",
-    "firsttot": "1850161",
-    "secondcnt": "96",
-    "secondtot": "1748466",
-    "thirdcnt": "6",
-    "thirdtot": "12058"
+    "firstcnt": 55,
+    "firsttot": 1850161,
+    "secondcnt": 96,
+    "secondtot": 1748466,
+    "thirdcnt": 6,
+    "thirdtot": 12058
   },
   "인천광역시": {
-    "firstcnt": "140",
-    "firsttot": "2362685",
-    "secondcnt": "372",
-    "secondtot": "2235623",
-    "thirdcnt": "43",
-    "thirdtot": "20370"
+    "firstcnt": 140,
+    "firsttot": 2362685,
+    "secondcnt": 372,
+    "secondtot": 2235623,
+    "thirdcnt": 43,
+    "thirdtot": 20370
   },
   "광주광역시": {
-    "firstcnt": "27",
-    "firsttot": "1153102",
-    "secondcnt": "32",
-    "secondtot": "1084138",
-    "thirdcnt": "13",
-    "thirdtot": "10265"
+    "firstcnt": 27,
+    "firsttot": 1153102,
+    "secondcnt": 32,
+    "secondtot": 1084138,
+    "thirdcnt": 13,
+    "thirdtot": 10265
   },
   "대전광역시": {
-    "firstcnt": "46",
-    "firsttot": "1143077",
-    "secondcnt": "134",
-    "secondtot": "1080637",
-    "thirdcnt": "11",
-    "thirdtot": "8701"
+    "firstcnt": 46,
+    "firsttot": 1143077,
+    "secondcnt": 134,
+    "secondtot": 1080637,
+    "thirdcnt": 11,
+    "thirdtot": 8701
   },
   "울산광역시": {
-    "firstcnt": "29",
-    "firsttot": "886948",
-    "secondcnt": "72",
-    "secondtot": "839621",
-    "thirdcnt": "14",
-    "thirdtot": "8284"
+    "firstcnt": 29,
+    "firsttot": 886948,
+    "secondcnt": 72,
+    "secondtot": 839621,
+    "thirdcnt": 14,
+    "thirdtot": 8284
   },
   "세종특별자치시": {
-    "firstcnt": "14",
-    "firsttot": "264210",
-    "secondcnt": "24",
-    "secondtot": "249986",
-    "thirdcnt": "2",
-    "thirdtot": "3284"
+    "firstcnt": 14,
+    "firsttot": 264210,
+    "secondcnt": 24,
+    "secondtot": 249986,
+    "thirdcnt": 2,
+    "thirdtot": 3284
   },
   "경기도": {
-    "firstcnt": "1012",
-    "firsttot": "10852226",
-    "secondcnt": "1362",
-    "secondtot": "10278645",
-    "thirdcnt": "296",
-    "thirdtot": "81407"
+    "firstcnt": 1012,
+    "firsttot": 10852226,
+    "secondcnt": 1362,
+    "secondtot": 10278645,
+    "thirdcnt": 296,
+    "thirdtot": 81407
   },
   "강원도": {
-    "firstcnt": "23",
-    "firsttot": "1245917",
-    "secondcnt": "51",
-    "secondtot": "1180560",
-    "thirdcnt": "6",
-    "thirdtot": "13233"
+    "firstcnt": 23,
+    "firsttot": 1245917,
+    "secondcnt": 51,
+    "secondtot": 1180560,
+    "thirdcnt": 6,
+    "thirdtot": 13233
   },
   "충청북도": {
-    "firstcnt": "25",
-    "firsttot": "1315824",
-    "secondcnt": "347",
-    "secondtot": "1244623",
-    "thirdcnt": "7",
-    "thirdtot": "15132"
+    "firstcnt": 25,
+    "firsttot": 1315824,
+    "secondcnt": 347,
+    "secondtot": 1244623,
+    "thirdcnt": 7,
+    "thirdtot": 15132
   },
   "충청남도": {
-    "firstcnt": "68",
-    "firsttot": "1738743",
-    "secondcnt": "137",
-    "secondtot": "1644674",
-    "thirdcnt": "21",
-    "thirdtot": "18019"
+    "firstcnt": 68,
+    "firsttot": 1738743,
+    "secondcnt": 137,
+    "secondtot": 1644674,
+    "thirdcnt": 21,
+    "thirdtot": 18019
   },
   "전라북도": {
-    "firstcnt": "31",
-    "firsttot": "1472327",
-    "secondcnt": "188",
-    "secondtot": "1393411",
-    "thirdcnt": "14",
-    "thirdtot": "15854"
+    "firstcnt": 31,
+    "firsttot": 1472327,
+    "secondcnt": 188,
+    "secondtot": 1393411,
+    "thirdcnt": 14,
+    "thirdtot": 15854
   },
   "전라남도": {
-    "firstcnt": "30",
-    "firsttot": "1533483",
-    "secondcnt": "88",
-    "secondtot": "1456483",
-    "thirdcnt": "6",
-    "thirdtot": "17232"
+    "firstcnt": 30,
+    "firsttot": 1533483,
+    "secondcnt": 88,
+    "secondtot": 1456483,
+    "thirdcnt": 6,
+    "thirdtot": 17232
   },
   "경상북도": {
-    "firstcnt": "27",
-    "firsttot": "2108261",
-    "secondcnt": "95",
-    "secondtot": "1991632",
-    "thirdcnt": "11",
-    "thirdtot": "15184"
+    "firstcnt": 27,
+    "firsttot": 2108261,
+    "secondcnt": 95,
+    "secondtot": 1991632,
+    "thirdcnt": 11,
+    "thirdtot": 15184
   },
   "경상남도": {
-    "firstcnt": "49",
-    "firsttot": "2642617",
-    "secondcnt": "341",
-    "secondtot": "2498023",
-    "thirdcnt": "38",
-    "thirdtot": "21989"
+    "firstcnt": 49,
+    "firsttot": 2642617,
+    "secondcnt": 341,
+    "secondtot": 2498023,
+    "thirdcnt": 38,
+    "thirdtot": 21989
   },
   "제주특별자치도": {
-    "firstcnt": "39",
-    "firsttot": "532060",
-    "secondcnt": "68",
-    "secondtot": "498397",
-    "thirdcnt": "11",
-    "thirdtot": "6116"
+    "firstcnt": 39,
+    "firsttot": 532060,
+    "secondcnt": 68,
+    "secondtot": 498397,
+    "thirdcnt": 11,
+    "thirdtot": 6116
   }
 }

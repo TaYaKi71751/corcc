@@ -64,7 +64,7 @@ function mohwParseCase(_map) {
     const _tit = _$(case_)('span.tit').text()[0];
     const value = filterDigit(_$(case_)('span.num').text());
     if (typeof _case[_tit] == 'undefined') { return; }
-    caseData[_case[_tit]] = value;
+    caseData[_case[_tit]] = (value.replaceAll(/[^0-9]/g) == value ? Number(value) : value);
   });
   return caseData;
 }
@@ -110,7 +110,8 @@ module.exports = {
               if (cnt.length == 0) {
                 return [_tag, k.includes('to') ? dataTime : yester(dataTime)];
               }
-              return [cnt[0].tagName, cnt.text()];
+              const cntText = cnt.text();
+              return [cnt[0].tagName, (cntText.replaceAll(/[^0-9]/g, "") == cntText ? Number(cntText) : cntText)];
             }).filter(([, v]) => (typeof v != "undefined")))];
         }));
       })).replaceAll("},{", ",").replaceAll(/[\[\]]/g, "").replace("{", `{"dataTime":"${dataTime}",`));

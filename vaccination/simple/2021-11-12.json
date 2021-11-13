@@ -2,20 +2,20 @@
   "dataTime": "2021-11-12",
   "today": {
     "dataTime": "2021-11-12",
-    "firstcnt": "63175",
-    "secondcnt": "107068",
-    "thirdcnt": "105030"
+    "firstcnt": 63175,
+    "secondcnt": 107068,
+    "thirdcnt": 105030
   },
   "yesterday_c": {
     "dataTime": "2021-11-11",
-    "firstcnt": "41759991",
-    "secondcnt": "39738325",
-    "thirdcnt": "736214"
+    "firstcnt": 41759991,
+    "secondcnt": 39738325,
+    "thirdcnt": 736214
   },
   "today_c": {
     "dataTime": "2021-11-12",
-    "firstcnt": "41823166",
-    "secondcnt": "39845393",
-    "thirdcnt": "841244"
+    "firstcnt": 41823166,
+    "secondcnt": 39845393,
+    "thirdcnt": 841244
   }
 }

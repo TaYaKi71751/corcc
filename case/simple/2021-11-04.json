@@ -1,6 +1,6 @@
 {
   "dataTime": "2021-11-04",
-  "confirmed": "373120",
-  "recovered": "341888",
-  "deaths": "2916"
+  "confirmed": 373120,
+  "recovered": 341888,
+  "deaths": 2916
 }
