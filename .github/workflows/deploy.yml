@@ -7,64 +7,75 @@ jobs:
     name: Install Dependencies 🟢
     runs-on: [ubuntu-latest]
     steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@master
-      - name: Package-Lock 🔧⚙️🟢
-        run: npm install --package-lock-only 
-      - name: Cache node_modules 🔧⚙️🟢
-        uses: actions/cache@v2
-        id: cache-modules
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-modules-${{ hashFiles('package-lock.json') }}
-      - name: Install Dependencies 🟢
-        if: steps.cache-modules.outputs.cache-hit != 'true'
-        run: npm install
-      - name: Publish package-lock.json
-        uses: corcc/publish@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-          TASK_NAME: 'Update package-lock.json'
-          TIMEZONE: 'Asia/Tokyo'
+    - name: Setup Node
+      uses: actions/setup-node@v2
+      with:
+        node-version: 'lts/*'
+    - name: Checkout 🛎️
+      uses: actions/checkout@master
+    - name: Package-Lock 🔧⚙️🟢
+      run: npm install --package-lock-only 
+    - name: Cache node_modules 🔧⚙️🟢
+      uses: actions/cache@v2
+      id: cache-modules
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-modules-${{ hashFiles('package-lock.json') }}
+    - name: Install Dependencies 🟢
+      if: steps.cache-modules.outputs.cache-hit != 'true'
+      run: npm install
+    - name: Publish package-lock.json
+      uses: corcc/publish@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        TASK_NAME: 'Update package-lock.json'
+        TIMEZONE: 'Asia/Tokyo'
         
   build:
     name: Build 🔧
     needs: install
     runs-on: [ubuntu-latest]
     steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@master
-      - name: Cache node_modules 🔧⚙️🟢
-        uses: actions/cache@v2
-        id: cache-modules
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-modules-${{ hashFiles('package-lock.json') }}
-      - name: Cache build 🔧⚙️
-        uses: actions/cache@v2
-        id: cache-build
-        with:
-          path: build
-          key: ${{ runner.os }}-build-${{ hashFiles('package-lock.json') }}
-      - name: Build 🔧 with unset CI
-        run: unset CI && npm run build
+    - name: Setup Node
+      uses: actions/setup-node@v2
+      with:
+        node-version: 'lts/*'
+    - name: Setup Node
+      uses: actions/setup-node@v2
+      with:
+        node-version: 'lts/*'
+    - name: Checkout 🛎️
+      uses: actions/checkout@master
+    - name: Cache node_modules 🔧⚙️🟢
+      uses: actions/cache@v2
+      id: cache-modules
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-modules-${{ hashFiles('package-lock.json') }}
+    - name: Cache build 🔧⚙️
+      uses: actions/cache@v2
+      id: cache-build
+      with:
+        path: build
+        key: ${{ runner.os }}-build-${{ hashFiles('package-lock.json') }}
+    - name: Build 🔧 with unset CI
+      run: rm -rf build && unset CI && npm run build
     
   deploy:
     name: Deploy 🚀
     needs: build
     runs-on: [ubuntu-latest]
     steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@master
-      - name: Cache build 🔧⚙️
-        uses: actions/cache@v2
-        id: cache-build
-        with:
-          path: build
-          key: ${{ runner.os }}-build-${{ hashFiles('package-lock.json') }}
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.5
-        with:
-          branch: gh-pages # The branch the action should deploy to.
-          folder: build # The folder the action should deploy.
-    
+    - name: Checkout 🛎️
+      uses: actions/checkout@master
+    - name: Cache build 🔧⚙️
+      uses: actions/cache@v2
+      id: cache-build
+      with:
+        path: build
+        key: ${{ runner.os }}-build-${{ hashFiles('package-lock.json') }}
+    - name: Deploy 🚀
+      uses: JamesIves/github-pages-deploy-action@4.1.5
+      with:
+        branch: gh-pages # The branch the action should deploy to.
+        folder: build # The folder the action should deploy.

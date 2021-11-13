@@ -20,8 +20,8 @@ class Data extends Component {
           </Twemoji>
           <div
             className="value"
-            title={v.lastIndexOf("-") != v.indexOf("-") ? v : thousands(v)}>
-            {v.lastIndexOf("-") != v.indexOf("-") ? v : thousands(v)}
+            title={`${v}`.lastIndexOf("-") != `${v}`.indexOf("-") ? v : thousands(`${v}`)}>
+            {`${v}`.lastIndexOf("-") != `${v}`.indexOf("-") ? v : thousands(`${v}`)}
           </div>
         </div>)
       })
