@@ -14,7 +14,7 @@ class Title extends Component {
         href={this.props.source.href}
         title={this.props.source.title}>
         <Twemoji options={{ className: 'twemoji' }}>
-          <div className={`${this.props.symbol} sym`}>
+          <div className={`${this.props.symbol} sym`} style="padding:0.1em;">
             {`🇰🇷${this.props.dTyp||""}${this.props.symbol}`}
           </div>
         </Twemoji>
