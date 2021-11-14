@@ -5,7 +5,7 @@ on:
 jobs:
   install:
     name: Install Dependencies 🟢
-    runs-on: [ubuntu-latest]
+    runs-on: self-hosted
     steps:
     - name: Setup Node
       uses: actions/setup-node@v2
@@ -34,7 +34,7 @@ jobs:
   build:
     name: Build 🔧
     needs: install
-    runs-on: [ubuntu-latest]
+    runs-on: self-hosted
     steps:
     - name: Setup Node
       uses: actions/setup-node@v2
@@ -64,7 +64,7 @@ jobs:
   deploy:
     name: Deploy 🚀
     needs: build
-    runs-on: [ubuntu-latest]
+    runs-on: self-hosted
     steps:
     - name: Checkout 🛎️
       uses: actions/checkout@master
