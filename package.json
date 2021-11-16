@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "case": "node ./case.js --unhandled-rejections=strict",
+    "vaccination": "node ./vaccination.js --unhandled-rejections=strict",
     "numberize": "node ./numberize.js --unhandled-rejections=strict",
     "vc": "node ./vc.js --unhandled-rejections=strict"
   },
