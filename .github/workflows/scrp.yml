@@ -59,34 +59,33 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         TASK_NAME: '⬆️💉'
         TIMEZONE: 'Asia/Tokyo'
-# discontinued
-#   case:
-#     name: ⬆️🦠
-#     needs: [node-dep]
-#     runs-on: ubuntu-latest
-#     steps:
-#     - name: Setup Node
-#       uses: actions/setup-node@v2
-#       with:
-#         node-version: 'lts/*'
-#     - name: Checkout 🛎️
-#       uses: actions/checkout@master
-#     - name: Cache node_modules 🔧⚙️🟢
-#       uses: actions/cache@v2
-#       id: cache-modules
-#       with:
-#         path: node_modules
-#         key: ${{ runner.os }}-modules-${{ hashFiles('package-lock.json')}}
-#     - name: ⬆️🦠
-#       run: npm run case 
-#     - uses: corcc/publish@master
-#       env:
-#         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-#         TASK_NAME: '⬆️🦠'
-#         TIMEZONE: 'Asia/Tokyo'
+  case:
+    name: ⬆️🦠
+    needs: [node-dep]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Setup Node
+      uses: actions/setup-node@v2
+      with:
+        node-version: 'lts/*'
+    - name: Checkout 🛎️
+      uses: actions/checkout@master
+    - name: Cache node_modules 🔧⚙️🟢
+      uses: actions/cache@v2
+      id: cache-modules
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-modules-${{ hashFiles('package-lock.json')}}
+    - name: ⬆️🦠
+      run: npm run case 
+    - uses: corcc/publish@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        TASK_NAME: '⬆️🦠'
+        TIMEZONE: 'Asia/Tokyo'
   numberize:
     name: ⬆(0️⃣1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣)
-    needs: [node-dep,vaccination]
+    needs: [node-dep,vaccination,case]
     runs-on: ubuntu-latest
     steps:
     - name: Setup Node
@@ -112,7 +111,7 @@ jobs:
         TIMEZONE: 'Asia/Tokyo'
   vc:
     name: ⬆️💉🦠
-    needs: [node-dep,vaccination,numberize]
+    needs: [node-dep,vaccination,case,numberize]
     runs-on: ubuntu-latest
     steps:
     - name: Setup Node
