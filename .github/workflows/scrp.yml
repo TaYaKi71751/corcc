@@ -10,7 +10,7 @@ name: ⬆️💉🦠
 jobs:
   node-dep:
     name: 🔧⬆️⚙️🟢
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
     - name: Setup Node
       uses: actions/setup-node@v2
@@ -38,7 +38,7 @@ jobs:
   vaccination:
     name: ⬆️💉
     needs: [node-dep]
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
     - name: Setup Node
       uses: actions/setup-node@v2
@@ -63,7 +63,7 @@ jobs:
   case:
     name: ⬆️🦠
     needs: [node-dep]
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
     - name: Setup Node
       uses: actions/setup-node@v2
@@ -113,7 +113,7 @@ jobs:
   vc:
     name: ⬆️💉🦠
     needs: [node-dep,vaccination,case,numberize]
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
     - name: Setup Node
       uses: actions/setup-node@v2
