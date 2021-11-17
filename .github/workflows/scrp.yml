@@ -10,7 +10,7 @@ name: ⬆️💉🦠
 jobs:
   node-dep:
     name: 🔧⬆️⚙️🟢
-    runs-on: ubuntu-latesf
+    runs-on: ubuntu-latest
     steps:
     - name: Setup Node
       uses: actions/setup-node@v2
@@ -38,7 +38,7 @@ jobs:
   vaccination:
     name: ⬆️💉
     needs: [node-dep]
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
     - name: Setup Node
       uses: actions/setup-node@v2
