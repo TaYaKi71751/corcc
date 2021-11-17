@@ -1,9 +1,9 @@
 {
   "case": {
-    "dataTime": "11-16-undefined",
-    "confirmed": 399591,
-    "recovered": 364499,
-    "deaths": 3137
+    "dataTime": "2021-11-17",
+    "confirmed": 402775,
+    "recovered": 366089,
+    "deaths": 3158
   },
   "vaccination": {
     "dataTime": "2021-11-17",
