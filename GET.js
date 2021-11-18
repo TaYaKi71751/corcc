@@ -1,14 +1,15 @@
+require('dotenv').config();
 const axios = require('axios');
+
 const { exec, execSync } = require('child_process');
 const cheerio = require("cheerio");
 const _$ = cheerio.load;
-const userAgent = 'Mozilla/5.0 (Windows; U; WindowsNT 5.1; en-US; rv1.8.1.6) Gecko/20070725 Firefox/2.0.0.6';
+const userAgent = process.env.USER_AGENT;
 const dateFormat = function (date) {
   var d = new Date(date),
     month = '' + (d.getMonth() + 1),
     day = '' + d.getDate(),
     year = d.getFullYear();
-
   if (month.length < 2)
     month = '0' + month;
   if (day.length < 2)
@@ -57,60 +58,7 @@ const innerFind = (function (DOM, ...selectors) {
   return selectors.length ? innerFind(_(selectors[0]), selectors.slice(1, selectors.length)) : _;
 });
 
-function mohwParseCaseDataWCtNm(_map) {
-  const mohwParseCtNm = (function (_map) {
-    const cityNm = _$(_map)('.cityname').text();
-    return cityNm;
-  });
-  const mohwParseCase = (function (_map) {
-    const _case = {
-      '确': 'confirmed',
-      '解': 'recovered',
-      '死': 'deaths',
-      'C': 'confirmed',
-      'R': 'recovered',
-      'D': 'deaths',
-    };
-    var caseData = {};
-    _slice(_$(_map)('li')).forEach((case_) => {
-      const _tit = _$(case_)('span.tit').text().trim();
-      const value = filterDigit(_$(case_)('span.num').text());
-      if(_tit!= _tit.replaceAll(/[A-Za-z]/g,"")){
-        if (typeof _case[_tit[0]] == 'undefined') { return; }
-        caseData[_case[_tit[0]]] = (value.replaceAll(/[^0-9]/g) == value ? Number(value) : value);
-      }else {
-        if (typeof _case[Object.values(_tit).filter((_)=>(_tit.includes(_)))[0]] == 'undefined') { return; }
-        caseData[_case[Object.values(_tit).filter((_)=>(_tit.includes(_)))[0]]] = (value.replaceAll(/[^0-9]/g) == value ? Number(value) : value);
-      }
-    });
-    return caseData;
-  });
 
-  var caseWCtNmData = {};
-  caseWCtNmData[mohwParseCtNm(_map)] = mohwParseCase(_map);
-  return caseWCtNmData;
-}
-
-function mohwJson(res) {
-  const mohwTime = (function (_data) {
-    var v = innerFind(_data, '.timetable', '.info', 'span').text().trim();
-    v = v.split(/[^\d]/).filter((_) => _ != '');
-    return dateFormat(Date.parse(`${(new Date()).getFullYear()}-${v[v.length - 2]}-${v[v.length - 1]}`));
-  });
-  const type = {
-    'simple': '.rpsa_detail > div > #mapAll',
-    'city': '.rpsa_detail > div > div',
-  };
-  return Object.fromEntries(Object.entries(type).map(([dataType, selectors]) => {
-    return [dataType, JSON.parse(JSON.stringify(_slice(_$(res)(selectors)).map((_map) => {
-      const rtn = mohwParseCaseDataWCtNm(_map);
-      if (!dataType.includes("sim")) {
-        return rtn;
-      }
-      return Object.entries(rtn)[0][1];
-    })).replaceAll("},{", ",").replaceAll(/[\[\]]/g, "").replace("{", "{" + `"dataTime":"${mohwTime(_$(res))}",`))];
-  }));
-}
 
 module.exports = {
   "getVaccinationGiven": async function () {
@@ -138,13 +86,5 @@ module.exports = {
         }));
       })).replaceAll("},{", ",").replaceAll(/[\[\]]/g, "").replace("{", `{"dataTime":"${dataTime}",`));
     });
-  }, "getCases": function () {
-    return (function (type) {
-      const url = `http://ncov.mohw.go.kr/${type.lang ? (type.lang + '/') : ''}bdBoardList.do?brdGubun=${type['brdGubun']}`;
-      console.log(url);
-      const res = execSync(`curl -LsSf ${url} -A "${userAgent}" -o -`).toString();
-      var data = mohwJson(res);
-      return data;
-    });
-  },
+  }
 }
