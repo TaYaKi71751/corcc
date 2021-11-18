@@ -49,7 +49,11 @@ jobs:
         path: node_modules
         key: ${{ runner.os }}-modules-${{ hashFiles('package-lock.json')}}
     - name: ⬆️💉
-      run: npm run vaccination 
+      env:
+        USER_AGENT: ${{ secrets.USER_AGENT }}
+      run: |
+        echo "USER_AGENT=${{ secrets.USER_AGENT }}" >> .env
+        npm run vaccination 
     - uses: corcc/publish@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
@@ -74,7 +78,11 @@ jobs:
         path: node_modules
         key: ${{ runner.os }}-modules-${{ hashFiles('package-lock.json')}}
     - name: ⬆️🦠
-      run: npm run case 
+      env:
+        USER_AGENT: ${{ secrets.USER_AGENT }}
+      run: |
+        echo "USER_AGENT=${{ secrets.USER_AGENT }}" >> .env
+        npm run case 
     - uses: corcc/publish@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 

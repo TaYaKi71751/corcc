@@ -1,9 +1,8 @@
 const { exit } = require('process');
-const writeJson = require('./write');
+const { writeJson } = require('./write');
 const _types = {
   "getVaccinationGiven": {          //
-    "simple": {
-      "path": "vaccination/simple",
+    "counter": {
       "list": "all",
       "tpcd": {
         'A': { 'today': "" },               //Today         TZ=>KST
@@ -15,8 +14,7 @@ const _types = {
         "secondCnt": "",
         "thirdCnt": "",
       },
-    }, "city": {
-      "path": "vaccination/city",
+    }, "country": {
       "list": "sido",
       "_tags": {
         "firstCnt": "",
@@ -29,10 +27,11 @@ const _types = {
     },
   },
 };
-async function scrap(fnNm, type) {
-  const dataDir = `/${type.path}`;
-  var jsonPath = undefined;
-
+async function scrap({
+  fnNm,
+  path,
+  type
+}) {
   (async function () {
     var _function = await require('./GET')[fnNm]();
     return _function;
@@ -43,16 +42,20 @@ async function scrap(fnNm, type) {
       exit(-1);
     })
     .then((data) => {
-      if(dataDir.indexOf('simple') > 0){
-        writeJson(data, dataDir.replace('/simple',''));
+      if (Object.values(data).filter((_) => (typeof _ == 'string')).length > 1) {
+        writeJson(data, `vaccination`);
       }
-      writeJson(data, dataDir);
-      writeJson(data, dataDir, data['dataTime']);
+      writeJson(data, `vaccination`, path)
+      writeJson(data, `vaccination/${path}`);
+      writeJson(data, `vaccination/${path}`, data['dataTime']);
     });
 }
 
 Object.entries(_types).forEach(([fnNm, v]) => {
-  Object.values(v).forEach((v) => {
-    scrap(fnNm, v);
+  Object.entries(v).forEach(([k, v]) => {
+    scrap({
+      fnNm:fnNm,
+      path:k,
+      type:v});
   });
 })
