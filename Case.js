@@ -66,10 +66,12 @@ class Case extends Utilities {
 }
 var test = new Case();
 const save = function(d){
+  writeJson(d,`/latest/`,`case`);
   Object.entries(d).forEach(([k,v])=>{
     if(Object.values(v).filter((_)=>(typeof _ == 'string')).length > 1){
       writeJson(v,`/case`);
     }
+    writeJson(v,`/latest/case/`,k);
     writeJson(v,`/case`,k);
     writeJson(v,`/case/${k}`);
     writeJson(v,`/case/${k}`,v['dataTime']);
