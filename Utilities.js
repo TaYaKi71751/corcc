@@ -53,15 +53,21 @@ class Utilities {
   isType(variable, variable_type) {
     return !(typeof variable != variable_type);
   }
-  html(DOM) {
-    return this._$(DOM.html());
+  parse(DOM) {
+    return this._$(((typeof DOM.html == 'undefined') ? this.$(DOM) : DOM).html());
   }
   innerFind(DOM, ...selectors) {
     selectors = selectors ? (this.isType(selectors[0], 'string')
       ? selectors
       : selectors[0]) : undefined;
-    const _ = this.html(DOM);
-    return selectors.length ? this.innerFind(_(selectors[0]), selectors.slice(1, selectors.length)) : _;
+    var _ = this.parse(DOM);
+    var SDOM = _(selectors[0]);
+    var rS = selectors.slice(1, selectors.length);
+    try {
+      return rS.length ? (this.innerFind(SDOM, rS) ?? SDOM) : SDOM;
+    } catch (e) {
+      return DOM;
+    }
   }
   entries(a) {
     return Object.entries(a);

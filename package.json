@@ -2,14 +2,15 @@
   "scripts": {
     "vaccination": "node ./vaccination.js --unhandled-rejections=strict",
     "case": "node ./Case.js --unhandled-rejections=strict",
-    "test-vaccination": "cp -R ./* ./test && node ./test/vaccination.js --unhandled-rejections=strict",
-    "test-case": "cp -R ./* ./test && node ./test/Case.js --unhandled-rejections=strict",
+    "test-vaccination": "rsync -avr --exclude='test' ./ ./test && node ./test/vaccination.js --unhandled-rejections=strict",
+    "test-case": "rsync -avr --exclude='test' ./ ./test && node ./test/Case.js --unhandled-rejections=strict",
     "numberize": "node ./numberize.js --unhandled-rejections=strict",
     "vc": "node ./vc.js --unhandled-rejections=strict"
   },
   "dependencies": {
     "axios": "^0.23.0",
     "cheerio": "^1.0.0-rc.10",
-    "dotenv": "^10.0.0"
+    "dotenv": "^10.0.0",
+    "rsync": "^0.6.1"
   }
 }
