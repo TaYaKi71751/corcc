@@ -23,7 +23,7 @@ class Case extends Utilities {
       const b = this.util.filterNumber(this._$(case_)('span.num').text());
       if (this.util.includesAlphabet(a)) {
         const parseType = this.caseParseKeys[a[0]];
-        if (parseType) {
+        if (!parseType) {
           return;
         }
         caseData[parseType] = (this.util.isNumberOnly(b) ? Number(b) : b);
