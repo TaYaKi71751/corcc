@@ -5,32 +5,29 @@ const { writeJson } = require('./write');
 class Case extends Utilities {
   caseParseKeys = require('./type/CaseParseKeys');
   caseSelector = new (require('./type/CaseSelector'))();
-  _$ = (require("cheerio")).load;
+  source = new (require('./source/CaseSource'))();
   constructor() {
     super()
-    // this.lang = lang ?? null;
   }
-  source = new (require('./source/CaseSource'))();
-  util = new (require('./Utilities'))();
   parseCountryName(_map) {
     const cityNm = this._$(_map)('.cityname').text();
     return cityNm;
   }
   parseCase(_map) {
     var caseData = {};
-    this.util._slice(this._$(_map)('li')).forEach((case_) => {
+    this._slice(this._$(_map)('li')).forEach((case_) => {
       const a = this._$(case_)('span.tit').text().trim();
-      const b = this.util.filterNumber(this._$(case_)('span.num').text());
-      if (this.util.includesAlphabet(a)) {
+      const b = this.filterNumber(this._$(case_)('span.num').text());
+      if (this.includesAlphabet(a)) {
         const parseType = this.caseParseKeys[a[0]];
         if (!parseType) {
           return;
         }
-        caseData[parseType] = (this.util.isNumberOnly(b) ? Number(b) : b);
+        caseData[parseType] = (this.isNumberOnly(b) ? Number(b) : b);
       } else {
-        const parseType = this.caseParseKeys[this.util.filterIncludesKeys(this.caseParseKeys,a)[0]];
+        const parseType = this.caseParseKeys[this.filterIncludesKeys(this.caseParseKeys,a)[0]];
         if (!parseType) { return; }
-        caseData[parseType] = (this.util.isNumberOnly(b) ? Number(b) : b);
+        caseData[parseType] = (this.isNumberOnly(b) ? Number(b) : b);
       }
     });
     return caseData;
@@ -41,9 +38,9 @@ class Case extends Utilities {
     return countryCaseData;
   }
   mohwTime(_data) {
-    var v = this.util.innerFind(_data, '.timetable', '.info', 'span').text().trim();
+    var v = this.innerFind(_data, '.timetable', '.info', 'span').text().trim();
     v = v.split(/[^\d]/).filter((_) => _ != '');
-    return this.util.dateCheck(v.join('-'));
+    return this.dateCheck(v.join('-'));
   }
   mohwJson(res) {
     return Object.fromEntries(Object.entries(this.caseSelector).map(([dataType, selectors]) => {
@@ -61,7 +58,7 @@ class Case extends Utilities {
   }) {
     const url = this.source.getUrl(this.lang = lang);
     console.log(url);
-    const res = this.util.curl(url);
+    const res = this.curl(url);
     var data = this.mohwJson(res);
     console.log(data);
     return data;

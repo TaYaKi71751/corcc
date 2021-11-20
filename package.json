@@ -2,6 +2,8 @@
   "scripts": {
     "vaccination": "node ./vaccination.js --unhandled-rejections=strict",
     "case": "node ./Case.js --unhandled-rejections=strict",
+    "test-vaccination": "cp -R ./* ./test && node ./test/vaccination.js --unhandled-rejections=strict",
+    "test-case": "cp -R ./* ./test && node ./test/Case.js --unhandled-rejections=strict",
     "numberize": "node ./numberize.js --unhandled-rejections=strict",
     "vc": "node ./vc.js --unhandled-rejections=strict"
   },
