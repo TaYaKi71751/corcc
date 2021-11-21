@@ -58,7 +58,7 @@ class Case extends Utilities {
       }
       return parseDataEntries[0][1];
     }
-    return data;
+    return Object.fromEntries(Object.entries(data).filter(([_,])=>(_!='')));
   }
   mohwJson(res) {
     const rtn = Object.entries(this.caseSelector).map(([path, selectors]) => {
