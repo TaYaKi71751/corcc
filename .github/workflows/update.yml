@@ -1,6 +1,6 @@
 on: 
   workflow_dispatch:
-name: ⬆️💉🦠
+name: Update
 jobs:
   node-dep:
     name: 🔧⬆️⚙️🟢

@@ -8,7 +8,7 @@
 ## \]
 to json() thngs
 > [![License: WTFPL](https://img.shields.io/badge/License-WTFPL-brightgreen.svg)](http://www.wtfpl.net/about/)
-> [![Scrape](https://github.com/TaYaKi71751/gh-action-data-scraping/actions/workflows/scrp.yml/badge.svg)](https://github.com/TaYaKi71751/gh-action-data-scraping/actions/workflows/scrp.yml)
+> [![Update](https://github.com/TaYaKi71751/gh-action-data-scraping/actions/workflows/update.yml/badge.svg)](https://github.com/TaYaKi71751/gh-action-data-scraping/actions/workflows/update.yml)
 > #
 > DATA-REF \[
 >> [ COVID-19 Vaccination ](https://nip.kdca.go.kr/irgd/cov19stats.do?list=all) by [KDCA](https://kdca.go.kr) - [ DATA.GO.KR_DESCRIPT ](https://www.data.go.kr/data/15078166/openapi.do)
