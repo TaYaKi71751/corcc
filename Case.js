@@ -10,12 +10,11 @@ class Case extends Utilities {
     super()
   }
   parseCountryName(_map) {
-    const cityNm = this._$(_map)('.cityname').text();
-    return cityNm;
+    return this._$(_map)('.cityname').text();
   }
   parseCase(_map) {
     var caseData = {};
-    this._slice(this._$(_map)('li')).forEach((case_) => {
+    this.sliceValues(this._$(_map)('li')).forEach((case_) => {
       const a = this._$(case_)('span.tit').text().trim();
       const b = this.filterNumber(this._$(case_)('span.num').text());
       if (this.includesAlphabet(a)) {
@@ -42,16 +41,34 @@ class Case extends Utilities {
     v = v.split(/[^\d]/).filter((_) => _ != '');
     return this.dateCheck(v.join('-'));
   }
+  mohwData({
+    path,
+    res,
+    selectors
+  }){
+    var data = {};
+    const maps = this.sliceValues(this._$(res)(selectors));
+    for(var i = 0;i < maps.length;i++){
+      const parseData = this.parseCountry(maps[i]);
+      const parseDataEntries = Object.entries(parseData);
+      
+      if (path != 'counter') {
+        data[parseDataEntries[0][0]] = parseDataEntries[0][1];
+        continue;
+      }
+      return parseDataEntries[0][1];
+    }
+    return data;
+  }
   mohwJson(res) {
-    return Object.fromEntries(Object.entries(this.caseSelector).map(([dataType, selectors]) => {
-      return [dataType, JSON.parse(JSON.stringify(this._slice(this._$(res)(selectors)).map((_map) => {
-        const rtn = this.parseCountry(_map);
-        if (dataType != 'counter') {
-          return rtn;
-        }
-        return Object.entries(rtn)[0][1];
-      })).replaceAll(/[\[\]]/g,"").replaceAll("},{",",").replace("{", "{" + `"dataTime":"${this.mohwTime(this._$(res))}",`))];
-    }));
+    const rtn = Object.entries(this.caseSelector).map(([path, selectors]) => {
+      return [path, JSON.parse(JSON.stringify(this.mohwData({
+        path,
+        res,
+        selectors
+      })).replace("{", "{" + `"dataTime":"${this.mohwTime(this._$(res))}",`))];
+    });
+    return Object.fromEntries(rtn);
   }
   scrape({
     lang
