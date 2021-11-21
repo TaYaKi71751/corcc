@@ -16,8 +16,8 @@ class Vaccination extends Utilities {
     return sliceValues(this.innerFind(DOM, 'item'));
   }
 
-  parseDataTime() {
-    var dataTime = this.innerFind(this.response, 'dataTime').text().trim();
+  parseDataTime(d) {
+    var dataTime = d ?? this.innerFind(this.response, 'dataTime').text().trim();
     dataTime = new Date(dataTime);
     dataTime = this.dateFormat(dataTime);
     return `"dataTime":"${dataTime}"`;
@@ -53,7 +53,7 @@ class Vaccination extends Utilities {
       return [parseKey,this.inserTime({
         data,
         dataTime: (parseKey.includes("yes")
-                     ? this.yester(this.parseDataTime())
+                     ? this.parseDataTime(this.yester(this.parseDataTime()))
                      : this.parseDataTime())
       })]
     }
@@ -82,7 +82,7 @@ class Vaccination extends Utilities {
       return [path,
       this.inserTime({
         data: this.toObject({array:data}),
-        dataTime: this.parseDataTime({ res: response })
+        dataTime: this.parseDataTime()
       })];
     });
     return this.toObject({ array: rtn });
