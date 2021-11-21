@@ -52,7 +52,9 @@ class Vaccination extends Utilities {
     if(parseKey.includes('day')){
       return [parseKey,this.inserTime({
         data,
-        dataTime: parseKey.includes("yester")?this.yester(this.parseDataTime()):this.parseDataTime()
+        dataTime: (parseKey.includes("yes")
+                     ? this.yester(this.parseDataTime())
+                     : this.parseDataTime())
       })]
     }
     return [parseKey, data];
