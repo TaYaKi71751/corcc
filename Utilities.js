@@ -2,7 +2,20 @@ require('dotenv').config()
 const { execSync } = require('child_process')
 class Utilities {
   _$ = (require("cheerio")).load;
-  _slice(v) {
+  toObject({
+    array
+  }) {
+    var _ = {};
+    for (var i = 0; i < array.length; i++) {
+      const __ = array[i];
+      _[__[0]] = __[1];
+    }
+    return _;
+  }
+  sliceEntries(v){
+    return Object.entries(v).slice(0,v.length);
+  }
+  sliceValues(v) {
     return Object.values(v).slice(0, v.length);
   }
   curl(url) {
@@ -54,7 +67,7 @@ class Utilities {
     return !(typeof variable != variable_type);
   }
   parse(DOM) {
-    return this._$(((typeof DOM.html == 'undefined') ? this.$(DOM) : DOM).html());
+    return this._$(((typeof DOM.html == 'undefined') ? this._$(DOM) : DOM).html());
   }
   innerFind(DOM, ...selectors) {
     selectors = selectors ? (this.isType(selectors[0], 'string')
