@@ -7,6 +7,9 @@
 > 
 ## \]
 to json() thngs
+> [ ![](https://img.shields.io/badge/-Cases-red.svg) ](https://corcc.github.io/corcc/latest/case.json)
+> [ ![](https://img.shields.io/badge/-Vaccinations-green.svg) ](https://corcc.github.io/corcc/latest/vaccination.json)
+
 > [![License: WTFPL](https://img.shields.io/badge/License-WTFPL-brightgreen.svg)](http://www.wtfpl.net/about/)
 > [![Update](https://github.com/TaYaKi71751/gh-action-data-scraping/actions/workflows/update.yml/badge.svg)](https://github.com/TaYaKi71751/gh-action-data-scraping/actions/workflows/update.yml)
 > #
