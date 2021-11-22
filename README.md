@@ -1,11 +1,18 @@
 
 > [ ![](https://img.shields.io/badge/-Cases-red.svg) ](https://corcc.github.io/corcc/latest/case.json)
-> [ ![](https://img.shields.io/badge/-Vaccinations-green.svg) ](https://corcc.github.io/corcc/latest/vaccination.json)
-
+> [ ![](https://img.shields.io/badge/-Counter-orange.svg) ](https://corcc.github.io/corcc/latest/case/counter.json)
+> [ ![](https://img.shields.io/badge/-Country-yellow.svg) ](https://corcc.github.io/corcc/latest/case/country.json)
+> 
+> [ ![](https://img.shields.io/badge/-Vaccinations-brightgreen.svg) ](https://corcc.github.io/corcc/latest/vaccination.json)
+> [ ![](https://img.shields.io/badge/-Counter-blue.svg) ](https://corcc.github.io/corcc/latest/vaccination/counter.json)
+> [ ![](https://img.shields.io/badge/-Country-magenta.svg) ](https://corcc.github.io/corcc/latest/vaccination/country.json)
+> 
 > [![License: WTFPL](https://img.shields.io/badge/License-WTFPL-brightgreen.svg)](http://www.wtfpl.net/about/)
 > [![Update](https://github.com/TaYaKi71751/gh-action-data-scraping/actions/workflows/update.yml/badge.svg)](https://github.com/TaYaKi71751/gh-action-data-scraping/actions/workflows/update.yml)
-> # ! SCRAPEN DATA MAY NOY CORRECT !
-## FROM \[
+> 
+> **TZ : UTC+0900**
+> ### **! SCRAPEN DATA MAY NOY CORRECT !**
+> ### FROM \[
 > [ COVID-19 Vaccination ](https://nip.kdca.go.kr/irgd/cov19stats.do) (XML)
 > 
 > Cases in Korea by City/Province (**NOT-SECURED**) (HTML) (DISCONTINUED on 2021-11-17 => REASON : NO DATA )[Archive](https://web.archive.org/web/20211116205419/http://ncov.mohw.go.kr/en/bdBoardList.do?brdId=16&brdGubun=162&dataGubun=&ncvContSeq=&contSeq=&board_id=&gubun=) (CONTINUED)
@@ -28,4 +35,3 @@
 > \]
 
 > 
-> **TZ : UTC+0900**
