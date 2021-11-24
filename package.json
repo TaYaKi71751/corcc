@@ -1,15 +1,19 @@
 {
   "scripts": {
-    "vaccination": "node ./Vaccination.js --unhandled-rejections=strict",
-    "case": "node ./Case.js --unhandled-rejections=strict",
-    "test-vaccination": "rsync -avr --exclude='test' ./ ./test && node ./test/Vaccination.js --unhandled-rejections=strict",
-    "test-case": "rsync -avr --exclude='test' ./ ./test && node ./test/Case.js --unhandled-rejections=strict",
-    "numberize": "node ./numberize.js --unhandled-rejections=strict",
-    "vc": "node ./vc.js --unhandled-rejections=strict"
+    "tslint-init": "tslint --init",
+    "tslint": "tslint -c tslint.json 'src/**/*.ts'",
+    "tsc": "./node_modules/typescript/bin/tsc",
+    "vaccination": "node ./js/Vaccination.js --unhandled-rejections=strict",
+    "case": "node ./js/Case.js --unhandled-rejections=strict",
+    "test": "rsync -avr --exclude='test' ./ ./test"
   },
   "dependencies": {
-    "cheerio": "^1.0.0-rc.10",
-    "dotenv": "^10.0.0",
-    "rsync": "^0.6.1"
+    "@types/cheerio": "^0.22.30",
+    "@types/typescript": "^2.0.0",
+    "rsync": "^0.6.1",
+    "ts-node": "^10.4.0",
+    "tsc": "^2.0.3",
+    "tslint": "^6.1.3",
+    "typescript": "^4.5.2"
   }
 }

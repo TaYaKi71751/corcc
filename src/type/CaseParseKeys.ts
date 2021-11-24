@@ -1,4 +1,4 @@
-module.exports = {
+export = module.exports = {
   '确': 'confirmed',
   '解': 'recovered',
   '死': 'deaths',
