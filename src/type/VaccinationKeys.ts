@@ -1,9 +1,9 @@
-class VaccinationsKeys {
-  path = {
+export = class VaccinationsKeys {
+  static path: any = {
     "all": 'counter',
     "sido": 'country'
   };
-  parse = {
+  static parse: any = {
     "all": {
       /* ******************************** *
        * tpcd : {                         *
@@ -47,15 +47,5 @@ class VaccinationsKeys {
       "thirdTot": "thirdTot"
     }
   };
-  getPath({
-    list
-  }) {
-    return this.path[list];
-  }
-  getParse({
-    list
-  }) {
-    return this.parse[list];
-  }
 }
-module.exports = VaccinationsKeys;
+// export = module.exports = { VaccinationsKeys };

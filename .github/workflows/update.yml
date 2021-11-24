@@ -5,36 +5,8 @@ on:
 
 name: Update
 jobs:
-  node-dep:
-    name: 🔧⬆️⚙️🟢
-    runs-on: ubuntu-latest
-    steps:
-    - name: Setup Node
-      uses: actions/setup-node@v2
-      with:
-        node-version: 'lts/*'
-    - name: Checkout 🛎️
-      uses: actions/checkout@master
-    - name: Package-Lock ⚙️🟢
-      run: npm install --package-lock-only 
-    - name: Cache node_modules 🔧⚙️🟢
-      uses: actions/cache@v2
-      id: cache-modules
-      with:
-        path: node_modules
-        key: ${{ runner.os }}-modules-${{ hashFiles('package-lock.json')}}
-    - name: Install Dependencies 🔧🟢
-      if: steps.cache-modules.outputs.cache-hit != 'true'
-      run: npm install
-    - name: Publish package-lock.json ⬆️⚙️🟢
-      uses: corcc/publish@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-        TASK_NAME: '🔧⬆️⚙️🟢'
-        TIMEZONE: 'Asia/Tokyo'
   vaccination:
-    name: ⬆️💉
-    needs: [node-dep]
+    name: Vaccinations
     runs-on: ubuntu-latest
     steps:
     - name: Setup Node
@@ -43,12 +15,8 @@ jobs:
         node-version: 'lts/*'
     - name: Checkout 🛎️
       uses: actions/checkout@master
-    - name: Cache node_modules 🔧⚙️🟢
-      uses: actions/cache@v2
-      id: cache-modules
-      with:
-        path: node_modules
-        key: ${{ runner.os }}-modules-${{ hashFiles('package-lock.json')}}
+    - name: Install Dependencies 🔧🟢
+      run: npm install
     - name: ⬆️💉
       env:
         USER_AGENT: ${{ secrets.USER_AGENT }}
@@ -62,8 +30,7 @@ jobs:
         TIMEZONE: 'Asia/Tokyo'
 # continued
   case:
-    name: ⬆️🦠
-    needs: [node-dep]
+    name: Cases
     runs-on: ubuntu-latest
     steps:
     - name: Setup Node
@@ -72,12 +39,8 @@ jobs:
         node-version: 'lts/*'
     - name: Checkout 🛎️
       uses: actions/checkout@master
-    - name: Cache node_modules 🔧⚙️🟢
-      uses: actions/cache@v2
-      id: cache-modules
-      with:
-        path: node_modules
-        key: ${{ runner.os }}-modules-${{ hashFiles('package-lock.json')}}
+    - name: Install Dependencies 🔧🟢
+      run: npm install
     - name: ⬆️🦠
       env:
         USER_AGENT: ${{ secrets.USER_AGENT }}
