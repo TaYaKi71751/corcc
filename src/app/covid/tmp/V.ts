@@ -2,9 +2,9 @@ function emoji() {
   return {
     "symbol": "💉",
     "dataTime": "📅",
-    "firstcnt": "☝️",
-    "secondcnt": "✌️",
-    "thirdcnt": "🤟",
+    "firstCnt": "☝️",
+    "secondCnt": "✌️",
+    "thirdCnt": "🤟",
     "today": "🆕",
     "today_c": "🆕🗓️",
     "yesterday_c": "🗓️"
@@ -12,9 +12,9 @@ function emoji() {
 }
 function desc() {
   return {
-    "thirdcnt": "Booster",
-    "secondcnt": "Fully",
-    "firstcnt": "First",
+    "thirdCnt": "Booster",
+    "secondCnt": "Fully",
+    "firstCnt": "First",
     "dataTime": "Data's Time (GMT+0900)",
   }
 }

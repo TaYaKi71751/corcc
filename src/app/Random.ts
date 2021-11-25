@@ -4,7 +4,7 @@
  * @returns {number} 
  */
 function random() {
-  const rand = (Math.random() + "").split(".");
+  const rand:any = (Math.random() + "").split(".");
   return (rand[rand.length - 1]) - 1 + 1;
 }
 /**
@@ -12,7 +12,7 @@ function random() {
  * @param {number} MAX
  * @returns {number} randomNumber
  */
-function randomNumber(MAX) {
+function randomNumber(MAX: number) {
   var rand = random();
   if (MAX) {
     return rand % MAX;
@@ -24,7 +24,7 @@ function randomNumber(MAX) {
  * @param {number} size Range of randomBytes (unsigned)
  * @returns {number} randomBytes (unsigned)
  */
-function randomUnsignedBytes(size) {
+function randomUnsignedBytes(size: number) {
   return randomNumber(size * (2 ** 3));
 }
 /**
@@ -40,7 +40,7 @@ function randomBackground() {
  * @param {string} _percent 
  * @returns {string} _percent
  */
-function _prcnt(_percent) {
+function _prcnt(_percent: string) {
   if (typeof _percent == 'undefined') {
     return "";
   }
@@ -57,7 +57,7 @@ function _prcnt(_percent) {
   return _percent + "%";
 }
 
-function randomGradientBackground(deg, colorLen, ...colorPlcs) {
+function randomGradientBackground(deg: string, colorLen: number, ...colorPlcs: (string)[]) {
   var colors = "";
   for (var i = 0; i < colorLen; i++) {
     colors += (`${randomBackground().split(" ")[0]} ${_prcnt(colorPlcs[i])},`);

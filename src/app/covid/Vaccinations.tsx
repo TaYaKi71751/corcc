@@ -3,11 +3,11 @@ import { randomGradientBackground } from '../Random';
 import { source } from './tmp/S'
 import { emoji, desc } from './tmp/V';
 import Title from './Title';
-import Loading from './Loading';
 import Data from './Data';
 
 class Cases extends Component {
-  constructor(props) {
+  props: any;
+  constructor(props: any) {
     super(props);
     this.state = {
       error: null,
@@ -17,7 +17,7 @@ class Cases extends Component {
   }
 
   componentDidMount() {
-    fetch("https://corcc.github.io/corcc/vaccination/latest.json")
+    fetch("https://corcc.github.io/corcc/vaccination/counter.json")
       .then(res => res.json())
       .then(
         (jsonData) => {
@@ -36,7 +36,7 @@ class Cases extends Component {
   }
 
   render() {
-    const { error, isLoaded, jsonData } = this.state;
+    const { error, isLoaded, jsonData }:any = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
     } else {
@@ -48,11 +48,11 @@ class Cases extends Component {
               <div
                 className={`${emoji()['symbol']}${emoji()['symbol']} items ${day}`}
                 style={{ background: `${randomGradientBackground('to left bottom', 2)}` }}>
-                {(function (source, emoji, symbol) {
+                {(function (source:any, emoji:any, symbol:any) {
                   return (<Title source={source} symbol={symbol} dTyp={!isLoaded ? undefined : emoji[day]} />);
                 })(source(), emoji(), emoji()['symbol'])}
                 {(function () {
-                  return (!(isLoaded) ? (<Loading />) : (<Data data={dayData} emoji={emoji()} description={!isLoaded ? undefined : desc()} />));
+                  return (!(isLoaded) ? (<div />) : (<Data data={dayData} emoji={emoji()} description={!isLoaded ? undefined : desc()} />));
                 })()}
               </div>
             </div>);

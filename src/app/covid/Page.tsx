@@ -7,7 +7,8 @@ import Cases from './Cases';
 import Vaccinations from './Vaccinations';
 
 class Page extends Component {
-  constructor(props) {
+  props:any;
+  constructor(props:any) {
     super(props);
   }
 
