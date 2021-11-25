@@ -30,16 +30,12 @@ jobs:
 #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
 #         TASK_NAME: 'Update package-lock.json'
 #         TIMEZONE: 'Asia/Tokyo'
-        
-  build:
-    name: Build 🔧
+    
+  build_deploy:
+    name: Build 🔧 & Deploy 🚀
     needs: install
     runs-on: ubuntu-latest
     steps:
-    - name: Setup Node
-      uses: actions/setup-node@v2
-      with:
-        node-version: 'lts/*'
     - name: Checkout 🛎️
       uses: actions/checkout@master
     - name: Cache node_modules 🔧⚙️🟢
@@ -48,28 +44,10 @@ jobs:
       with:
         path: node_modules
         key: ${{ runner.os }}-modules-${{ hashFiles('package-lock.json') }}
-    - name: Cache build 🔧⚙️
-      uses: actions/cache@v2
-      id: cache-build
-      with:
-        path: build
-        key: ${{ runner.os }}-build-${{ hashFiles('package-lock.json') }}
     - name: Build 🔧 with unset CI
       run: rm -rf build && unset CI && npm run build
-    
-  deploy:
-    name: Deploy 🚀
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout 🛎️
-      uses: actions/checkout@master
-    - name: Cache build 🔧⚙️
-      uses: actions/cache@v2
-      id: cache-build
-      with:
-        path: build
-        key: ${{ runner.os }}-build-${{ hashFiles('package-lock.json') }}
+    - name: sed 
+      run: sed -i 's/\"\/static/\"\/coriv\/static/g' ./build/index.html
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@4.1.5
       with:
