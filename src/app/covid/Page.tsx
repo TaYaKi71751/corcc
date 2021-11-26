@@ -8,9 +8,6 @@ import Vaccinations from './Vaccinations';
 
 class Page extends Component {
   props:any;
-  constructor(props:any) {
-    super(props);
-  }
 
   render() {
     const cases = (typeof this.props.case == 'undefined') ? (<div />) : (<Cases />);

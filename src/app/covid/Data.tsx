@@ -4,11 +4,6 @@ import { thousands } from '../util/thousands';
 
 class Data extends Component {
   props:any;
-  constructor(props:any) {
-    super(props);
-  }
-
-  
 
   render() {
     return (

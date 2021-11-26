@@ -1,4 +1,3 @@
-import React, { Component } from 'react';
 import CovidPage from './covid/Page'
 
 const pages: any = {
@@ -15,10 +14,7 @@ const pages: any = {
     "page": <CovidPage case="case" />
   },
 };
-function getPageKeys() {
-  return Object.keys(pages);
-}
-function getMatchedPageKey({
+function getMatchedPage({
   params
 }: any) {
   return Object.entries(pages).map(([k, v]) => {
@@ -29,8 +25,9 @@ function getPage({
   params,
 }: any) {
   console.log(params);
-  let page: any = params ? (getMatchedPageKey({ params:params })[0] ?? "both"):"both";
-  return pages[page];
+  let matchedPage = getMatchedPage({ params:params });
+  let matchedPageValue = matchedPage[1];
+  return matchedPageValue??pages['both'];
 }
 
-export { getPage, getPageKeys };
+export { getPage };

@@ -3,10 +3,6 @@ import twemoji from 'twemoji'
 
 class Title extends Component {
   props: any;
-  constructor(props: any) {
-    super(props);
-  }
-
 
   render() {
     const { symbol, source, dTyp } = this.props;
