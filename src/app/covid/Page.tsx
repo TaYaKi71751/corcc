@@ -13,8 +13,8 @@ class Page extends Component {
   }
 
   render() {
-    const cases = (this.props.case == undefined) ? (<div />) : (<Cases />);
-    const vaccination = (this.props.vaccination == undefined) ? (<div />) : (<Vaccinations />);
+    const cases = (typeof this.props.case == 'undefined') ? (<div />) : (<Cases />);
+    const vaccination = (typeof this.props.vaccination == 'undefined') ? (<div />) : (<Vaccinations />);
     return (
       <div className="center">
         <div className="covid center">

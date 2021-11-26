@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Twemoji from 'twemoji';
+import twemoji from 'twemoji'
 
 class Title extends Component {
   props: any;
@@ -7,15 +7,28 @@ class Title extends Component {
     super(props);
   }
 
+
   render() {
+    const { symbol, source, dTyp } = this.props;
+    const {
+      innerEmoji,
+      sourceClassEmoji,
+      symbolClassEmoji
+    } = {
+      innerEmoji: `🇰🇷${dTyp || ""}${symbol}`,
+      sourceClassEmoji: `${symbol}${symbol} source`,
+      symbolClassEmoji: `${symbol} sym`,
+    };
     return (
       <a
-        className={`${this.props.symbol}${this.props.symbol} source`}
-        href={this.props.source.href}
-        title={this.props.source.title}>
-        <div className={`${this.props.symbol} sym`} style={{ padding: '0.2em' }}>
-          {/* {Twemoji.parse(`🇰🇷${this.props.dTyp || ""}${this.props.symbol}`)} */}
-          {`🇰🇷${this.props.dTyp || ""}${this.props.symbol}`}
+        className={sourceClassEmoji}
+        href={source.href}
+        title={source.title}>
+        <div
+          className={symbolClassEmoji}
+          style={{ padding: '0.2em' }}
+          dangerouslySetInnerHTML={{ __html: twemoji.parse(innerEmoji) }}
+        >
         </div>
       </a>
     );

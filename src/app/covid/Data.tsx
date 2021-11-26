@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Twemoji from 'twemoji';
+import twemoji from 'twemoji';
 import { thousands } from '../util/thousands';
 
 class Data extends Component {
@@ -7,20 +7,30 @@ class Data extends Component {
   constructor(props:any) {
     super(props);
   }
+
+  
+
   render() {
     return (
       Object.entries(this.props.data).map(([k, v]:any) => {
+        const {emoji,description} = {
+          emoji:this.props.emoji[k],
+          description:this.props.description[k],
+        };
+        console.log(`dangerouslySetInnerHTML:`,emoji);
         return (<div
           className="center-width item">
             <div
-              className={this.props.emoji[k]}
-              title={this.props.description[k]}>
-              {this.props.emoji[k]}
+              className={emoji}
+              title={description}
+              dangerouslySetInnerHTML={
+                {__html: twemoji.parse(emoji)}
+            }
+              >
             </div>
           <div
             className="value"
-            title={`${v}`.lastIndexOf("-") != `${v}`.indexOf("-") ? v : thousands(`${v}`)}>
-              {/* {`${}`} */}
+            title={v}>
             {`${v}`.lastIndexOf("-") != `${v}`.indexOf("-") ? v : thousands(`${v}`)}
           </div>
         </div>)

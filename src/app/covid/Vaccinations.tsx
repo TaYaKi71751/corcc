@@ -34,7 +34,7 @@ class Cases extends Component {
         }
       )
   }
-
+  
   render() {
     const { error, isLoaded, jsonData }:any = this.state;
     if (error) {
