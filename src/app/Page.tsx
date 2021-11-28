@@ -1,7 +1,7 @@
 import React from 'react';
 import CovidPage from './covid/Page';
 
-const pages = {
+const pages:any = {
   "both": {
     "title": "Vaccinations & Cases",
     "page": <CovidPage case="case" vaccination="vaccination" />
