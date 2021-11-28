@@ -1,9 +1,8 @@
-
 /**
  * @returns {number}
  */
 function random() {
-  const rand: any = (Math.random() + "").split(".");
+  const rand: any[string] = (Math.random() + "").split(".");
   return (rand[rand.length - 1]) - 1 + 1;
 }
 /**

@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: ESLint
 on: 
   workflow_dispatch:
   push:
@@ -21,9 +21,9 @@ jobs:
         key: ${{ runner.os }}-modules
     - name: Install 🟢
       run: yarn install
-
-  build_deploy:
-    name: Build 🔧 & Deploy 🚀
+    
+  eslint:
+    name: ESLint 
     needs: install
     runs-on: ubuntu-latest
     steps:
@@ -35,12 +35,5 @@ jobs:
       with:
         path: node_modules
         key: ${{ runner.os }}-modules
-    - name: Build 🔧 with unset CI
-      run: rm -rf build && unset CI && yarn build
-    - name: sed 
-      run: sed -i 's/\"\/static/\"\/coriv\/static/g' ./build/index.html
-    - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@4.1.5
-      with:
-        branch: gh-pages # The branch the action should deploy to.
-        folder: build # The folder the action should deploy.
+    - name: Check ESLint
+      run: yarn eslint

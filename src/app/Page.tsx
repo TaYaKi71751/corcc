@@ -1,6 +1,7 @@
-import CovidPage from './covid/Page'
+import React from 'react';
+import CovidPage from './covid/Page';
 
-const pages: any = {
+const pages = {
   "both": {
     "title": "Vaccinations & Cases",
     "page": <CovidPage case="case" vaccination="vaccination" />
@@ -16,7 +17,7 @@ const pages: any = {
 };
 function getMatchedPage({
   params
-}: any) {
+}:any) {
   return Object.entries(pages).map(([k, v]) => {
     return params.includes(k) ? [k, v] : [k, null];
   }).filter(([, _]) => (_ != null))[0];

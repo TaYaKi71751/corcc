@@ -34,6 +34,6 @@ jobs:
       id: cache-modules
       with:
         path: node_modules
-        key: ${{ runner.os }}-modules-${{ hashFiles('package-lock.json') }}
-    - name: Check TS-Lint
+        key: ${{ runner.os }}-modules
+    - name: Check TSLint
       run: yarn tslint

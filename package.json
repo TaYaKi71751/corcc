@@ -23,6 +23,8 @@
     "start": "react-scripts start",
     "tslint-init": "tslint --init",
     "tslint": "tslint --project .",
+    "eslint-init": "eslint --init",
+    "eslint": "eslint ./src",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -35,7 +37,11 @@
     ]
   },
   "devDependencies": {
-    "@types/twemoji": "^12.1.2"
+    "@types/twemoji": "^12.1.2",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
+    "eslint": "^8.3.0",
+    "eslint-plugin-react": "^7.27.1"
   },
   "browserslist": {
     "production": [

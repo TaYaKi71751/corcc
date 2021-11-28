@@ -44,19 +44,18 @@ class Cases extends Component {
       return (
         Object.entries(jsonData || { "null": "null" }).map(([day, dayData]) => {
           if (!day.includes("day") && isLoaded) return null;
-          return (
-            <div className="pad-1pc">
-              <div
-                className={`${symbol}${symbol} items ${day}`}
-                style={{ background: `${randomGradientBackground('to left bottom', 2)}` }}>
-                {(() => {
-                  return (<Title source={source} symbol={symbol} dTyp={!isLoaded ? undefined : emoji[day]} />);
-                })()}
-                {(() => {
-                  return (!(isLoaded) ? (<div />) : (<Data data={dayData} emoji={emoji} description={!isLoaded ? undefined : desc} />));
-                })()}
-              </div>
-            </div>);
+          return (<div className="pad-1pc">
+            <div
+              className={`${symbol}${symbol} items ${day}`}
+              style={{ background: `${randomGradientBackground('to left bottom', 2)}` }}>
+              {(() => {
+                return (<Title source={source} symbol={symbol} dTyp={!isLoaded ? undefined : emoji[day]} />);
+              })()}
+              {(() => {
+                return (!(isLoaded) ? (<div />) : (<Data data={dayData} emoji={emoji} description={!isLoaded ? undefined : desc} />));
+              })()}
+            </div>
+          </div>);
         })
       );
     }
