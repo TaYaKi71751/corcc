@@ -24,10 +24,12 @@ function getMatchedPage({
 function getPage({
   params,
 }: any) {
-  console.log(params);
-  let matchedPage = getMatchedPage({ params:params });
+  if (!params) {
+    return pages['both'];
+  }
+  let matchedPage = getMatchedPage({ params: params });
   let matchedPageValue = matchedPage[1];
-  return matchedPageValue??pages['both'];
+  return matchedPageValue ?? pages['both'];
 }
 
 export { getPage };
