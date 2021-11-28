@@ -1,11 +1,16 @@
+import React from 'react';
 import ReactDOM from 'react-dom';
 import { getPage } from './app/Page';
+import reportWebVitals from './reportWebVitals';
 
 const title: any = document.querySelector("title");
-let href: any = document.location.href;
-let params: any = href.split("?")[1];
-const page = getPage({ params: params });
+const href: any = document.location.href;
+const params: any = href.split("?")[1];
+const page = getPage({ params });
 
 title.innerHTML = page.title;
-ReactDOM.render(page.page, document.body);
-// registerServiceWorker();
+ReactDOM.render(<React.StrictMode>
+    {page.page}
+</React.StrictMode>, document.body);
+
+reportWebVitals();

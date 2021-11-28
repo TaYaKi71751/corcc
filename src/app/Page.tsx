@@ -25,11 +25,11 @@ function getPage({
   params,
 }: any) {
   if (!params) {
-    return pages['both'];
+    return pages?.both;
   }
-  let matchedPage = getMatchedPage({ params: params });
-  let matchedPageValue = matchedPage[1];
-  return matchedPageValue ?? pages['both'];
+  const matchedPage = getMatchedPage({ params });
+  const matchedPageValue = matchedPage[1];
+  return matchedPageValue ?? pages?.both;
 }
 
 export { getPage };

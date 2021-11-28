@@ -23,7 +23,7 @@ class Cases extends Component {
         (jsonData) => {
           this.setState({
             isLoaded: true,
-            jsonData: jsonData,
+            jsonData,
           });
         },
         (error) => {
@@ -34,9 +34,10 @@ class Cases extends Component {
         }
       )
   }
-  
+
   render() {
-    const { error, isLoaded, jsonData }:any = this.state;
+    const { error, isLoaded, jsonData }: any = this.state;
+    const { symbol } = emoji;
     if (error) {
       return <div>Error: {error.message}</div>;
     } else {
@@ -46,13 +47,13 @@ class Cases extends Component {
           return (
             <div className="pad-1pc">
               <div
-                className={`${emoji()['symbol']}${emoji()['symbol']} items ${day}`}
+                className={`${symbol}${symbol} items ${day}`}
                 style={{ background: `${randomGradientBackground('to left bottom', 2)}` }}>
-                {(function (source:any, emoji:any, symbol:any) {
+                {(() => {
                   return (<Title source={source} symbol={symbol} dTyp={!isLoaded ? undefined : emoji[day]} />);
-                })(source(), emoji(), emoji()['symbol'])}
-                {(function () {
-                  return (!(isLoaded) ? (<div />) : (<Data data={dayData} emoji={emoji()} description={!isLoaded ? undefined : desc()} />));
+                })()}
+                {(() => {
+                  return (!(isLoaded) ? (<div />) : (<Data data={dayData} emoji={emoji} description={!isLoaded ? undefined : desc} />));
                 })()}
               </div>
             </div>);

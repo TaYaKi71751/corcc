@@ -6,8 +6,8 @@ import Title from './Title';
 import Data from './Data';
 
 class Cases extends Component {
-  source:any;
-  constructor(props:any) {
+  source: any;
+  constructor(props: any) {
     super(props);
     this.state = {
       error: null,
@@ -23,7 +23,7 @@ class Cases extends Component {
         (jsonData) => {
           this.setState({
             isLoaded: true,
-            jsonData: jsonData,
+            jsonData,
           });
         },
         (error) => {
@@ -36,21 +36,21 @@ class Cases extends Component {
   }
 
   render() {
-    this.source = source();
-    const { error, isLoaded, jsonData }:any = this.state;
+    const { error, isLoaded, jsonData }: any = this.state;
+    const { symbol, latest } = emoji;
     if (error) {
       return <div>Error: {error.message}</div>;
     } else {
       return (
         <div className="pad-1pc">
           <div
-            className={`${emoji()['symbol']}${emoji()['symbol']} items`}
+            className={`${symbol}${symbol} items`}
             style={{ background: `${randomGradientBackground('to left bottom', 2)}` }}>
-            {(function (source, emoji, symbol) {
-              return (<Title source={source} symbol={symbol} dTyp={!isLoaded ? undefined : emoji['latest']} />);
-            })(source(), emoji(), emoji()['symbol'])}
-            {(function () {
-              return (!(isLoaded) ? (<div />) : (<Data data={jsonData} emoji={emoji()} description={!isLoaded ? undefined : desc()} />));
+            {(() => {
+              return (<Title source={source} symbol={symbol} dTyp={!isLoaded ? undefined : latest} />);
+            })()}
+            {(() => {
+              return (!(isLoaded) ? (<div />) : (<Data data={jsonData} emoji={emoji} description={!isLoaded ? undefined : desc} />));
             })()}
           </div>
         </div>
