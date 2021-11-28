@@ -41,23 +41,23 @@ class Case extends Utilities {
       })];
     });
     caseData = this.filterType({
-      values:caseData,
-      valueType:'undefined',
-      match:false
+      values: caseData,
+      valueType: 'undefined',
+      match: false
     });
     caseData = Object.fromEntries(caseData);
     caseData = this.sortObject({
-      json:caseData
+      json: caseData
     })
     return caseData;
   }
   parseCountry(_map: any) {
-    var countryCaseData: any = {};
-    countryCaseData[this.parseCountryName(_map)] = this.parseCase(_map);
-    return countryCaseData;
+    return Object.fromEntries(Object.entries({ 'null': 'null' }).map(() => {
+      return [this.parseCountryName(_map), this.parseCase(_map)];
+    }));
   }
   mohwTime(_data: any) {
-    var v = this.innerFind({
+    let v = this.innerFind({
       DOM: _data,
       selectors: ['.timetable', '.info', 'span']
     }).text().trim();
@@ -69,12 +69,12 @@ class Case extends Utilities {
     res,
     selectors
   }: any) {
-    var data: any = {};
+    let data: any = {};
+    data = data ?? data;
     const maps = this.sliceValues(this._$(res)(selectors));
-    for (var i = 0; i < maps.length; i++) {
-      const parseData = this.parseCountry(maps[i]);
+    for (const map of maps) {
+      const parseData = this.parseCountry(map);
       const parseDataEntries = Object.entries(parseData)[0];
-
       if (maps.length > 2) {
         data[parseDataEntries[0]] = parseDataEntries[1];
         continue;
@@ -96,17 +96,15 @@ class Case extends Utilities {
   scrape({
     lang
   }: any) {
-    const url = this.source.getUrl({
-      lang: lang
-    });
-    console.log(url);
+    const url = this.source.getUrl({ lang });
+    console.info('URL : ', url);
     const res = this.curl(url);
-    var data = this.mohwJson(res);
-    console.log(data);
+    const data = this.mohwJson(res);
+    console.info('DATA : ', data);
     return data;
   }
 }
-var cases = new Case();
+const cases = new Case();
 try {
   cases.save({
     data: cases.scrape({ lang: 'en' }),

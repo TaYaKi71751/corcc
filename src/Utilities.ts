@@ -10,9 +10,10 @@ class Utilities {
   _$ = load;
   private _24HoursInMillis: number = 86400000;
   toObject(array: any) {
-    var _:any = {};
-    for (var i = 0; i < array.length; i++) {
-      const __:any = array[i];
+    let _:any = {};
+    _ = _ ?? _;
+    for (const i of array) {
+      const __:any = i;
       _[__[0]] = __[1];
     }
     return _;
@@ -36,7 +37,7 @@ class Utilities {
       writeJson(v, `/latest/${name}/`, k);
       writeJson(v, `/${name}`, k);
       writeJson(v, `/${name}/${k}`);
-      writeJson(v, `/${name}/${k}`, v['dataTime']);
+      writeJson(v, `/${name}/${k}`, v.dataTime);
     });
   }
 
@@ -101,8 +102,8 @@ class Utilities {
   newDate(): string {
     return this.dateFormat(new Date());
   }
-  isType(variable: any, variable_type: string): boolean {
-    return !(typeof variable != variable_type);
+  isType(variable: any, variableType: string): boolean {
+    return !(typeof variable != variableType);
   }
   parse({ DOM }: any): cheerio.Root {
     return this._$(((typeof DOM.html == 'undefined') ? this._$(DOM) : DOM).html());
@@ -114,9 +115,9 @@ class Utilities {
     selectors = selectors ? (this.isType(selectors[0], 'string')
       ? selectors
       : selectors[0]) : undefined;
-    var _ = this.parse({DOM});
-    var SDOM = _(selectors[0]);
-    var rS = selectors.slice(1, selectors.length);
+    const _ = this.parse({DOM});
+    const SDOM = _(selectors[0]);
+    const rS = selectors.slice(1, selectors.length);
     try {
       return rS.length ?
         (this.innerFind({

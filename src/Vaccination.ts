@@ -1,5 +1,3 @@
-const { execSync } = require('child_process');
-const { exit } = require('process');
 import Utilities from './Utilities';
 import './type/VaccinationKeys';
 import VaccinationKeys from './type/VaccinationKeys';
@@ -21,7 +19,7 @@ class Vaccination extends Utilities {
   }
 
   parseDataTime(d?: Date | string) {
-    var dataTime = d ?? this.innerFind({
+    let dataTime = d ?? this.innerFind({
       DOM: this.response,
       selectors: ['dataTime']
     }).text().trim();
@@ -30,10 +28,10 @@ class Vaccination extends Utilities {
     return `"dataTime":"${dataTime}"`;
   }
 
-  inserTime({data, dataTime}:any) : any {
-    const stringified:string = JSON.stringify(data);
-    const stringifiedWithDataTime:string = stringified.replace("{", `{${dataTime},`);
-    const parsedWithDataTime:string = JSON.parse(stringifiedWithDataTime);
+  inserTime({ data, dataTime }: any): any {
+    const stringified: string = JSON.stringify(data);
+    const stringifiedWithDataTime: string = stringified.replace("{", `{${dataTime},`);
+    const parsedWithDataTime: string = JSON.parse(stringifiedWithDataTime);
     return parsedWithDataTime;
   }
 
@@ -41,17 +39,17 @@ class Vaccination extends Utilities {
     ITEM_DOM,
     PARSE_KEYS
   }: any) {
-    var parseKey = ''
-      , data = Object.fromEntries(this.sliceEntries(PARSE_KEYS).map(([tag, tagOptions]: any) => {
-        const value = this._$(ITEM_DOM)(tag).text().trim();
-        if (typeof tagOptions != 'string') {
-          parseKey =
-            tagOptions[this.filterAlphabet(value)[0]] ??
-            this.filterHangul(value);
-          return [tag, undefined];
-        }
-        return [tagOptions, Number(this.filterNumber(value))];
-      }).filter(([, _]: any) => (typeof _ != 'undefined')));
+    let parseKey = '';
+    const data = Object.fromEntries(this.sliceEntries(PARSE_KEYS).map(([tag, tagOptions]: any) => {
+      const value = this._$(ITEM_DOM)(tag).text().trim();
+      if (typeof tagOptions != 'string') {
+        parseKey =
+          tagOptions[this.filterAlphabet(value)[0]] ??
+          this.filterHangul(value);
+        return [tag, undefined];
+      }
+      return [tagOptions, Number(this.filterNumber(value))];
+    }).filter(([, _]: any) => (typeof _ != 'undefined')));
     if (parseKey.includes('day')) {
       return [parseKey, this.inserTime({
         data,
@@ -70,7 +68,7 @@ class Vaccination extends Utilities {
   }
 
   scrape() {
-    const rtn:object = Object.keys(this.pathKeys).map((list) => {
+    const rtn: object = Object.keys(this.pathKeys).map((list) => {
       const path = this.pathKeys[list];
       const parse = this.parseKeys[list];
       const response = this.request({ list });
@@ -81,27 +79,29 @@ class Vaccination extends Utilities {
           'item'
         ]
       });
-      const data = this.toObject(this.sliceValues(items).map((item: any) => {
+      let data = this.toObject(this.sliceValues(items).map((item: any) => {
         return this.parseInner({
           ITEM_DOM: item,
           PARSE_KEYS: parse
         });
       }));
-      return [path,
-        this.inserTime({
-          data,
-          dataTime: this.parseDataTime()
-        })];
+      data = this.inserTime({
+        data,
+        dataTime: this.parseDataTime()
+      });
+      console.info(`${path} : ${data}`);
+      data = [path, data];
+      return data;
     });
     return this.toObject(rtn);
   }
 }
-var test = new Vaccination();
+const test = new Vaccination();
 try {
   // test.scrape();
   test.save({
-    data:test.scrape(),
-    name:"vaccination"
+    data: test.scrape(),
+    name: "vaccination"
   });
 } catch (e) {
   console.error(e);
