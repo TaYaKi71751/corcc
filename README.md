@@ -9,6 +9,7 @@
 > 
 > [![License: WTFPL](https://img.shields.io/badge/License-WTFPL-brightgreen.svg)](http://www.wtfpl.net/about/)
 > [![Update](https://github.com/TaYaKi71751/gh-action-data-scraping/actions/workflows/update.yml/badge.svg)](https://github.com/TaYaKi71751/gh-action-data-scraping/actions/workflows/update.yml)
+> [![CodeQL](https://github.com/corcc/corcc/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/corcc/corcc/actions/workflows/codeql-analysis.yml)
 > 
 > **TZ : UTC+0900**
 > ### **! SCRAPEN DATA MAY NOY CORRECT !**
