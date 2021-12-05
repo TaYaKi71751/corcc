@@ -7,7 +7,7 @@ function dirCheck(directory: string, fileName: string, fileExtension: string) : 
   try {
     execSync(`ls -la ${dir}`).toString();
   } catch (e) {
-    console.error(e);
+    console.error(new String(e));
     try {
       execSync(`mkdir -p ${dir}`).toString();
     } catch (e) {
