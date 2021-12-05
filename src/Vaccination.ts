@@ -1,9 +1,11 @@
+import JSONBig from 'json-bigint';
 import Utilities from './Utilities';
 import './parse/VaccinationKeys';
 import VaccinationKeys from './parse/VaccinationKeys';
 import { Save } from './Save';
 import { HTML, DataTime } from './type/Default'
 import { URLParams, VaccinationData } from './type/Vaccination';
+import { Value } from './type/Default';
 import cheerioModule from 'cheerio';
 import { exit } from 'process';
 class Vaccination extends Utilities {
@@ -21,10 +23,24 @@ class Vaccination extends Utilities {
     return `"dataTime":"${dataTime}"`;
   }
 
+  numberValue({
+    value
+  }: Value): Value {
+    if (!this.isNumberOnly(value)) {
+      return { value };
+    }
+    if (`${BigInt(value)}` != `${value}`) {
+      return { value };
+    }
+    value = BigInt(value);
+    return { value };
+  }
+
+
   inserTime({ data, time }: DataTime): any {
-    const stringified: string = JSON.stringify(data);
+    const stringified: string = JSONBig.stringify(data);
     const stringifiedWithDataTime: string = stringified.replace("{", `{${time},`);
-    const parsedWithDataTime: string = JSON.parse(stringifiedWithDataTime);
+    const parsedWithDataTime: string = JSONBig.parse(stringifiedWithDataTime);
     return parsedWithDataTime;
   }
 
@@ -40,17 +56,21 @@ class Vaccination extends Utilities {
     }
 
     const data: VaccinationData = Object.fromEntries(this.sliceEntries(this.now.parseKeys).map(([tag, tagOptions]: any) => {
-      const value = getText({
+      let valueString = getText({
         element: html,
         selector: tag
       });
       if (typeof tagOptions != 'string') {
         parseKey =
-          tagOptions[this.filterAlphabet(value)[0]] ??
-          this.filterHangul(value);
+          tagOptions[this.filterAlphabet(valueString)[0]] ??
+          this.filterHangul(valueString);
         return [tag, undefined];
       }
-      return [tagOptions, Number(this.filterNumber(value))];
+      valueString = this.filterNumber(valueString);
+      const { value } = this.numberValue({
+        value: valueString
+      });
+      return [tagOptions, value];
     }).filter(([, _]: any) => (typeof _ != 'undefined')));
     if (parseKey.includes('day')) {
       return [parseKey, this.inserTime({
