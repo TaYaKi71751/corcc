@@ -26,6 +26,7 @@ jobs:
         yarn -v
         yarn vaccination 
     - uses: corcc/publish@master
+      if: github.event.action != 'pull_request'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         TASK_NAME: '⬆️💉'
@@ -49,6 +50,7 @@ jobs:
       run: |
         yarn case 
     - uses: corcc/publish@master
+      if: github.event.action != 'pull_request'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         TASK_NAME: '⬆️🦠'
