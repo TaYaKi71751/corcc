@@ -1,7 +1,7 @@
 on: 
   workflow_dispatch:
-  schedule:
-    - cron: '0 */12 * * *'
+  # schedule:
+  #   - cron: '0 */12 * * *'
 
 name: Update
 jobs:
@@ -16,13 +16,14 @@ jobs:
     - name: Checkout 🛎️
       uses: actions/checkout@master
     - name: Install Dependencies 🔧🟢
-      run: npm install
+      run: yarn
     - name: ⬆️💉
-      env:
-        USER_AGENT: ${{ secrets.USER_AGENT }}
+      # env:
+      #   USER_AGENT: ${{ secrets.USER_AGENT }}
       run: |
-        echo "USER_AGENT=${{ secrets.USER_AGENT }}" >> .env
-        npm run vaccination 
+        node -v
+        yarn -v
+        yarn vaccination 
     - uses: corcc/publish@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
@@ -40,13 +41,12 @@ jobs:
     - name: Checkout 🛎️
       uses: actions/checkout@master
     - name: Install Dependencies 🔧🟢
-      run: npm install
+      run: yarn
     - name: ⬆️🦠
-      env:
-        USER_AGENT: ${{ secrets.USER_AGENT }}
+      # env:
+      #   USER_AGENT: ${{ secrets.USER_AGENT }}
       run: |
-        echo "USER_AGENT=${{ secrets.USER_AGENT }}" >> .env
-        npm run case 
+        yarn case 
     - uses: corcc/publish@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
