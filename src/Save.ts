@@ -8,10 +8,12 @@ export class Save {
     if(typeof data == 'undefined'){
       throw new TypeError();
     }
+    writeJson(data, `/${name}`);
     writeJson(data, `/latest/`, `${name}`);
     Object.entries(data).forEach(([k, v]: any) => {
-      if (Object.values(v).filter((_) => (typeof _ == 'string')).length > 1) {
-        writeJson(v, `/${name}`);
+      if (Object.values(v).length > 1) {
+        writeJson(v, `/${name}/${k}`);
+        writeJson(v, `/${name}/`,k);
       } else {
         const _k = k;
         const _dataTime = v.dataTime;

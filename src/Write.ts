@@ -1,3 +1,4 @@
+import JSONBig from 'json-bigint';
 import { writeFileSync } from 'fs';
 import { resolve, join } from 'path';
 import { execSync } from 'child_process';
@@ -22,7 +23,7 @@ function dirCheck(directory: string, fileName: string, fileExtension: string) : 
 function writeJson(data: any, directory: string, fileName?: any) {
   const writePath = resolve(dirCheck(directory, fileName, 'json'));
   const pwd = execSync('pwd').toString().replace("\n", "");
-  const jsonString = JSON.stringify(data, null, 2);
+  const jsonString = JSONBig.stringify(data, null, 2);
   console.info(`Start write ${writePath.replace(pwd, ".")}`);
   try {
     writeFileSync(writePath, jsonString);

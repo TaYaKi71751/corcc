@@ -1,3 +1,4 @@
+import JSONBig from 'json-bigint';
 import { exit, hasUncaughtExceptionCaptureCallback } from 'process';
 import Utilities from './Utilities';
 import CaseParseKeys from './parse/CaseParseKeys';
@@ -5,7 +6,8 @@ import CaseSelector from './parse/CaseSelector';
 import CaseSource from './source/CaseSource';
 import { HTML, DataTime } from './type/Default';;
 import { Save } from './Save';
-import { CaseData, Title, Value, Lang } from './type/Case';
+import { Title, Value } from './type/Default';
+import { CaseData, Lang } from './type/Case';
 import 'cheerio';
 import cheerioModule from 'cheerio';
 class Case extends Utilities {
@@ -35,7 +37,10 @@ class Case extends Utilities {
     if (!this.isNumberOnly(value)) {
       return { value };
     }
-    value = (Number(value) + '' == value) ? Number(value) : value;
+    if (`${BigInt(value)}` != `${value}`) {
+      return { value };
+    }
+    value = BigInt(value);
     return { value };
   }
 
@@ -144,9 +149,9 @@ class Case extends Utilities {
   }
 
   inserTime({ data, time }: DataTime): any {
-    const stringified: string = JSON.stringify(data);
+    const stringified: string = JSONBig.stringify(data);
     const stringifiedWithDataTime: string = stringified.replace("{", `{"dataTime":"${time}",`);
-    const parsedWithDataTime: JSON = JSON.parse(stringifiedWithDataTime);
+    const parsedWithDataTime: JSON = JSONBig.parse(stringifiedWithDataTime);
     return parsedWithDataTime;
   }
 
