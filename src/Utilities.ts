@@ -1,53 +1,32 @@
 import { config } from 'dotenv';
-import 'child_process';
-import './Write'
 import { execSync } from 'child_process';
 import 'cheerio';
 import { load } from 'cheerio';
-import writeJson from './Write';
-
+import { HTML } from './type/Default';
+import { DateUtil } from './DateUtil';
 class Utilities {
+  DateUtilities:DateUtil = new DateUtil();
   _$ = load;
-  private _24HoursInMillis: number = 86400000;
-  toObject(array: any) {
-    let _:any = {};
+  toObject(array: any) : JSON {
+    let _: any = {};
     _ = _ ?? _;
     for (const i of array) {
-      const __:any = i;
+      const __: any = i;
       _[__[0]] = __[1];
     }
     return _;
   }
-  sortObject({
-    json
-  }:any){
-    return Object.fromEntries(Object.keys(json).sort().map((key)=>{
-      return [key,json[key]];
-    }));
-  }
-  save({
-    data,
-    name
-  }:any) {
-    writeJson(data, `/latest/`, `${name}`);
-    Object.entries(data).forEach(([k, v]: any) => {
-      if (Object.values(v).filter((_) => (typeof _ == 'string')).length > 1) {
-        writeJson(v, `/${name}`);
-      }
-      writeJson(v, `/latest/${name}/`, k);
-      writeJson(v, `/${name}`, k);
-      writeJson(v, `/${name}/${k}`);
-      writeJson(v, `/${name}/${k}`, v.dataTime);
-    });
+  sortObject(obj: any) : object {
+    return Object.fromEntries(Object.entries(obj).sort());
   }
 
   filterType({
     values,
     valueType,
     match
-  }:any) : boolean{
-    return values.filter((value:any)=>{
-      return !((match??true) ^ (valueType?.includes(typeof value)));
+  }: any): boolean {
+    return values.filter((value: any) => {
+      return !((match ?? true) ^ (valueType?.includes(typeof value)));
     })
   }
 
@@ -57,79 +36,38 @@ class Utilities {
   sliceValues(v: any) {
     return Object.values(v).slice(0, v.length);
   }
-  curl(url: string) {
+  curl(url: string) : string {
     return execSync(`curl -LsSf ${url} -A "${process.env.USER_AGENT}" -o -`).toString();
-  }
-  dateFormat(d: any) {
-    d = new Date(d);
-    return [this.getFullYear(d), this.getMonth(d), this.getDate(d)].join('-');
-  }
-  yester(dataTime: any) {
-    return this.dateFormat(new Date(Date.parse(dataTime) - (this._24HoursInMillis)));
-  }
-  nowDate() {
-    return new Date(this.dateFormat(new Date()));
-  }
-  dateCheck(d: any) {
-    const dateNow = this.nowDate();
-    const dateYester = this.yester(dateNow);
-    const monthDateNow = this.getMonthDate(dateNow);
-    const monthDateYester = this.getMonthDate(dateYester);
-    const monthDate = this.getMonthDate(d);
-    switch (monthDate) {
-      case monthDateNow:
-        return `${this.getFullYear(dateNow)}-${monthDateNow}`;
-      case monthDateYester:
-        return `${this.getFullYear(dateYester)}-${monthDateYester}`;
-      default:
-        return null;
-    }
-  }
-  getMonth(d: Date | string): string {
-    d = '' + (new Date(d).getMonth() + 1);
-    return (d.length < 2) ? ('0' + d) : d;
-  }
-  getDate(d: Date | string): string {
-    d = '' + (new Date(d).getDate());
-    return (d.length < 2) ? ('0' + d) : d;
-  }
-  getMonthDate(d: Date | string): string {
-    return `${this.getMonth(d)}-${this.getDate(d)}`;
-  }
-  getFullYear(d: Date | string): number {
-    return new Date(d).getFullYear();
-  }
-  newDate(): string {
-    return this.dateFormat(new Date());
   }
   isType(variable: any, variableType: string): boolean {
     return !(typeof variable != variableType);
   }
-  parse({ DOM }: any): cheerio.Root {
-    return this._$(((typeof DOM.html == 'undefined') ? this._$(DOM) : DOM).html());
+  parse({ html }: HTML): cheerio.Root {
+    return this._$((this._$(html) ?? html).html());
   }
   innerFind({
-    DOM,
+    html,
     selectors
-  }: any): any {
+  }: HTML): any {
     selectors = selectors ? (this.isType(selectors[0], 'string')
       ? selectors
-      : selectors[0]) : undefined;
-    const _ = this.parse({DOM});
-    const SDOM = _(selectors[0]);
-    const rS = selectors.slice(1, selectors.length);
+      : selectors[0]) : selectors;
+    const selector = selectors ? selectors[0] : undefined;
+    const _ = this.parse({ html });
+    const fHTML = _(selector);
+    const rS = selectors?.slice(1, selectors.length)??undefined;
     try {
-      return rS.length ?
+      return rS?.length ?
         (this.innerFind({
-          DOM: SDOM,
+          html: fHTML,
           selectors: rS
-        }) ?? SDOM)
-        : SDOM;
+        }) ?? fHTML)
+        : fHTML;
     } catch (e) {
-      return DOM;
+      return html;
     }
   }
-  entries(a: object) {
+  entries(a: object) : object {
     return Object.entries(a);
   }
   filterIncludesKeys(a: object, b: string) {
