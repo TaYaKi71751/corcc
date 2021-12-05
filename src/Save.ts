@@ -5,6 +5,9 @@ export class Save {
     data,
     name
   }: Data) {
+    if(typeof data == 'undefined'){
+      throw new TypeError();
+    }
     writeJson(data, `/latest/`, `${name}`);
     Object.entries(data).forEach(([k, v]: any) => {
       if (Object.values(v).filter((_) => (typeof _ == 'string')).length > 1) {

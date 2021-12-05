@@ -7,14 +7,10 @@ import { DateUtil } from './DateUtil';
 class Utilities {
   DateUtilities:DateUtil = new DateUtil();
   _$ = load;
-  toObject(array: any) : JSON {
-    let _: any = {};
-    _ = _ ?? _;
-    for (const i of array) {
-      const __: any = i;
-      _[__[0]] = __[1];
-    }
-    return _;
+  objectEntries(array: any) : any {
+    return Object.entries({"":""}).map(()=>{
+      return array;
+    });
   }
   sortObject(obj: any) : object {
     return Object.fromEntries(Object.entries(obj).sort());

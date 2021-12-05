@@ -1,47 +1,49 @@
 import Utilities from './Utilities';
-import './type/VaccinationKeys';
-import VaccinationKeys from './type/VaccinationKeys';
+import './parse/VaccinationKeys';
+import VaccinationKeys from './parse/VaccinationKeys';
+import { Save } from './Save';
+import { HTML, DataTime } from './type/Default'
+import { URLParams, VaccinationData } from './type/Vaccination';
+import cheerioModule from 'cheerio';
+import { exit } from 'process';
 class Vaccination extends Utilities {
   response: any;
   pathKeys: any[string] = VaccinationKeys.path;
   parseKeys: any[string] = VaccinationKeys.parse;
-  constructor() {
-    super();
-  }
-
-  splitItems(dom: any) {
-    return this.sliceValues(this.innerFind({
-      DOM: dom,
-      selectors: [
-        'item'
-      ]
-    }));
-  }
-
-  parseDataTime(d?: Date | string) {
+  now: any = {};
+  parseTime(d?: Date | string): string {
     let dataTime = d ?? this.innerFind({
-      DOM: this.response,
+      html: this.response,
       selectors: ['dataTime']
     }).text().trim();
     dataTime = new Date(dataTime);
-    dataTime = this.dateFormat(dataTime);
+    dataTime = this.DateUtilities.dateFormat(dataTime);
     return `"dataTime":"${dataTime}"`;
   }
 
-  inserTime({ data, dataTime }: any): any {
+  inserTime({ data, time }: DataTime): any {
     const stringified: string = JSON.stringify(data);
-    const stringifiedWithDataTime: string = stringified.replace("{", `{${dataTime},`);
+    const stringifiedWithDataTime: string = stringified.replace("{", `{${time},`);
     const parsedWithDataTime: string = JSON.parse(stringifiedWithDataTime);
     return parsedWithDataTime;
   }
 
   parseInner({
-    ITEM_DOM,
-    PARSE_KEYS
-  }: any) {
+    html
+  }: HTML) {
     let parseKey = '';
-    const data = Object.fromEntries(this.sliceEntries(PARSE_KEYS).map(([tag, tagOptions]: any) => {
-      const value = this._$(ITEM_DOM)(tag).text().trim();
+    const getText = function ({
+      element,
+      selector
+    }: any): string {
+      return cheerioModule.load(element)(selector).text().trim();
+    }
+
+    const data: VaccinationData = Object.fromEntries(this.sliceEntries(this.now.parseKeys).map(([tag, tagOptions]: any) => {
+      const value = getText({
+        element: html,
+        selector: tag
+      });
       if (typeof tagOptions != 'string') {
         parseKey =
           tagOptions[this.filterAlphabet(value)[0]] ??
@@ -53,9 +55,9 @@ class Vaccination extends Utilities {
     if (parseKey.includes('day')) {
       return [parseKey, this.inserTime({
         data,
-        dataTime: (parseKey.includes("yes")
-          ? this.parseDataTime(this.yester(this.parseDataTime()))
-          : this.parseDataTime())
+        time: (parseKey.includes("yes")
+          ? this.parseTime(this.DateUtilities.yester(this.parseTime()))
+          : this.parseTime())
       })]
     }
     return [parseKey, data];
@@ -63,44 +65,54 @@ class Vaccination extends Utilities {
 
   request({
     list
-  }: any) {
+  }: URLParams): string {
     return this.curl(`https://nip.kdca.go.kr/irgd/cov19stats.do?list=${list}`);
   }
 
-  scrape() {
-    const rtn: object = Object.keys(this.pathKeys).map((list) => {
-      const path = this.pathKeys[list];
-      const parse = this.parseKeys[list];
-      const response = this.request({ list });
-      this.response = response;
-      const items = this.innerFind({
-        DOM: response,
-        selectors: [
-          'item'
-        ]
-      });
-      let data = this.toObject(this.sliceValues(items).map((item: any) => {
-        return this.parseInner({
-          ITEM_DOM: item,
-          PARSE_KEYS: parse
+  scrape(): JSON {
+    var vaccinationData: any = {};
+    for (const list of Object.keys(this.pathKeys)) {
+      try {
+        const path: string = this.now.pathKeys = this.pathKeys[list];
+        const parse = this.now.parseKeys = this.parseKeys[list];
+        const response = this.response = this.request({ list });
+        const items = this.innerFind({
+          html: response,
+          selectors: [
+            'item'
+          ]
         });
-      }));
-      data = this.inserTime({
-        data,
-        dataTime: this.parseDataTime()
-      });
-      console.info(`${path} : ${data}`);
-      data = [path, data];
-      return data;
-    });
-    return this.toObject(rtn);
+        let data: object = Object.fromEntries(
+          items.map((index: number, item: cheerio.Element) => {
+            return this.objectEntries(
+              this.parseInner({
+                html: item
+              })
+            )
+          }));
+        data = this.inserTime({
+          data,
+          time: this.parseTime()
+        });
+        console.info(path);
+        console.info(data);
+        vaccinationData[path] = data;
+      } catch (e) {
+        console.error(this.now.path);
+        console.error(this.now.response);
+        console.error(e);
+        exit(-3);
+      }
+    }
+    console.info(`data`);
+    console.info(vaccinationData);
+    return vaccinationData;
   }
 }
-const test = new Vaccination();
+const vaccination = new Vaccination();
 try {
-  // test.scrape();
-  test.save({
-    data: test.scrape(),
+  new Save({
+    data: vaccination.scrape(),
     name: "vaccination"
   });
 } catch (e) {
