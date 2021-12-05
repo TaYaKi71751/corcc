@@ -8,10 +8,9 @@
             "name": "Cases",
             "request": "launch",
             "runtimeArgs": [
-                "run",
                 "case"
             ],
-            "runtimeExecutable": "npm",
+            "runtimeExecutable": "yarn",
             "skipFiles": [
                 "<node_internals>/**"
             ],
@@ -21,10 +20,9 @@
             "name": "Vaccinations",
             "request": "launch",
             "runtimeArgs": [
-                "run",
                 "vaccination"
             ],
-            "runtimeExecutable": "npm",
+            "runtimeExecutable": "yarn",
             "skipFiles": [
                 "<node_internals>/**"
             ],
