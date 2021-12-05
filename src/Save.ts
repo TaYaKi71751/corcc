@@ -10,7 +10,7 @@ export class Save {
     }
     writeJson(data, `/latest/`, `${name}`);
     Object.entries(data).forEach(([k, v]: any) => {
-      if (Object.values(v).filter((_) => (typeof _ == 'string')).length > 1) {
+      if (Object.values(v).length > 1) {
         writeJson(v, `/${name}`);
       } else {
         const _k = k;
