@@ -2,9 +2,9 @@ import { config } from 'dotenv';
 import { execSync } from 'child_process';
 import 'cheerio';
 import { load } from 'cheerio';
-import { HTML } from './type/Default';
+import { HTML } from '../type/Default';
 import { DateUtil } from './DateUtil';
-class Utilities {
+export class Utilities {
   DateUtilities:DateUtil = new DateUtil();
   _$ = load;
   objectEntries(array: any) : any {
@@ -103,5 +103,3 @@ class Utilities {
     return t == this.filterNumber(t);
   }
 }
-module.exports = Utilities;
-export = Utilities;

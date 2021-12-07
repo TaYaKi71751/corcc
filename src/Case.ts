@@ -1,6 +1,6 @@
 import JSONBig from 'json-bigint';
 import { exit, hasUncaughtExceptionCaptureCallback } from 'process';
-import Utilities from './Utilities';
+import { Utilities } from './util/Utilities';
 import CaseParseKeys from './parse/CaseParseKeys';
 import CaseSelector from './parse/CaseSelector';
 import CaseSource from './source/CaseSource';

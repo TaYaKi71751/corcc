@@ -1,5 +1,5 @@
 import JSONBig from 'json-bigint';
-import Utilities from './Utilities';
+import { Utilities } from './util/Utilities';
 import './parse/VaccinationKeys';
 import VaccinationKeys from './parse/VaccinationKeys';
 import { Save } from './Save';
