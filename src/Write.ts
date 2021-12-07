@@ -3,7 +3,7 @@ import { writeFileSync } from 'fs';
 import { resolve, join } from 'path';
 import { execSync } from 'child_process';
 import { exit } from 'process';
-function dirCheck(directory: string, fileName: string, fileExtension: string) : string {
+function dirCheck(directory: string, fileName: string, fileExtension: string): string {
   const dir = join(`${__dirname}/../`, directory);
   try {
     execSync(`ls -la ${dir}`).toString();
@@ -15,8 +15,17 @@ function dirCheck(directory: string, fileName: string, fileExtension: string) : 
       console.error(e);
       exit(-128);
     }
-  }finally{
-    execSync(`echo '' > ${dir}/.gitkeep`).toString();
+  }
+  try {
+    execSync(`ls -la ${dir}/.gitkeep`).toString()
+  } catch (e) {
+    console.error(new String(e));
+    try {
+      execSync(`echo '' > ${dir}/.gitkeep`).toString();
+    }catch(e){
+      console.error(e);
+      exit(-120);
+    }
   }
   return join(`${dir}`, `${fileName ?? 'latest'}`) + (fileExtension ? ("." + fileExtension) : '');
 }
