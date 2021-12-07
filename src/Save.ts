@@ -8,6 +8,7 @@ export class Save {
     if (typeof data == 'undefined') {
       throw new TypeError();
     }
+    writeJson(data, `/${name}`);
     writeJson(data, `/latest/`, `${name}`);
     Object.entries(data).forEach(([k, v]: any) => {
       writeJson(v, `/${name}/${k}`);
