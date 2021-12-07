@@ -7,7 +7,8 @@ function dirCheck({
   path,
   file
 }: Check | any): string {
-  const dir = join(Path(), path);
+  var dir = join(Path(), path);
+  dir = dir.includes('latest/') ? dir.substring(0, dir.lastIndexOf('/')) : dir;
   try {
     execSync(`ls -la ${dir}`).toString();
   } catch (e) {
@@ -22,7 +23,7 @@ function dirCheck({
     execSync(`echo '' > ${dir}/.gitkeep`).toString();
   }
   const { name, ext }: any | File = File(file);
-  return join(`${dir}`, `${(name) ?? 'latest'}`) + (ext ? ("." + ext) : '');
+  return join(dir, `${(name) ?? 'latest'}`) + (ext ? ("." + ext) : '');
 }
 var dataTime: any = '';
 
@@ -47,11 +48,11 @@ function writeFile({
       return typeof data == 'string' ? dataTime : data?.dataTime ?? dataTime;
     })(v);
     if (typeof v == 'string') {
-      if(!v.match(/^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/)){
+      if (!v.match(/^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/)) {
         return;
       }
     }
-    const __path__ = Path(path).path.replace(_rootDir_, "./");
+    const __path__ = (Path(path)?.path).replace(_rootDir_, ".");
     console.log(__path__);
     console.log(dataTime);
     console.log(k);
@@ -60,7 +61,7 @@ function writeFile({
       path: {
         path: `${__path__}/${k}`,
         file: {
-          name: dataTime,
+          name: __path__.includes("latest/") ? `${k}` : dataTime,
           ext: 'json'
         }
       }
@@ -70,7 +71,7 @@ function writeFile({
       path: {
         path: `${__path__}/${k}`,
         file: {
-          name: 'latest',
+          name: __path__.includes("latest/") ? `${k}` : 'latest',
           ext: 'json'
         }
       }

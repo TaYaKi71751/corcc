@@ -1,4 +1,5 @@
 import { execSync } from 'child_process';
+import { exit } from 'process';
 type Path = string | {
   path?: Path;
   file?: File;
@@ -20,7 +21,22 @@ function Path(path?: Path): Path | any {
   try {
     return ((p?: Path): Path => {
       const pwd = execSync(`pwd | tr -d '\\n'`).toString();
-      const find_path = execSync(`cd ${(typeof p == 'string'?p:(p?.path??"./"))} && pwd | tr -d '\\n'`).toString()
+      try{
+        execSync(`cd "${(typeof p == 'string'?p:(p?.path??'./'))}" && pwd | tr -d '\\n'`).toString();
+      }catch(e){
+        try {
+          execSync(`ls -la "${(typeof p == 'string'?p:(p?.path??'./'))}"`).toString();
+        } catch (e) {
+          console.error(new String(e));
+          try {
+            execSync(`mkdir -p "${(typeof p == 'string'?p:(p?.path??'./'))}"`).toString();
+          } catch (e) {
+            console.error(e);
+            exit(-128);
+          }
+        }
+      }
+      const find_path = execSync(`cd "${(typeof p == 'string'?p:(p?.path??'./'))}" && pwd | tr -d '\\n'`).toString();
       const { path, file }: any = p ?? {
         path: find_path,
       };
