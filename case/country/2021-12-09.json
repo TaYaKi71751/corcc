@@ -1,96 +1,96 @@
 {
   "dataTime": "2021-12-09",
-  "全国": {
+  "Nation-wide": {
     "confirmed": 496584,
     "deaths": 4077,
     "recovered": 424220
   },
-  "首尔": {
+  "Seoul": {
     "confirmed": 174396,
     "deaths": 1280,
     "recovered": 141775
   },
-  "釜山": {
+  "Busan": {
     "confirmed": 17962,
     "deaths": 193,
     "recovered": 15667
   },
-  "大邱": {
+  "Daegu": {
     "confirmed": 19954,
     "deaths": 328,
     "recovered": 18499
   },
-  "仁川": {
+  "Incheon": {
     "confirmed": 27710,
     "deaths": 173,
     "recovered": 23437
   },
-  "光州": {
+  "Gwangju": {
     "confirmed": 6660,
     "deaths": 32,
     "recovered": 6215
   },
-  "大田": {
+  "Daejeon": {
     "confirmed": 9751,
     "deaths": 78,
     "recovered": 8385
   },
-  "蔚山": {
+  "Ulsan": {
     "confirmed": 5822,
     "deaths": 57,
     "recovered": 5580
   },
-  "世宗": {
+  "Sejong": {
     "confirmed": 1675,
     "deaths": 3,
     "recovered": 1530
   },
-  "京畿": {
+  "Gyeonggi-do": {
     "confirmed": 148215,
     "deaths": 1350,
     "recovered": 127328
   },
-  "江原": {
+  "Gangwon-do": {
     "confirmed": 9719,
     "deaths": 80,
     "recovered": 8423
   },
-  "忠北": {
+  "Chungcheongbuk-do": {
     "confirmed": 9469,
     "deaths": 96,
     "recovered": 8694
   },
-  "忠南": {
+  "Chungcheongnam-do": {
     "confirmed": 14339,
     "deaths": 90,
     "recovered": 12482
   },
-  "全北": {
+  "Jeollabuk-do": {
     "confirmed": 7015,
     "deaths": 84,
     "recovered": 6192
   },
-  "全南": {
+  "Jeollanam-do": {
     "confirmed": 4850,
     "deaths": 28,
     "recovered": 4271
   },
-  "庆北": {
+  "Gyeongsangbuk-do": {
     "confirmed": 12326,
     "deaths": 116,
     "recovered": 10958
   },
-  "庆南": {
+  "Gyeongsangnam-do": {
     "confirmed": 16185,
     "deaths": 63,
     "recovered": 14787
   },
-  "济州": {
+  "Jeju": {
     "confirmed": 4019,
     "deaths": 10,
     "recovered": 3662
   },
-  "隔離區": {
+  "Lazaretto": {
     "confirmed": 6517,
     "deaths": 16,
     "recovered": 6335
