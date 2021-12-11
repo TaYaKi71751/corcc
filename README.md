@@ -21,6 +21,8 @@
 >>> (DISCONTINUED on 2021-11-17 => REASON : NO DATA )[Archive](https://web.archive.org/web/20211116205419/http://ncov.mohw.go.kr/en/bdBoardList.do?brdId=16&brdGubun=162&dataGubun=&ncvContSeq=&contSeq=&board_id=&gubun=)
 >>> 
 >>>  (CONTINUED)
+>>>  
+>>>  (en => cn => ko)
 > 
 > ### DATA-REF 
 >> - [ COVID-19 Vaccination ](https://nip.kdca.go.kr/irgd/cov19stats.do?list=all) 
