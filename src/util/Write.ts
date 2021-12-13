@@ -3,6 +3,7 @@ import { resolve, join } from 'path';
 import { execSync } from 'child_process';
 import { exit } from 'process';
 import { Path, File, Check, Save } from './type/File';
+
 function dirCheck({
   path,
   file
@@ -27,6 +28,42 @@ function dirCheck({
 }
 var dataTime: any = '';
 
+function checkPath({
+  writePath
+}: any) {
+  return (function (p: string) {
+    const a = p.substring(p.lastIndexOf('/', p.lastIndexOf('/') - 1) + 1, p.lastIndexOf('/'));
+    const b = p.substring(p.lastIndexOf('/') + 1, p.lastIndexOf('.'));
+    const c = a == b;
+    const d = function (e: string) {
+      return e.replace(`/${a}.`, '.')
+    };
+    console.log(a, b);
+    return c ? d(p) : p;
+  })(writePath)
+}
+
+function write({
+  writePath,
+  jsonString,
+  pwd
+}: any) {
+  const _writePath = checkPath({ writePath });
+  console.info(`Start write ${_writePath.replace(pwd, ".")}`);
+  try {
+    writeFileSync(_writePath, jsonString);
+  } catch (e) {
+    console.error(e);
+    return;
+  }
+  console.info(`Successfully writen ${_writePath.replace(pwd, ".")}`);
+  return true;
+}
+
+function stringify(d:any):string{
+  return JSON.stringify(d, null, 2);
+}
+
 const _rootDir_ = Path();
 function writeFile({
   data,
@@ -34,15 +71,12 @@ function writeFile({
 }: Save) {
   const writePath = resolve(dirCheck(path));
   const pwd = execSync('pwd').toString().replace("\n", "");
-  const jsonString = JSON.stringify(data, null, 2);
-  console.info(`Start write ${writePath.replace(pwd, ".")}`);
-  try {
-    writeFileSync(writePath, jsonString);
-  } catch (e) {
-    console.error(e);
-    return undefined;
-  }
-  console.info(`Successfully writen ${writePath.replace(pwd, ".")}`);
+  const jsonString = stringify(data);
+  write({
+    writePath,
+    jsonString,
+    pwd
+  })
   Object.entries(data).forEach(([k, v]) => {
     dataTime = k.includes("yes") ? dataTime : ((data: any) => {
       return typeof data == 'string' ? dataTime : data?.dataTime ?? dataTime;
@@ -53,9 +87,11 @@ function writeFile({
       }
     }
     const __path__ = (Path(path)?.path).replace(_rootDir_, ".");
-    console.log(__path__);
-    console.log(dataTime);
-    console.log(k);
+    write({
+      writePath: `${writePath.substring(0, writePath.lastIndexOf('/'))}/${k}.json`,
+      jsonString: stringify(v),
+      pwd
+    })
     writeFile({
       data: v,
       path: {
