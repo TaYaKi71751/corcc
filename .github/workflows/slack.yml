@@ -1,0 +1,58 @@
+on: 
+  workflow_dispatch:
+  push:
+
+name: Slack Message
+jobs:
+  vaccination-slack:
+    name: Vaccinations Slack
+    runs-on: ubuntu-latest
+    steps:
+    - name: Setup Node
+      uses: actions/setup-node@v2
+      with:
+        node-version: 'lts/*'
+    - name: Checkout 🛎️
+      uses: actions/checkout@master
+    - name: Read ./latest/vaccination/counter/today.json
+      id: vaccination
+      uses: juliangruber/read-file-action@v1
+      with:
+        path: ./latest/vaccination/counter/today.json
+    - name: Echo ./latest/vaccination/counter/today.json
+      run: echo "${{ steps.vaccination.outputs.content }}"
+    - name: Send message to Slack API
+      uses: corcc/slack-send@v2.0.0
+      id: notify
+      with:
+        slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN_VACCINATION }}
+        slack-channel: ${{ secrets.SLACK_CHANNEL_VACCINATION_DAILY }}
+        slack-text: "```${{ steps.vaccination.outputs.content }}```"
+    - name: Result from "Send Message"
+      run: echo "The result was ${{ steps.notify.outputs.slack-result }}"
+  case-slack:
+    name: Cases Slack
+    runs-on: ubuntu-latest
+    steps:
+    - name: Setup Node
+      uses: actions/setup-node@v2
+      with:
+        node-version: 'lts/*'
+    - name: Checkout 🛎️
+      uses: actions/checkout@master
+    - name: Read ./latest/case/counter.json
+      id: case
+      uses: juliangruber/read-file-action@v1
+      with:
+        path: ./latest/case/counter.json
+    - name: Echo ./latest/case/counter.json
+      run: echo "${{ steps.case.outputs.content }}"
+    - name: Send message to Slack API
+      uses: corcc/slack-send@v2.0.0
+      id: notify
+      with:
+        slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN_CONFIRMED_CASE }}
+        slack-channel: ${{ secrets.SLACK_CHANNEL_CONFIRMED_CASE_TODAY }}
+        slack-text: "```${{ steps.case.outputs.content }}```"
+    - name: Result from "Send Message"
+      run: echo "The result was ${{ steps.notify.outputs.slack-result }}"
