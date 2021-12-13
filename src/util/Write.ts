@@ -88,7 +88,7 @@ function writeFile({
     }
     const __path__ = (Path(path)?.path).replace(_rootDir_, ".");
     write({
-      writePath: `${writePath.substring(0, writePath.lastIndexOf('/'))}/${k}.json`,
+      writePath: `${__path__}/${k}.json`,
       jsonString: stringify(v),
       pwd
     })
