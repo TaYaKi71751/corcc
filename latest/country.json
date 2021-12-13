@@ -1,139 +1,98 @@
 {
   "dataTime": "2021-12-13",
-  "서울특별시": {
-    "firstCnt": 304,
-    "firstTot": 7994449,
-    "secondCnt": 284,
-    "secondTot": 7782371,
-    "thirdCnt": 1826,
-    "thirdTot": 1199359
+  "Nation-wide": {
+    "confirmed": 523088,
+    "deaths": 4293,
+    "recovered": 433564
   },
-  "부산광역시": {
-    "firstCnt": 81,
-    "firstTot": 2746932,
-    "secondCnt": 74,
-    "secondTot": 2661984,
-    "thirdCnt": 395,
-    "thirdTot": 393801
+  "Seoul": {
+    "confirmed": 185108,
+    "deaths": 1356,
+    "recovered": 145639
   },
-  "대구광역시": {
-    "firstCnt": 37,
-    "firstTot": 1911532,
-    "secondCnt": 25,
-    "secondTot": 1850943,
-    "thirdCnt": 152,
-    "thirdTot": 237143
+  "Busan": {
+    "confirmed": 19153,
+    "deaths": 201,
+    "recovered": 16208
   },
-  "인천광역시": {
-    "firstCnt": 138,
-    "firstTot": 2451153,
-    "secondCnt": 89,
-    "secondTot": 2377704,
-    "thirdCnt": 525,
-    "thirdTot": 343380
+  "Daegu": {
+    "confirmed": 20541,
+    "deaths": 334,
+    "recovered": 18803
   },
-  "광주광역시": {
-    "firstCnt": 20,
-    "firstTot": 1199833,
-    "secondCnt": 14,
-    "secondTot": 1160092,
-    "thirdCnt": 102,
-    "thirdTot": 172612
+  "Incheon": {
+    "confirmed": 29487,
+    "deaths": 186,
+    "recovered": 24560
   },
-  "대전광역시": {
-    "firstCnt": 45,
-    "firstTot": 1183193,
-    "secondCnt": 23,
-    "secondTot": 1145554,
-    "thirdCnt": 190,
-    "thirdTot": 163116
+  "Gwangju": {
+    "confirmed": 6828,
+    "deaths": 32,
+    "recovered": 6358
   },
-  "울산광역시": {
-    "firstCnt": 22,
-    "firstTot": 916099,
-    "secondCnt": 14,
-    "secondTot": 888799,
-    "thirdCnt": 96,
-    "thirdTot": 103671
+  "Daejeon": {
+    "confirmed": 10219,
+    "deaths": 89,
+    "recovered": 8532
   },
-  "세종특별자치시": {
-    "firstCnt": 24,
-    "firstTot": 275242,
-    "secondCnt": 5,
-    "secondTot": 265119,
-    "thirdCnt": 47,
-    "thirdTot": 36185
+  "Ulsan": {
+    "confirmed": 5988,
+    "deaths": 57,
+    "recovered": 5637
   },
-  "경기도": {
-    "firstCnt": 765,
-    "firstTot": 11249307,
-    "secondCnt": 489,
-    "secondTot": 10919282,
-    "thirdCnt": 3096,
-    "thirdTot": 1566530
+  "Sejong": {
+    "confirmed": 1719,
+    "deaths": 3,
+    "recovered": 1589
   },
-  "강원도": {
-    "firstCnt": 32,
-    "firstTot": 1288650,
-    "secondCnt": 22,
-    "secondTot": 1252101,
-    "thirdCnt": 123,
-    "thirdTot": 215955
+  "Gyeonggi-do": {
+    "confirmed": 155685,
+    "deaths": 1423,
+    "recovered": 128461
   },
-  "충청북도": {
-    "firstCnt": 46,
-    "firstTot": 1361335,
-    "secondCnt": 29,
-    "secondTot": 1322178,
-    "thirdCnt": 277,
-    "thirdTot": 214037
+  "Gangwon-do": {
+    "confirmed": 10275,
+    "deaths": 84,
+    "recovered": 8786
   },
-  "충청남도": {
-    "firstCnt": 70,
-    "firstTot": 1803008,
-    "secondCnt": 85,
-    "secondTot": 1746430,
-    "thirdCnt": 295,
-    "thirdTot": 294267
+  "Chungcheongbuk-do": {
+    "confirmed": 9810,
+    "deaths": 97,
+    "recovered": 8892
   },
-  "전라북도": {
-    "firstCnt": 36,
-    "firstTot": 1525810,
-    "secondCnt": 23,
-    "secondTot": 1483651,
-    "thirdCnt": 139,
-    "thirdTot": 280951
+  "Chungcheongnam-do": {
+    "confirmed": 15053,
+    "deaths": 101,
+    "recovered": 12839
   },
-  "전라남도": {
-    "firstCnt": 25,
-    "firstTot": 1585352,
-    "secondCnt": 42,
-    "secondTot": 1539412,
-    "thirdCnt": 102,
-    "thirdTot": 317220
+  "Jeollabuk-do": {
+    "confirmed": 7387,
+    "deaths": 86,
+    "recovered": 6384
   },
-  "경상북도": {
-    "firstCnt": 44,
-    "firstTot": 2175725,
-    "secondCnt": 30,
-    "secondTot": 2107914,
-    "thirdCnt": 116,
-    "thirdTot": 337140
+  "Jeollanam-do": {
+    "confirmed": 5157,
+    "deaths": 29,
+    "recovered": 4363
   },
-  "경상남도": {
-    "firstCnt": 56,
-    "firstTot": 2735495,
-    "secondCnt": 44,
-    "secondTot": 2647507,
-    "thirdCnt": 188,
-    "thirdTot": 406192
+  "Gyeongsangbuk-do": {
+    "confirmed": 12957,
+    "deaths": 124,
+    "recovered": 11245
   },
-  "제주특별자치도": {
-    "firstCnt": 39,
-    "firstTot": 555365,
-    "secondCnt": 16,
-    "secondTot": 536060,
-    "thirdCnt": 103,
-    "thirdTot": 73860
+  "Gyeongsangnam-do": {
+    "confirmed": 17000,
+    "deaths": 65,
+    "recovered": 15161
+  },
+  "Jeju": {
+    "confirmed": 4180,
+    "deaths": 10,
+    "recovered": 3764
+  },
+  "Lazaretto": {
+    "confirmed": 6541,
+    "deaths": 16,
+    "recovered": 6343
   }
 }
