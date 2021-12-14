@@ -1,18 +1,17 @@
 {
   "dataTime": "2021-12-14",
-  "today": {
-    "dataTime": "2021-12-14",
+  "daily": {
     "firstCnt": 75009,
     "secondCnt": 61637,
     "thirdCnt": 759587
   },
-  "yesterday_c": {
+  "yesterday": {
     "dataTime": "2021-12-13",
     "firstCnt": 42965958,
     "secondCnt": 41694809,
     "thirdCnt": 6360361
   },
-  "today_c": {
+  "today": {
     "dataTime": "2021-12-14",
     "firstCnt": 43040967,
     "secondCnt": 41756446,
