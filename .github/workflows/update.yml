@@ -27,23 +27,22 @@ jobs:
       # env:
       #   USER_AGENT: ${{ secrets.USER_AGENT }}
       run: yarn vaccination 
-
-  vslack: 
-    name: Send Vaccinations to Slack
-    needs: [ vaccination ]
-    runs-on: ubuntu-latest
-    steps:
-    - name: Setup Node
-      uses: actions/setup-node@v2
-      with:
-        node-version: 'lts/*'
-    - name: Checkout 🛎️
-      uses: actions/checkout@master
-    - name: Cache vaccination
-      uses: actions/cache@v2
-      with:
-        path: ./
-        key: vaccination
+  # vslack: 
+  #   name: Send Vaccinations to Slack
+  #   needs: [ vaccination ]
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - name: Setup Node
+  #     uses: actions/setup-node@v2
+  #     with:
+  #       node-version: 'lts/*'
+  #   - name: Checkout 🛎️
+  #     uses: actions/checkout@master
+  #   - name: Cache vaccination
+  #     uses: actions/cache@v2
+  #     with:
+  #       path: ./
+  #       key: vaccination
     - name: Read ./latest/vaccination/counter/today.json
       id: vaccination
       uses: juliangruber/read-file-action@v1
@@ -60,23 +59,22 @@ jobs:
         slack-text: "```${{ steps.vaccination.outputs.content }}```"
     - name: Result from "Send Message"
       run: echo "The result was ${{ steps.notify.outputs.slack-result }}"
-
-  vpublish:
-    name: Upload Vaccinations
-    needs: [ vaccination ]
-    runs-on: ubuntu-latest
-    steps:
-    - name: Setup Node
-      uses: actions/setup-node@v2
-      with:
-        node-version: 'lts/*'
-    - name: Checkout 🛎️
-      uses: actions/checkout@master
-    - name: Cache vaccination
-      uses: actions/cache@v2
-      with:
-        path: ./
-        key: vaccination
+  # vpublish:
+  #   name: Upload Vaccinations
+  #   needs: [ vaccination ]
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - name: Setup Node
+  #     uses: actions/setup-node@v2
+  #     with:
+  #       node-version: 'lts/*'
+  #   - name: Checkout 🛎️
+  #     uses: actions/checkout@master
+  #   - name: Cache vaccination
+  #     uses: actions/cache@v2
+  #     with:
+  #       path: ./
+  #       key: vaccination
     - uses: corcc/publish@master
       if: github.event.action != 'pull_request'
       env:
@@ -105,22 +103,22 @@ jobs:
       # env:
       #   USER_AGENT: ${{ secrets.USER_AGENT }}
       run: yarn case 
-  cslack: 
-    name: Send Cases to Slack
-    needs: [ case ]
-    runs-on: ubuntu-latest
-    steps:
-    - name: Setup Node
-      uses: actions/setup-node@v2
-      with:
-        node-version: 'lts/*'
-    - name: Checkout 🛎️
-      uses: actions/checkout@master
-    - name: Cache case
-      uses: actions/cache@v2
-      with:
-        path: ./
-        key: case
+  # cslack: 
+  #   name: Send Cases to Slack
+  #   needs: [ case ]
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - name: Setup Node
+  #     uses: actions/setup-node@v2
+  #     with:
+  #       node-version: 'lts/*'
+  #   - name: Checkout 🛎️
+  #     uses: actions/checkout@master
+  #   - name: Cache case
+  #     uses: actions/cache@v2
+  #     with:
+  #       path: ./
+  #       key: case
     - name: Read ./latest/case/counter.json
       id: case
       uses: juliangruber/read-file-action@v1
@@ -137,22 +135,22 @@ jobs:
         slack-text: "```${{ steps.case.outputs.content }}```"
     - name: Result from "Send Message"
       run: echo "The result was ${{ steps.notify.outputs.slack-result }}"
-  cpublish:
-    name: Upload Cases 
-    needs: [ case ]
-    runs-on: ubuntu-latest
-    steps:
-    - name: Setup Node
-      uses: actions/setup-node@v2
-      with:
-        node-version: 'lts/*'
-    - name: Checkout 🛎️
-      uses: actions/checkout@master
-    - name: Cache case
-      uses: actions/cache@v2
-      with:
-        path: ./
-        key: case
+  # cpublish:
+  #   name: Upload Cases 
+  #   needs: [ case ]
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - name: Setup Node
+  #     uses: actions/setup-node@v2
+  #     with:
+  #       node-version: 'lts/*'
+  #   - name: Checkout 🛎️
+  #     uses: actions/checkout@master
+  #   - name: Cache case
+  #     uses: actions/cache@v2
+  #     with:
+  #       path: ./
+  #       key: case
     - uses: corcc/publish@master
       if: github.event.action != 'pull_request'
       env:
