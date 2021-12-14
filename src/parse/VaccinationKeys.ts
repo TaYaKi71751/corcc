@@ -18,9 +18,9 @@ export = class VaccinationsKeys {
        * ******************************** *
        */
       "tpcd": {
-        "A": "today",       // (C-B)
-        "B": "yesterday_c", // (C-A)
-        "C": "today_c",     // (B+A)
+        "A": "daily",       // (C-B)
+        "B": "yesterday", // (C-A)
+        "C": "today",     // (B+A)
       },
       "firstCnt": "firstCnt",
       "secondCnt": "secondCnt",
