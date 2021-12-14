@@ -3,6 +3,9 @@ on:
   pull_request:
   schedule:
     - cron: '0 */12 * * *'
+  push: 
+    paths:
+      - '**.yml'
 
 name: Update data
 jobs:
@@ -16,72 +19,18 @@ jobs:
         node-version: 'lts/*'
     - name: Checkout 🛎️
       uses: actions/checkout@master
-    - name: Cache vaccination
-      uses: actions/cache@v2
-      with:
-        path: ./
-        key: vaccination
     - name: Install Dependencies 🔧🟢
       run: yarn
     - name: ⬆️💉
       # env:
       #   USER_AGENT: ${{ secrets.USER_AGENT }}
       run: yarn vaccination 
-  # vslack: 
-  #   name: Send Vaccinations to Slack
-  #   needs: [ vaccination ]
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - name: Setup Node
-  #     uses: actions/setup-node@v2
-  #     with:
-  #       node-version: 'lts/*'
-  #   - name: Checkout 🛎️
-  #     uses: actions/checkout@master
-  #   - name: Cache vaccination
-  #     uses: actions/cache@v2
-  #     with:
-  #       path: ./
-  #       key: vaccination
-    - name: Read ./latest/vaccination/counter/today.json
-      id: vaccination
-      uses: juliangruber/read-file-action@v1
+    - name: tar to upload
+      run: tar --exclude='./node_modules' -cvf vaccination.tar .
+    - uses: actions/upload-artifact@v2
       with:
-        path: ./latest/vaccination/counter/today.json
-    - name: Echo ./latest/vaccination/counter/today.json
-      run: echo "${{ steps.vaccination.outputs.content }}"
-    - name: Send message to Slack API
-      uses: corcc/slack-send@v2.0.0
-      id: notify
-      with:
-        slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN_VACCINATION }}
-        slack-channel: ${{ secrets.SLACK_CHANNEL_VACCINATION_DAILY }}
-        slack-text: "```${{ steps.vaccination.outputs.content }}```"
-    - name: Result from "Send Message"
-      run: echo "The result was ${{ steps.notify.outputs.slack-result }}"
-  # vpublish:
-  #   name: Upload Vaccinations
-  #   needs: [ vaccination ]
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - name: Setup Node
-  #     uses: actions/setup-node@v2
-  #     with:
-  #       node-version: 'lts/*'
-  #   - name: Checkout 🛎️
-  #     uses: actions/checkout@master
-  #   - name: Cache vaccination
-  #     uses: actions/cache@v2
-  #     with:
-  #       path: ./
-  #       key: vaccination
-    - uses: corcc/publish@master
-      if: github.event.action != 'pull_request'
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-        TASK_NAME: '⬆️💉'
-        TIMEZONE: 'Asia/Tokyo'
-# continued
+        name: artifact-vaccination
+        path: vaccination.tar
   case:
     name: Cases
     runs-on: ubuntu-latest
@@ -92,67 +41,147 @@ jobs:
         node-version: 'lts/*'
     - name: Checkout 🛎️
       uses: actions/checkout@master
-    - name: Cache case
-      uses: actions/cache@v2
-      with:
-        path: ./
-        key: case
     - name: Install Dependencies 🔧🟢
       run: yarn
     - name: ⬆️🦠
       # env:
       #   USER_AGENT: ${{ secrets.USER_AGENT }}
       run: yarn case 
-  # cslack: 
-  #   name: Send Cases to Slack
-  #   needs: [ case ]
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - name: Setup Node
-  #     uses: actions/setup-node@v2
-  #     with:
-  #       node-version: 'lts/*'
-  #   - name: Checkout 🛎️
-  #     uses: actions/checkout@master
-  #   - name: Cache case
-  #     uses: actions/cache@v2
-  #     with:
-  #       path: ./
-  #       key: case
+    - name: tar to upload
+      run: tar --exclude='./node_modules' -cvf case.tar .
+    - uses: actions/upload-artifact@v2
+      with:
+        name: artifact-case
+        path: case.tar
+
+  vaccination-slack: 
+    name: Send Vaccinations to Slack
+    needs: [ vaccination ]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Setup Node
+      uses: actions/setup-node@v2
+      with:
+        node-version: 'lts/*'
+    - name: Checkout 🛎️
+      uses: actions/checkout@master
+    - uses: actions/download-artifact@v2
+      with:
+        name: artifact-vaccination
+        
+    - name: Display structure of downloaded files
+      run: ls -R
+      working-directory: path/to/artifact
+    - name: Read Latest Daily
+      id: VaccinationDaily
+      uses: juliangruber/read-file-action@v1
+      with:
+        path: ./latest/vaccination/counter/today.json
+    - name: Read Latest Today
+      id: VaccinationToday
+      uses: juliangruber/read-file-action@v1
+      with:
+        path: ./latest/vaccination/counter/today_c.json
+    - name: Echo Latest Daily
+      run: echo "${{ steps.vaccination-daily.outputs.content }}"
+    - name: Echo Latest Today
+      run: echo "${{ steps.vaccination-today.outputs.content }}"
+    - name: Send Latest Daily message to Slack API
+      uses: corcc/slack-send@v2.0.0
+      id: notify-vaccination-daily
+      with:
+        slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN_VACCINATION }}
+        slack-channel: ${{ secrets.SLACK_CHANNEL_VACCINATION_DAILY }}
+        slack-text: "```${{ steps.vaccination-daily.outputs.content }}```"
+    - name: Send Latest Today message to Slack API
+      uses: corcc/slack-send@v2.0.0
+      id: notify-vaccination-today
+      with:
+        slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN_VACCINATION }}
+        slack-channel: ${{ secrets.SLACK_CHANNEL_VACCINATION_TODAY }}
+        slack-text: "```${{ steps.vaccination-today.outputs.content }}```"
+    - name: Result from "Send Message"
+      run: echo "The result was ${{ steps.notify-vaccination-daily.outputs.slack-result }}"
+    - name: Result from "Send Latest Today Message"
+      run: echo "The result was ${{ steps.notify-vaccination-today.outputs.slack-result }}"
+  case-slack: 
+    name: Send Cases to Slack
+    needs: [ case ]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Setup Node
+      uses: actions/setup-node@v2
+      with:
+        node-version: 'lts/*'
+    - name: Checkout 🛎️
+      uses: actions/checkout@master
+    - uses: actions/download-artifact@v2
+      with:
+        name: artifact-case
+        path: ./
+    - name: Display structure of downloaded files
+      run: ls -R
+      working-directory: ./
     - name: Read ./latest/case/counter.json
-      id: case
+      id: case-today
       uses: juliangruber/read-file-action@v1
       with:
         path: ./latest/case/counter.json
     - name: Echo ./latest/case/counter.json
-      run: echo "${{ steps.case.outputs.content }}"
-    - name: Send message to Slack API
+      run: echo "${{ steps.case-today.outputs.content }}"
+    - name: Send Latest Today message to Slack API
       uses: corcc/slack-send@v2.0.0
-      id: notify
+      id: notify-case-today
       with:
         slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN_CONFIRMED_CASE }}
         slack-channel: ${{ secrets.SLACK_CHANNEL_CONFIRMED_CASE_TODAY }}
-        slack-text: "```${{ steps.case.outputs.content }}```"
+        slack-text: "```${{ steps.case-today.outputs.content }}```"
     - name: Result from "Send Message"
-      run: echo "The result was ${{ steps.notify.outputs.slack-result }}"
-  # cpublish:
-  #   name: Upload Cases 
-  #   needs: [ case ]
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - name: Setup Node
-  #     uses: actions/setup-node@v2
-  #     with:
-  #       node-version: 'lts/*'
-  #   - name: Checkout 🛎️
-  #     uses: actions/checkout@master
-  #   - name: Cache case
-  #     uses: actions/cache@v2
-  #     with:
-  #       path: ./
-  #       key: case
+      run: echo "The result was ${{ steps.notify-case-today.outputs.slack-result }}"
+  vaccination-publish:
+    name: Upload Vaccinations
+    needs: [ vaccination ]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Setup Node
+      uses: actions/setup-node@v2
+      with:
+        node-version: 'lts/*'
+    - name: Checkout 🛎️
+      uses: actions/checkout@master
+    - uses: actions/download-artifact@v2
+      with:
+        name: artifact-vaccination
+        path: ./
+        
+    - name: Display structure of downloaded files
+      run: ls -R
+      working-directory: ./
     - uses: corcc/publish@master
-      if: github.event.action != 'pull_request'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        TASK_NAME: '⬆️💉'
+        TIMEZONE: 'Asia/Tokyo'
+  case-publish:
+    name: Upload Cases 
+    needs: [ case ]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Setup Node
+      uses: actions/setup-node@v2
+      with:
+        node-version: 'lts/*'
+    - name: Checkout 🛎️
+      uses: actions/checkout@master
+    - uses: actions/download-artifact@v2
+      with:
+        name: artifact-case
+        path: ./
+        
+    - name: Display structure of downloaded files
+      run: ls -R
+      working-directory: ./
+    - uses: corcc/publish@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         TASK_NAME: '⬆️🦠'
