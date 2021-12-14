@@ -60,7 +60,7 @@ function write({
   return true;
 }
 
-function stringify(d:any):string{
+function stringify(d: any): string {
   return JSON.stringify(d, null, 2);
 }
 
@@ -87,31 +87,28 @@ function writeFile({
       }
     }
     const __path__ = (Path(path)?.path).replace(_rootDir_, ".");
-    write({
-      writePath: `${__path__}/${k}.json`,
-      jsonString: stringify(v),
-      pwd
-    })
     writeFile({
       data: v,
       path: {
         path: `${__path__}/${k}`,
         file: {
-          name: __path__.includes("latest/") ? `${k}` : dataTime,
+          name: k,
           ext: 'json'
         }
       }
     })
-    writeFile({
-      data: v,
-      path: {
-        path: `${__path__}/${k}`,
-        file: {
-          name: __path__.includes("latest/") ? `${k}` : 'latest',
-          ext: 'json'
-        }
-      }
-    })
+    if (!__path__.includes("latest/")) {
+      write({
+        writePath: `${__path__}/${k}/latest.json`,
+        jsonString: stringify(v),
+        pwd
+      })
+      write({
+        writePath: `${__path__}/${k}/${dataTime}.json`,
+        jsonString: stringify(v),
+        pwd
+      })
+    }
   })
 }
 export { writeFile };
