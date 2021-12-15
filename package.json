@@ -3,6 +3,8 @@
     "tslint-init": "tslint --init",
     "eslint": "eslint",
     "tsc": "tsc",
+    "vaccination-md": "ts-node ./src/message/Vaccination.ts",
+    "case-md": "ts-node ./src/message/Case.ts",
     "vaccination": "ts-node ./src/Vaccination.ts --unhandled-rejections=strict",
     "case": "ts-node ./src/Case.ts --unhandled-rejections=strict",
     "test": "rsync -avr --exclude='test' ./ ./test"
