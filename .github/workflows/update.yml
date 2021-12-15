@@ -242,8 +242,8 @@ jobs:
       id: vaccination-daily
       uses: juliangruber/read-file-action@v1
       with:
-        path: ./markdown/vaccination/counter/daily.md
-        # path: ./markdown/vaccination/counter/daily.slack.md
+        path: ./markdown/vaccination/counter/daily.slack.md
+        # path: ./markdown/vaccination/counter/daily.md
         # path: ./latest/vaccination/counter/daily.json
     - name: Echo Latest Daily
       run: echo "${{ steps.vaccination-daily.outputs.content }}"
@@ -253,7 +253,7 @@ jobs:
       with:
         slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN_VACCINATION }}
         slack-channel: ${{ secrets.SLACK_CHANNEL_VACCINATION_DAILY }}
-        slack-text: "```${{ steps.vaccination-daily.outputs.content }}```"
+        slack-text: "${{ steps.vaccination-daily.outputs.content }}"
     - name: Result from "Send Message"
       run: echo "The result was ${{ steps.notify-vaccination-daily.outputs.slack-result }}"
   vaccination-today-slack:
@@ -279,8 +279,8 @@ jobs:
       id: vaccination-today
       uses: juliangruber/read-file-action@v1
       with:
-        path: ./markdown/vaccination/counter/today.md
-        # path: ./markdown/vaccination/counter/today.slack.md
+        path: ./markdown/vaccination/counter/today.slack.md
+        # path: ./markdown/vaccination/counter/today.md
         # path: ./latest/vaccination/counter/today.json
     - name: Echo Latest Today
       run: echo "${{ steps.vaccination-today.outputs.content }}"
@@ -290,7 +290,7 @@ jobs:
       with:
         slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN_VACCINATION }}
         slack-channel: ${{ secrets.SLACK_CHANNEL_VACCINATION_TODAY }}
-        slack-text: "```${{ steps.vaccination-today.outputs.content }}```"
+        slack-text: "${{ steps.vaccination-today.outputs.content }}"
     - name: Result from "Send Latest Today Message"
       run: echo "The result was ${{ steps.notify-vaccination-today.outputs.slack-result }}"
 
@@ -317,8 +317,8 @@ jobs:
       id: case-today
       uses: juliangruber/read-file-action@v1
       with:
-        path: ./markdown/case/counter.md
-        # path: ./markdown/case/counter.slack.md
+        path: ./markdown/case/counter.slack.md
+        # path: ./markdown/case/counter.md
         # path: ./latest/case/counter.json
     - name: Echo Today's Confirmed Case
       run: echo "${{ steps.case-today.outputs.content }}"
@@ -328,6 +328,6 @@ jobs:
       with:
         slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN_CONFIRMED_CASE }}
         slack-channel: ${{ secrets.SLACK_CHANNEL_CONFIRMED_CASE_TODAY }}
-        slack-text: "```${{ steps.case-today.outputs.content }}```"
+        slack-text: "${{ steps.case-today.outputs.content }}"
     - name: Result from "Send Message"
       run: echo "The result was ${{ steps.notify-case-today.outputs.slack-result }}"
