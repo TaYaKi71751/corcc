@@ -61,30 +61,32 @@ jobs:
       working-directory: ./node_modules
     - name: ⬆️💉
       run: yarn vaccination 
-    # - name: tar to upload
-    #   run: tar --exclude='./node_modules' -cvf vaccination.tar .
-    # - uses: actions/upload-artifact@v2
-    #   with:
-    #     name: artifact-vaccination
-    #     path: vaccination.tar
-  # vaccination-daily-slack: 
-  #   name: Send Daily Vaccinations to Slack
-  #   needs: [ install, vaccination ]
-  #   runs-on: ubuntu-latest
-  #   steps:
-    # - name: Setup Node
-    #   uses: actions/setup-node@v2
-    #   with:
-    #     node-version: 'lts/*'
-    # - name: Checkout 🛎️
-    #   uses: actions/checkout@master
-    # - uses: actions/download-artifact@v2
-    #   with:
-    #     name: artifact-vaccination
-    #     path: ./
-    # - name: Display structure of downloaded files
-    #   run: ls -R
-    #   working-directory: ./
+    - name: tar to upload
+      run: tar --exclude='./node_modules' -cvf vaccination.tar .
+    - uses: actions/upload-artifact@v2
+      with:
+        name: artifact-vaccination
+        path: vaccination.tar
+  vaccination-daily-slack: 
+    name: Send Daily Vaccinations to Slack
+    needs: [ install, vaccination ]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Setup Node
+      uses: actions/setup-node@v2
+      with:
+        node-version: 'lts/*'
+    - name: Checkout 🛎️
+      uses: actions/checkout@master
+    - uses: actions/download-artifact@v2
+      with:
+        name: artifact-vaccination
+        path: ./
+    - name: Extract artifact from artifact-vaccination
+      run: tar -xvf vaccination.tar 
+    - name: Display structure of downloaded files
+      run: ls -R
+      working-directory: ./
     - name: Read Latest Daily
       id: vaccination-daily
       uses: juliangruber/read-file-action@v1
@@ -101,23 +103,25 @@ jobs:
         slack-text: "```${{ steps.vaccination-daily.outputs.content }}```"
     - name: Result from "Send Message"
       run: echo "The result was ${{ steps.notify-vaccination-daily.outputs.slack-result }}"
-  # vaccination-today-slack:
-  #   name: Send Today's Vaccinations to Slack
-  #   needs: [ install, vaccination ]
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - name: Setup Node
-  #     uses: actions/setup-node@v2
-  #     with:
-  #       node-version: 'lts/*'
-  #   - name: Checkout 🛎️
-  #     uses: actions/checkout@master
-  #   - uses: actions/download-artifact@v2
-  #     with:
-  #       name: artifact-vaccination
-  #       path: ./
-  #   - name: Display structure of downloaded files
-  #     run: ls -R
+  vaccination-today-slack:
+    name: Send Today's Vaccinations to Slack
+    needs: [ install, vaccination ]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Setup Node
+      uses: actions/setup-node@v2
+      with:
+        node-version: 'lts/*'
+    - name: Checkout 🛎️
+      uses: actions/checkout@master
+    - uses: actions/download-artifact@v2
+      with:
+        name: artifact-vaccination
+        path: ./
+    - name: Extract artifact from artifact-vaccination
+      run: tar -xvf vaccination.tar 
+    - name: Display structure of downloaded files
+      run: ls -R
     - name: Read Latest Today
       id: vaccination-today
       uses: juliangruber/read-file-action@v1
@@ -134,24 +138,26 @@ jobs:
         slack-text: "```${{ steps.vaccination-today.outputs.content }}```"
     - name: Result from "Send Latest Today Message"
       run: echo "The result was ${{ steps.notify-vaccination-today.outputs.slack-result }}"
-  # vaccination-publish:
-  #   name: Upload Vaccinations
-  #   needs: [ install,vaccination ]
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - name: Setup Node
-  #     uses: actions/setup-node@v2
-  #     with:
-  #       node-version: 'lts/*'
-  #   - name: Checkout 🛎️
-  #     uses: actions/checkout@master
-  #   - uses: actions/download-artifact@v2
-  #     with:
-  #       name: artifact-vaccination
-  #       path: ./
-  #   - name: Display structure of downloaded files
-  #     run: ls -R
-  #     working-directory: ./
+  vaccination-publish:
+    name: Upload Vaccinations
+    needs: [ install,vaccination ]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Setup Node
+      uses: actions/setup-node@v2
+      with:
+        node-version: 'lts/*'
+    - name: Checkout 🛎️
+      uses: actions/checkout@master
+    - uses: actions/download-artifact@v2
+      with:
+        name: artifact-vaccination
+        path: ./
+    - name: Extract tar from artifact-vaccination
+      run: tar -xvf vaccination.tar 
+    - name: Display structure of downloaded files
+      run: ls -R
+      working-directory: ./
     - uses: corcc/publish@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
@@ -185,31 +191,33 @@ jobs:
       working-directory: ./node_modules
     - name: ⬆️🦠
       run: yarn case 
-    # - name: tar to upload
-    #   run: tar --exclude='./node_modules' -cvf case.tar .
-    # - uses: actions/upload-artifact@v2
-    #   with:
-    #     name: artifact-case
-    #     path: case.tar
+    - name: tar to upload
+      run: tar --exclude='./node_modules' -cvf case.tar .
+    - uses: actions/upload-artifact@v2
+      with:
+        name: artifact-case
+        path: case.tar
 
-  # case-slack: 
-  #   name: Send Cases to Slack
-  #   needs: [ install, case ]
-  #   runs-on: ubuntu-latest
-  #   steps:
-    # - name: Setup Node
-    #   uses: actions/setup-node@v2
-    #   with:
-    #     node-version: 'lts/*'
-    # - name: Checkout 🛎️
-    #   uses: actions/checkout@master
-    # - uses: actions/download-artifact@v2
-    #   with:
-    #     name: artifact-case
-    #     path: ./
-    # - name: Display structure of downloaded files
-    #   run: ls -R
-      # working-directory: ./
+  case-slack: 
+    name: Send Cases to Slack
+    needs: [ install, case ]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Setup Node
+      uses: actions/setup-node@v2
+      with:
+        node-version: 'lts/*'
+    - name: Checkout 🛎️
+      uses: actions/checkout@master
+    - uses: actions/download-artifact@v2
+      with:
+        name: artifact-case
+        path: ./
+    - name: Extract tar from artifact-case
+      run: tar -xvf case.tar 
+    - name: Display structure of downloaded files
+      run: ls -R
+      working-directory: ./
     - name: Read ./latest/case/counter.json
       id: case-today
       uses: juliangruber/read-file-action@v1
@@ -226,23 +234,25 @@ jobs:
         slack-text: "```${{ steps.case-today.outputs.content }}```"
     - name: Result from "Send Message"
       run: echo "The result was ${{ steps.notify-case-today.outputs.slack-result }}"
-  # case-publish:
-  #   name: Upload Cases 
-  #   needs: [ install,case ]
-  #   runs-on: ubuntu-latest
-  #   steps:
-    # - name: Setup Node
-    #   uses: actions/setup-node@v2
-    #   with:
-    #     node-version: 'lts/*'
-    # - name: Checkout 🛎️
-    #   uses: actions/checkout@master
-    # - uses: actions/download-artifact@v2
-    #   with:
-    #     name: artifact-case
-    #     path: ./
-    # - name: Display structure of downloaded files
-    #   run: ls -R
+  case-publish:
+    name: Upload Cases 
+    needs: [ install,case ]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Setup Node
+      uses: actions/setup-node@v2
+      with:
+        node-version: 'lts/*'
+    - name: Checkout 🛎️
+      uses: actions/checkout@master
+    - uses: actions/download-artifact@v2
+      with:
+        name: artifact-case
+        path: ./
+    - name: Extract tar from artifact-case
+      run: tar -xvf case.tar 
+    - name: Display structure of downloaded files
+      run: ls -R
     #   working-directory: ./
     - uses: corcc/publish@master
       env:
