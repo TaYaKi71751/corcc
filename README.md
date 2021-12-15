@@ -7,6 +7,9 @@
 > [ ![](https://img.shields.io/badge/-Counter-blue.svg) ](https://corcc.github.io/corcc/latest/vaccination/counter.json)
 > [ ![](https://img.shields.io/badge/-Country-magenta.svg) ](https://corcc.github.io/corcc/latest/vaccination/country.json)
 > 
+> 
+> [![](https://img.shields.io/badge/-Trello%20Board-blue.svg)](https://trello.com/b/NZn7oI0J/corcc)
+>
 > [![License: WTFPL](https://img.shields.io/badge/License-WTFPL-brightgreen.svg)](http://www.wtfpl.net/about/)
 > [![Update](https://github.com/TaYaKi71751/gh-action-data-scraping/actions/workflows/update.yml/badge.svg)](https://github.com/TaYaKi71751/gh-action-data-scraping/actions/workflows/update.yml)
 > [![CodeQL](https://github.com/corcc/corcc/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/corcc/corcc/actions/workflows/codeql-analysis.yml)
