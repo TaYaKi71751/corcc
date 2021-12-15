@@ -72,7 +72,18 @@ class Vaccination extends Utilities {
       });
       return [tagOptions, value];
     }).filter(([, _]: any) => (typeof _ != 'undefined')));
-    if (parseKey.includes('day')) {
+    /***************
+     * /(da).*?(y)/*
+     * ============*
+     * matches     *
+     * ============*
+     * => daily    *
+     * => yesterday*
+     * => today    *
+     * ============*
+     ***************
+     */
+    if (parseKey.match(/(da).*?(y)/)) { 
       return [parseKey, this.inserTime({
         data,
         time: (parseKey.includes("yes")
