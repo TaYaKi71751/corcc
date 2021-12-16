@@ -2,7 +2,7 @@ on:
   workflow_dispatch:
   pull_request:
   schedule:
-    - cron: '0 */12 * * *'
+    - cron: '0 */1 * * *'
   push: 
     paths:
       - '**.yml'
@@ -256,6 +256,112 @@ jobs:
         slack-text: "${{ steps.vaccination-daily.outputs.content }}"
     - name: Result from "Send Message"
       run: echo "The result was ${{ steps.notify-vaccination-daily.outputs.slack-result }}"
+
+
+  vaccination-today-tweet:
+    name: Tweet Today's Vaccinations
+    runs-on: ubuntu-latest
+    needs: [ install, vaccination,vaccination-md ]
+    steps:
+    - name: Setup Node
+      uses: actions/setup-node@v2
+      with:
+        node-version: 'lts/*'
+    - name: Checkout 🛎️
+      uses: actions/checkout@master
+    - name: Cache node modules
+      id: node-cache
+      uses: actions/cache@v2
+      env:
+        cache-name: cache-node-modules
+      with:
+        # npm cache files are stored in `~/.npm` on Linux/macOS
+        path: node_modules
+        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-modules-
+    - uses: actions/download-artifact@v2
+      with:
+        name: artifact-vaccination
+        path: ./
+    - name: Extract artifact from artifact-vaccination
+      run: tar -xvf vaccination-md.tar
+      # run: tar -xvf vaccination.tar
+    - name: Set secrets to env file
+      run: |
+        echo "TWITTER_CONSUMER_KEY=${{ secrets.TWITTER_CONSUMER_KEY }}" >> ./.env
+        echo "TWITTER_CONSUMER_SECRET=${{ secrets.TWITTER_CONSUMER_SECRET }}" >> ./.env
+        echo "TWITTER_ACCESS_TOKEN_KEY=${{ secrets.TWITTER_ACCESS_TOKEN_KEY }}" >> ./.env
+        echo "TWITTER_ACCESS_TOKEN_SECRET=${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}" >> ./.env
+    - name: Check Git Status
+      run: echo $(git status | grep markdown) >> ./git_status
+    - name: Read Latest Today
+      id: git-status
+      uses: juliangruber/read-file-action@v1
+      with:
+        path: ./git_status
+    - name: Echo Git Status 
+      if: "${{ !(steps.git-status.outputs.content != '' && steps.git-status.outputs.content == '\n') }}"
+      run: echo "${{ steps.git-status.outputs.content }}"
+    - name: Tweet Today's Vaccinations
+      if: "${{ !(steps.git-status.outputs.content != '' && steps.git-status.outputs.content == '\n') }}"
+      run: yarn tweet-vaccination-today
+    - name: Remove env file
+      run: rm -rf ./.env
+
+
+  case-today-tweet:
+    name: Tweet Today's Cases
+    runs-on: ubuntu-latest
+    needs: [ install, case, case-md ]
+    steps:
+    - name: Setup Node
+      uses: actions/setup-node@v2
+      with:
+        node-version: 'lts/*'
+    - name: Checkout 🛎️
+      uses: actions/checkout@master
+    - name: Cache node modules
+      id: node-cache
+      uses: actions/cache@v2
+      env:
+        cache-name: cache-node-modules
+      with:
+        # npm cache files are stored in `~/.npm` on Linux/macOS
+        path: node_modules
+        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-modules-
+    - uses: actions/download-artifact@v2
+      with:
+        name: artifact-case
+        path: ./
+    - name: Extract artifact from artifact-case
+      run: tar -xvf case-md.tar
+      # run: tar -xvf case.tar
+    - name: Set secrets to env file
+      run: |
+        echo "TWITTER_CONSUMER_KEY=${{ secrets.TWITTER_CONSUMER_KEY }}" >> ./.env
+        echo "TWITTER_CONSUMER_SECRET=${{ secrets.TWITTER_CONSUMER_SECRET }}" >> ./.env
+        echo "TWITTER_ACCESS_TOKEN_KEY=${{ secrets.TWITTER_ACCESS_TOKEN_KEY }}" >> ./.env
+        echo "TWITTER_ACCESS_TOKEN_SECRET=${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}" >> ./.env
+    - name: Check Git Status
+      run: echo $(git status | grep markdown) >> ./git_status
+    - name: Read Latest Today
+      id: git-status
+      uses: juliangruber/read-file-action@v1
+      with:
+        path: ./git_status
+    - name: Echo Git Status 
+      if: "${{ !(steps.git-status.outputs.content != '' && steps.git-status.outputs.content == '\n') }}"
+      run: echo "${{ steps.git-status.outputs.content }}"
+    - name: Tweet Today's Vaccinations
+      if: "${{ !(steps.git-status.outputs.content != '' && steps.git-status.outputs.content == '\n') }}"
+      run: yarn tweet-case-today
+    - name: Remove env file
+      run: rm -rf ./.env
+
+
   vaccination-today-slack:
     name: Send Today's Vaccinations to Slack
     needs: [ install, vaccination,vaccination-md ]
@@ -284,7 +390,18 @@ jobs:
         # path: ./latest/vaccination/counter/today.json
     - name: Echo Latest Today
       run: echo "${{ steps.vaccination-today.outputs.content }}"
+    - name: Check Git Status
+      run: echo $(git status | grep markdown) >> ./git_status
+    - name: Read Latest Today
+      id: git-status
+      uses: juliangruber/read-file-action@v1
+      with:
+        path: ./git_status
+    - name: Echo Git Status 
+      if: "${{ !(steps.git-status.outputs.content != '' && steps.git-status.outputs.content == '\n') }}"
+      run: echo "${{ steps.git-status.outputs.content }}"
     - name: Send Latest Today message to Slack API
+      if: "${{ !(steps.git-status.outputs.content != '' && steps.git-status.outputs.content == '\n') }}"
       uses: corcc/slack-send@v2.0.0
       id: notify-vaccination-today
       with:
@@ -331,3 +448,51 @@ jobs:
         slack-text: "${{ steps.case-today.outputs.content }}"
     - name: Result from "Send Message"
       run: echo "The result was ${{ steps.notify-case-today.outputs.slack-result }}"
+
+
+
+  vaccination-md-publish:
+    name: Upload Vaccinations [ Markdown, Text ]
+    needs: [ install, vaccination, vaccination-md ]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Setup Node
+      uses: actions/setup-node@v2
+      with:
+        node-version: 'lts/*'
+    - name: Checkout 🛎️
+      uses: actions/checkout@master
+    - uses: actions/download-artifact@v2
+      with:
+        name: artifact-vaccination
+        path: ./
+    - name: Extract tar from artifact-vaccination
+      run: tar -xvf vaccination-md.tar
+    - uses: corcc/publish@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        TASK_NAME: '⬆️💉📄'
+        TIMEZONE: 'Asia/Tokyo'
+
+  case-md-publish:
+    name: Upload Cases [ Markdown, Text ]
+    needs: [ install, case, case-md ]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Setup Node
+      uses: actions/setup-node@v2
+      with:
+        node-version: 'lts/*'
+    - name: Checkout 🛎️
+      uses: actions/checkout@master
+    - uses: actions/download-artifact@v2
+      with:
+        name: artifact-case
+        path: ./
+    - name: Extract tar from artifact-vaccination
+      run: tar -xvf case-md.tar
+    - uses: corcc/publish@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        TASK_NAME: '⬆️🦠📄'
+        TIMEZONE: 'Asia/Tokyo'

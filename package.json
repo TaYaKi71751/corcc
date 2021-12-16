@@ -3,6 +3,9 @@
     "tslint-init": "tslint --init",
     "eslint": "eslint",
     "tsc": "tsc",
+    "tweet-test": "ts-node ./src/tweet/Test.ts",
+    "tweet-vaccination-today": "ts-node ./src/tweet/today/Vaccination.ts",
+    "tweet-case-today": "ts-node ./src/tweet/today/Case.ts",
     "vaccination-md": "ts-node ./src/message/Vaccination.ts",
     "case-md": "ts-node ./src/message/Case.ts",
     "vaccination": "ts-node ./src/Vaccination.ts --unhandled-rejections=strict",
@@ -16,7 +19,10 @@
     "dotenv": "^10.0.0",
     "json-bigint": "^1.0.0",
     "rsync": "^0.6.1",
+    "thousands": "^1.0.1",
     "ts-node": "^10.4.0",
+    "twitter": "^1.7.1",
+    "twitter-api-v2": "^1.7.2",
     "typescript": "^4.5.2"
   },
   "devDependencies": {
