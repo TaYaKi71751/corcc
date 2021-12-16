@@ -59,7 +59,7 @@ const toMarkdown = function (paths: string[]) {
     const slackMarkdown = Object.entries(json).map(([k, v]) => {
       const key = k;
       const value = v;
-      return `*${k}*\n\r- ${v}`;
+      return `*${k}*\n- ${v}`;
     });
     console.log(slackMarkdown.join('\n'));
     const slackMarkdownPath = path.replace('latest', 'markdown').replace('.json', '.slack.md');
