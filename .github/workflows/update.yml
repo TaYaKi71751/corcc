@@ -59,11 +59,11 @@ jobs:
     - name: ⬆️💉
       run: yarn vaccination 
     - name: tar to upload
-      run: tar --exclude='./node_modules' --exclude='./.git' -cvf vaccination.tar .
+      run: tar --exclude='./node_modules' --exclude='./.git' -cvf Vaccinations.tar .
     - uses: actions/upload-artifact@v2
       with:
         name: artifact-vaccination
-        path: vaccination.tar
+        path: Vaccinations.tar
   case:
     name: Cases
     needs: [ install ]
@@ -92,11 +92,11 @@ jobs:
     - name: ⬆️🦠
       run: yarn case 
     - name: tar to upload
-      run: tar --exclude='./node_modules' --exclude='./.git' -cvf case.tar .
+      run: tar --exclude='./node_modules' --exclude='./.git' -cvf Cases.tar .
     - uses: actions/upload-artifact@v2
       with:
         name: artifact-case
-        path: case.tar
+        path: Cases.tar
 
   vaccination-publish:
     name: Upload Vaccinations
@@ -113,8 +113,8 @@ jobs:
       with:
         name: artifact-vaccination
         path: ./
-    - name: Extract tar from artifact-vaccination
-      run: tar -xvf vaccination.tar
+    - name: Extract
+      run: tar -xvf Vaccinations.tar
     - uses: corcc/publish@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
@@ -135,8 +135,8 @@ jobs:
       with:
         name: artifact-case
         path: ./
-    - name: Extract tar from artifact-case
-      run: tar -xvf case.tar
+    - name: Extract
+      run: tar -xvf Cases.tar
     - uses: corcc/publish@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
@@ -144,7 +144,7 @@ jobs:
         TIMEZONE: 'Asia/Tokyo'
 
 
-  vaccination-md: 
+  vaccination-plain-txt: 
     name: Make Vaccination Markdown Table to use as Message
     needs: [ install, vaccination ]
     runs-on: ubuntu-latest
@@ -166,23 +166,21 @@ jobs:
         key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
           ${{ runner.os }}-node-modules-
-    - uses: actions/download-artifact@v2
+    - name: Restore
+      uses: actions/download-artifact@v2
       with:
         name: artifact-vaccination
         path: ./
-    - name: Extract artifact from artifact-vaccination
-      run: tar -xvf vaccination.tar
-    - name: Make vaccination markdown message
-      run: yarn vaccination-md
-    - run: tar --exclude='./node_modules' --exclude='./.git' -cvf vaccination-md.tar .
+    - name: Extract
+      run: tar -xvf Vaccinations.tar
+    - name: Make vaccination plain message
+      run: yarn vaccination-plain-txt
+    - run: tar --exclude='./node_modules' --exclude='./.git' -cvf Vaccinations_Plain_Text.tar .
     - uses: actions/upload-artifact@v2
       with:
         name: artifact-vaccination
-        path: vaccination-md.tar
-
-    
-
-  case-md: 
+        path: Vaccinations_Plain_Text.tar
+  case-plain-txt: 
     name: Make Case Markdown Table to use as Message
     needs: [ install, case ]
     runs-on: ubuntu-latest
@@ -204,24 +202,25 @@ jobs:
         key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
           ${{ runner.os }}-node-modules-
-    - uses: actions/download-artifact@v2
+    - name: Restore
+      uses: actions/download-artifact@v2
       with:
         name: artifact-case
         path: ./
-    - name: Extract artifact from artifact-case
-      run: tar -xvf case.tar
-    - name: Make vaccination markdown message
-      run: yarn case-md
-    - run: tar --exclude='./node_modules' --exclude='./.git' -cvf case-md.tar .
+    - name: Extract
+      run: tar -xvf Cases.tar
+    - name: Make vaccination plain message
+      run: yarn case-plain-txt
+    - run: tar --exclude='./node_modules' --exclude='./.git' -cvf Cases_Plain_Text.tar .
     - uses: actions/upload-artifact@v2
       with:
         name: artifact-case
-        path: case-md.tar
+        path: Cases_Plain_Text.tar
 
 
   vaccination-daily-slack: 
     name: Send Daily Vaccinations to Slack
-    needs: [ install, vaccination,vaccination-md ]
+    needs: [ install, vaccination,vaccination-plain-txt ]
     # needs: [ install, vaccination ]
     runs-on: ubuntu-latest
     steps:
@@ -235,33 +234,45 @@ jobs:
       with:
         name: artifact-vaccination
         path: ./
-    - name: Extract artifact from artifact-vaccination
-      run: tar -xvf vaccination-md.tar
-      # run: tar -xvf vaccination.tar
+    - name: Extract
+      run: tar -xvf Vaccinations_Plain_Text.tar
+      # run: tar -xvf Vaccinations.tar
     - name: Read Latest Daily
       id: vaccination-daily
       uses: juliangruber/read-file-action@v1
       with:
-        path: ./markdown/vaccination/counter/daily.slack.md
-        # path: ./markdown/vaccination/counter/daily.md
+        path: ./plain/vaccination/counter/daily.slack.md
+        # path: ./plain/vaccination/counter/daily.md
         # path: ./latest/vaccination/counter/daily.json
     - name: Echo Latest Daily
       run: echo "${{ steps.vaccination-daily.outputs.content }}"
-    - name: Send Latest Daily message to Slack API
+    - name: Check Git Status
+      run: echo $(git status | grep plain) >> ./git_status
+    - name: Read Latest Today
+      id: git-status
+      uses: juliangruber/read-file-action@v1
+      with:
+        path: ./git_status
+    - name: Echo Git Status 
+      if: "${{ !(steps.git-status.outputs.content != '' && steps.git-status.outputs.content == '\n') }}"
+      run: echo "${{ steps.git-status.outputs.content }}"
+    - name: Send to Slack API
+      if: "${{ !(steps.git-status.outputs.content != '' && steps.git-status.outputs.content == '\n') }}"
       uses: corcc/slack-send@v2.0.0
       id: notify-vaccination-daily
       with:
         slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN_VACCINATION }}
         slack-channel: ${{ secrets.SLACK_CHANNEL_VACCINATION_DAILY }}
         slack-text: "${{ steps.vaccination-daily.outputs.content }}"
-    - name: Result from "Send Message"
+    - name: Result from Slack API
+      if: "${{ !(steps.git-status.outputs.content != '' && steps.git-status.outputs.content == '\n') }}"
       run: echo "The result was ${{ steps.notify-vaccination-daily.outputs.slack-result }}"
 
 
   vaccination-today-tweet:
     name: Tweet Today's Vaccinations
     runs-on: ubuntu-latest
-    needs: [ install, vaccination,vaccination-md ]
+    needs: [ install, vaccination,vaccination-plain-txt ]
     steps:
     - name: Setup Node
       uses: actions/setup-node@v2
@@ -280,13 +291,14 @@ jobs:
         key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
           ${{ runner.os }}-node-modules-
-    - uses: actions/download-artifact@v2
+    - name: Restore
+      uses: actions/download-artifact@v2
       with:
         name: artifact-vaccination
         path: ./
-    - name: Extract artifact from artifact-vaccination
-      run: tar -xvf vaccination-md.tar
-      # run: tar -xvf vaccination.tar
+    - name: Extract
+      run: tar -xvf Vaccinations_Plain_Text.tar
+      # run: tar -xvf Vaccinations.tar
     - name: Set secrets to env file
       run: |
         echo "TWITTER_CONSUMER_KEY=${{ secrets.TWITTER_CONSUMER_KEY }}" >> ./.env
@@ -294,7 +306,7 @@ jobs:
         echo "TWITTER_ACCESS_TOKEN_KEY=${{ secrets.TWITTER_ACCESS_TOKEN_KEY }}" >> ./.env
         echo "TWITTER_ACCESS_TOKEN_SECRET=${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}" >> ./.env
     - name: Check Git Status
-      run: echo $(git status | grep markdown) >> ./git_status
+      run: echo $(git status | grep plain) >> ./git_status
     - name: Read Latest Today
       id: git-status
       uses: juliangruber/read-file-action@v1
@@ -309,11 +321,10 @@ jobs:
     - name: Remove env file
       run: rm -rf ./.env
 
-
   case-today-tweet:
     name: Tweet Today's Cases
     runs-on: ubuntu-latest
-    needs: [ install, case, case-md ]
+    needs: [ install, case, case-plain-txt ]
     steps:
     - name: Setup Node
       uses: actions/setup-node@v2
@@ -332,13 +343,14 @@ jobs:
         key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
           ${{ runner.os }}-node-modules-
-    - uses: actions/download-artifact@v2
+    - name: Restore
+      uses: actions/download-artifact@v2
       with:
         name: artifact-case
         path: ./
-    - name: Extract artifact from artifact-case
-      run: tar -xvf case-md.tar
-      # run: tar -xvf case.tar
+    - name: Extract
+      run: tar -xvf Cases_Plain_Text.tar
+      # run: tar -xvf Cases.tar
     - name: Set secrets to env file
       run: |
         echo "TWITTER_CONSUMER_KEY=${{ secrets.TWITTER_CONSUMER_KEY }}" >> ./.env
@@ -346,7 +358,7 @@ jobs:
         echo "TWITTER_ACCESS_TOKEN_KEY=${{ secrets.TWITTER_ACCESS_TOKEN_KEY }}" >> ./.env
         echo "TWITTER_ACCESS_TOKEN_SECRET=${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}" >> ./.env
     - name: Check Git Status
-      run: echo $(git status | grep markdown) >> ./git_status
+      run: echo $(git status | grep plain) >> ./git_status
     - name: Read Latest Today
       id: git-status
       uses: juliangruber/read-file-action@v1
@@ -355,7 +367,7 @@ jobs:
     - name: Echo Git Status 
       if: "${{ !(steps.git-status.outputs.content != '' && steps.git-status.outputs.content == '\n') }}"
       run: echo "${{ steps.git-status.outputs.content }}"
-    - name: Tweet Today's Vaccinations
+    - name: Tweet Today's Cases
       if: "${{ !(steps.git-status.outputs.content != '' && steps.git-status.outputs.content == '\n') }}"
       run: yarn tweet-case-today
     - name: Remove env file
@@ -364,7 +376,7 @@ jobs:
 
   vaccination-today-slack:
     name: Send Today's Vaccinations to Slack
-    needs: [ install, vaccination,vaccination-md ]
+    needs: [ install, vaccination,vaccination-plain-txt ]
     # needs: [ install, vaccination ]
     runs-on: ubuntu-latest
     steps:
@@ -374,24 +386,25 @@ jobs:
         node-version: 'lts/*'
     - name: Checkout 🛎️
       uses: actions/checkout@master
-    - uses: actions/download-artifact@v2
+    - name: Restore
+      uses: actions/download-artifact@v2
       with:
         name: artifact-vaccination
         path: ./
-    - name: Extract artifact from artifact-vaccination
-      run: tar -xvf vaccination-md.tar
-      # run: tar -xvf vaccination.tar
+    - name: Extract
+      run: tar -xvf Vaccinations_Plain_Text.tar
+      # run: tar -xvf Vaccinations.tar
     - name: Read Latest Today
       id: vaccination-today
       uses: juliangruber/read-file-action@v1
       with:
-        path: ./markdown/vaccination/counter/today.slack.md
-        # path: ./markdown/vaccination/counter/today.md
+        path: ./plain/vaccination/counter/today.slack.md
+        # path: ./plain/vaccination/counter/today.md
         # path: ./latest/vaccination/counter/today.json
     - name: Echo Latest Today
       run: echo "${{ steps.vaccination-today.outputs.content }}"
     - name: Check Git Status
-      run: echo $(git status | grep markdown) >> ./git_status
+      run: echo $(git status | grep plain) >> ./git_status
     - name: Read Latest Today
       id: git-status
       uses: juliangruber/read-file-action@v1
@@ -400,7 +413,7 @@ jobs:
     - name: Echo Git Status 
       if: "${{ !(steps.git-status.outputs.content != '' && steps.git-status.outputs.content == '\n') }}"
       run: echo "${{ steps.git-status.outputs.content }}"
-    - name: Send Latest Today message to Slack API
+    - name: Send to Slack API
       if: "${{ !(steps.git-status.outputs.content != '' && steps.git-status.outputs.content == '\n') }}"
       uses: corcc/slack-send@v2.0.0
       id: notify-vaccination-today
@@ -408,12 +421,13 @@ jobs:
         slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN_VACCINATION }}
         slack-channel: ${{ secrets.SLACK_CHANNEL_VACCINATION_TODAY }}
         slack-text: "${{ steps.vaccination-today.outputs.content }}"
-    - name: Result from "Send Latest Today Message"
+    - name: Result from Slack API
+      if: "${{ !(steps.git-status.outputs.content != '' && steps.git-status.outputs.content == '\n') }}"
       run: echo "The result was ${{ steps.notify-vaccination-today.outputs.slack-result }}"
 
   case-slack: 
     name: Send Cases to Slack
-    needs: [ install, case, case-md ]
+    needs: [ install, case, case-plain-txt ]
     # needs: [ install, case ]
     runs-on: ubuntu-latest
     steps:
@@ -423,37 +437,50 @@ jobs:
         node-version: 'lts/*'
     - name: Checkout 🛎️
       uses: actions/checkout@master
-    - uses: actions/download-artifact@v2
+    - name: Restore
+      uses: actions/download-artifact@v2
       with:
         name: artifact-case
         path: ./
-    - name: Extract tar from artifact-case
-      run: tar -xvf case-md.tar
-      # run: tar -xvf case.tar
+    - name: Extract
+      run: tar -xvf Cases_Plain_Text.tar
+      # run: tar -xvf Cases.tar
     - name: Read Today's Confirmed Case
       id: case-today
       uses: juliangruber/read-file-action@v1
       with:
-        path: ./markdown/case/counter.slack.md
-        # path: ./markdown/case/counter.md
+        path: ./plain/case/counter.slack.md
+        # path: ./plain/case/counter.md
         # path: ./latest/case/counter.json
     - name: Echo Today's Confirmed Case
       run: echo "${{ steps.case-today.outputs.content }}"
-    - name: Send Latest Today message to Slack API
+    - name: Check Git Status
+      run: echo $(git status | grep plain) >> ./git_status
+    - name: Read Latest Today
+      id: git-status
+      uses: juliangruber/read-file-action@v1
+      with:
+        path: ./git_status
+    - name: Echo Git Status 
+      if: "${{ !(steps.git-status.outputs.content != '' && steps.git-status.outputs.content == '\n') }}"
+      run: echo "${{ steps.git-status.outputs.content }}"
+    - name: Send to Slack API
+      if: "${{ !(steps.git-status.outputs.content != '' && steps.git-status.outputs.content == '\n') }}"
       uses: corcc/slack-send@v2.0.0
       id: notify-case-today
       with:
         slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN_CONFIRMED_CASE }}
         slack-channel: ${{ secrets.SLACK_CHANNEL_CONFIRMED_CASE_TODAY }}
         slack-text: "${{ steps.case-today.outputs.content }}"
-    - name: Result from "Send Message"
+    - name: Result from Slack API
+      if: "${{ !(steps.git-status.outputs.content != '' && steps.git-status.outputs.content == '\n') }}"
       run: echo "The result was ${{ steps.notify-case-today.outputs.slack-result }}"
 
 
 
-  vaccination-md-publish:
-    name: Upload Vaccinations [ Markdown, Text ]
-    needs: [ install, vaccination, vaccination-md ]
+  vaccination-plain-txt-publish:
+    name: Publish Vaccinations Plain Text
+    needs: [ install, vaccination, vaccination-plain-txt ]
     runs-on: ubuntu-latest
     steps:
     - name: Setup Node
@@ -466,17 +493,17 @@ jobs:
       with:
         name: artifact-vaccination
         path: ./
-    - name: Extract tar from artifact-vaccination
-      run: tar -xvf vaccination-md.tar
+    - name: Extract
+      run: tar -xvf Vaccinations_Plain_Text.tar
     - uses: corcc/publish@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         TASK_NAME: '⬆️💉📄'
         TIMEZONE: 'Asia/Tokyo'
 
-  case-md-publish:
-    name: Upload Cases [ Markdown, Text ]
-    needs: [ install, case, case-md ]
+  case-plain-txt-publish:
+    name: Publish Cases Plain Text
+    needs: [ install, case, case-plain-txt ]
     runs-on: ubuntu-latest
     steps:
     - name: Setup Node
@@ -489,8 +516,8 @@ jobs:
       with:
         name: artifact-case
         path: ./
-    - name: Extract tar from artifact-vaccination
-      run: tar -xvf case-md.tar
+    - name: Extract
+      run: tar -xvf Cases_Plain_Text.tar
     - uses: corcc/publish@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 

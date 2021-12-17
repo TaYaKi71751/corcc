@@ -6,8 +6,8 @@
     "tweet-test": "ts-node ./src/tweet/Test.ts",
     "tweet-vaccination-today": "ts-node ./src/tweet/today/Vaccination.ts",
     "tweet-case-today": "ts-node ./src/tweet/today/Case.ts",
-    "vaccination-md": "ts-node ./src/message/Vaccination.ts",
-    "case-md": "ts-node ./src/message/Case.ts",
+    "vaccination-plain-txt": "ts-node ./src/plain/Vaccination.ts",
+    "case-plain-txt": "ts-node ./src/plain/Case.ts",
     "vaccination": "ts-node ./src/Vaccination.ts --unhandled-rejections=strict",
     "case": "ts-node ./src/Case.ts --unhandled-rejections=strict",
     "test": "rsync -avr --exclude='test' ./ ./test"

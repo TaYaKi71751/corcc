@@ -54,6 +54,39 @@ const emoji: any = {
   "recovered": "😊"
 }
 
+const getMessage:any = {
+  'slack':function(k:any,v:any){
+    const key: string = `*${emoji[k]}*`;
+    const value = util.isNumberOnly(`${v}`) ? thousands(v) : v;
+    return `${key} ${value}`;
+  },
+  'twitter':function(k:any,v:any){
+    const key: string = `  ${emoji[k]}`;
+    const value = util.isNumberOnly(`${v}`) ? thousands(v) : v;
+    return `${key} ${value}`;
+  }
+}
+
+function plainTextMessage({
+  json,
+  platform,
+}:any){
+  const data = Object.entries(json).map(([k, v]: any) => getMessage[platform](k,v));
+  return Object.values(data).join('\n');
+}
+
+function titleEmojiPrefix({
+  path
+}:any){
+  const _ = (function (p) {
+    if (p.includes('/case/')) { return 'case'; }
+    if (p.includes('/vaccination/')) { return 'vaccination'; }
+    return;
+  })(path) ?? "_";
+  return (emoji[_] ?? "") + (emoji[_] ? "\n" : "");
+}
+
+
 const toMarkdown = function (paths: string[]) {
   return paths.map((path) => {
     const _ = (function (p) {
@@ -64,7 +97,9 @@ const toMarkdown = function (paths: string[]) {
     const read = execSync(`cat ${pwd}/${path}`).toString()
     const json = JSONBig.parse(read);
     const table_keys = Object.keys(json);
-    const table_values = Object.values(json);
+    const table_values = Object.values(json).map((a)=>{
+      return `${a}`;
+    });
     const tableMarkdown = (
       `|${table_keys.join('|')}|` + '\n' +
       `${(function (length) {
@@ -77,28 +112,17 @@ const toMarkdown = function (paths: string[]) {
       `|${table_values.join('|')}|`
     );
     console.log(tableMarkdown);
-    const tableMarkdownPath = path.replace('latest', 'markdown').replace('.json', '.table.md');
+    const tableMarkdownPath = path.replace('latest', 'plain').replace('.json', '.table.md');
     prepare(tableMarkdownPath);
     fs.writeFileSync(`${pwd}/${tableMarkdownPath}`, tableMarkdown);
-    const slackMarkdown = Object.entries(json).map(([k, v]: any) => {
-      const key: string = emoji[k];
-      const value = util.filterNumber(`${v}`) == `${v}` ? thousands(v) : v;
-      return `*${key}* ${value}`;
-    }).join('\n');
+    const slackMarkdown = titleEmojiPrefix({path}) + plainTextMessage({json,platform:'slack'});
     console.log(slackMarkdown);
-    const slackMarkdownPath = path.replace('latest', 'markdown').replace('.json', '.slack.md');
+    const slackMarkdownPath = path.replace('latest', 'plain').replace('.json', '.slack.md');
     prepare(slackMarkdownPath);
     fs.writeFileSync(`${pwd}/${slackMarkdownPath}`, slackMarkdown);
-    const tweetText = (
-      (emoji[_] ?? "") +
-      (emoji[_] ? "\n" : "") +
-      Object.entries(json).map(([k, v]: any) => {
-        const key: string = emoji[k];
-        const value = util.filterNumber(`${v}`) == `${v}` ? thousands(v) : v;
-        return `${key} ${value}`;
-      }).join('\n'));
+    const tweetText = titleEmojiPrefix({path}) + plainTextMessage({json,platform:'twitter'});
     console.log(tweetText);
-    const tweetTextPath = path.replace('latest', 'markdown').replace('.json', '.tweet.txt');
+    const tweetTextPath = path.replace('latest', 'plain').replace('.json', '.tweet.txt');
     prepare(tweetTextPath);
     fs.writeFileSync(`${pwd}/${tweetTextPath}`, tweetText);
     return [tableMarkdown, slackMarkdown, tweetText];
