@@ -1,9 +1,7 @@
 import { execSync } from 'child_process';
+import {Path} from './Path';
+import {tryCatch} from '../TryCatch';
 import { exit } from 'process';
-type Path = string | {
-  path?: Path;
-  file?: File;
-};
 type File = string | {
   name: string;
   ext: string;
@@ -17,39 +15,14 @@ type Save = {
   path?: Path;
 }
 
-function Path(path?: Path): Path | any {
-  try {
-    return ((p?: Path): Path => {
-      const pwd = execSync(`pwd | tr -d '\\n'`).toString();
-      try{
-        execSync(`cd "${(typeof p == 'string'?p:(p?.path??'./'))}" && pwd | tr -d '\\n'`).toString();
-      }catch(e){
-        try {
-          execSync(`ls -la "${(typeof p == 'string'?p:(p?.path??'./'))}"`).toString();
-        } catch (e) {
-          console.error(new String(e));
-          try {
-            execSync(`mkdir -p "${(typeof p == 'string'?p:(p?.path??'./'))}"`).toString();
-          } catch (e) {
-            console.error(e);
-            exit(-128);
-          }
-        }
-      }
-      const find_path = execSync(`cd "${(typeof p == 'string'?p:(p?.path??'./'))}" && pwd | tr -d '\\n'`).toString();
-      const { path, file }: any = p ?? {
-        path: find_path,
-      };
-      return file ? {
-        path: find_path,
-        file
-      } : path;
-    })(path);
+function fileToString(file:File):string{
+  if(typeof file == 'string'){
+    return file;
   }
-  catch (e) {
-    console.error(e);
-    return e;
+  if(typeof file.ext == 'undefined' || file.ext == '' || file.ext == null){
+    return `${file.name}`;
   }
+  return `${file.name}.${file.ext}`;
 }
 
 function File(file: File): File {
@@ -65,5 +38,5 @@ function File(file: File): File {
   })(file);
 }
 
-export { Path, File, Check, Save };
+export { File, Check, Save,fileToString };
 

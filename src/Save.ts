@@ -1,5 +1,5 @@
 import { Data } from './type/Default';
-import { writeFile } from './util/Write';
+import { writeRecurive } from './util/WriteRecurive';
 export class Save {
   constructor({
     data,
@@ -8,7 +8,7 @@ export class Save {
     if (typeof data == 'undefined') {
       throw new TypeError();
     }
-    writeFile({
+    writeRecurive({
       data,
       path: {
         path: `./${name}`,
@@ -19,7 +19,7 @@ export class Save {
       }
     });
 
-    writeFile({
+    writeRecurive({
       data,
       path: {
         path: `./latest/${name}`,
