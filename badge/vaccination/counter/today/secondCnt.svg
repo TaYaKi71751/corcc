@@ -1,0 +1,72 @@
+<svg viewBox="0 0 120 25" xmlns="http://www.w3.org/2000/svg">
+	<style>
+    .container,div,.title,.value {
+    display: flex;
+    justify-content: center;
+    justify-self: center;
+    justify-items: center;
+    justify-tracks: center;
+    align-items: center;
+    align-self: center;
+    align-content: center;
+    align-tracks: center;
+}
+
+.container {
+    border-radius: 5px;
+    border: 1px solid #242424;
+}
+
+div {
+    font: 17px sans-serif;
+    height: fit-content;
+    overflow: auto;
+    color: #242424;
+}
+
+.🦠 {
+    background: #6a3;
+}
+
+.💀 {
+    background: #aaa;
+}
+
+.😊 {
+    background: #f8a;
+}
+
+.📅 {
+    background: #d55;
+}
+
+.💉 {
+    background: #ddd;
+}
+
+.☝️ {
+    background: #f3c;
+}
+
+.✌️ {
+    background: #f78;
+}
+
+.🤟 {
+    background: #fa4;
+}
+	</style>
+	<svg viewBox="0 0" height="27" />
+	<foreignObject width="100%" height="27">
+    <div xmlns="http://www.w3.org/1999/xhtml">
+        <div class="container">
+            <div class="✌️">
+                ✌️
+            </div>
+            <div class="✌️">
+                42,024,307
+            </div>
+        </div>
+    </div>
+	</foreignObject>
+    </svg>
