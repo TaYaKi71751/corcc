@@ -59,11 +59,11 @@ jobs:
     - name: ⬆️💉
       run: yarn vaccination 
     - name: tar to upload
-      run: tar --exclude='./node_modules' --exclude='./.git' -cvf Vaccinations.tar .
+      run: tar --exclude='./node_modules' --exclude='./.git' --exclude='*.tar.gz' -zcvf Vaccinations.tar.gz *
     - uses: actions/upload-artifact@v2
       with:
         name: artifact-vaccination
-        path: Vaccinations.tar
+        path: Vaccinations.tar.gz
   case:
     name: Cases
     needs: [ install ]
@@ -92,14 +92,14 @@ jobs:
     - name: ⬆️🦠
       run: yarn case 
     - name: tar to upload
-      run: tar --exclude='./node_modules' --exclude='./.git' -cvf Cases.tar .
+      run: tar --exclude='./node_modules' --exclude='./.git' --exclude='*.tar.gz' -zcvf Cases.tar.gz *
     - uses: actions/upload-artifact@v2
       with:
         name: artifact-case
-        path: Cases.tar
+        path: Cases.tar.gz
 
   vaccination-publish:
-    name: Upload Vaccinations
+    name: Publish Vaccinations
     needs: [ install,vaccination ]
     runs-on: ubuntu-latest
     steps:
@@ -114,14 +114,14 @@ jobs:
         name: artifact-vaccination
         path: ./
     - name: Extract
-      run: tar -xvf Vaccinations.tar
+      run: tar -zxvf Vaccinations.tar.gz
     - uses: corcc/publish@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         TASK_NAME: '⬆️💉'
         TIMEZONE: 'Asia/Tokyo'
   case-publish:
-    name: Upload Cases 
+    name: Publish Cases 
     needs: [ install,case ]
     runs-on: ubuntu-latest
     steps:
@@ -136,7 +136,7 @@ jobs:
         name: artifact-case
         path: ./
     - name: Extract
-      run: tar -xvf Cases.tar
+      run: tar -zxvf Cases.tar.gz
     - uses: corcc/publish@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
@@ -145,8 +145,8 @@ jobs:
 
 
   vaccination-plain-txt: 
-    name: Make Vaccination Markdown Table to use as Message
-    needs: [ install, vaccination ]
+    name: Make Vaccination Plain Text
+    needs: [ install, vaccination,vaccination-publish ]
     runs-on: ubuntu-latest
     steps:
     - name: Setup Node
@@ -172,17 +172,17 @@ jobs:
         name: artifact-vaccination
         path: ./
     - name: Extract
-      run: tar -xvf Vaccinations.tar
+      run: tar -zxvf Vaccinations.tar.gz
     - name: Make vaccination plain message
       run: yarn vaccination-plain-txt
-    - run: tar --exclude='./node_modules' --exclude='./.git' -cvf Vaccinations_Plain_Text.tar .
+    - run: tar --exclude='./node_modules' --exclude='./.git' --exclude='*.tar.gz' -zcvf Vaccinations_Plain_Text.tar.gz *
     - uses: actions/upload-artifact@v2
       with:
         name: artifact-vaccination
-        path: Vaccinations_Plain_Text.tar
+        path: Vaccinations_Plain_Text.tar.gz
   case-plain-txt: 
-    name: Make Case Markdown Table to use as Message
-    needs: [ install, case ]
+    name: Make Case Plain Text
+    needs: [ install, case,case-publish ]
     runs-on: ubuntu-latest
     steps:
     - name: Setup Node
@@ -208,14 +208,14 @@ jobs:
         name: artifact-case
         path: ./
     - name: Extract
-      run: tar -xvf Cases.tar
+      run: tar -zxvf Cases.tar.gz
     - name: Make vaccination plain message
       run: yarn case-plain-txt
-    - run: tar --exclude='./node_modules' --exclude='./.git' -cvf Cases_Plain_Text.tar .
+    - run: tar --exclude='./node_modules' --exclude='./.git' --exclude='*.tar.gz' -zcvf Cases_Plain_Text.tar.gz *
     - uses: actions/upload-artifact@v2
       with:
         name: artifact-case
-        path: Cases_Plain_Text.tar
+        path: Cases_Plain_Text.tar.gz
 
 
   vaccination-daily-slack: 
@@ -235,8 +235,8 @@ jobs:
         name: artifact-vaccination
         path: ./
     - name: Extract
-      run: tar -xvf Vaccinations_Plain_Text.tar
-      # run: tar -xvf Vaccinations.tar
+      run: tar -zxvf Vaccinations_Plain_Text.tar.gz
+      # run: tar -zxvf Vaccinations.tar.gz
     - name: Read Latest Daily
       id: vaccination-daily
       uses: juliangruber/read-file-action@v1
@@ -297,8 +297,8 @@ jobs:
         name: artifact-vaccination
         path: ./
     - name: Extract
-      run: tar -xvf Vaccinations_Plain_Text.tar
-      # run: tar -xvf Vaccinations.tar
+      run: tar -zxvf Vaccinations_Plain_Text.tar.gz
+      # run: tar -zxvf Vaccinations.tar.gz
     - name: Set secrets to env file
       run: |
         echo "TWITTER_CONSUMER_KEY=${{ secrets.TWITTER_CONSUMER_KEY }}" >> ./.env
@@ -349,8 +349,8 @@ jobs:
         name: artifact-case
         path: ./
     - name: Extract
-      run: tar -xvf Cases_Plain_Text.tar
-      # run: tar -xvf Cases.tar
+      run: tar -zxvf Cases_Plain_Text.tar.gz
+      # run: tar -zxvf Cases.tar.gz
     - name: Set secrets to env file
       run: |
         echo "TWITTER_CONSUMER_KEY=${{ secrets.TWITTER_CONSUMER_KEY }}" >> ./.env
@@ -392,8 +392,8 @@ jobs:
         name: artifact-vaccination
         path: ./
     - name: Extract
-      run: tar -xvf Vaccinations_Plain_Text.tar
-      # run: tar -xvf Vaccinations.tar
+      run: tar -zxvf Vaccinations_Plain_Text.tar.gz
+      # run: tar -zxvf Vaccinations.tar.gz
     - name: Read Latest Today
       id: vaccination-today
       uses: juliangruber/read-file-action@v1
@@ -443,8 +443,8 @@ jobs:
         name: artifact-case
         path: ./
     - name: Extract
-      run: tar -xvf Cases_Plain_Text.tar
-      # run: tar -xvf Cases.tar
+      run: tar -zxvf Cases_Plain_Text.tar.gz
+      # run: tar -zxvf Cases.tar.gz
     - name: Read Today's Confirmed Case
       id: case-today
       uses: juliangruber/read-file-action@v1
@@ -494,7 +494,7 @@ jobs:
         name: artifact-vaccination
         path: ./
     - name: Extract
-      run: tar -xvf Vaccinations_Plain_Text.tar
+      run: tar -zxvf Vaccinations_Plain_Text.tar.gz
     - uses: corcc/publish@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
@@ -517,7 +517,7 @@ jobs:
         name: artifact-case
         path: ./
     - name: Extract
-      run: tar -xvf Cases_Plain_Text.tar
+      run: tar -zxvf Cases_Plain_Text.tar.gz
     - uses: corcc/publish@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
