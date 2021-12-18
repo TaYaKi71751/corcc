@@ -1233,7 +1233,7 @@ text-table@^0.2.0:
 
 thousands@^1.0.1:
   version "1.0.1"
-  resolved "https://registry.npmjs.org/thousands/-/thousands-1.0.1.tgz"
+  resolved "https://registry.yarnpkg.com/thousands/-/thousands-1.0.1.tgz#59eb5b6d179ab20a42d9d1bdd05c2ca07fbc2d94"
   integrity sha1-WetbbReasgpC2dG90FwsoH+8LZQ=
 
 to-regex-range@^5.0.1:

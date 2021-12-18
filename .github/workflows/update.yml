@@ -58,7 +58,7 @@ jobs:
           ${{ runner.os }}-node-modules-
     - name: ⬆️💉
       run: yarn vaccination 
-    - name: tar to upload
+    - name: Make tarball
       run: tar --exclude='./node_modules' --exclude='./.git' --exclude='*.tar.gz' -zcvf Vaccinations.tar.gz *
     - uses: actions/upload-artifact@v2
       with:
@@ -91,7 +91,7 @@ jobs:
       working-directory: ./node_modules
     - name: ⬆️🦠
       run: yarn case 
-    - name: tar to upload
+    - name: Make tarball
       run: tar --exclude='./node_modules' --exclude='./.git' --exclude='*.tar.gz' -zcvf Cases.tar.gz *
     - uses: actions/upload-artifact@v2
       with:
@@ -144,6 +144,128 @@ jobs:
         TIMEZONE: 'Asia/Tokyo'
 
 
+  vaccination-badge-svg:
+    name: Make Vaccinations Badge SVG
+    needs: [ install,vaccination,vaccination-publish ]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Setup Node
+      uses: actions/setup-node@v2
+      with:
+        node-version: 'lts/*'
+    - name: Checkout 🛎️
+      uses: actions/checkout@master
+    - name: Cache node modules
+      id: node-cache
+      uses: actions/cache@v2
+      env:
+        cache-name: cache-node-modules
+      with:
+        # npm cache files are stored in `~/.npm` on Linux/macOS
+        path: node_modules
+        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-modules-
+    - uses: actions/download-artifact@v2
+      with:
+        name: artifact-vaccination
+        path: ./
+    - name: Extract
+      run: tar -zxvf Vaccinations.tar.gz
+    - name: ⬆️💉📛
+      run: yarn vaccination-badge-svg
+    - name: Make tarball
+      run: tar --exclude='./node_modules' --exclude='./.git' --exclude='*.tar.gz' -zcvf Vaccinations_Badge_SVG.tar.gz *
+    - uses: actions/upload-artifact@v2
+      with:
+        name: artifact-vaccination
+        path: Vaccinations_Badge_SVG.tar.gz
+
+
+  case-badge-svg:
+    name: Make Cases🦠 Badge SVG
+    needs: [ install,case,case-publish ]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Setup Node
+      uses: actions/setup-node@v2
+      with:
+        node-version: 'lts/*'
+    - name: Checkout 🛎️
+      uses: actions/checkout@master
+    - name: Cache node modules
+      id: node-cache
+      uses: actions/cache@v2
+      env:
+        cache-name: cache-node-modules
+      with:
+        # npm cache files are stored in `~/.npm` on Linux/macOS
+        path: node_modules
+        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-modules-
+    - uses: actions/download-artifact@v2
+      with:
+        name: artifact-case
+        path: ./
+    - name: Extract
+      run: tar -zxvf Cases.tar.gz
+    - name: ⬆️🦠📛
+      run: yarn case-badge-svg
+    - name: Make tarball
+      run: tar --exclude='./node_modules' --exclude='./.git' --exclude='*.tar.gz' -zcvf Cases_Badge_SVG.tar.gz *
+    - uses: actions/upload-artifact@v2
+      with:
+        name: artifact-case
+        path: Cases_Badge_SVG.tar.gz
+
+
+  vaccination-badge-svg-publish:
+    name: Publish Vaccinations Badge SVG
+    needs: [ install,vaccination,vaccination-badge-svg ]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Setup Node
+      uses: actions/setup-node@v2
+      with:
+        node-version: 'lts/*'
+    - name: Checkout 🛎️
+      uses: actions/checkout@master
+    - uses: actions/download-artifact@v2
+      with:
+        name: artifact-vaccination
+        path: ./
+    - name: Extract
+      run: tar -zxvf Vaccinations_Badge_SVG.tar.gz
+    - uses: corcc/publish@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        TASK_NAME: '⬆️💉📛'
+        TIMEZONE: 'Asia/Tokyo'
+  case-badge-svg-publish:
+    name: Publish Cases Badge SVG
+    needs: [ install,case,case-badge-svg ]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Setup Node
+      uses: actions/setup-node@v2
+      with:
+        node-version: 'lts/*'
+    - name: Checkout 🛎️
+      uses: actions/checkout@master
+    - uses: actions/download-artifact@v2
+      with:
+        name: artifact-case
+        path: ./
+    - name: Extract
+      run: tar -zxvf Cases_Badge_SVG.tar.gz
+    - uses: corcc/publish@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        TASK_NAME: '⬆️🦠📛'
+        TIMEZONE: 'Asia/Tokyo'
+
+
   vaccination-plain-txt: 
     name: Make Vaccination Plain Text
     needs: [ install, vaccination,vaccination-publish ]
@@ -175,7 +297,8 @@ jobs:
       run: tar -zxvf Vaccinations.tar.gz
     - name: Make vaccination plain message
       run: yarn vaccination-plain-txt
-    - run: tar --exclude='./node_modules' --exclude='./.git' --exclude='*.tar.gz' -zcvf Vaccinations_Plain_Text.tar.gz *
+    - name: Make tarball
+      run: tar --exclude='./node_modules' --exclude='./.git' --exclude='*.tar.gz' -zcvf Vaccinations_Plain_Text.tar.gz *
     - uses: actions/upload-artifact@v2
       with:
         name: artifact-vaccination
@@ -211,7 +334,8 @@ jobs:
       run: tar -zxvf Cases.tar.gz
     - name: Make vaccination plain message
       run: yarn case-plain-txt
-    - run: tar --exclude='./node_modules' --exclude='./.git' --exclude='*.tar.gz' -zcvf Cases_Plain_Text.tar.gz *
+    - name: Make tarball
+      run: tar --exclude='./node_modules' --exclude='./.git' --exclude='*.tar.gz' -zcvf Cases_Plain_Text.tar.gz *
     - uses: actions/upload-artifact@v2
       with:
         name: artifact-case
