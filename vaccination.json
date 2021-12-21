@@ -1,162 +1,162 @@
 {
   "counter": {
-    "dataTime": "2021-12-20",
+    "dataTime": "2021-12-21",
     "daily": {
-      "dataTime": "2021-12-20",
-      "firstCnt": 5851,
-      "secondCnt": 1743,
-      "thirdCnt": 29240
+      "dataTime": "2021-12-21",
+      "firstCnt": 119334,
+      "secondCnt": 52293,
+      "thirdCnt": 807347
     },
     "yesterday": {
-      "dataTime": "2021-12-19",
-      "firstCnt": 43487474,
-      "secondCnt": 42068917,
-      "thirdCnt": 11535843
+      "dataTime": "2021-12-20",
+      "firstCnt": 43501564,
+      "secondCnt": 42079039,
+      "thirdCnt": 11570503
     },
     "today": {
-      "dataTime": "2021-12-20",
-      "firstCnt": 43493325,
-      "secondCnt": 42070660,
-      "thirdCnt": 11565083
+      "dataTime": "2021-12-21",
+      "firstCnt": 43620898,
+      "secondCnt": 42131332,
+      "thirdCnt": 12377850
     }
   },
   "country": {
-    "dataTime": "2021-12-20",
+    "dataTime": "2021-12-21",
     "서울특별시": {
-      "firstCnt": 1092,
-      "firstTot": 8081511,
-      "secondCnt": 327,
-      "secondTot": 7848156,
-      "thirdCnt": 6576,
-      "thirdTot": 2173116
+      "firstCnt": 18242,
+      "firstTot": 8102651,
+      "secondCnt": 9111,
+      "secondTot": 7860254,
+      "thirdCnt": 151971,
+      "thirdTot": 2326441
     },
     "부산광역시": {
-      "firstCnt": 323,
-      "firstTot": 2785658,
-      "secondCnt": 96,
-      "secondTot": 2686254,
-      "thirdCnt": 1691,
-      "thirdTot": 766316
+      "firstCnt": 8978,
+      "firstTot": 2795023,
+      "secondCnt": 3345,
+      "secondTot": 2689984,
+      "thirdCnt": 58386,
+      "thirdTot": 825151
     },
     "대구광역시": {
-      "firstCnt": 173,
-      "firstTot": 1938156,
-      "secondCnt": 37,
-      "secondTot": 1867302,
-      "thirdCnt": 596,
-      "thirdTot": 443843
+      "firstCnt": 7970,
+      "firstTot": 1946277,
+      "secondCnt": 2569,
+      "secondTot": 1870045,
+      "thirdCnt": 35084,
+      "thirdTot": 478953
     },
     "인천광역시": {
-      "firstCnt": 525,
-      "firstTot": 2480025,
-      "secondCnt": 168,
-      "secondTot": 2400474,
-      "thirdCnt": 2436,
-      "thirdTot": 632558
+      "firstCnt": 5991,
+      "firstTot": 2486539,
+      "secondCnt": 3084,
+      "secondTot": 2404076,
+      "thirdCnt": 44837,
+      "thirdTot": 677822
     },
     "광주광역시": {
-      "firstCnt": 72,
-      "firstTot": 1216505,
-      "secondCnt": 14,
-      "secondTot": 1173233,
-      "thirdCnt": 267,
-      "thirdTot": 316210
+      "firstCnt": 3768,
+      "firstTot": 1220359,
+      "secondCnt": 1771,
+      "secondTot": 1175116,
+      "thirdCnt": 22925,
+      "thirdTot": 339183
     },
     "대전광역시": {
-      "firstCnt": 197,
-      "firstTot": 1199583,
-      "secondCnt": 42,
-      "secondTot": 1157132,
-      "thirdCnt": 582,
-      "thirdTot": 293704
+      "firstCnt": 4001,
+      "firstTot": 1203685,
+      "secondCnt": 1577,
+      "secondTot": 1158837,
+      "thirdCnt": 20007,
+      "thirdTot": 313754
     },
     "울산광역시": {
-      "firstCnt": 80,
-      "firstTot": 928762,
-      "secondCnt": 19,
-      "secondTot": 896509,
-      "thirdCnt": 388,
-      "thirdTot": 207834
+      "firstCnt": 3011,
+      "firstTot": 931861,
+      "secondCnt": 1020,
+      "secondTot": 897633,
+      "thirdCnt": 17686,
+      "thirdTot": 225567
     },
     "세종특별자치시": {
-      "firstCnt": 54,
-      "firstTot": 279728,
-      "secondCnt": 15,
-      "secondTot": 268580,
-      "thirdCnt": 166,
-      "thirdTot": 64957
+      "firstCnt": 1184,
+      "firstTot": 281013,
+      "secondCnt": 399,
+      "secondTot": 269058,
+      "thirdCnt": 3879,
+      "thirdTot": 68899
     },
     "경기도": {
-      "firstCnt": 2272,
-      "firstTot": 11384986,
-      "secondCnt": 705,
-      "secondTot": 11016264,
-      "thirdCnt": 11819,
-      "thirdTot": 2817113
+      "firstCnt": 27881,
+      "firstTot": 11415551,
+      "secondCnt": 13761,
+      "secondTot": 11032601,
+      "thirdCnt": 200482,
+      "thirdTot": 3019417
     },
     "강원도": {
-      "firstCnt": 77,
-      "firstTot": 1303677,
-      "secondCnt": 21,
-      "secondTot": 1263853,
-      "thirdCnt": 269,
-      "thirdTot": 385809
+      "firstCnt": 3459,
+      "firstTot": 1307244,
+      "secondCnt": 1380,
+      "secondTot": 1265365,
+      "thirdCnt": 25560,
+      "thirdTot": 411476
     },
     "충청북도": {
-      "firstCnt": 113,
-      "firstTot": 1376943,
-      "secondCnt": 34,
-      "secondTot": 1334316,
-      "thirdCnt": 805,
-      "thirdTot": 382193
+      "firstCnt": 3646,
+      "firstTot": 1380774,
+      "secondCnt": 1587,
+      "secondTot": 1336113,
+      "thirdCnt": 23878,
+      "thirdTot": 406231
     },
     "충청남도": {
-      "firstCnt": 245,
-      "firstTot": 1825333,
-      "secondCnt": 77,
-      "secondTot": 1765603,
-      "thirdCnt": 1057,
-      "thirdTot": 521523
+      "firstCnt": 5118,
+      "firstTot": 1830738,
+      "secondCnt": 2374,
+      "secondTot": 1768258,
+      "thirdCnt": 33504,
+      "thirdTot": 555139
     },
     "전라북도": {
-      "firstCnt": 111,
-      "firstTot": 1545850,
-      "secondCnt": 29,
-      "secondTot": 1497144,
-      "thirdCnt": 584,
-      "thirdTot": 508956
+      "firstCnt": 4360,
+      "firstTot": 1550293,
+      "secondCnt": 1489,
+      "secondTot": 1498735,
+      "thirdCnt": 32078,
+      "thirdTot": 541180
     },
     "전라남도": {
-      "firstCnt": 101,
-      "firstTot": 1603261,
-      "secondCnt": 28,
-      "secondTot": 1554519,
-      "thirdCnt": 481,
-      "thirdTot": 544769
+      "firstCnt": 4204,
+      "firstTot": 1607553,
+      "secondCnt": 1889,
+      "secondTot": 1556504,
+      "thirdCnt": 35322,
+      "thirdTot": 580245
     },
     "경상북도": {
-      "firstCnt": 106,
-      "firstTot": 2201519,
-      "secondCnt": 41,
-      "secondTot": 2126360,
-      "thirdCnt": 338,
-      "thirdTot": 618715
+      "firstCnt": 6014,
+      "firstTot": 2207726,
+      "secondCnt": 2701,
+      "secondTot": 2129266,
+      "thirdCnt": 39455,
+      "thirdTot": 658365
     },
     "경상남도": {
-      "firstCnt": 218,
-      "firstTot": 2778313,
-      "secondCnt": 62,
-      "secondTot": 2673402,
-      "thirdCnt": 833,
-      "thirdTot": 750044
+      "firstCnt": 9820,
+      "firstTot": 2788328,
+      "secondCnt": 3534,
+      "secondTot": 2677164,
+      "thirdCnt": 52756,
+      "thirdTot": 802974
     },
     "제주특별자치도": {
-      "firstCnt": 92,
-      "firstTot": 563515,
-      "secondCnt": 28,
-      "secondTot": 541559,
-      "thirdCnt": 352,
-      "thirdTot": 137423
+      "firstCnt": 1687,
+      "firstTot": 565283,
+      "secondCnt": 702,
+      "secondTot": 542323,
+      "thirdCnt": 9537,
+      "thirdTot": 147053
     }
   }
 }
