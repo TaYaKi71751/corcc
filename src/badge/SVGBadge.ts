@@ -66,11 +66,8 @@ function getSvg({
     title,
     value
 }: any) {
-    const svg = `<svg viewBox="0 0 ${2 +
-        16
-        + 2 +
-        (15 * value.length)
-        + 2
+    const svg = `<svg viewBox="0 0 ${16 +
+        (9 * value.length)
         } 25" xmlns="http://www.w3.org/2000/svg">
 	<style>
     ${readCssFile({
