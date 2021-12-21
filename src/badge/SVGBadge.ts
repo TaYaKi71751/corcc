@@ -23,27 +23,27 @@ type f = Function;
 function readCssFile({
     cssPath
 }: any): string {
-    const r = ((_p, d, p) => {
+    const resolvePath = ((_p, d, p) => {
         return ((f: f, a: s) => {
             return f(a);
         })(_p.resolve, ((f: f, a: s, b: s) => {
             return f(a, b)
         })(_p.join, d, p));
     })(path, __dirname, cssPath);
-    const a: s[] = ((p: s): s[] => {
+    const cssPathArray: Array<string> = ((p: s): Array<s> => {
         const c: s = `find ${p} -name *.css -exec echo {} \\\;`;
         const r: s = ((c): s => {
             return execSync(c).toString();
         })(c);
-        const a: s[] = ((a: s[]) => {
+        const a: Array<s> = ((a: Array<s>) => {
             return a.filter((_) => (_ != ''));
         })(r.split('\n'));
         return a;
-    })(r);
-    const c: s[] = a.map((p: s): s => {
+    })(resolvePath);
+    const cssArray: Array<string> = cssPathArray.map((p: s): s => {
         return fs.readFileSync(p, 'utf8').toString();
     });
-    return c.join('\n');
+    return cssArray.join('\n');
 }
 
 function getForeignObject({
@@ -104,8 +104,8 @@ const saveBadges = (jsonPath: string) => {
                 return a.lastIndexOf(c);
             })(b, c));
         };
-        const b = (() => {
-            const f = ((j: s): s => {
+        const badge = (() => {
+            const file = ((j: s): s => {
                 return path.join(pwd, ((p: s, k: s) => {
                     const r = (o: s, a: s, b: s): s => {
                         return o.replace(a, b);
@@ -120,7 +120,7 @@ const saveBadges = (jsonPath: string) => {
             const e = ((e, n: s) => {
                 return e[n];
             })(emoji, k);
-            const s = ((f, p) => {
+            const svg = ((f, p) => {
                 return f(p);
             })(g.s, {
                 title: `${e}`,
@@ -130,26 +130,26 @@ const saveBadges = (jsonPath: string) => {
                     return u.isNumberOnly(a);
                 })(`${v}`), `${v}`, thousands)
             })
-            const d = ((p: s) => {
+            const directory = ((p: s) => {
                 return P(p, '/')
-            })(f);
+            })(file);
             return {
-                f, d, s
+                file, directory, svg
             };
         })();
         tryCatch({
             func: mkdirPath,
-            params: b.d,
+            params: badge.directory,
             catchFunc: (() => { }),
         })
         tryCatch({
             func: execSync,
             params: ((p: s) => {
                 `echo '' > ${p}/.gitkeep`
-            })(b.d),
+            })(badge.directory),
             catchFunc: (() => { }),
         })
-        fs.writeFileSync(b.f, b.s);
+        fs.writeFileSync(badge.file, badge.svg);
     })
 }
 
