@@ -1,0 +1,11 @@
+svg,div {
+    display: flex;
+    justify-content: center;
+    justify-self: center;
+    justify-items: center;
+    justify-tracks: center;
+    align-items: center;
+    align-self: center;
+    align-content: center;
+    align-tracks: center;
+}

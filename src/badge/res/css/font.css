@@ -1,0 +1,14 @@
+
+.title {
+    font-family: "Twemoji",
+    "Apple Color Emoji","SF Pro Icons","SF Compact Icons",
+    "Sogoe UI Emoji","Sogoe UI",sans-serif;
+}
+
+.value {
+    font-size: inherit;
+    font-family: "SF Pro Display","SF Compact Display",
+    "SF Pro Icons","SF Compact Icons",
+    "Helvetica Neue","Helvetica",
+    "Sogoe","Arial",sans-serif;
+}

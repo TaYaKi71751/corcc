@@ -1,0 +1,25 @@
+div {
+    --container-max-height: 25px;
+    --title-max-height: calc(var(--title-max-height) - 2px);
+    --value-max-height: calc(var(--title-max-height) - 3px);
+}
+
+.container {
+    --max-height: var(--container-max-height);
+}
+.title {
+    --max-height: var(--title-max-height);
+}
+.value {
+    --max-height: var(--value-max-height);
+}
+
+.container,.title,.value {
+    height: inherit;
+    max-height: var(--max-height);
+}
+
+
+div {
+    height: fit-content;
+}
