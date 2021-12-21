@@ -11,7 +11,7 @@ export class Save {
     writeRecurive({
       data,
       path: {
-        path: `./${name}`,
+        path: `./artifacts/${name}`,
         file: {
           name,
           ext: 'json'
@@ -22,7 +22,7 @@ export class Save {
     writeRecurive({
       data,
       path: {
-        path: `./latest/${name}`,
+        path: `./artifacts/latest/${name}`,
         file: {
           name,
           ext: 'json'

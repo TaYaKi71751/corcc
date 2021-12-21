@@ -59,7 +59,9 @@ jobs:
     - name: ⬆️💉
       run: yarn vaccination 
     - name: Make tarball
-      run: tar --exclude='./node_modules' --exclude='./.git' --exclude='*.tar.gz' -zcvf Vaccinations.tar.gz *
+      run: |
+        cd ./artifacts/
+        tar --exclude='*.tar.gz' -zcvf ../Vaccinations.tar.gz *
     - uses: actions/upload-artifact@v2
       with:
         name: artifact-vaccination
@@ -92,7 +94,9 @@ jobs:
     - name: ⬆️🦠
       run: yarn case 
     - name: Make tarball
-      run: tar --exclude='./node_modules' --exclude='./.git' --exclude='*.tar.gz' -zcvf Cases.tar.gz *
+      run: |
+        cd ./artifacts/
+        tar -zcvf ../Cases.tar.gz *
     - uses: actions/upload-artifact@v2
       with:
         name: artifact-case
@@ -175,7 +179,7 @@ jobs:
     - name: ⬆️💉📛
       run: yarn vaccination-badge-svg
     - name: Make tarball
-      run: tar --exclude='./node_modules' --exclude='./.git' --exclude='*.tar.gz' -zcvf Vaccinations_Badge_SVG.tar.gz *
+      run: tar -zcvf Vaccinations_Badge_SVG.tar.gz ./badge/*
     - uses: actions/upload-artifact@v2
       with:
         name: artifact-vaccination
@@ -213,7 +217,7 @@ jobs:
     - name: ⬆️🦠📛
       run: yarn case-badge-svg
     - name: Make tarball
-      run: tar --exclude='./node_modules' --exclude='./.git' --exclude='*.tar.gz' -zcvf Cases_Badge_SVG.tar.gz *
+      run: tar -zcvf Cases_Badge_SVG.tar.gz ./badge/*
     - uses: actions/upload-artifact@v2
       with:
         name: artifact-case
@@ -298,7 +302,7 @@ jobs:
     - name: Make vaccination plain message
       run: yarn vaccination-plain-txt
     - name: Make tarball
-      run: tar --exclude='./node_modules' --exclude='./.git' --exclude='*.tar.gz' -zcvf Vaccinations_Plain_Text.tar.gz *
+      run: tar -zcvf Vaccinations_Plain_Text.tar.gz ./plain/*
     - uses: actions/upload-artifact@v2
       with:
         name: artifact-vaccination
@@ -335,7 +339,7 @@ jobs:
     - name: Make vaccination plain message
       run: yarn case-plain-txt
     - name: Make tarball
-      run: tar --exclude='./node_modules' --exclude='./.git' --exclude='*.tar.gz' -zcvf Cases_Plain_Text.tar.gz *
+      run: tar -zcvf Cases_Plain_Text.tar.gz ./plain/*
     - uses: actions/upload-artifact@v2
       with:
         name: artifact-case
