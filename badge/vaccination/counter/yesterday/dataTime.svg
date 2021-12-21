@@ -1,29 +1,9 @@
-<svg viewBox="0 0 120 25" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 172 25" xmlns="http://www.w3.org/2000/svg">
 	<style>
-    .container,div,.title,.value {
-    display: flex;
-    justify-content: center;
-    justify-self: center;
-    justify-items: center;
-    justify-tracks: center;
-    align-items: center;
-    align-self: center;
-    align-content: center;
-    align-tracks: center;
-}
-
-.container {
+    .container {
     border-radius: 5px;
-    border: 1px solid #242424;
+    border: 0 solid #242424;
 }
-
-div {
-    font: 17px sans-serif;
-    height: fit-content;
-    overflow: auto;
-    color: #242424;
-}
-
 .🦠 {
     background: #6a3;
 }
@@ -45,25 +25,80 @@ div {
 }
 
 .☝️ {
-    background: #f3c;
+    background: #f78;
 }
 
 .✌️ {
-    background: #f78;
+    background: #f9a;
 }
 
 .🤟 {
     background: #fa4;
 }
+div {
+    --container-max-height: 25px;
+    --title-max-height: calc(var(--title-max-height) - 2px);
+    --value-max-height: calc(var(--title-max-height) - 3px);
+}
+
+.container {
+    --max-height: var(--container-max-height);
+}
+.title {
+    --max-height: var(--title-max-height);
+}
+.value {
+    --max-height: var(--value-max-height);
+}
+
+.container,.title,.value {
+    height: inherit;
+    max-height: var(--max-height);
+}
+
+
+div {
+    height: fit-content;
+}
+svg,div {
+    display: flex;
+    justify-content: center;
+    justify-self: center;
+    justify-items: center;
+    justify-tracks: center;
+    align-items: center;
+    align-self: center;
+    align-content: center;
+    align-tracks: center;
+}
+div {
+    overflow: hidden;
+}
+div {
+    color: #242424;
+}
+
+.title {
+    font-family: "Twemoji",
+    "Apple Color Emoji","SF Pro Icons","SF Compact Icons",
+    "Sogoe UI Emoji","Sogoe UI",sans-serif;
+}
+
+.value {
+    font-size: inherit;
+    font-family: "SF Pro Display","SF Compact Display",
+    "SF Pro Icons","SF Compact Icons",
+    "Helvetica Neue","Helvetica",
+    "Sogoe","Arial",sans-serif;
+}
 	</style>
-	<svg viewBox="0 0" height="27" />
-	<foreignObject width="100%" height="27">
+	<foreignObject width="100%" height="100%">
     <div xmlns="http://www.w3.org/1999/xhtml">
-        <div class="container">
-            <div class="📅">
+        <div class="📅 container">
+            <div class="📅 title">
                 📅
             </div>
-            <div class="📅">
+            <div class="📅 value">
                 2021-12-20
             </div>
         </div>
