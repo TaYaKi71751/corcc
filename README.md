@@ -43,8 +43,7 @@
 >> 
 >> [ dhlife09 / Corona-19-API ](https://github.com/dhlife09/Corona-19-API)
 
-
-> [ ![](https://corcc.github.io/corcc/badge/vaccination/counter/today/dataTime.svg)](https://raw.githubusercontent.com/corcc/corcc/use-recursive-save/badge/vaccination/counter/today/dataTime.svg)
-> [ ![](https://corcc.github.io/corcc/badge/vaccination/counter/today/firstCnt.svg)](https://raw.githubusercontent.com/corcc/corcc/use-recursive-save/badge/vaccination/counter/today/firstCnt.svg)
-> [ ![](https://corcc.github.io/corcc/badge/vaccination/counter/today/secondCnt.svg)](https://raw.githubusercontent.com/corcc/corcc/use-recursive-save/badge/vaccination/counter/today/secondCnt.svg)
-> [ ![](https://corcc.github.io/corcc/badge/vaccination/counter/today/thirdCnt.svg)](https://raw.githubusercontent.com/corcc/corcc/use-recursive-save/badge/vaccination/counter/today/thirdCnt.svg)
+>  # [Daily Vaccinations at Today](./VaccinationsDaily.md)
+>  # [Vaccinations at Today](./VaccinationsToday.md)
+>  # [Confirmed Cases at Today](./CasesToday.md)
+>  # [Vaccinations at Yesterday](./VaccinationsYesterday.md)

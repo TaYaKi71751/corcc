@@ -1,0 +1,5 @@
+# Vaccinations at Yesterday
+> [ ![](https://corcc.github.io/corcc/badge/vaccination/counter/yesterday/dataTime.svg)](https://raw.githubusercontent.com/corcc/corcc/use-recursive-save/badge/vaccination/counter/yesterday/dataTime.svg)
+> [ ![](https://corcc.github.io/corcc/badge/vaccination/counter/yesterday/firstCnt.svg)](https://raw.githubusercontent.com/corcc/corcc/use-recursive-save/badge/vaccination/counter/yesterday/firstCnt.svg)
+> [ ![](https://corcc.github.io/corcc/badge/vaccination/counter/yesterday/secondCnt.svg)](https://raw.githubusercontent.com/corcc/corcc/use-recursive-save/badge/vaccination/counter/yesterday/secondCnt.svg)
+> [ ![](https://corcc.github.io/corcc/badge/vaccination/counter/yesterday/thirdCnt.svg)](https://raw.githubusercontent.com/corcc/corcc/use-recursive-save/badge/vaccination/counter/yesterday/thirdCnt.svg)

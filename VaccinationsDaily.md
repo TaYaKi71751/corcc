@@ -1,0 +1,5 @@
+# Daily Vaccinations at Today
+> [ ![](https://corcc.github.io/corcc/badge/vaccination/counter/daily/dataTime.svg)](https://raw.githubusercontent.com/corcc/corcc/use-recursive-save/badge/vaccination/counter/daily/dataTime.svg)
+> [ ![](https://corcc.github.io/corcc/badge/vaccination/counter/daily/firstCnt.svg)](https://raw.githubusercontent.com/corcc/corcc/use-recursive-save/badge/vaccination/counter/daily/firstCnt.svg)
+> [ ![](https://corcc.github.io/corcc/badge/vaccination/counter/daily/secondCnt.svg)](https://raw.githubusercontent.com/corcc/corcc/use-recursive-save/badge/vaccination/counter/daily/secondCnt.svg)
+> [ ![](https://corcc.github.io/corcc/badge/vaccination/counter/daily/thirdCnt.svg)](https://raw.githubusercontent.com/corcc/corcc/use-recursive-save/badge/vaccination/counter/daily/thirdCnt.svg)
