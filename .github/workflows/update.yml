@@ -12,6 +12,7 @@ jobs:
   install:
     name: Install Dependencies
     runs-on: ubuntu-latest
+    timeout-minutes: 2
     steps:
     - name: Setup Node
       uses: actions/setup-node@v2
@@ -38,6 +39,7 @@ jobs:
     name: Vaccinations
     needs: [ install ]
     runs-on: ubuntu-latest
+    timeout-minutes: 2
     steps:
     - name: Setup Node
       uses: actions/setup-node@v2
@@ -70,6 +72,7 @@ jobs:
     name: Cases
     needs: [ install ]
     runs-on: ubuntu-latest
+    timeout-minutes: 2
     steps:
     - name: Setup Node
       uses: actions/setup-node@v2
@@ -106,6 +109,7 @@ jobs:
     name: Publish Vaccinations
     needs: [ install,vaccination ]
     runs-on: ubuntu-latest
+    timeout-minutes: 2
     steps:
     - name: Setup Node
       uses: actions/setup-node@v2
@@ -128,6 +132,7 @@ jobs:
     name: Publish Cases 
     needs: [ install,case ]
     runs-on: ubuntu-latest
+    timeout-minutes: 2
     steps:
     - name: Setup Node
       uses: actions/setup-node@v2
@@ -152,6 +157,7 @@ jobs:
     name: Make Vaccinations Badge SVG
     needs: [ install,vaccination,vaccination-publish ]
     runs-on: ubuntu-latest
+    timeout-minutes: 2
     steps:
     - name: Setup Node
       uses: actions/setup-node@v2
@@ -190,6 +196,7 @@ jobs:
     name: Make Cases🦠 Badge SVG
     needs: [ install,case,case-publish ]
     runs-on: ubuntu-latest
+    timeout-minutes: 2
     steps:
     - name: Setup Node
       uses: actions/setup-node@v2
@@ -228,6 +235,7 @@ jobs:
     name: Publish Vaccinations Badge SVG
     needs: [ install,vaccination,vaccination-badge-svg ]
     runs-on: ubuntu-latest
+    timeout-minutes: 2
     steps:
     - name: Setup Node
       uses: actions/setup-node@v2
@@ -250,6 +258,7 @@ jobs:
     name: Publish Cases Badge SVG
     needs: [ install,case,case-badge-svg ]
     runs-on: ubuntu-latest
+    timeout-minutes: 2
     steps:
     - name: Setup Node
       uses: actions/setup-node@v2
@@ -274,6 +283,7 @@ jobs:
     name: Make Vaccination Plain Text
     needs: [ install, vaccination,vaccination-publish ]
     runs-on: ubuntu-latest
+    timeout-minutes: 2
     steps:
     - name: Setup Node
       uses: actions/setup-node@v2
@@ -311,6 +321,7 @@ jobs:
     name: Make Case Plain Text
     needs: [ install, case,case-publish ]
     runs-on: ubuntu-latest
+    timeout-minutes: 2
     steps:
     - name: Setup Node
       uses: actions/setup-node@v2
@@ -351,6 +362,7 @@ jobs:
     needs: [ install, vaccination,vaccination-plain-txt ]
     # needs: [ install, vaccination ]
     runs-on: ubuntu-latest
+    timeout-minutes: 2
     steps:
     - name: Setup Node
       uses: actions/setup-node@v2
@@ -400,6 +412,7 @@ jobs:
   vaccination-today-tweet:
     name: Tweet Today's Vaccinations
     runs-on: ubuntu-latest
+    timeout-minutes: 2
     needs: [ install, vaccination,vaccination-plain-txt ]
     steps:
     - name: Setup Node
@@ -452,6 +465,7 @@ jobs:
   case-today-tweet:
     name: Tweet Today's Cases
     runs-on: ubuntu-latest
+    timeout-minutes: 2
     needs: [ install, case, case-plain-txt ]
     steps:
     - name: Setup Node
@@ -507,6 +521,7 @@ jobs:
     needs: [ install, vaccination,vaccination-plain-txt ]
     # needs: [ install, vaccination ]
     runs-on: ubuntu-latest
+    timeout-minutes: 2
     steps:
     - name: Setup Node
       uses: actions/setup-node@v2
@@ -558,6 +573,7 @@ jobs:
     needs: [ install, case, case-plain-txt ]
     # needs: [ install, case ]
     runs-on: ubuntu-latest
+    timeout-minutes: 2
     steps:
     - name: Setup Node
       uses: actions/setup-node@v2
@@ -610,6 +626,7 @@ jobs:
     name: Publish Vaccinations Plain Text
     needs: [ install, vaccination, vaccination-plain-txt ]
     runs-on: ubuntu-latest
+    timeout-minutes: 2
     steps:
     - name: Setup Node
       uses: actions/setup-node@v2
@@ -633,6 +650,7 @@ jobs:
     name: Publish Cases Plain Text
     needs: [ install, case, case-plain-txt ]
     runs-on: ubuntu-latest
+    timeout-minutes: 2
     steps:
     - name: Setup Node
       uses: actions/setup-node@v2
