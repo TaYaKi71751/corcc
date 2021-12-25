@@ -23,7 +23,7 @@ export class DateUtil {
       case monthDateYester:
         return `${this.getFullYear(dateYester)}-${monthDateYester}`;
       default:
-        return `null`;
+        throw new Error(`Date too late ${d}`);
     }
   }
   getMonth(d: Date | string): string {
