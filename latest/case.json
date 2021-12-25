@@ -1,12 +1,12 @@
 {
   "counter": {
-    "dataTime": "null",
+    "dataTime": "2021-12-25",
     "confirmed": 602045,
     "deaths": 5176,
     "recovered": 489943
   },
   "country": {
-    "dataTime": "null",
+    "dataTime": "2021-12-25",
     "全国": {
       "confirmed": 602045,
       "deaths": 5176,
