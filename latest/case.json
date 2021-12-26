@@ -1,105 +1,105 @@
 {
   "counter": {
-    "dataTime": "2021-12-25",
-    "confirmed": 602045,
-    "deaths": 5176,
-    "recovered": 489943
+    "dataTime": "2021-12-26",
+    "confirmed": 607463,
+    "deaths": 5245,
+    "recovered": 494205
   },
   "country": {
-    "dataTime": "2021-12-25",
-    "전국": {
-      "confirmed": 602045,
-      "deaths": 5176,
-      "recovered": 489943
+    "dataTime": "2021-12-26",
+    "全国": {
+      "confirmed": 607463,
+      "deaths": 5245,
+      "recovered": 494205
     },
-    "서울": {
-      "confirmed": 215233,
-      "deaths": 5176,
-      "recovered": 165521
+    "首尔": {
+      "confirmed": 217150,
+      "deaths": 1681,
+      "recovered": 167649
     },
-    "부산": {
-      "confirmed": 23386,
-      "deaths": 5176,
-      "recovered": 18849
+    "釜山": {
+      "confirmed": 23757,
+      "deaths": 249,
+      "recovered": 19208
     },
-    "대구": {
-      "confirmed": 22337,
-      "deaths": 5176,
-      "recovered": 20378
+    "大邱": {
+      "confirmed": 22457,
+      "deaths": 356,
+      "recovered": 20488
     },
-    "인천": {
-      "confirmed": 34984,
-      "deaths": 5176,
-      "recovered": 29176
+    "仁川": {
+      "confirmed": 35312,
+      "deaths": 241,
+      "recovered": 29435
     },
-    "광주": {
-      "confirmed": 7562,
-      "deaths": 5176,
-      "recovered": 6941
+    "光州": {
+      "confirmed": 7629,
+      "deaths": 38,
+      "recovered": 6984
     },
-    "대전": {
-      "confirmed": 11807,
-      "deaths": 5176,
-      "recovered": 9299
+    "大田": {
+      "confirmed": 11891,
+      "deaths": 156,
+      "recovered": 9483
     },
-    "울산": {
-      "confirmed": 6610,
-      "deaths": 5176,
-      "recovered": 6040
+    "蔚山": {
+      "confirmed": 6663,
+      "deaths": 61,
+      "recovered": 6113
     },
-    "세종": {
-      "confirmed": 2043,
-      "deaths": 5176,
-      "recovered": 1760
+    "世宗": {
+      "confirmed": 2055,
+      "deaths": 3,
+      "recovered": 1782
     },
-    "경기": {
-      "confirmed": 177903,
-      "deaths": 5176,
-      "recovered": 144338
+    "京畿": {
+      "confirmed": 179556,
+      "deaths": 1733,
+      "recovered": 144646
     },
-    "강원": {
-      "confirmed": 11849,
-      "deaths": 5176,
-      "recovered": 10289
+    "江原": {
+      "confirmed": 11956,
+      "deaths": 98,
+      "recovered": 10414
     },
-    "충북": {
-      "confirmed": 11036,
-      "deaths": 5176,
-      "recovered": 9843
+    "忠北": {
+      "confirmed": 11115,
+      "deaths": 107,
+      "recovered": 9935
     },
-    "충남": {
-      "confirmed": 17323,
-      "deaths": 5176,
-      "recovered": 14676
+    "忠南": {
+      "confirmed": 17440,
+      "deaths": 128,
+      "recovered": 14818
     },
-    "전북": {
-      "confirmed": 8854,
-      "deaths": 5176,
-      "recovered": 7477
+    "全北": {
+      "confirmed": 8952,
+      "deaths": 98,
+      "recovered": 7577
     },
-    "전남": {
-      "confirmed": 5815,
-      "deaths": 5176,
-      "recovered": 5007
+    "全南": {
+      "confirmed": 5863,
+      "deaths": 34,
+      "recovered": 5098
     },
-    "경북": {
-      "confirmed": 14737,
-      "deaths": 5176,
-      "recovered": 12588
+    "庆北": {
+      "confirmed": 14867,
+      "deaths": 148,
+      "recovered": 12718
     },
-    "경남": {
-      "confirmed": 19408,
-      "deaths": 5176,
-      "recovered": 17079
+    "庆南": {
+      "confirmed": 19609,
+      "deaths": 85,
+      "recovered": 17148
     },
-    "제주": {
-      "confirmed": 4518,
-      "deaths": 5176,
-      "recovered": 4238
+    "济州": {
+      "confirmed": 4546,
+      "deaths": 13,
+      "recovered": 4265
     },
-    "검역": {
-      "confirmed": 6640,
-      "deaths": 5176,
+    "隔離區": {
+      "confirmed": 6645,
+      "deaths": 16,
       "recovered": 6444
     }
   }
