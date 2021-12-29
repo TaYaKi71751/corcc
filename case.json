@@ -7,97 +7,97 @@
   },
   "country": {
     "dataTime": "2021-12-29",
-    "全国": {
+    "Nation-wide": {
       "confirmed": 620938,
       "deaths": 5382,
       "recovered": 505470
     },
-    "首尔": {
+    "Seoul": {
       "confirmed": 221847,
       "deaths": 1729,
       "recovered": 171880
     },
-    "釜山": {
+    "Busan": {
       "confirmed": 24560,
       "deaths": 261,
       "recovered": 20199
     },
-    "大邱": {
+    "Daegu": {
       "confirmed": 22875,
       "deaths": 359,
       "recovered": 21021
     },
-    "仁川": {
+    "Incheon": {
       "confirmed": 36101,
       "deaths": 257,
       "recovered": 30095
     },
-    "光州": {
+    "Gwangju": {
       "confirmed": 7839,
       "deaths": 39,
       "recovered": 7133
     },
-    "大田": {
+    "Daejeon": {
       "confirmed": 12090,
       "deaths": 164,
       "recovered": 10020
     },
-    "蔚山": {
+    "Ulsan": {
       "confirmed": 6793,
       "deaths": 61,
       "recovered": 6261
     },
-    "世宗": {
+    "Sejong": {
       "confirmed": 2104,
       "deaths": 4,
       "recovered": 1866
     },
-    "京畿": {
+    "Gyeonggi-do": {
       "confirmed": 183425,
       "deaths": 1766,
       "recovered": 145741
     },
-    "江原": {
+    "Gangwon-do": {
       "confirmed": 12242,
       "deaths": 99,
       "recovered": 10839
     },
-    "忠北": {
+    "Chungcheongbuk-do": {
       "confirmed": 11344,
       "deaths": 108,
       "recovered": 10240
     },
-    "忠南": {
+    "Chungcheongnam-do": {
       "confirmed": 17835,
       "deaths": 135,
       "recovered": 15268
     },
-    "全北": {
+    "Jeollabuk-do": {
       "confirmed": 9239,
       "deaths": 99,
       "recovered": 7940
     },
-    "全南": {
+    "Jeollanam-do": {
       "confirmed": 5970,
       "deaths": 37,
       "recovered": 5229
     },
-    "庆北": {
+    "Gyeongsangbuk-do": {
       "confirmed": 15128,
       "deaths": 150,
       "recovered": 13115
     },
-    "庆南": {
+    "Gyeongsangnam-do": {
       "confirmed": 20250,
       "deaths": 85,
       "recovered": 17809
     },
-    "济州": {
+    "Jeju": {
       "confirmed": 4601,
       "deaths": 13,
       "recovered": 4355
     },
-    "隔離區": {
+    "Lazaretto": {
       "confirmed": 6695,
       "deaths": 16,
       "recovered": 6459
