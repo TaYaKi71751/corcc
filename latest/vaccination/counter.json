@@ -1,21 +1,21 @@
 {
-  "dataTime": "2021-12-30",
+  "dataTime": "2021-12-31",
   "daily": {
-    "dataTime": "2021-12-30",
-    "firstCnt": 48807,
-    "secondCnt": 45847,
-    "thirdCnt": 510846
+    "dataTime": "2021-12-31",
+    "firstCnt": 46646,
+    "secondCnt": 45494,
+    "thirdCnt": 517087
   },
   "yesterday": {
-    "dataTime": "2021-12-29",
-    "firstCnt": 44120049,
-    "secondCnt": 42437889,
-    "thirdCnt": 16618368
+    "dataTime": "2021-12-30",
+    "firstCnt": 44173002,
+    "secondCnt": 42488022,
+    "thirdCnt": 17156512
   },
   "today": {
-    "dataTime": "2021-12-30",
-    "firstCnt": 44168856,
-    "secondCnt": 42483736,
-    "thirdCnt": 17129214
+    "dataTime": "2021-12-31",
+    "firstCnt": 44219648,
+    "secondCnt": 42533516,
+    "thirdCnt": 17673599
   }
 }
