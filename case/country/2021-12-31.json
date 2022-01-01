@@ -1,98 +1,98 @@
 {
   "dataTime": "2021-12-31",
-  "全国": {
+  "전국": {
     "confirmed": 630838,
     "deaths": 5563,
     "recovered": 513978
   },
-  "首尔": {
+  "서울": {
     "confirmed": 225235,
-    "deaths": 1786,
+    "deaths": 5563,
     "recovered": 175554
   },
-  "釜山": {
+  "부산": {
     "confirmed": 25075,
-    "deaths": 271,
+    "deaths": 5563,
     "recovered": 20866
   },
-  "大邱": {
+  "대구": {
     "confirmed": 23124,
-    "deaths": 364,
+    "deaths": 5563,
     "recovered": 21264
   },
-  "仁川": {
+  "인천": {
     "confirmed": 36721,
-    "deaths": 265,
+    "deaths": 5563,
     "recovered": 30475
   },
-  "光州": {
+  "광주": {
     "confirmed": 8026,
-    "deaths": 44,
+    "deaths": 5563,
     "recovered": 7257
   },
-  "大田": {
+  "대전": {
     "confirmed": 12250,
-    "deaths": 167,
+    "deaths": 5563,
     "recovered": 10362
   },
-  "蔚山": {
+  "울산": {
     "confirmed": 6873,
-    "deaths": 62,
+    "deaths": 5563,
     "recovered": 6332
   },
-  "世宗": {
+  "세종": {
     "confirmed": 2142,
-    "deaths": 4,
+    "deaths": 5563,
     "recovered": 1906
   },
-  "京畿": {
+  "경기": {
     "confirmed": 186363,
-    "deaths": 1822,
+    "deaths": 5563,
     "recovered": 146975
   },
-  "江原": {
+  "강원": {
     "confirmed": 12405,
-    "deaths": 102,
+    "deaths": 5563,
     "recovered": 11091
   },
-  "忠北": {
+  "충북": {
     "confirmed": 11498,
-    "deaths": 109,
+    "deaths": 5563,
     "recovered": 10451
   },
-  "忠南": {
+  "충남": {
     "confirmed": 18095,
-    "deaths": 144,
+    "deaths": 5563,
     "recovered": 15562
   },
-  "全北": {
+  "전북": {
     "confirmed": 9568,
-    "deaths": 105,
+    "deaths": 5563,
     "recovered": 8141
   },
-  "全南": {
+  "전남": {
     "confirmed": 6078,
-    "deaths": 37,
+    "deaths": 5563,
     "recovered": 5363
   },
-  "庆北": {
+  "경북": {
     "confirmed": 15315,
-    "deaths": 161,
+    "deaths": 5563,
     "recovered": 13377
   },
-  "庆南": {
+  "경남": {
     "confirmed": 20678,
-    "deaths": 91,
+    "deaths": 5563,
     "recovered": 18135
   },
-  "济州": {
+  "제주": {
     "confirmed": 4638,
-    "deaths": 13,
+    "deaths": 5563,
     "recovered": 4408
   },
-  "隔離區": {
+  "검역": {
     "confirmed": 6754,
-    "deaths": 16,
+    "deaths": 5563,
     "recovered": 6459
   }
 }
