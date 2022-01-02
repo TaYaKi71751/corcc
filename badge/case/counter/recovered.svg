@@ -1,107 +1,14 @@
-<svg viewBox="0 0 79 25" xmlns="http://www.w3.org/2000/svg">
-	<style>
-    .container {
-    border-radius: 5px;
-    border: 0 solid #242424;
-}
-.🦠 {
-    background: #6a3;
-}
-
-.💀 {
-    background: #aaa;
-}
-
-.😊 {
-    background: #f8a;
-}
-
-.📅 {
-    background: #d55;
-}
-
-.💉 {
-    background: #ddd;
-}
-
-.☝️ {
-    background: #f78;
-}
-
-.✌️ {
-    background: #f9a;
-}
-
-.🤟 {
-    background: #fa4;
-}
-div {
-    --container-max-height: 25px;
-    --title-max-height: calc(var(--title-max-height) - 2px);
-    --value-max-height: calc(var(--title-max-height) - 3px);
-}
-
-.container {
-    --max-height: var(--container-max-height);
-}
-.title {
-    --max-height: var(--title-max-height);
-}
-.value {
-    --max-height: var(--value-max-height);
-}
-
-.container,.title,.value {
-    height: inherit;
-    max-height: var(--max-height);
-}
-
-
-div {
-    height: fit-content;
-}
-svg,div {
-    display: flex;
-    justify-content: center;
-    justify-self: center;
-    justify-items: center;
-    justify-tracks: center;
-    align-items: center;
-    align-self: center;
-    align-content: center;
-    align-tracks: center;
-}
-div {
-    overflow: hidden;
-}
-div {
-    color: #242424;
-}
-
-.title {
-    font-family: "Twemoji",
-    "Apple Color Emoji","SF Pro Icons","SF Compact Icons",
-    "Sogoe UI Emoji","Sogoe UI",sans-serif;
-}
-
-.value {
-    font-size: inherit;
-    font-family: "SF Pro Display","SF Compact Display",
-    "SF Pro Icons","SF Compact Icons",
-    "Helvetica Neue","Helvetica",
-    "Sogoe","Arial",sans-serif;
-}
-	</style>
-	<foreignObject width="100%" height="100%">
-    <div xmlns="http://www.w3.org/1999/xhtml">
-        <div class="😊 container">
-            <div class="😊 title">
-                😊
-            </div>
-            <div class="😊 value">
-                520,962
-            </div>
-        </div>
-    </div>
-	</foreignObject>
-    </svg>
+<svg width="77" height="20" viewBox="0 0 770 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="😊: 520,962">
+  <title>😊: 520,962</title>
+  <g>
+    <rect fill="#ADF" width="210" height="200"/>
+    <rect fill="##f8a" x="210" width="560" height="200"/>
+  </g>
+  <g aria-hidden="true" fill="#fff" text-anchor="start" font-family="Verdana,DejaVu Sans,sans-serif" font-size="110">
+    <text x="60" y="148" textLength="110" fill="#000" opacity="0.1">😊</text>
+    <text x="50" y="138" textLength="110">😊</text>
+    <text x="265" y="148" textLength="460" fill="#000" opacity="0.1">520,962</text>
+    <text x="255" y="138" textLength="460">520,962</text>
+  </g>
+  
+</svg>
