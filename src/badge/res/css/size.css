@@ -15,7 +15,8 @@ div {
 }
 
 .container,.title,.value {
-    height: inherit;
+    height: calc(calc(inherit) / 2);
+    max-width: calc(calc(inherit) / 2);
     max-height: var(--max-height);
 }
 

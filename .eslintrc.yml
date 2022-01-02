@@ -9,4 +9,8 @@ parserOptions:
   sourceType: module
 plugins:
   - '@typescript-eslint'
-rules: {}
+rules: {
+  "indent":["error","tab"],
+  "no-tabs": "off",
+  "require-jsdoc": "off"
+}
