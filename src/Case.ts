@@ -124,6 +124,7 @@ class Case extends Utilities {
 		v = cheerioModule.load(html)(['.timetable', '.info', 'span'].join(' > '));
 		v = v.text().trim();
 		v = v.split(/[^\d]/).filter((_: string) => _ != '');
+		v = v[0].length > 2 ? v.slice(0, v.length - 1) : v;
 		return this.DateUtilities.dateCheck(v.join('-'));
 	}
 	parseMap({
