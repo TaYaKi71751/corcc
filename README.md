@@ -33,7 +33,7 @@
 >> 
 >> - [ Cases in Korea by City/Province (**NOT-SECURED**) ](http://ncov.mohw.go.kr/en/bdBoardList.do?brdGubun=162) 
 >>> 
->>> by [ South_Korea \[ 'MOHW' \] (**NOT-SECURED**) ](http://mohw.go.kr/eng/)
+>>> by [ South Korea 's Ministry of Health and Welfare (**NOT-SECURED**) ](http://mohw.go.kr/eng/)
 > 
 > ### REF
 >> 
