@@ -1,106 +1,106 @@
 {
   "counter": {
-    "dataTime": "2022-01-06",
-    "confirmed": 653792,
-    "deaths": 5887,
-    "recovered": 545464
+    "dataTime": "2022-01-07",
+    "confirmed": 657508,
+    "deaths": 5932,
+    "recovered": 549488
   },
   "country": {
-    "dataTime": "2022-01-06",
+    "dataTime": "2022-01-07",
     "全国": {
-      "confirmed": 653792,
-      "deaths": 5887,
-      "recovered": 545464
+      "confirmed": 657508,
+      "deaths": 5932,
+      "recovered": 549488
     },
     "首尔": {
-      "confirmed": 232419,
-      "deaths": 1898,
-      "recovered": 184918
+      "confirmed": 233457,
+      "deaths": 1913,
+      "recovered": 187191
     },
     "釜山": {
-      "confirmed": 26304,
-      "deaths": 308,
-      "recovered": 22975
+      "confirmed": 26511,
+      "deaths": 311,
+      "recovered": 23228
     },
     "大邱": {
-      "confirmed": 23739,
-      "deaths": 371,
-      "recovered": 22066
+      "confirmed": 23838,
+      "deaths": 373,
+      "recovered": 22193
     },
     "仁川": {
-      "confirmed": 38107,
-      "deaths": 287,
-      "recovered": 33480
+      "confirmed": 38288,
+      "deaths": 293,
+      "recovered": 33717
     },
     "光州": {
-      "confirmed": 8513,
+      "confirmed": 8600,
       "deaths": 49,
-      "recovered": 7593
+      "recovered": 7763
     },
     "大田": {
-      "confirmed": 12549,
-      "deaths": 178,
-      "recovered": 11004
+      "confirmed": 12578,
+      "deaths": 179,
+      "recovered": 11051
     },
     "蔚山": {
-      "confirmed": 7131,
+      "confirmed": 7169,
       "deaths": 63,
-      "recovered": 6604
+      "recovered": 6644
     },
     "世宗": {
-      "confirmed": 2226,
+      "confirmed": 2240,
       "deaths": 4,
-      "recovered": 2058
+      "recovered": 2074
     },
     "京畿": {
-      "confirmed": 193888,
-      "deaths": 1897,
-      "recovered": 156060
+      "confirmed": 195149,
+      "deaths": 1906,
+      "recovered": 156249
     },
     "江原": {
-      "confirmed": 12766,
-      "deaths": 105,
-      "recovered": 11840
+      "confirmed": 12856,
+      "deaths": 108,
+      "recovered": 11916
     },
     "忠北": {
-      "confirmed": 11873,
-      "deaths": 115,
-      "recovered": 11011
+      "confirmed": 11963,
+      "deaths": 116,
+      "recovered": 11063
     },
     "忠南": {
-      "confirmed": 18781,
+      "confirmed": 18897,
       "deaths": 156,
-      "recovered": 16500
+      "recovered": 16618
     },
     "全北": {
-      "confirmed": 10078,
-      "deaths": 111,
-      "recovered": 8821
+      "confirmed": 10162,
+      "deaths": 112,
+      "recovered": 8920
     },
     "全南": {
-      "confirmed": 6368,
+      "confirmed": 6492,
       "deaths": 40,
-      "recovered": 5661
+      "recovered": 5695
     },
     "庆北": {
-      "confirmed": 15822,
-      "deaths": 177,
-      "recovered": 14322
+      "confirmed": 15931,
+      "deaths": 178,
+      "recovered": 14426
     },
     "庆南": {
-      "confirmed": 21446,
-      "deaths": 99,
-      "recovered": 19515
+      "confirmed": 21548,
+      "deaths": 102,
+      "recovered": 19689
     },
     "济州": {
-      "confirmed": 4788,
+      "confirmed": 4798,
       "deaths": 13,
-      "recovered": 4544
+      "recovered": 4549
     },
     "隔離區": {
-      "confirmed": 6994,
+      "confirmed": 7031,
       "deaths": 16,
-      "recovered": 6492
+      "recovered": 6502
     }
   }
 }
