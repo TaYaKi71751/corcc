@@ -1,3 +1,4 @@
+import JSONBig from 'json-bigint';
 import {resolve} from 'path';
 import {execSync} from 'child_process';
 import {tryCatch} from './TryCatch';
@@ -12,6 +13,7 @@ import {
 } from './type/Path';
 import {Check, Save} from './type/File';
 import __path__ from 'path';
+import {Utilities} from './Utilities';
 
 function prepare({
 	path,
@@ -89,7 +91,7 @@ function write({
 }
 
 function stringify(d: any): string {
-	return JSON.stringify(d, null, 2);
+	return JSONBig.stringify(d, null, 2);
 }
 
 function writeRecurive({
@@ -97,13 +99,33 @@ function writeRecurive({
 	path,
 }: Save) {
 	const writePath = resolve(prepare(path));
-	const jsonString = stringify(data);
+	const _data = (function(_d: any) {
+		if (
+			typeof _d != typeof {}
+		) {
+			return _d;
+		}
+		const {sortObject} = new Utilities();
+		let _dat = _d;
+		const pathSplit = writePath.split('/');
+		const dirOnly = pathSplit.filter((_) => (!_.includes('.json')));
+		if (
+			pathSplit.indexOf('latest') > -1 &&
+				dirOnly.indexOf('country') > -1 &&
+				!_dat.dataTime
+		) {
+			_dat['dataTime'] = dataTime;
+			_dat = sortObject(_dat);
+		}
+		return _dat;
+	})(data);
+	const jsonString = stringify(_data);
 	write({
 		writePath,
 		jsonString,
 		pwd,
 	});
-	Object.entries(data).forEach(([k, v]) => {
+	Object.entries(_data).forEach(([k, v]) => {
 		dataTime = k.includes('yes') ? dataTime : ((data: any) => {
 			return typeof data == 'string' ? dataTime : data?.dataTime ?? dataTime;
 		})(v);
@@ -116,7 +138,17 @@ function writeRecurive({
 			func: getOnlyPathAsString,
 			params: path,
 		});
-		const pathOnlyExceptPwd: string = 			__path__.resolve(pathOnlyString).replace(pwd, '.');
+		const pathOnlyExceptPwd: string = (function({
+			r, p,
+		}: {
+			r: Function,
+			p: string
+		}): string {
+			return r(p).replace(pwd, '.');
+		})({
+			r: __path__.resolve,
+			p: pathOnlyString,
+		});
 		writeRecurive({
 			data: v,
 			path: {
