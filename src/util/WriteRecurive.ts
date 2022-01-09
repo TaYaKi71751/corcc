@@ -114,8 +114,9 @@ function writeRecurive({
 				dirOnly.indexOf('country') > -1 &&
 				!_dat.dataTime
 		) {
-			_dat['dataTime'] = dataTime;
 			_dat = sortObject(_dat);
+			_dat = stringify(_dat).replace(`{`, `{"dataTime":"${dataTime}",`);
+			_dat = JSONBig.parse(_dat);
 		}
 		return _dat;
 	})(data);
