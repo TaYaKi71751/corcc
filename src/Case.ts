@@ -123,8 +123,10 @@ class Case extends Utilities {
 		let v: any = {};
 		v = cheerioModule.load(html)(['.timetable', '.info', 'span'].join(' > '));
 		v = v.text().trim();
-		v = v.split(/[^\d]/).filter((_: string) => _ != '');
-		v = v[0].length > 2 ? v.slice(0, v.length - 1) : v;
+		v = v.split(/[^\d]/).filter((_: string) => (
+			_.trim() != '00' ||
+			_.trim() != '0'));
+		v = v.filter((_:string)=>(_.trim() != '' ));
 		return this.DateUtilities.dateCheck(v.join('-'));
 	}
 	parseMap({
