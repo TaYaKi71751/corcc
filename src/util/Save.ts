@@ -1,5 +1,5 @@
-import {Data} from './type/Default';
-import {writeRecurive} from './util/WriteRecurive';
+import {Data} from '../type/Default';
+import {writeRecurive} from './WriteRecurive';
 export class Save {
 	constructor({
 		data,

@@ -13,7 +13,8 @@ import {
 } from './type/Path';
 import {Check, Save} from './type/File';
 import __path__ from 'path';
-import {Utilities} from './Utilities';
+import {sortObject} from './object/Sort';
+import {isNumberOnly} from './string/Check';
 
 function prepare({
 	path,
@@ -105,14 +106,13 @@ function writeRecurive({
 		) {
 			return _d;
 		}
-		const {sortObject} = new Utilities();
 		let _dat = _d;
 		const pathSplit = writePath.split('/');
 		const dirOnly = pathSplit.filter((_) => (!_.includes('.json')));
 		if (
 			pathSplit.indexOf('latest') > -1 &&
-				dirOnly.indexOf('country') > -1 &&
-				!_dat.dataTime
+			dirOnly.indexOf('country') > -1 &&
+			!_dat.dataTime
 		) {
 			_dat = sortObject(_dat);
 			_dat = stringify(_dat).replace(`{`, `{"dataTime":"${dataTime}",`);
@@ -127,11 +127,13 @@ function writeRecurive({
 		pwd,
 	});
 	Object.entries(_data).forEach(([k, v]) => {
-		dataTime = k.includes('yes') ? dataTime : ((data: any) => {
-			return typeof data == 'string' ? dataTime : data?.dataTime ?? dataTime;
+		k.includes('yes') ? dataTime : ((data: any) => {
+			dataTime = (data?.dataTime
+				?.match(/^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/) ?
+				data?.dataTime: dataTime);
 		})(v);
 		if (typeof v == 'string') {
-			if (!v.match(/^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/)) {
+			if (isNumberOnly(k)) {
 				return;
 			}
 		}
