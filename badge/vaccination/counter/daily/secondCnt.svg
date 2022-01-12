@@ -1,14 +1,14 @@
-<svg width="88" height="20" viewBox="0 0 880 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="✌️: 109,187">
-  <title>✌️: 109,187</title>
+<svg width="81" height="20" viewBox="0 0 810 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="✌️: 72,324">
+  <title>✌️: 72,324</title>
   <g>
     <rect fill="#ADF" width="320" height="200"/>
-    <rect fill="##f9a" x="320" width="560" height="200"/>
+    <rect fill="##f9a" x="320" width="490" height="200"/>
   </g>
   <g aria-hidden="true" fill="#fff" text-anchor="start" font-family="Verdana,DejaVu Sans,sans-serif" font-size="110">
     <text x="60" y="148" textLength="220" fill="#000" opacity="0.1">✌️</text>
     <text x="50" y="138" textLength="220">✌️</text>
-    <text x="375" y="148" textLength="460" fill="#000" opacity="0.1">109,187</text>
-    <text x="365" y="138" textLength="460">109,187</text>
+    <text x="375" y="148" textLength="390" fill="#000" opacity="0.1">72,324</text>
+    <text x="365" y="138" textLength="390">72,324</text>
   </g>
   
 </svg>
