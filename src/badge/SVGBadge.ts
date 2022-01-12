@@ -1,21 +1,17 @@
 import {execSync} from 'child_process';
 import fs from 'fs';
 import path from 'path';
-import JSONBig from 'json-bigint';
-import {Utilities} from '../util/Utilities';
 import {emoji} from './Emoji';
 import {
 	pwd,
 	mkdirPath,
 } from '../util/type/Path';
-const thousands = require('thousands');
 import {tryCatch} from '../util/TryCatch';
 import {colors} from './Color';
+import {isNumberOnly} from '../util/string/Check';
+const thousands = require('thousands');
 const {badgen} = require('badgen');
 
-const u = (() => {
-	return new Utilities();
-})();
 type s = string;
 type n = number;
 type b = boolean;
@@ -105,7 +101,7 @@ const saveBadges = (jsonPath: string) => {
 	const read = ((f: f, p: s) => {
 		return f(p).toString();
 	})(fs.readFileSync, jsonPath);
-	const json = JSONBig.parse(read);
+	const json = JSON.parse(read);
 	Object.entries(json).forEach(([k, v]) => {
 		const P = (b: s, c: s) => {
 			return ((a: s, c: n): s => {
@@ -137,7 +133,7 @@ const saveBadges = (jsonPath: string) => {
 				value: ((a: b, b: s, c: f) => {
 					return a ? c(b) : b;
 				})(((a) => {
-					return u.isNumberOnly(a);
+					return isNumberOnly(a);
 				})(`${v}`), `${v}`, thousands),
 			});
 			const directory = ((p: s) => {
