@@ -2,7 +2,6 @@ import {isNumberOnly} from '../util/string/Check';
 
 const {exit} = require('process');
 const fs = require('fs');
-const JSONBig = require('json-bigint');
 const {execSync} = require('child_process');
 const thousands = require('thousands');
 const pwd = execSync(`pwd`).toString().replace('\n', '');
@@ -110,7 +109,7 @@ const toMarkdown = function(paths: string[]) {
 		// 	return;
 		// })(path) ?? '_';
 		const read = execSync(`cat ${pwd}/${path}`).toString();
-		const json = JSONBig.parse(read);
+		const json = JSON.parse(read);
 		const tableKeys = Object.keys(json);
 		const tableValues = ov(json).map((a) => {
 			return `${a}`;

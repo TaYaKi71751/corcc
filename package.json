@@ -16,13 +16,10 @@
   },
   "dependencies": {
     "@types/cheerio": "^0.22.30",
-    "@types/json-bigint": "^1.0.1",
     "@types/xml2js": "^0.4.9",
     "badgen": "^3.2.2",
     "cheerio": "^1.0.0-rc.10",
     "dotenv": "^10.0.0",
-    "json-bigint": "^1.0.0",
-    "rsync": "^0.6.1",
     "thousands": "^1.0.1",
     "ts-node": "^10.4.0",
     "twitter": "^1.7.1",

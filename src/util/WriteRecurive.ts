@@ -1,4 +1,3 @@
-import JSONBig from 'json-bigint';
 import {resolve} from 'path';
 import {execSync} from 'child_process';
 import {tryCatch} from './TryCatch';
@@ -92,7 +91,7 @@ function write({
 }
 
 function stringify(d: any): string {
-	return JSONBig.stringify(d, null, 2);
+	return JSON.stringify(d, null, 2);
 }
 
 function writeRecurive({
@@ -116,7 +115,7 @@ function writeRecurive({
 		) {
 			_dat = sortObject(_dat);
 			_dat = stringify(_dat).replace(`{`, `{"dataTime":"${dataTime}",`);
-			_dat = JSONBig.parse(_dat);
+			_dat = JSON.parse(_dat);
 		}
 		return _dat;
 	})(data);
