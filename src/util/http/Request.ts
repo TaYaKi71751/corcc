@@ -1,19 +1,23 @@
 import {ClientRequest, ServerResponse} from 'http';
+type Body = any & Array<number> & string;
 export async function request(options: ClientRequest & {
-    body: string
+	body: string
 }): Promise<any | ServerResponse> {
-	const {protocol}:any = options;
+	const {protocol}: any = options;
 	const http = require(protocol.replace(':', ''));
 	return await new Promise((resolve, reject) => {
-		let body = '';
+		let body: Body = [];
 		const req = http.request(options, (res: any) => {
 			console.log(`PATH: ${options.path}`);
 			console.log(`statusCode: ${res.statusCode}`);
-			res.on('data', (d: any) => {
-				body += d;
+			res.on('data', (chunk: Buffer) => {
+				chunk.forEach((x: number) => {
+					body.push(x);
+				});
 			});
 			res.on('end', () => {
-				res.body = body || undefined;
+				body = Buffer.from(body);
+				res.body = body.toString();
 				resolve(res);
 			});
 		});
