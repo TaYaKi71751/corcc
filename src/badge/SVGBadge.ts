@@ -16,70 +16,10 @@ type s = string;
 type n = number;
 type b = boolean;
 type f = Function;
-// function readCssFile({
-// 	cssPath,
-// }: any): string {
-// 	const resolvePath = ((_p, d, p) => {
-// 		return ((f: f, a: s) => {
-// 			return f(a);
-// 		})(_p.resolve, ((f: f, a: s, b: s) => {
-// 			return f(a, b);
-// 		})(_p.join, d, p));
-// 	})(path, __dirname, cssPath);
-// 	const cssPathArray: Array<string> = ((p: s): Array<s> => {
-// 		const c: s = `find ${p} -name *.css -exec echo {} \\\;`;
-// 		const r: s = ((c): s => {
-// 			return execSync(c).toString();
-// 		})(c);
-// 		const a: Array<s> = ((a: Array<s>) => {
-// 			return a.filter((_) => (_ != ''));
-// 		})(r.split('\n'));
-// 		return a;
-// 	})(resolvePath);
-// 	const cssArray: Array<string> = cssPathArray.map((p: s): s => {
-// 		return fs.readFileSync(p, 'utf8').toString();
-// 	});
-// 	return cssArray.join('\n');
-// }
-
-// function getForeignObject({
-// 	title,
-// 	value,
-// }: any) {
-// 	const foreignObject = `<div xmlns="http://www.w3.org/1999/xhtml">
-//         <div class="${title} container">
-//             <div class="${title} title">
-//                 ${title}
-//             </div>
-//             <div class="${title} value">
-//                 ${value}
-//             </div>
-//         </div>
-//     </div>`;
-// 	return foreignObject;
-// }
 function getSvg({
 	title,
 	value,
 }: any) {
-// 	const svg = `<svg viewBox="0 0 ${16 +
-// 		(9 * value.length)
-// 	}px 25px" xmlns="http://www.w3.org/2000/svg">
-// 	<style>
-//     ${readCssFile({
-// 		cssPath: './res/css/',
-// 	})}
-// 	</style>
-// 	<foreignObject width="${16 +
-// 		(9 * value.length)
-// }px" height="25px">
-//     ${getForeignObject({
-// 		title,
-// 		value,
-// 	})}
-// 	</foreignObject>
-//     </svg>`;
-
 	const svgString = badgen({
 		label: `${title}`, // <Text>
 		labelColor: 'ADF', // <Color RGB> or <Color Name> (default: '555')

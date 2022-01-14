@@ -1,4 +1,4 @@
 const casePaths = [
-  'latest/case/counter.json'
+	'latest/case/counter.json',
 ];
-export { casePaths }
+export {casePaths};

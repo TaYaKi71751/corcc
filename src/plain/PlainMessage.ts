@@ -4,26 +4,15 @@ const {exit} = require('process');
 const fs = require('fs');
 const {execSync} = require('child_process');
 const thousands = require('thousands');
-const pwd = execSync(`pwd`).toString().replace('\n', '');
+const pwd = execSync('pwd').toString().replace('\n', '');
 
-
-// const paths = {
-//   'case': [
-//     'latest/case/counter.json',
-//   ],
-//   'vaccination': [
-//     'latest/vaccination/counter/daily.json',
-//     'latest/vaccination/counter/today.json',
-//     'latest/vaccination/counter/yesterday.json'
-//   ]
-// };
 const oe = Object.entries;
 const ov = Object.values;
 function prepare(path: string) {
 	try {
 		execSync(`ls ${pwd}/${path.substring(0, path.lastIndexOf('/'))
 		}`).toString();
-	} catch (e:any) {
+	} catch (e: any) {
 		console.error(e.message);
 		try {
 			execSync(`mkdir -p ${pwd}/${path.substring(0, path.lastIndexOf('/'))
@@ -35,7 +24,7 @@ function prepare(path: string) {
 		try {
 			execSync(`ls ${pwd}/${path.substring(0, path.lastIndexOf('/'))
 			}/.gitkeep`).toString();
-		} catch (e:any) {
+		} catch (e: any) {
 			console.error(e.message);
 			try {
 				execSync(`echo ''> ${pwd}/${path.substring(0, path.lastIndexOf('/'))
@@ -99,15 +88,6 @@ function titleEmojiPrefix({
 
 const toMarkdown = function(paths: string[]) {
 	return paths.map((path) => {
-		// const _ = (function(p) {
-		// 	if (p.includes('/case/')) {
-		// 		return 'case';
-		// 	}
-		// 	if (p.includes('/vaccination/')) {
-		// 		return 'vaccination';
-		// 	}
-		// 	return;
-		// })(path) ?? '_';
 		const read = execSync(`cat ${pwd}/${path}`).toString();
 		const json = JSON.parse(read);
 		const tableKeys = Object.keys(json);

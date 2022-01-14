@@ -21,10 +21,10 @@ export function parseCountryName({
 	return _$(html)('.cityname').text();
 }
 
-export function parseTitleName(title:string): string {
-	const _title:any = ov(titles).
+export function parseTitleName(title: string): string {
+	const _title: any = ov(titles).
 		filter((key): any => (title?.toLowerCase()?.
 			match(key + '')?.length ?? false))[0] ??
-        titles[filterIncludesKeys(titles, title)[0]];
+		titles[filterIncludesKeys(titles, title)[0]];
 	return _title;
 }

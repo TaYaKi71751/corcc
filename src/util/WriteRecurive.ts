@@ -114,7 +114,7 @@ function writeRecurive({
 			!_dat.dataTime
 		) {
 			_dat = sortObject(_dat);
-			_dat = stringify(_dat).replace(`{`, `{"dataTime":"${dataTime}",`);
+			_dat = stringify(_dat).replace('{', `{"dataTime":"${dataTime}",`);
 			_dat = JSON.parse(_dat);
 		}
 		return _dat;
@@ -129,7 +129,7 @@ function writeRecurive({
 		k.includes('yes') ? dataTime : ((data: any) => {
 			dataTime = (data?.dataTime
 				?.match(/^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/) ?
-				data?.dataTime: dataTime);
+				data?.dataTime : dataTime);
 		})(v);
 		if (typeof v == 'string') {
 			if (isNumberOnly(k)) {

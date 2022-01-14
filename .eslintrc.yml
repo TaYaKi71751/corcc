@@ -10,7 +10,10 @@ parserOptions:
 plugins:
   - '@typescript-eslint'
 rules: {
-  "indent":["error","tab"],
-  "no-tabs": "off",
-  "require-jsdoc": "off"
+  indent: ['error', 'tab'],
+  quotes: [2, 'single'],
+  semi: [2, 'always'],
+  no-tabs: 0,
+  eqeqeq: 0,
+  "require-jsdoc": "off",
 }

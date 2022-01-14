@@ -5,7 +5,7 @@ import __path__ from 'path';
 import {
 	File,
 } from './File';
-const pwd = execSync(`pwd | tr -d '\\n'`).toString();
+const pwd = execSync('pwd | tr -d \'\\n\'').toString();
 
 type Path = string | {
 	path?: Path;

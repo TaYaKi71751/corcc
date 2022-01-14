@@ -9,6 +9,7 @@ import {parse} from './case/Parse';
 	try {
 		data = await fetchCase({lang: 'en'});
 		data = parse(data);
+		console.info(data);
 		new Save({
 			data,
 			name,
@@ -18,6 +19,7 @@ import {parse} from './case/Parse';
 		try {
 			data = await fetchCase({lang: 'cn'});
 			data = parse(data);
+			console.info(data);
 			new Save({
 				data,
 				name,
@@ -26,6 +28,7 @@ import {parse} from './case/Parse';
 			try {
 				data = await fetchCase({lang: 'cn'});
 				data = parse(data);
+				console.info(data);
 				new Save({
 					data,
 					name,

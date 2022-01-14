@@ -4,7 +4,7 @@ import {request} from '../../util/http/Request';
 export async function fetchCase({
 	lang,
 }: {
-    lang: string
+	lang: string
 }) {
 	const options: any = await getUrl({lang});
 	const response = await request(options);

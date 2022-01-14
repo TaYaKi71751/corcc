@@ -17,6 +17,7 @@ import {parse} from './vaccination/Parse';
 		r['country'] = sido;
 		return r;
 	})();
+	console.info(vaccinationData);
 	new Save({
 		data: vaccinationData,
 		name: 'vaccination',

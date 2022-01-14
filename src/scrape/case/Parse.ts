@@ -12,7 +12,7 @@ const ov = Object.values;
 export function parseData({
 	body,
 }: {
-    body: string
+	body: string
 }) {
 	let d: any = {};
 	(function(b: any) {
@@ -26,14 +26,13 @@ export function parseData({
 			if (!t) {
 				return;
 			}
-			// console.log(_$(e).html());
 			let n: any = _$(e)('span.num');
 			n = n.text();
 			n = filterNumber(n);
 			d[t] = n;
 		});
 	})(body);
-	d=sortObject(d);
+	d = sortObject(d);
 	return d;
 }
 
@@ -41,12 +40,12 @@ export function parseCountry({
 	body,
 	selector,
 }: {
-    body: string,
-    selector: string
+	body: string,
+	selector: string
 }) {
 	const d: any = {};
 	(function(b: string, s: string) {
-		let _:any = _$(b)(s);
+		let _: any = _$(b)(s);
 		_ = ov(_).slice(0, _.length);
 		_.forEach((e: any) => {
 			let c: any = _$(e)('.cityname');
@@ -55,11 +54,9 @@ export function parseCountry({
 			if (!c) {
 				return;
 			}
-			console.log(c);
 			const r = parseData({
 				body: e,
 			});
-			console.log(r);
 			d[c] = r;
 		});
 	})(body, selector);
@@ -70,23 +67,23 @@ export function parseSelect({
 	body,
 	selector,
 }: {
-    body: string,
-    selector: string
+	body: string,
+	selector: string
 }) {
 	return (function(b: string, s: string) {
 		const _s: cheerio.Cheerio = _$(b)(s);
 		if (_s.length <= 1) {
-			let d:any = parseData({
+			let d: any = parseData({
 				body: _s.html() ?? '',
 			});
-			const t:any = parseTime(body);
+			const t: any = parseTime(body);
 			d = insertTime({
 				dataTime: t,
 				itemData: d,
 			});
 			return d;
 		}
-		const d:any = parseCountry({
+		const d: any = parseCountry({
 			body,
 			selector,
 		});

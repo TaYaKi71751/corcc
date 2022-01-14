@@ -1,7 +1,8 @@
 {
   "scripts": {
     "tslint-init": "tslint --init",
-    "eslint": "eslint",
+    "lint:fix": "eslint --fix --ext .ts,.tsx .",
+    "lint": "eslint",
     "tsc": "tsc",
     "tweet-test": "ts-node ./src/tweet/Test.ts",
     "tweet-vaccination-today": "ts-node ./src/tweet/today/Vaccination.ts",
