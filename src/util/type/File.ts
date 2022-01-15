@@ -35,5 +35,6 @@ function File(file: File): File {
 	})(file);
 }
 
-export {File, Check, Save, fileToString};
+export {File, fileToString};
+export type {Check, Save};
 

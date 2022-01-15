@@ -1,4 +1,4 @@
-import {request} from '../../util/http/Request';
+import {request} from '@corcc/request';
 
 
 export async function fetchVaccination({

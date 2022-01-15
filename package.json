@@ -16,6 +16,7 @@
     "test": "rsync -avr --exclude='test' ./ ./test"
   },
   "dependencies": {
+    "@corcc/request": "github:corcc/request#dist",
     "@types/cheerio": "^0.22.30",
     "@types/xml2js": "^0.4.9",
     "badgen": "^3.2.2",
