@@ -1,4 +1,3 @@
-import {filterAlphabet, filterHangul} from '../../../util/string/Filter';
 import {dayDate} from '../time/Day';
 import {insertTime} from '../time/Insert';
 import {codeType} from '../Tpcd';
@@ -15,10 +14,11 @@ export function parseData(body: any) {
 			tpcd = _item.sidoNm;
 		}
 		tpcd = codeType(tpcd);
-		if (tpcd != filterAlphabet(tpcd)) {
-			if (tpcd != filterHangul(tpcd)) {
-				throw new Error(`Invalid value ${tpcd}`);
+		if (!tpcd) {
+			if (!tpcd.match(/^[(|)| |A-Z|a-z|가-힣|ㄱ-ㅎ|ㅏ-ㅣ|0-9]+$/).length) {
+				console.warn(`${tpcd} is may not a valid value`);
 			}
+			throw Error(`${tpcd} is not a valid value`);
 		}
 		itemData[tpcd] = fe(oe(_item).filter(([k, v]) => (
 			k != 'tpcd' && k != 'sidoNm'

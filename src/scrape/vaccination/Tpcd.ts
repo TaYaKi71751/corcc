@@ -6,8 +6,16 @@ const typeCode: {
 	'A': 'daily', // (C-B)
 	'B': 'yesterday', // (C-A)
 	'C': 'today', // (B+A)
+
 };
 
 export function codeType(tpcd: string) {
-	return typeCode[`${filterAlphabet(tpcd)[0] ?? ''}`] ?? tpcd;
+	let _a = typeCode[`${filterAlphabet(tpcd)[0] ?? ''}`];
+	if (!_a) {
+		_a = typeCode[tpcd ?? ''];
+		if (!_a) {
+			_a = tpcd;
+		}
+	}
+	return _a;
 }
