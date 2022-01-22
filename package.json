@@ -1,22 +1,20 @@
 {
   "scripts": {
-    "tslint-init": "tslint --init",
+    "scripts:update": "ts-node Scripts.Update.ts",
+    "lint:run": "eslint",
     "lint:fix": "eslint --fix --ext .ts,.tsx .",
-    "lint": "eslint",
-    "tsc": "tsc",
-    "tweet-test": "ts-node ./src/tweet/Test.ts",
-    "tweet-vaccination-today": "ts-node ./src/tweet/today/Vaccination.ts",
-    "tweet-case-today": "ts-node ./src/tweet/today/Case.ts",
-    "vaccination-badge-svg": "ts-node ./src/badge/Vaccination.ts",
-    "case-badge-svg": "ts-node ./src/badge/Case.ts",
-    "vaccination-plain-txt": "ts-node ./src/plain/Vaccination.ts",
-    "case-plain-txt": "ts-node ./src/plain/Case.ts",
-    "vaccination": "ts-node ./src/scrape/Vaccination.ts --unhandled-rejections=strict",
-    "case": "ts-node ./src/scrape/Case.ts --unhandled-rejections=strict",
-    "test": "rsync -avr --exclude='test' ./ ./test"
+    "tweet:today:vaccination": "ts-node ./src/tweet/today/Vaccination.ts",
+    "tweet:today:case": "ts-node ./src/tweet/today/Case.ts",
+    "badge:vaccination": "ts-node ./src/badge/Vaccination.ts",
+    "badge:case": "ts-node ./src/badge/Case.ts",
+    "plain:vaccination": "ts-node ./src/plain/Vaccination.ts",
+    "plain:case": "ts-node ./src/plain/Case.ts",
+    "fetch:vaccination": "ts-node ./run/fetch/Vaccination.ts",
+    "fetch:case": "ts-node ./run/fetch/Case.ts"
   },
   "dependencies": {
     "@corcc/request": "github:corcc/request#dist",
+    "@taccl/package": "github:taccl/package#dist",
     "@types/cheerio": "^0.22.30",
     "@types/xml2js": "^0.4.9",
     "badgen": "^3.2.2",
@@ -26,7 +24,7 @@
     "ts-node": "^10.4.0",
     "twitter": "^1.7.1",
     "twitter-api-v2": "^1.7.2",
-    "typescript": "^4.5.2",
+    "typescript": "^4.5.5",
     "xml2js": "^0.4.23"
   },
   "devDependencies": {

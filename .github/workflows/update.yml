@@ -26,14 +26,13 @@ jobs:
       env:
         cache-name: cache-node-modules
       with:
-        # npm cache files are stored in `~/.npm` on Linux/macOS
         path: node_modules
-        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/yarn.lock') }}
         restore-keys: |
           ${{ runner.os }}-node-modules-
     - name: Install Dependencies
-      if: steps.node-cache.outputs.cache-hit != 'true'
-      run: npm install
+      # if: steps.node-cache.outputs.cache-hit != 'true'
+      run: yarn install
 
   vaccination:
     name: Vaccinations
@@ -53,13 +52,15 @@ jobs:
       env:
         cache-name: cache-node-modules
       with:
-        # npm cache files are stored in `~/.npm` on Linux/macOS
         path: node_modules
-        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/yarn.lock') }}
         restore-keys: |
           ${{ runner.os }}-node-modules-
+    - name: Install Dependencies
+      if: steps.node-cache.outputs.cache-hit != 'true'
+      run: yarn install
     - name: ⬆️💉
-      run: yarn vaccination 
+      run: yarn fetch:vaccination 
     - name: Make tarball
       run: |
         cd ./artifacts/
@@ -86,16 +87,15 @@ jobs:
       env:
         cache-name: cache-node-modules
       with:
-        # npm cache files are stored in `~/.npm` on Linux/macOS
         path: node_modules
-        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/yarn.lock') }}
         restore-keys: |
           ${{ runner.os }}-node-modules-
     - name: Display structure of downloaded files
       run: ls -R
       working-directory: ./node_modules
     - name: ⬆️🦠
-      run: yarn case 
+      run: yarn fetch:case 
     - name: Make tarball
       run: |
         cd ./artifacts/
@@ -171,9 +171,8 @@ jobs:
       env:
         cache-name: cache-node-modules
       with:
-        # npm cache files are stored in `~/.npm` on Linux/macOS
         path: node_modules
-        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/yarn.lock') }}
         restore-keys: |
           ${{ runner.os }}-node-modules-
     - uses: actions/download-artifact@v2
@@ -183,7 +182,7 @@ jobs:
     - name: Extract
       run: tar -zxvf Vaccinations.tar.gz
     - name: ⬆️💉📛
-      run: yarn vaccination-badge-svg
+      run: yarn badge:vaccination
     - name: Make tarball
       run: tar -zcvf Vaccinations_Badge_SVG.tar.gz ./badge/*
     - uses: actions/upload-artifact@v2
@@ -210,9 +209,8 @@ jobs:
       env:
         cache-name: cache-node-modules
       with:
-        # npm cache files are stored in `~/.npm` on Linux/macOS
         path: node_modules
-        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/yarn.lock') }}
         restore-keys: |
           ${{ runner.os }}-node-modules-
     - uses: actions/download-artifact@v2
@@ -222,7 +220,7 @@ jobs:
     - name: Extract
       run: tar -zxvf Cases.tar.gz
     - name: ⬆️🦠📛
-      run: yarn case-badge-svg
+      run: yarn badge:case
     - name: Make tarball
       run: tar -zcvf Cases_Badge_SVG.tar.gz ./badge/*
     - uses: actions/upload-artifact@v2
@@ -297,9 +295,8 @@ jobs:
       env:
         cache-name: cache-node-modules
       with:
-        # npm cache files are stored in `~/.npm` on Linux/macOS
         path: node_modules
-        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/yarn.lock') }}
         restore-keys: |
           ${{ runner.os }}-node-modules-
     - name: Restore
@@ -310,7 +307,7 @@ jobs:
     - name: Extract
       run: tar -zxvf Vaccinations.tar.gz
     - name: Make vaccination plain message
-      run: yarn vaccination-plain-txt
+      run: yarn plain:vaccination
     - name: Make tarball
       run: tar -zcvf Vaccinations_Plain_Text.tar.gz ./plain/*
     - uses: actions/upload-artifact@v2
@@ -335,9 +332,8 @@ jobs:
       env:
         cache-name: cache-node-modules
       with:
-        # npm cache files are stored in `~/.npm` on Linux/macOS
         path: node_modules
-        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/yarn.lock') }}
         restore-keys: |
           ${{ runner.os }}-node-modules-
     - name: Restore
@@ -348,7 +344,7 @@ jobs:
     - name: Extract
       run: tar -zxvf Cases.tar.gz
     - name: Make vaccination plain message
-      run: yarn case-plain-txt
+      run: yarn plain:case
     - name: Make tarball
       run: tar -zcvf Cases_Plain_Text.tar.gz ./plain/*
     - uses: actions/upload-artifact@v2
@@ -427,9 +423,8 @@ jobs:
       env:
         cache-name: cache-node-modules
       with:
-        # npm cache files are stored in `~/.npm` on Linux/macOS
         path: node_modules
-        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/yarn.lock') }}
         restore-keys: |
           ${{ runner.os }}-node-modules-
     - name: Restore
@@ -458,7 +453,7 @@ jobs:
       run: echo "${{ steps.git-status.outputs.content }}"
     - name: Tweet Today's Vaccinations
       if: "${{ !(steps.git-status.outputs.content != '' && steps.git-status.outputs.content == '\n') }}"
-      run: yarn tweet-vaccination-today
+      run: yarn tweet:today:vaccination
     - name: Remove env file
       run: rm -rf ./.env
 
@@ -480,9 +475,8 @@ jobs:
       env:
         cache-name: cache-node-modules
       with:
-        # npm cache files are stored in `~/.npm` on Linux/macOS
         path: node_modules
-        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/yarn.lock') }}
         restore-keys: |
           ${{ runner.os }}-node-modules-
     - name: Restore
@@ -511,7 +505,7 @@ jobs:
       run: echo "${{ steps.git-status.outputs.content }}"
     - name: Tweet Today's Cases
       if: "${{ !(steps.git-status.outputs.content != '' && steps.git-status.outputs.content == '\n') }}"
-      run: yarn tweet-case-today
+      run: yarn tweet:today:case
     - name: Remove env file
       run: rm -rf ./.env
 

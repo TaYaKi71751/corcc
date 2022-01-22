@@ -1,7 +1,7 @@
 import {getUrl} from './URL';
 import {request} from '@corcc/request';
 
-export async function fetchCase({
+export async function fetchCaseBy({
 	lang,
 }: {
 	lang: string

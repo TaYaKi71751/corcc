@@ -1,7 +1,5 @@
 node_modules
 js
-.env
-test
 *.tar
 *.tar.*
 artifacts
