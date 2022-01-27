@@ -1,6 +1,6 @@
-import {updateTweet} from '../util/Tweet';
-import {readTweetText} from '../util/Read';
+import {updateTweet} from '../../util/Tweet';
+import {read} from '../../util/type/File';
 const vaccinationTodayPath = 'plain/vaccination/counter/today.tweet.txt';
 
-const tweetText = readTweetText({path: vaccinationTodayPath});
+const tweetText = read({path: vaccinationTodayPath});
 updateTweet({status: tweetText});

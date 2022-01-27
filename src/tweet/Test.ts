@@ -1,2 +1,2 @@
-import {updateTweet} from './util/Tweet';
+import {updateTweet} from '../util/Tweet';
 updateTweet({status: 'TEST'});

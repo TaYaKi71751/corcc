@@ -35,6 +35,10 @@ function File(file: File): File {
 	})(file);
 }
 
+export function read({path}: any) {
+	return require('fs').readFileSync(`${process.cwd()}/${path}`).toString();
+}
+
 export {File, fileToString};
 export type {Check, Save};
 

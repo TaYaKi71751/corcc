@@ -1,6 +1,6 @@
-import {updateTweet} from '../util/Tweet';
-import {readTweetText} from '../util/Read';
+import {updateTweet} from '../../util/Tweet';
+import {read} from '../../util/type/File';
 const caseTodayPath = 'plain/case/counter.tweet.txt';
 
-const tweetText = readTweetText({path: caseTodayPath});
+const tweetText = read({path: caseTodayPath});
 updateTweet({status: tweetText});
