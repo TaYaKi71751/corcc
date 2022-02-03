@@ -234,17 +234,17 @@ jobs:
         scope: [vaccination-today,vaccination-daily,case-today]
         include:
         - scope: vaccination-today
-          token: SLACK_VACCINATION
+          token: SLACK_TOKEN
           channel: SLACK_VACCINATION_TODAY
           cmd: 'slack:today:vaccination'
           status: 'vaccination'
         - scope: vaccination-daily
-          token: SLACK_VACCINATION
+          token: SLACK_TOKEN
           channel: SLACK_VACCINATION_DAILY
           cmd: 'slack:daily:vaccination'
           status: 'vaccination'
         - scope: case-today
-          token: SLACK_CASE
+          token: SLACK_TOKEN
           channel: SLACK_CASE_TODAY
           cmd: 'slack:today:case'
           status: 'case'
