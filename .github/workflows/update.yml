@@ -1,5 +1,12 @@
 on: 
   workflow_dispatch:
+   inputs:
+    publish:
+     type: boolean
+    slack:
+     type: boolean
+    tweet:
+     type: boolean
   push: 
     paths:
       - '**.yml'
@@ -74,6 +81,7 @@ jobs:
         path: ${{ matrix.pre }}-${{ matrix.status.from }}.tar.gz
     - run: tar -zxvf ${{ matrix.pre }}-${{ matrix.status.from }}.tar.gz
     - uses: corcc/publish@master
+      if: ${{ ( !contains(env.GITHUB_EVENT_NAME, 'workflow_') || !( !github.event.inputs.publish)) }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         TASK_NAME: ${{ matrix.status.pub }}
@@ -127,6 +135,7 @@ jobs:
         name: artifact-${{ matrix.status.from }}
         path: ${{ matrix.pre }}-${{ matrix.status.from }}.tar.gz
     - uses: corcc/publish@master
+      if: ${{ ( !contains(env.GITHUB_EVENT_NAME, 'workflow_') || !( !github.event.inputs.publish)) }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         TASK_NAME: ${{ matrix.status.pub }}
@@ -216,7 +225,7 @@ jobs:
     - name: Check Git status
       run: echo "::set-output name=status::$(git status | grep plain)"
       id: git
-    - if: ${{ ( steps.git.outputs.status != '' && steps.git.outputs.status != '\n' ) }}
+    - if: ${{ ( ( steps.git.outputs.status != '' && steps.git.outputs.status != '\n' ) && ( !contains(env.GITHUB_EVENT_NAME, 'workflow_') || !( !github.event.inputs.tweet)) ) }}
       run: yarn tweet:today:${{ matrix.status }}
       env:
         TWITTER_CONSUMER_KEY: ${{ secrets.TWITTER_CONSUMER_KEY }}
@@ -274,7 +283,7 @@ jobs:
     - name: Check Git status
       id: git
       run: echo "::set-output name=status::$(git status | grep plain)"
-    - if: ${{ ( steps.git.outputs.status != '' && steps.git.outputs.status != '\n' ) }}
+    - if: ${{ ( ( steps.git.outputs.status != '' && steps.git.outputs.status != '\n' ) && ( !contains(env.GITHUB_EVENT_NAME, 'workflow_') || !( !github.event.inputs.slack)) ) }}
       run: yarn ${{ matrix.cmd }}
       env:
         SLACK_TOKEN: ${{ secrets[matrix.token] }}
@@ -319,6 +328,7 @@ jobs:
         path: ./
     - run: tar -zxvf ${{ matrix.dl }}-${{ matrix.status.from }}.tar.gz
     - uses: corcc/publish@master
+      if: ${{ ( !contains(env.GITHUB_EVENT_NAME, 'workflow_') || !( !github.event.inputs.publish)) }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         TASK_NAME: ${{ matrix.status.pub }}
