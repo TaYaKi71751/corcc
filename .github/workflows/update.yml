@@ -1,6 +1,8 @@
 on: 
   workflow_dispatch:
    inputs:
+    clean:
+     type: boolean
     publish:
      type: boolean
     slack:
@@ -31,10 +33,13 @@ jobs:
         cache-name: cache-node-modules
       with:
         path: node_modules
-        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/yarn.lock') }}
+        key: ${{ runner.os }}-${{ github.repository }}-node-modules-${{ hashFiles('**/yarn.lock') }}
         restore-keys: |
-          ${{ runner.os }}-node-modules-
-    - run: yarn install
+          ${{ runner.os }}-${{ github.repository }}-node-modules-
+    - if: github.event.inputs.clean
+      run: yarn cache clean
+    - if: steps.node-cache.outputs.cache-hit != 'true' || github.event.inputs.clean
+      run: yarn install
 
   fetch:
     name: Fetch
@@ -65,9 +70,9 @@ jobs:
         cache-name: cache-node-modules
       with:
         path: node_modules
-        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/yarn.lock') }}
+        key: ${{ runner.os }}-${{ github.repository }}-node-modules-${{ hashFiles('**/yarn.lock') }}
         restore-keys: |
-          ${{ runner.os }}-node-modules-
+          ${{ runner.os }}-${{ github.repository }}-node-modules-
     - if: steps.node-cache.outputs.cache-hit != 'true'
       run: yarn install
     - run: yarn ${{ matrix.pre }}:${{ matrix.status.from }} 
@@ -107,22 +112,19 @@ jobs:
         ]
     timeout-minutes: 2
     steps:
-    - name: Setup Node
-      uses: actions/setup-node@v2
+    - uses: actions/setup-node@v2
       with:
         node-version: 'lts/*'
-    - name: Checkout 🛎️
-      uses: actions/checkout@master
-    - name: Cache node modules
-      id: node-cache
+    - uses: actions/checkout@master
+    - id: node-cache
       uses: actions/cache@v2
       env:
         cache-name: cache-node-modules
       with:
         path: node_modules
-        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/yarn.lock') }}
+        key: ${{ runner.os }}-${{ github.repository }}-node-modules-${{ hashFiles('**/yarn.lock') }}
         restore-keys: |
-          ${{ runner.os }}-node-modules-
+          ${{ runner.os }}-${{ github.repository }}-node-modules-
     - uses: actions/download-artifact@v2
       with:
         name: artifact-${{ matrix.status.from }}
@@ -171,9 +173,9 @@ jobs:
         cache-name: cache-node-modules
       with:
         path: node_modules
-        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/yarn.lock') }}
+        key: ${{ runner.os }}-${{ github.repository }}-node-modules-${{ hashFiles('**/yarn.lock') }}
         restore-keys: |
-          ${{ runner.os }}-node-modules-
+          ${{ runner.os }}-${{ github.repository }}-node-modules-
     - uses: actions/download-artifact@v2
       with:
         name: artifact-${{ matrix.status.from }}
@@ -213,9 +215,9 @@ jobs:
         cache-name: cache-node-modules
       with:
         path: node_modules
-        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/yarn.lock') }}
+        key: ${{ runner.os }}-${{ github.repository }}-node-modules-${{ hashFiles('**/yarn.lock') }}
         restore-keys: |
-          ${{ runner.os }}-node-modules-
+          ${{ runner.os }}-${{ github.repository }}-node-modules-
     - uses: actions/download-artifact@v2
       with:
         name: artifact-${{ matrix.status }}
@@ -259,21 +261,19 @@ jobs:
           status: 'case'
         dl: ['plain']
     steps:
-    - name: Setup Node
-      uses: actions/setup-node@v2
+    - uses: actions/setup-node@v2
       with:
         node-version: 'lts/*'
-    - name: Checkout 🛎️
-      uses: actions/checkout@master
+    - uses: actions/checkout@master
     - id: node-cache
       uses: actions/cache@v2
       env:
         cache-name: cache-node-modules
       with:
         path: node_modules
-        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/yarn.lock') }}
+        key: ${{ runner.os }}-${{ github.repository }}-node-modules-${{ hashFiles('**/yarn.lock') }}
         restore-keys: |
-          ${{ runner.os }}-node-modules-
+          ${{ runner.os }}-${{ github.repository }}-node-modules-
     - uses: actions/download-artifact@v2
       with:
         name: artifact-${{ matrix.status }}
@@ -319,9 +319,9 @@ jobs:
         cache-name: cache-node-modules
       with:
         path: node_modules
-        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/yarn.lock') }}
+        key: ${{ runner.os }}-${{ github.repository }}-node-modules-${{ hashFiles('**/yarn.lock') }}
         restore-keys: |
-          ${{ runner.os }}-node-modules-
+          ${{ runner.os }}-${{ github.repository }}-node-modules-
     - uses: actions/download-artifact@v2
       with:
         name: artifact-${{ matrix.status.from }}
