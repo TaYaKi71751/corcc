@@ -85,12 +85,12 @@ jobs:
         name: artifact-${{ matrix.status.from }}
         path: ${{ matrix.pre }}-${{ matrix.status.from }}.tar.gz
     - run: tar -zxvf ${{ matrix.pre }}-${{ matrix.status.from }}.tar.gz
-    - uses: corcc/publish@master
+    - uses: corcc/publish@node
       if: ${{ ( !contains(env.GITHUB_EVENT_NAME, 'workflow_') || !( !github.event.inputs.publish)) }}
-      env:
+      with:
+        TZ: 'Asia/Seoul'
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         TASK_NAME: ${{ matrix.status.pub }}
-        TIMEZONE: 'Asia/Tokyo'
 
   badge:
     name: Badge
@@ -136,12 +136,12 @@ jobs:
       with:
         name: artifact-${{ matrix.status.from }}
         path: ${{ matrix.pre }}-${{ matrix.status.from }}.tar.gz
-    - uses: corcc/publish@master
+    - uses: corcc/publish@node
       if: ${{ ( !contains(env.GITHUB_EVENT_NAME, 'workflow_') || !( !github.event.inputs.publish)) }}
-      env:
+      with:
+        TZ: 'Asia/Seoul'
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         TASK_NAME: ${{ matrix.status.pub }}
-        TIMEZONE: 'Asia/Tokyo'
 
   plain: 
     name: Plain
@@ -187,11 +187,6 @@ jobs:
       with:
         name: artifact-${{ matrix.status.from }}
         path: ${{ matrix.pre }}-${{ matrix.status.from }}.tar.gz
-    # - uses: corcc/publish@master
-    #   env:
-    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-    #     TASK_NAME: ${{ matrix.status.pub }}
-    #     TIMEZONE: 'Asia/Tokyo'
 
   tweet:
     name: Tweet
@@ -327,9 +322,9 @@ jobs:
         name: artifact-${{ matrix.status.from }}
         path: ./
     - run: tar -zxvf ${{ matrix.dl }}-${{ matrix.status.from }}.tar.gz
-    - uses: corcc/publish@master
+    - uses: corcc/publish@node
       if: ${{ ( !contains(env.GITHUB_EVENT_NAME, 'workflow_') || !( !github.event.inputs.publish)) }}
-      env:
+      with:
+        TZ: 'Asia/Seoul'
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         TASK_NAME: ${{ matrix.status.pub }}
-        TIMEZONE: 'Asia/Tokyo'
