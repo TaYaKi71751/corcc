@@ -91,7 +91,7 @@ function write({
 }
 
 function stringify(d: any): string {
-	return JSON.stringify(d, null, 2);
+	return JSON.stringify(d, null, '\t');
 }
 
 function writeRecurive({
