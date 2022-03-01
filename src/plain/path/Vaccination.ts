@@ -1,6 +1,5 @@
-const vaccinationPaths = [
+export const vaccinationPaths = [
 	'latest/vaccination/counter/daily.json',
 	'latest/vaccination/counter/today.json',
-	'latest/vaccination/counter/yesterday.json',
+	'latest/vaccination/counter/yesterday.json'
 ];
-export {vaccinationPaths};

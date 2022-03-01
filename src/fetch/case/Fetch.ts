@@ -1,12 +1,12 @@
-import {getUrl} from './URL';
-import {request} from '@corcc/request';
+import { getUrl } from './URL';
+import { request } from '@corcc/request';
 
-export async function fetchCaseBy({
-	lang,
+export async function fetchCaseBy ({
+	lang
 }: {
 	lang: string
 }) {
-	const options: any = await getUrl({lang});
+	const options: any = getUrl({ lang });
 	const response = await request(options);
 	return response.body;
 }

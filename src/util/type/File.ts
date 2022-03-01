@@ -1,44 +1,44 @@
-import {Path} from './Path';
-type File = string | {
+import { PathType } from './Path';
+import { dirname, basename, extname } from 'path';
+export type FileType = string | {
 	name: string;
-	ext: string;
+	ext?: string;
 };
-type Check = {
-	path?: Path;
+export type CheckType = {
+	path?: PathType;
 	file?: File;
 };
-type Save = {
+export type SaveType = {
 	data?: any | string | JSON;
-	path?: Path;
+	path?: PathType;
 }
 
-function fileToString(file: File): string {
-	if (typeof file == 'string') {
-		return file;
+export function fileToString (file: FileType): string {
+	switch (typeof file) {
+	case 'string': return file;
+	case 'object': return (function () {
+		if (!file.ext) {
+			return `${file.name}`;
+		}
+		return `${file.name}.${file.ext}`;
+	})();
 	}
-	if (typeof file.ext == 'undefined' || file.ext == '' || file.ext == null) {
-		return `${file.name}`;
+}
+
+export function File (file: FileType) {
+	switch (typeof file) {
+	case 'string': return {
+		name: [
+			dirname(file),
+			basename(file, extname(file))
+		].join('/'),
+		ext: extname(file).replace('.', '')
+	};
+	case 'object': return file;
+	default: throw file;
 	}
-	return `${file.name}.${file.ext}`;
 }
 
-function File(file: File): File {
-	return ((file: File): any => {
-		return (typeof file == 'string' ? ((file: string) => {
-			return {
-				name: file.substring(0, file.lastIndexOf('.')),
-				ext: file.substring(file.lastIndexOf('.') + 1, file.length),
-			};
-		})(file) : ((file: File) => {
-			return file;
-		})(file));
-	})(file);
-}
-
-export function read({path}: any) {
+export function read ({ path }: any) {
 	return require('fs').readFileSync(`${process.cwd()}/${path}`).toString();
 }
-
-export {File, fileToString};
-export type {Check, Save};
-

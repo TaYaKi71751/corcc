@@ -1,40 +1,40 @@
-import {execSync} from 'child_process';
+import { execSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
-import {emoji} from './Emoji';
+import { emoji } from './Emoji';
 import {
 	pwd,
-	mkdirPath,
+	mkdirPath
 } from '../util/type/Path';
-import {tryCatch} from '../util/TryCatch';
-import {colors} from './Color';
-import {isNumberOnly} from '../util/string/Check';
-const thousands = require('thousands');
-const {badgen} = require('badgen');
+import { tryCatch } from '../util/TryCatch';
+import { colors } from './Color';
+import { isNumberOnly } from '../util/string/Check';
+import { thousands } from '@taccl/thousands';
+import { badgen } from 'badgen';
 
 type s = string;
 type n = number;
 type b = boolean;
 type f = Function;
-function getSvg({
+function getSvg ({
 	title,
-	value,
+	value
 }: any) {
 	const svgString = badgen({
 		label: `${title}`, // <Text>
 		labelColor: 'ADF', // <Color RGB> or <Color Name> (default: '555')
 		status: `${value}`, // <Text>, required
-		color: `${colors[title]??''}`,
+		color: `${colors[title] ?? ''}`,
 		style: 'flat', // 'flat' or 'classic' (default: 'classic')
 		// icon: 'data:image/svg+xml;base64,...', // Use icon (default: undefined)
 		// iconWidth: 13, // Set this if icon is not square (default: 13)
-		scale: 1, // Set badge scale (default: 1)
+		scale: 1 // Set badge scale (default: 1)
 	});
 	return svgString;
 }
 
 const g = {
-	s: getSvg,
+	s: getSvg
 };
 
 const saveBadges = (jsonPath: string) => {
@@ -74,30 +74,28 @@ const saveBadges = (jsonPath: string) => {
 					return a ? c(b) : b;
 				})(((a) => {
 					return isNumberOnly(a);
-				})(`${v}`), `${v}`, thousands),
+				})(`${v}`), `${v}`, thousands)
 			});
 			const directory = ((p: s) => {
 				// eslint-disable-next-line new-cap
 				return P(p, '/');
 			})(file);
 			return {
-				file, directory, svg,
+				file, directory, svg
 			};
 		})();
 		tryCatch({
 			func: mkdirPath,
 			params: badge.directory,
-			catchFunc: (() => { }),
+			catchFunc: () => { }
 		});
 		tryCatch({
 			func: execSync,
-			params: ((p: s) => {
-				`echo '' > ${p}/.gitkeep`;
-			})(badge.directory),
-			catchFunc: (() => { }),
+			params: `echo '' > ${badge.directory}/.gitkeep`,
+			catchFunc: () => { }
 		});
 		fs.writeFileSync(badge.file, badge.svg);
 	});
 };
 
-export {saveBadges};
+export { saveBadges };

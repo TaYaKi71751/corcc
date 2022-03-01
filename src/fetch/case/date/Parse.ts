@@ -1,7 +1,7 @@
-import {_$} from '../../../util/html/Load';
-import {dateCheck} from './Check';
+import { _$ } from '../../../util/html/Load';
+import { dateCheck } from './Check';
 
-export function parseTime(html: any): string {
+export function parseTime (html: any): string {
 	let v: any = {};
 	v = _$(html)('.timetable > .info > span');
 	v = v.text().trim();

@@ -1,21 +1,22 @@
-import {_$} from '../../util/html/Load';
-import {sortObject} from '../../util/object/Sort';
-import {filterNumber} from '../../util/string/Filter';
-import {insertTime} from '../vaccination/time/Insert';
-import {parseTime} from './date/Parse';
-import {parseTitleName} from './element/Name';
-import {selectors as __s__} from './element/Select';
+
+import { _$ } from '../../util/html/Load';
+import { sortObject } from '../../util/object/Sort';
+import { filterNumber } from '../../util/string/Filter';
+import { insertTime } from '../vaccination/time/Insert';
+import { parseTime } from './date/Parse';
+import { parseTitleName } from './element/Name';
+import { selectors as __s__ } from './element/Select';
+import * as cheerio from 'cheerio';
 const oe = Object.entries;
 const ov = Object.values;
 
-
-export function parseData({
-	body,
+export function parseData ({
+	body
 }: {
 	body: string
 }) {
 	let d: any = {};
-	(function(b: any) {
+	(function (b: any) {
 		let l: any = _$(b)('ul > li');
 		l = ov(l).slice(0, l.length);
 		l.forEach((e: any) => {
@@ -36,15 +37,15 @@ export function parseData({
 	return d;
 }
 
-export function parseCountry({
+export function parseCountry ({
 	body,
-	selector,
+	selector
 }: {
 	body: string,
 	selector: string
 }) {
 	const d: any = {};
-	(function(b: string, s: string) {
+	(function (b: string, s: string) {
 		let _: any = _$(b)(s);
 		_ = ov(_).slice(0, _.length);
 		_.forEach((e: any) => {
@@ -55,7 +56,7 @@ export function parseCountry({
 				return;
 			}
 			const r = parseData({
-				body: e,
+				body: e
 			});
 			d[c] = r;
 		});
@@ -63,42 +64,41 @@ export function parseCountry({
 	return d;
 }
 
-export function parseSelect({
+export function parseSelect ({
 	body,
-	selector,
+	selector
 }: {
 	body: string,
 	selector: string
 }) {
-	return (function(b: string, s: string) {
+	return (function (b: string, s: string) {
 		const _s: cheerio.Cheerio = _$(b)(s);
 		if (_s.length <= 1) {
 			let d: any = parseData({
-				body: _s.html() ?? '',
+				body: _s.html() ?? ''
 			});
 			const t: any = parseTime(body);
 			d = insertTime({
 				dataTime: t,
-				itemData: d,
+				itemData: d
 			});
 			return d;
 		}
 		const d: any = parseCountry({
 			body,
-			selector,
+			selector
 		});
 		return d;
 	})(body, selector);
 }
 
-export function parse(b: string) {
+export function parse (b: string) {
 	const caseData: any = {};
 	oe(__s__).forEach(([p, v]) => {
 		caseData[p] = parseSelect({
 			body: b,
-			selector: v,
+			selector: v
 		});
 	});
 	return caseData;
 }
-

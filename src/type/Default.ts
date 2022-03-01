@@ -22,4 +22,4 @@ type HTML = {
 	selectors?: string | string[];
 }
 
-export {Data, HTML, DataTime, Title, Value};
+export { Data, HTML, DataTime, Title, Value };

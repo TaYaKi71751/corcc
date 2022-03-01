@@ -1,14 +1,14 @@
-import {yester} from '../../../util/date/Day';
-import {dateFormat} from '../../../util/date/Format';
+import { yester } from '../../../util/date/Day';
+import { dateFormat } from '../../../util/date/Format';
 
-export function dayDate({
+export function dayDate ({
 	tpcd,
-	body,
+	body
 }: {
     tpcd: string,
     body: string
 }): string {
-	let {dataTime}: any = body;
+	let { dataTime }: any = body;
 	dataTime = Date.parse(dataTime);
 	if (tpcd.includes('yes')) {
 		return yester(dataTime);

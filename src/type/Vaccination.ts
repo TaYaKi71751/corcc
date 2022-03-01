@@ -11,4 +11,4 @@ type URLParams = {
 	list: string;
 }
 
-export {VaccinationData, URLParams};
+export { VaccinationData, URLParams };

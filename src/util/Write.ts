@@ -1,18 +1,16 @@
 import {
 	pwd,
-	Path,
-	pathToString,
+	PathType,
+	pathToString
 } from './type/Path';
 import fs from 'fs';
-type Write = {
-	data: any;
-	path: Path;
-};
-
-function Write({
+export function Write ({
 	data,
-	path,
-}: Write) {
+	path
+}: {
+	data:any;
+	path:PathType;
+}) {
 	const fullPathString: string = pathToString(path);
 	const pwdExceptedPathString = fullPathString.replace(pwd, '.');
 	try {
@@ -26,4 +24,3 @@ function Write({
 	console.info(`Successfully writen ${pwdExceptedPathString}`);
 	return true;
 }
-export {Write};

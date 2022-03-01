@@ -8,5 +8,4 @@ type Lang = {
 	lang: string;
 }
 
-
-export {CaseData, Lang};
+export { CaseData, Lang };

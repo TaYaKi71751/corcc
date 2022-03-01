@@ -1,8 +1,8 @@
-function tryCatch({
+export function tryCatch ({
 	func,
 	catchFunc,
 	params,
-	catchParams,
+	catchParams
 }: any): any {
 	try {
 		return func(params);
@@ -10,10 +10,9 @@ function tryCatch({
 		if (catchFunc) {
 			return tryCatch({
 				func: catchFunc,
-				params: catchParams,
+				params: catchParams
 			});
 		}
 		throw e;
 	}
 }
-export {tryCatch};

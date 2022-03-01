@@ -1,8 +1,8 @@
-import {yester} from '../../../util/date/Day';
-import {formatDateNow} from '../../../util/date/Format';
-import {getMonthDate, getFullYear} from '../../../util/date/format/Parse';
+import { yester } from '../../../util/date/Day';
+import { formatDateNow } from '../../../util/date/Format';
+import { getMonthDate, getFullYear } from '../../../util/date/format/Parse';
 
-export function dateCheck(d: any): string {
+export function dateCheck (d: any): string {
 	const dateNow = formatDateNow();
 	const dateYester = yester(dateNow);
 	const monthDateNow = getMonthDate(dateNow);

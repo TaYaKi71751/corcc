@@ -1,80 +1,75 @@
-import {execSync} from 'child_process';
-import {tryCatch} from '../TryCatch';
-import {fileToString} from './File';
-import __path__ from 'path';
+import { execSync } from 'child_process';
+import { tryCatch } from '../TryCatch';
 import {
-	File,
+	fileToString,
+	FileType
 } from './File';
-const pwd = execSync('pwd | tr -d \'\\n\'').toString();
+import __path__, { dirname } from 'path';
+export const pwd = execSync('pwd | tr -d \'\\n\'').toString();
 
-type Path = string | {
-	path?: Path;
-	file?: File;
+export type PathType = string | {
+	path?: PathType;
+	file?: FileType;
 };
 
-function getFullPathAsString(p: Path): string {
+export function getFullPathAsString (p: PathType): string {
 	return tryCatch({
 		func: cdPath,
-		params: p,
+		params: p
 	});
 }
 
-
-function getPathExceptPwdAsString(p: Path): string {
+export function getPathExceptPwdAsString (p: PathType): string {
 	return tryCatch({
 		func: cdPath,
-		params: __path__.resolve(pathToString(p)),
+		params: __path__.resolve(pathToString(p))
 	}).replace(pwd, '.');
 }
 
-function cdPath(p: Path): string {
+export function cdPath (p: PathType): string {
 	const pathString = __path__.resolve(pathToString(p));
 	const command: string = `cd "${pathString}" && pwd | tr -d '\\n'`;
 	return tryCatch({
 		func: execSync,
-		params: command,
+		params: command
 	}).toString();
 }
 
-
-function lsPath(p: Path): string {
+export function lsPath (p: PathType): string {
 	const pathOnlyString: string = tryCatch({
 		func: getOnlyPathAsString,
-		params: __path__.resolve(pathToString(p)),
+		params: __path__.resolve(pathToString(p))
 	});
 	const command: string = `ls -R "${pathOnlyString}" && pwd | tr -d '\\n'`;
 	return tryCatch({
 		func: execSync,
-		params: command,
+		params: command
 	}).toString();
 }
 
-function mkdirPath(p: Path): string {
+export function mkdirPath (p: PathType): string {
 	const pathOnlyString: string = tryCatch({
 		func: pathToString,
-		params: p,
+		params: p
 	});
 	const command: string = `mkdir -p "${__path__.resolve(pathOnlyString)}"`;
 	tryCatch({
 		func: execSync,
-		params: command,
+		params: command
 	});
 	return tryCatch({
 		func: cdPath,
-		params: pathOnlyString,
+		params: pathOnlyString
 	});
 }
 
-function getOnlyPathAsString(p: Path): string {
+export function getOnlyPathAsString (p: PathType): string {
 	if (typeof p == 'string') {
-		const pathBack = ((p: string): string => {
-			return p.substring(0, p.lastIndexOf('/'));
-		});
 		return tryCatch({
 			func: cdPath,
 			params: p,
-			catchFunc: pathBack,
-			catchParams: p,
+			catchFunc: dirname,
+			catchParams: p
 		});
 	}
 	if (p?.path) {
@@ -83,7 +78,7 @@ function getOnlyPathAsString(p: Path): string {
 	throw new Error();
 }
 
-function pathToString(p: Path): string {
+export function pathToString (p: PathType): string {
 	if (typeof p == 'string') {
 		return p;
 	}
@@ -100,35 +95,19 @@ function pathToString(p: Path): string {
 	throw new Error();
 }
 
-
-function RecurivePath(path: Path): Path {
-	return ((p: Path): Path => {
-		const findPath = execSync(`cd "${(typeof p == 'string' ?
-			p : (p?.path ?? './'))}" && pwd | tr -d '\\n'`).toString();
-		const {path, file}: any = p ?? {
-			path: findPath,
+export function RecurivePath (path: PathType): PathType {
+	return ((p: PathType): PathType => {
+		const findPath = execSync(`cd "${(typeof p == 'string'
+			? p
+			: (p?.path ?? './'))}" && pwd | tr -d '\\n'`).toString();
+		const { path, file }: any = p ?? {
+			path: findPath
 		};
-		return file ? {
-			path: findPath,
-			file,
-		} : path;
+		return file
+			? {
+				path: findPath,
+				file
+			}
+			: path;
 	})(path);
 }
-
-function Path(path?: Path): Path | any {
-}
-
-
-export {
-	Path,
-	cdPath,
-	lsPath,
-	mkdirPath,
-	getOnlyPathAsString,
-	RecurivePath,
-	pathToString,
-	getFullPathAsString,
-	getPathExceptPwdAsString,
-	pwd,
-};
-

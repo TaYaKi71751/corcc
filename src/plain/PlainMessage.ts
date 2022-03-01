@@ -1,14 +1,14 @@
-import {isNumberOnly} from '../util/string/Check';
+import { isNumberOnly } from '../util/string/Check';
 
-const {exit} = require('process');
-const fs = require('fs');
-const {execSync} = require('child_process');
-const thousands = require('thousands');
+import { exit } from 'process';
+import fs from 'fs';
+import { execSync } from 'child_process';
+import { thousands } from '@taccl/thousands';
 const pwd = execSync('pwd').toString().replace('\n', '');
 
 const oe = Object.entries;
 const ov = Object.values;
-function prepare(path: string) {
+function prepare (path: string) {
 	try {
 		execSync(`ls ${pwd}/${path.substring(0, path.lastIndexOf('/'))
 		}`).toString();
@@ -37,56 +37,54 @@ function prepare(path: string) {
 }
 
 const emoji: any = {
-	'case': '🦠📅',
-	'vaccination': '💉📅',
-	'firstCnt': '☝️',
-	'secondCnt': '✌️',
-	'thirdCnt': '🤟',
-	'fourthCnt': '🖖',
-	'dataTime': '📅',
-	'confirmed': '🦠',
-	'deaths': '💀',
-	'recovered': '😊',
+	case: '🦠📅',
+	vaccination: '💉📅',
+	firstCnt: '☝️',
+	secondCnt: '✌️',
+	thirdCnt: '🤟',
+	fourthCnt: '🖖',
+	dataTime: '📅',
+	confirmed: '🦠',
+	deaths: '💀',
+	recovered: '😊'
 };
 
 const getMessage: any = {
-	'slack': function(k: any, v: any) {
+	slack: function (k: any, v: any) {
 		const key: string = `*${emoji[k]}*`;
 		const value = isNumberOnly(`${v}`) ? thousands(v) : v;
 		return `${key} ${value}`;
 	},
-	'twitter': function(k: any, v: any) {
+	twitter: function (k: any, v: any) {
 		const key: string = `  ${emoji[k]}`;
 		const value = isNumberOnly(`${v}`) ? thousands(v) : v;
 		return `${key} ${value}`;
-	},
+	}
 };
 
-function plainTextMessage({
+function plainTextMessage ({
 	json,
-	platform,
+	platform
 }: any) {
 	const data = oe(json).map(([k, v]: any) => getMessage[platform](k, v));
 	return ov(data).join('\n');
 }
 
-function titleEmojiPrefix({
-	path,
+function titleEmojiPrefix ({
+	path
 }: any) {
-	const _ = (function(p) {
+	const _ = (function (p) {
 		if (p.includes('/case/')) {
 			return 'case';
 		}
 		if (p.includes('/vaccination/')) {
 			return 'vaccination';
 		}
-		return;
 	})(path) ?? '_';
 	return (emoji[_] ?? '') + (emoji[_] ? '\n' : '');
 }
 
-
-const toMarkdown = function(paths: string[]) {
+export function toMarkdown (paths: string[]) {
 	return paths.map((path) => {
 		const read = execSync(`cat ${pwd}/${path}`).toString();
 		const json = JSON.parse(read);
@@ -96,7 +94,7 @@ const toMarkdown = function(paths: string[]) {
 		});
 		const tableMarkdown = (
 			`|${tableKeys.join('|')}|` + '\n' +
-			`${(function(length) {
+			`${(function (length) {
 				let r = '';
 				for (let i = 0; i < length; i++) {
 					r += r ? '-|' : '|-|';
@@ -107,37 +105,36 @@ const toMarkdown = function(paths: string[]) {
 		);
 		console.log(tableMarkdown);
 		const tableMarkdownPath = path.replace(
-			'latest', 'plain',
+			'latest', 'plain'
 		).replace(
-			'.json', '.table.md',
+			'.json', '.table.md'
 		);
 		prepare(tableMarkdownPath);
 		fs.writeFileSync(`${pwd}/${tableMarkdownPath}`, tableMarkdown);
 		const slackMarkdown = titleEmojiPrefix({
-			path,
+			path
 		}) + plainTextMessage({
-			json, platform: 'slack',
+			json, platform: 'slack'
 		});
 		console.log(slackMarkdown);
 		const slackMarkdownPath = path.replace(
-			'latest', 'plain',
+			'latest', 'plain'
 		).replace(
-			'.json', '.slack.md',
+			'.json', '.slack.md'
 		);
 		prepare(slackMarkdownPath);
 		fs.writeFileSync(`${pwd}/${slackMarkdownPath}`, slackMarkdown);
-		const tweetText = titleEmojiPrefix({path}) + plainTextMessage({
-			json, platform: 'twitter',
+		const tweetText = titleEmojiPrefix({ path }) + plainTextMessage({
+			json, platform: 'twitter'
 		});
 		console.log(tweetText);
 		const tweetTextPath = path.replace(
-			'latest', 'plain',
+			'latest', 'plain'
 		).replace(
-			'.json', '.tweet.txt',
+			'.json', '.tweet.txt'
 		);
 		prepare(tweetTextPath);
 		fs.writeFileSync(`${pwd}/${tweetTextPath}`, tweetText);
 		return [tableMarkdown, slackMarkdown, tweetText];
 	});
 };
-export {toMarkdown};

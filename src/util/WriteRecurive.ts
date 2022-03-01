@@ -1,58 +1,57 @@
-import {resolve} from 'path';
-import {execSync} from 'child_process';
-import {tryCatch} from './TryCatch';
+import __path__, { basename, dirname, extname, resolve } from 'path';
+import { execSync } from 'child_process';
+import { tryCatch } from './TryCatch';
 import {
-	Write,
+	Write
 } from './Write';
 import {
 	pathToString,
 	mkdirPath,
 	pwd,
-	getOnlyPathAsString,
+	getOnlyPathAsString
 } from './type/Path';
-import {Check, Save} from './type/File';
-import __path__ from 'path';
-import {sortObject} from './object/Sort';
-import {isNumberOnly} from './string/Check';
+import { CheckType, SaveType } from './type/File';
+import { sortObject } from './object/Sort';
+import { isNumberOnly } from './string/Check';
 
-function prepare({
+function prepare ({
 	path,
-	file,
-}: Check | any): string {
-	const dir: string = tryCatch({
+	file
+}: CheckType | any): string {
+	const p: string = tryCatch({
 		func: pathToString,
 		params: {
 			path,
-			file,
-		},
+			file
+		}
 	});
 	let validWritePath: string = tryCatch({
 		func: getValidWritePath,
 		params: {
-			writePath: dir,
-		},
+			writePath: p
+		}
 	});
 	validWritePath = __path__.resolve(validWritePath);
 	const validPath = tryCatch({
 		func: getOnlyPathAsString,
-		params: validWritePath,
+		params: validWritePath
 	});
 
 	tryCatch({
 		func: mkdirPath,
 		params: validPath,
 		catchFunc: execSync,
-		catchParams: `echo ''> ${validPath}/.gitkeep`,
+		catchParams: `echo ''> ${validPath}/.gitkeep`
 	});
 	return validWritePath;
 }
 let dataTime: any = '';
 
-function getValidWritePath({
-	writePath,
+function getValidWritePath ({
+	writePath
 }: any) {
-	return (function(p: string) {
-		const _ = function(a: number, b: number, c: number) {
+	return (function (p: string) {
+		const _ = function (a: number, b: number, c: number) {
 			if (a == -1) {
 				return b;
 			}
@@ -68,7 +67,7 @@ function getValidWritePath({
 		const g = p.substring((_(b, c, a) + 1), _(b, a, b));
 		const h = p.substring(_(b, d, c) + 1, _(b, c, a));
 		const i = g == h;
-		const j = function(e: string) {
+		const j = function (e: string) {
 			return e.replace(`/${g}.`, '.');
 		};
 		console.log(g, h);
@@ -76,30 +75,30 @@ function getValidWritePath({
 	})(writePath);
 }
 
-function write({
+function write ({
 	writePath,
 	jsonString,
-	pwd,
+	pwd
 }: any) {
-	const validPath = getValidWritePath({writePath});
+	const validPath = getValidWritePath({ writePath });
 	// eslint-disable-next-line new-cap
 	Write({
 		data: jsonString,
-		path: validPath,
+		path: validPath
 	});
 	return true;
 }
 
-function stringify(d: any): string {
+function stringify (d: any): string {
 	return JSON.stringify(d, null, '\t');
 }
 
-function writeRecurive({
+export function writeRecurive ({
 	data,
-	path,
-}: Save) {
+	path
+}: SaveType) {
 	const writePath = resolve(prepare(path));
-	const _data = (function(_d: any) {
+	const _data = (function (_d: any) {
 		if (
 			typeof _d != typeof {}
 		) {
@@ -123,14 +122,19 @@ function writeRecurive({
 	write({
 		writePath,
 		jsonString,
-		pwd,
+		pwd
 	});
-	Object.entries(_data).forEach(([k, v]) => {
-		k.includes('yes') ? dataTime : ((data: any) => {
-			dataTime = (data?.dataTime
-				?.match(/^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/) ?
-				data?.dataTime : dataTime);
-		})(v);
+	Object.entries(_data).forEach(([k, v]: any) => {
+		dataTime = k.includes('yes')
+			? dataTime
+			: (function (d: any) {
+				return (
+					d?.dataTime
+						?.match(/^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/)
+						.length
+						? d.dataTime
+						: dataTime);
+			})(v);
 		if (typeof v == 'string') {
 			if (isNumberOnly(k)) {
 				return;
@@ -138,10 +142,10 @@ function writeRecurive({
 		}
 		const pathOnlyString: string = tryCatch({
 			func: getOnlyPathAsString,
-			params: path,
+			params: path
 		});
-		const pathOnlyExceptPwd: string = (function({
-			r, p,
+		const pathOnlyExceptPwd: string = (function ({
+			r, p
 		}: {
 			r: Function,
 			p: string
@@ -149,7 +153,7 @@ function writeRecurive({
 			return r(p).replace(pwd, '.');
 		})({
 			r: __path__.resolve,
-			p: pathOnlyString,
+			p: pathOnlyString
 		});
 		writeRecurive({
 			data: v,
@@ -157,22 +161,21 @@ function writeRecurive({
 				path: `${pathOnlyExceptPwd}/${k}`,
 				file: {
 					name: k,
-					ext: 'json',
-				},
-			},
+					ext: 'json'
+				}
+			}
 		});
 		if (!pathOnlyExceptPwd.includes('latest/')) {
 			write({
 				writePath: `${pathOnlyExceptPwd}/${k}/latest.json`,
 				jsonString: stringify(v),
-				pwd,
+				pwd
 			});
 			write({
 				writePath: `${pathOnlyExceptPwd}/${k}/${dataTime}.json`,
 				jsonString: stringify(v),
-				pwd,
+				pwd
 			});
 		}
 	});
 }
-export {writeRecurive};

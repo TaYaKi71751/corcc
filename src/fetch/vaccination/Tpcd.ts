@@ -1,15 +1,15 @@
-import {filterAlphabet} from '../../util/string/Filter';
+import { filterAlphabet } from '../../util/string/Filter';
 
 const typeCode: {
 	[x: string]: string
 } = {
-	'A': 'daily', // (C-B)
-	'B': 'yesterday', // (C-A)
-	'C': 'today', // (B+A)
+	A: 'daily', // (C-B)
+	B: 'yesterday', // (C-A)
+	C: 'today' // (B+A)
 
 };
 
-export function codeType(tpcd: string) {
+export function codeType (tpcd: string) {
 	let _a = typeCode[`${filterAlphabet(tpcd)[0] ?? ''}`];
 	if (!_a) {
 		_a = typeCode[tpcd ?? ''];

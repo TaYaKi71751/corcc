@@ -1,12 +1,12 @@
-export function insertTime({
+export function insertTime ({
 	dataTime,
-	itemData,
+	itemData
 }:{
     dataTime: string,
     itemData: any
 }) {
 	let _a = itemData;
-	_a = (function(_d:any):any {
+	_a = (function (_d:any):any {
 		const _s = JSON.stringify(_d);
 		const _t = `"dataTime":"${dataTime}"`;
 		const _r = _s.replace('{', `{${_t},`);

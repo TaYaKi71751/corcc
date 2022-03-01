@@ -1,19 +1,18 @@
-const colors: any = {
-	'confirmed': '#6a3',
+export const colors: any = {
+	confirmed: '#6a3',
 	'🦠': '#6a3',
-	'deaths': '#aaa',
+	deaths: '#aaa',
 	'💀': '#aaa',
-	'recovered': '#f8a',
+	recovered: '#f8a',
 	'😊': '#f8a',
-	'dataTime': '#d55',
+	dataTime: '#d55',
 	'📅': '#d55',
-	'vaccination': '#ddd',
+	vaccination: '#ddd',
 	'💉': '#ddd',
-	'firstCnt': '#f78',
+	firstCnt: '#f78',
 	'☝️': '#f78',
-	'secondCnt': '#f9a',
+	secondCnt: '#f9a',
 	'✌️': '#f9a',
-	'thirdCnt': '#fa4',
-	'🤟': '#fa4',
+	thirdCnt: '#fa4',
+	'🤟': '#fa4'
 };
-export {colors};
