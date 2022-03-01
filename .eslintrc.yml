@@ -2,11 +2,10 @@ env:
   browser: true
   es2021: true
 extends:
-  - google
+  - standard
 parser: '@typescript-eslint/parser'
 parserOptions:
-  ecmaVersion: 13
-  sourceType: module
+  ecmaVersion: latest
 plugins:
   - '@typescript-eslint'
 rules: {
@@ -15,5 +14,4 @@ rules: {
   semi: [2, 'always'],
   no-tabs: 0,
   eqeqeq: 0,
-  "require-jsdoc": "off",
 }
