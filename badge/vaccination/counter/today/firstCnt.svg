@@ -1,14 +1,14 @@
-<svg width="106" height="20" viewBox="0 0 1060 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="☝️: 44,893,814">
-  <title>☝️: 44,893,814</title>
+<svg width="105.6" height="20" viewBox="0 0 1056 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="first: 44,893,814">
+  <title>first: 44,893,814</title>
   <g>
-    <rect fill="#ADF" width="320" height="200"/>
-    <rect fill="##f78" x="320" width="740" height="200"/>
+    <rect fill="#ADF" width="316" height="200"/>
+    <rect fill="#" x="316" width="740" height="200"/>
   </g>
   <g aria-hidden="true" fill="#fff" text-anchor="start" font-family="Verdana,DejaVu Sans,sans-serif" font-size="110">
-    <text x="60" y="148" textLength="220" fill="#000" opacity="0.1">☝️</text>
-    <text x="50" y="138" textLength="220">☝️</text>
-    <text x="375" y="148" textLength="640" fill="#000" opacity="0.1">44,893,814</text>
-    <text x="365" y="138" textLength="640">44,893,814</text>
+    <text x="60" y="148" textLength="216" fill="#000" opacity="0.1">first</text>
+    <text x="50" y="138" textLength="216">first</text>
+    <text x="371" y="148" textLength="640" fill="#000" opacity="0.1">44,893,814</text>
+    <text x="361" y="138" textLength="640">44,893,814</text>
   </g>
   
 </svg>

@@ -1,14 +1,14 @@
-<svg width="70" height="20" viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="🤟: 59,454">
-  <title>🤟: 59,454</title>
+<svg width="84.9" height="20" viewBox="0 0 849 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="third: 59,454">
+  <title>third: 59,454</title>
   <g>
-    <rect fill="#ADF" width="210" height="200"/>
-    <rect fill="##fa4" x="210" width="490" height="200"/>
+    <rect fill="#ADF" width="359" height="200"/>
+    <rect fill="#" x="359" width="490" height="200"/>
   </g>
   <g aria-hidden="true" fill="#fff" text-anchor="start" font-family="Verdana,DejaVu Sans,sans-serif" font-size="110">
-    <text x="60" y="148" textLength="110" fill="#000" opacity="0.1">🤟</text>
-    <text x="50" y="138" textLength="110">🤟</text>
-    <text x="265" y="148" textLength="390" fill="#000" opacity="0.1">59,454</text>
-    <text x="255" y="138" textLength="390">59,454</text>
+    <text x="60" y="148" textLength="259" fill="#000" opacity="0.1">third</text>
+    <text x="50" y="138" textLength="259">third</text>
+    <text x="414" y="148" textLength="390" fill="#000" opacity="0.1">59,454</text>
+    <text x="404" y="138" textLength="390">59,454</text>
   </g>
   
 </svg>
