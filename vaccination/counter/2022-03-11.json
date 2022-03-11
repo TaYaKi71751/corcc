@@ -1,26 +1,30 @@
 {
 	"dataTime": "2022-03-11",
-	"60세이상 접종률": {
-		"firstCnt": "96.2",
-		"secondCnt": "95.6",
-		"thirdCnt": "88.6"
-	},
 	"daily": {
 		"dataTime": "2022-03-11",
 		"firstCnt": "5005",
 		"secondCnt": "6187",
-		"thirdCnt": "59454"
+		"thirdCnt": "59454",
+		"fourCnt": "15575"
 	},
 	"yesterday": {
 		"dataTime": "2022-03-10",
 		"firstCnt": "44888809",
 		"secondCnt": "44408026",
-		"thirdCnt": "31919788"
+		"thirdCnt": "31919788",
+		"fourCnt": "85030"
 	},
 	"today": {
 		"dataTime": "2022-03-11",
 		"firstCnt": "44893814",
 		"secondCnt": "44414213",
-		"thirdCnt": "31979242"
+		"thirdCnt": "31979242",
+		"fourCnt": "100605"
+	},
+	"60세이상 접종률": {
+		"firstCnt": "96.2",
+		"secondCnt": "95.6",
+		"thirdCnt": "88.6",
+		"fourCnt": "0.6"
 	}
 }
