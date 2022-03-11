@@ -64,7 +64,7 @@ const saveBadges = (jsonPath: string) => {
 				})(j, k));
 			})(jsonPath);
 			const e = ((e, n: s) => {
-				return e[n];
+				return e[n] ?? n.replace('Cnt', '');
 			})(emoji, k);
 			const svg = ((f, p) => {
 				return f(p);

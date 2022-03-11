@@ -39,10 +39,6 @@ function prepare (path: string) {
 const emoji: any = {
 	case: '🦠📅',
 	vaccination: '💉📅',
-	firstCnt: '☝️',
-	secondCnt: '✌️',
-	thirdCnt: '🤟',
-	fourthCnt: '🖖',
 	dataTime: '📅',
 	confirmed: '🦠',
 	deaths: '💀',
@@ -50,13 +46,8 @@ const emoji: any = {
 };
 
 const getMessage: any = {
-	slack: function (k: any, v: any) {
-		const key: string = `*${emoji[k]}*`;
-		const value = isNumberOnly(`${v}`) ? thousands(v) : v;
-		return `${key} ${value}`;
-	},
 	twitter: function (k: any, v: any) {
-		const key: string = `  ${emoji[k]}`;
+		const key: string = `  ${emoji[k] ?? k.replace('Cnt', '')}`;
 		const value = isNumberOnly(`${v}`) ? thousands(v) : v;
 		return `${key} ${value}`;
 	}
@@ -81,7 +72,8 @@ function titleEmojiPrefix ({
 			return 'vaccination';
 		}
 	})(path) ?? '_';
-	return (emoji[_] ?? '') + (emoji[_] ? '\n' : '');
+	const e = (emoji[_] ?? _.replace('Cnt', ''));
+	return (e ? (e + '\n') : '');
 }
 
 export function toMarkdown (paths: string[]) {
@@ -111,30 +103,17 @@ export function toMarkdown (paths: string[]) {
 		);
 		prepare(tableMarkdownPath);
 		fs.writeFileSync(`${pwd}/${tableMarkdownPath}`, tableMarkdown);
-		const slackMarkdown = titleEmojiPrefix({
-			path
-		}) + plainTextMessage({
-			json, platform: 'slack'
-		});
-		console.log(slackMarkdown);
-		const slackMarkdownPath = path.replace(
-			'latest', 'plain'
-		).replace(
-			'.json', '.slack.md'
-		);
-		prepare(slackMarkdownPath);
-		fs.writeFileSync(`${pwd}/${slackMarkdownPath}`, slackMarkdown);
-		const tweetText = titleEmojiPrefix({ path }) + plainTextMessage({
+		const messageText = titleEmojiPrefix({ path }) + plainTextMessage({
 			json, platform: 'twitter'
 		});
-		console.log(tweetText);
-		const tweetTextPath = path.replace(
+		console.log(messageText);
+		const messageTextPath = path.replace(
 			'latest', 'plain'
 		).replace(
-			'.json', '.tweet.txt'
+			'.json', '.message.txt'
 		);
-		prepare(tweetTextPath);
-		fs.writeFileSync(`${pwd}/${tweetTextPath}`, tweetText);
-		return [tableMarkdown, slackMarkdown, tweetText];
+		prepare(messageTextPath);
+		fs.writeFileSync(`${pwd}/${messageTextPath}`, messageText);
+		return [tableMarkdown, messageText];
 	});
 };
