@@ -1,0 +1,75 @@
+on:
+  workflow_call:
+    inputs:
+      prev:
+        type: string
+        default: '[ "plain" ]'
+      day:
+        type: string
+        default: '[ "today" ]'
+      which:
+        type: string
+        default: '[ "vaccination", "case" ]'
+    secrets:
+      SLACK_TOKEN:
+        required: true
+      SLACK_TODAY:
+        required: true
+  workflow_dispatch:
+    inputs:
+      prev:
+        type: string
+        default: '[ "" ]'
+      day:
+        type: string
+        default: '[ "today" ]'
+      which:
+        type: string
+        default: '[ "vaccination", "case" ]'
+jobs:
+  slack:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    strategy:
+      matrix:
+        prev: ${{ fromJson((github.event.inputs || inputs).prev) }}
+        which: ${{ fromJson((github.event.inputs || inputs).which) }}
+        day: ${{ fromJson((github.event.inputs || inputs).day) }}
+    steps:
+    - uses: actions/setup-node@v2
+      with:
+        node-version: 'lts/*'
+    - uses: actions/checkout@master
+    - id: node-cache
+      uses: actions/cache@v2
+      env:
+        cache-name: cache-node-modules
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-${{ github.repository }}-node-modules-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-${{ github.repository }}-node-modules-
+    - if: steps.node-cache.outputs.cache-hit != 'true'
+      run: yarn install
+    - id: before
+      run: echo "::set-output name=hash::${{ hashFiles('./plain/**') }}"
+    - uses: actions/download-artifact@v2
+      if: ${{ matrix.prev != '' }}
+      with:
+        name: artifact-${{ matrix.which }}
+        path: ./
+    - if: ${{ matrix.prev != '' }}
+      run: tar -zxvf ${{ matrix.prev }}-${{ matrix.which }}.tar.gz
+    - id: after
+      run: echo "::set-output name=hash::${{ hashFiles('./plain/**') }}"
+    - run: echo "diff"
+      env:
+        result: ${{ steps.before.outputs.hash != steps.after.outputs.hash }}
+    - run: echo "event_name"
+      env:
+        result: ${{ github.event_name }}
+    - env:
+        SLACK_CHANNEL: ${{ secrets.SLACK_TODAY }}
+        SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
+      if: ${{ steps.before.outputs.hash != steps.after.outputs.hash || (github.event_name != 'schedule' && github.event_name != 'push') }}
+      run: yarn slack:${{ matrix.day }}:${{ matrix.which }}

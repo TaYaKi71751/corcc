@@ -1,0 +1,57 @@
+on:
+  workflow_call:
+    inputs:
+      prev:
+        type: string
+        default: '[ "fetch" ]'
+      which:
+        type: string
+        default: '[ { "text": "vaccination", "emoji": "💉" } , { "text": "case", "emoji": "🦠" } ]'
+  workflow_dispatch:
+    inputs:
+      prev:
+        type: string
+        default: '[ "" ]'
+      which:
+        type: string
+        default: '[ { "text": "vaccination", "emoji": "💉" } , { "text": "case", "emoji": "🦠" } ]'
+jobs:
+  plain:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        prev: ${{ fromJson((github.event.inputs || inputs).prev) }}
+        which: ${{ fromJson((github.event.inputs || inputs).which) }}
+    timeout-minutes: 2
+    steps:
+    - uses: actions/setup-node@v2
+      with:
+        node-version: 'lts/*'
+    - uses: actions/checkout@master
+    - id: node-cache
+      uses: actions/cache@v2
+      env:
+        cache-name: cache-node-modules
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-${{ github.repository }}-node-modules-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-${{ github.repository }}-node-modules-
+    - if: steps.node-cache.outputs.cache-hit != 'true'
+      run: yarn install
+    - uses: actions/download-artifact@v2
+      if: ${{ matrix.prev != '' }}
+      with:
+        name: artifact-${{ matrix.which.text }}
+        path: ./
+    - if: ${{ matrix.prev != '' }}
+      run: tar -zxvf ${{ matrix.prev }}-${{ matrix.which.text }}.tar.gz
+    - run: yarn plain:${{ matrix.which.text }}
+    - run: |
+        tar -zcvf \
+          plain-${{ matrix.which.text }}.tar.gz \
+          ./plain/${{ matrix.which.text }}/*
+    - uses: actions/upload-artifact@v2
+      with:
+        name: artifact-${{ matrix.which.text }}
+        path: plain-${{ matrix.which.text }}.tar.gz

@@ -1,331 +1,53 @@
 on: 
   workflow_dispatch:
-   inputs:
-    clean:
-     type: boolean
-    publish:
-     type: boolean
-    slack:
-     type: boolean
-    tweet:
-     type: boolean
   push: 
     paths:
       - '**.yml'
   pull_request:
   schedule:
     - cron: '0 */1 * * *'
-
-name: Update data
 jobs:
-  install:
-    name: Install Dependencies
-    runs-on: ubuntu-latest
-    timeout-minutes: 2
-    steps:
-    - uses: actions/setup-node@v2
-      with:
-        node-version: 'lts/*'
-    - uses: actions/checkout@master
-    - id: node-cache
-      uses: actions/cache@v2
-      env:
-        cache-name: cache-node-modules
-      with:
-        path: node_modules
-        key: ${{ runner.os }}-${{ github.repository }}-node-modules-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-${{ github.repository }}-node-modules-
-    - if: github.event.inputs.clean
-      run: yarn cache clean
-    - if: steps.node-cache.outputs.cache-hit != 'true' || github.event.inputs.clean
-      run: yarn install
-
   fetch:
-    name: Fetch
-    needs: [ install ]
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        pre: ['fetch']
-        status: [
-          {
-            from: vaccination,
-            pub: '⬆️💉'
-          },
-          {
-            from: case,
-            pub: '⬆️🦠'
-          }
-        ]
-    timeout-minutes: 2
-    steps:
-    - uses: actions/setup-node@v2
-      with:
-        node-version: 'lts/*'
-    - uses: actions/checkout@master
-    - id: node-cache
-      uses: actions/cache@v2
-      env:
-        cache-name: cache-node-modules
-      with:
-        path: node_modules
-        key: ${{ runner.os }}-${{ github.repository }}-node-modules-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-${{ github.repository }}-node-modules-
-    - if: steps.node-cache.outputs.cache-hit != 'true'
-      run: yarn install
-    - run: yarn ${{ matrix.pre }}:${{ matrix.status.from }} 
-    - run: |
-        cd ./artifacts/
-        ls -la ./
-        tar --exclude='*.tar.gz' -zcvf ../${{ matrix.pre }}-${{ matrix.status.from }}.tar.gz ./**/${{ matrix.status.from }}* ./${{ matrix.status.from }}*
-    - uses: actions/upload-artifact@v2
-      with:
-        name: artifact-${{ matrix.status.from }}
-        path: ${{ matrix.pre }}-${{ matrix.status.from }}.tar.gz
-    - run: tar -zxvf ${{ matrix.pre }}-${{ matrix.status.from }}.tar.gz
-    - uses: corcc/publish@node
-      if: ${{ ( !contains(env.GITHUB_EVENT_NAME, 'workflow_') || !( !github.event.inputs.publish)) }}
-      with:
-        TZ: 'Asia/Seoul'
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-        TASK_NAME: ${{ matrix.status.pub }}
-
+    uses: ./.github/workflows/Fetch.yml
+    with:
+      which: '[ { "text": "vaccination", "emoji": "💉" } , { "text": "case", "emoji": "🦠" } ]'
   badge:
-    name: Badge
-    needs: [ fetch ]
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        dl: ['fetch']
-        pre: ['badge']
-        status: [
-          {
-            from: vaccination,
-            pub: '⬆️💉📛'  
-          },
-          {
-            from: case,
-            pub: '⬆️🦠📛'
-          }
-        ]
-    timeout-minutes: 2
-    steps:
-    - uses: actions/setup-node@v2
-      with:
-        node-version: 'lts/*'
-    - uses: actions/checkout@master
-    - id: node-cache
-      uses: actions/cache@v2
-      env:
-        cache-name: cache-node-modules
-      with:
-        path: node_modules
-        key: ${{ runner.os }}-${{ github.repository }}-node-modules-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-${{ github.repository }}-node-modules-
-    - uses: actions/download-artifact@v2
-      with:
-        name: artifact-${{ matrix.status.from }}
-        path: ./
-    - run: tar -zxvf ${{ matrix.dl }}-${{ matrix.status.from }}.tar.gz
-    - run: yarn ${{ matrix.pre }}:${{ matrix.status.from }}
-    - run: tar -zcvf ${{ matrix.pre }}-${{ matrix.status.from }}.tar.gz ./${{ matrix.pre }}/*
-    - uses: actions/upload-artifact@v2
-      with:
-        name: artifact-${{ matrix.status.from }}
-        path: ${{ matrix.pre }}-${{ matrix.status.from }}.tar.gz
-    - uses: corcc/publish@node
-      if: ${{ ( !contains(env.GITHUB_EVENT_NAME, 'workflow_') || !( !github.event.inputs.publish)) }}
-      with:
-        TZ: 'Asia/Seoul'
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-        TASK_NAME: ${{ matrix.status.pub }}
-
-  plain: 
-    name: Plain
-    needs: [ fetch ]
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        dl: ['fetch']
-        pre: ['plain']
-        status: [
-          {
-            from: vaccination,
-            pub: '⬆️💉📄'
-          },
-          {
-            from: case,
-            pub: '⬆️🦠📄'
-          }
-        ]
-    timeout-minutes: 2
-    steps:
-    - uses: actions/setup-node@v2
-      with:
-        node-version: 'lts/*'
-    - uses: actions/checkout@master
-    - id: node-cache
-      uses: actions/cache@v2
-      env:
-        cache-name: cache-node-modules
-      with:
-        path: node_modules
-        key: ${{ runner.os }}-${{ github.repository }}-node-modules-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-${{ github.repository }}-node-modules-
-    - uses: actions/download-artifact@v2
-      with:
-        name: artifact-${{ matrix.status.from }}
-        path: ./
-    - run: tar -zxvf ${{ matrix.dl }}-${{ matrix.status.from }}.tar.gz
-    - run: yarn ${{ matrix.pre }}:${{ matrix.status.from }}
-    - run: tar -zcvf ${{ matrix.pre }}-${{ matrix.status.from }}.tar.gz ./${{ matrix.pre }}/${{ matrix.status.from }}/*
-    - uses: actions/upload-artifact@v2
-      if: ${{ ( !contains(env.GITHUB_EVENT_NAME, 'workflow_') || !( !github.event.inputs.publish)) }}
-      with:
-        name: artifact-${{ matrix.status.from }}
-        path: ${{ matrix.pre }}-${{ matrix.status.from }}.tar.gz
-
-  tweet:
-    name: Tweet
-    runs-on: ubuntu-latest
-    timeout-minutes: 2
-    needs: [ plain ]
-    strategy:
-      matrix:
-        dl: ['plain']
-        pre: ['tweet']
-        day: ['today']
-        status: ['vaccination', 'case']
-    steps:
-    - uses: actions/setup-node@v2
-      with:
-        node-version: 'lts/*'
-    - uses: actions/checkout@master
-    - id: node-cache
-      uses: actions/cache@v2
-      env:
-        cache-name: cache-node-modules
-      with:
-        path: node_modules
-        key: ${{ runner.os }}-${{ github.repository }}-node-modules-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-${{ github.repository }}-node-modules-
-    - uses: actions/download-artifact@v2
-      with:
-        name: artifact-${{ matrix.status }}
-        path: ./
-    - run: tar -zxvf ${{ matrix.dl }}-${{ matrix.status }}.tar.gz
-    - run: git status
-    - name: Check Git status
-      run: echo "::set-output name=status::$(git status | grep plain)"
-      id: git
-    - if: ${{ ( ( steps.git.outputs.status != '' && steps.git.outputs.status != '\n' ) && !contains(env.GITHUB_EVENT_NAME, 'workflow_')) || github.event.inputs.tweet }}
-      run: yarn tweet:today:${{ matrix.status }}
-      env:
-        TWITTER_CONSUMER_KEY: ${{ secrets.TWITTER_CONSUMER_KEY }}
-        TWITTER_CONSUMER_SECRET: ${{ secrets.TWITTER_CONSUMER_SECRET }}
-        TWITTER_ACCESS_TOKEN_KEY: ${{ secrets.TWITTER_ACCESS_TOKEN_KEY }}
-        TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
-
+    needs: [fetch]
+    uses: ./.github/workflows/Badge.yml
+    with:
+      prev: '[ "fetch" ]'
+      which: '[ { "text": "vaccination", "emoji": "💉" } , { "text": "case", "emoji": "🦠" } ]'
+  plain:
+    needs: [fetch,badge]
+    uses: ./.github/workflows/Plain.yml
+    with:
+      prev: '[ "fetch" ]'
+      which: '[ { "text": "vaccination", "emoji": "💉" } , { "text": "case", "emoji": "🦠" } ]'
+  plain-publish:
+    needs: [plain]
+    uses: ./.github/workflows/PlainPublish.yml
+    with:
+      prev: '[ "plain" ]'
+      which: '[ { "text": "vaccination", "emoji": "💉" } , { "text": "case", "emoji": "🦠" } ]'
   slack:
-    name: Slack
-    runs-on: ubuntu-latest
-    timeout-minutes: 2
-    needs: [ plain ]
-    strategy:
-      matrix:
-        scope: [vaccination-today,vaccination-daily,case-today]
-        include:
-        - scope: vaccination-today
-          token: SLACK_TOKEN
-          channel: SLACK_VACCINATION_TODAY
-          cmd: 'slack:today:vaccination'
-          status: 'vaccination'
-        - scope: vaccination-daily
-          token: SLACK_TOKEN
-          channel: SLACK_VACCINATION_DAILY
-          cmd: 'slack:daily:vaccination'
-          status: 'vaccination'
-        - scope: case-today
-          token: SLACK_TOKEN
-          channel: SLACK_CASE_TODAY
-          cmd: 'slack:today:case'
-          status: 'case'
-        dl: ['plain']
-    steps:
-    - uses: actions/setup-node@v2
-      with:
-        node-version: 'lts/*'
-    - uses: actions/checkout@master
-    - id: node-cache
-      uses: actions/cache@v2
-      env:
-        cache-name: cache-node-modules
-      with:
-        path: node_modules
-        key: ${{ runner.os }}-${{ github.repository }}-node-modules-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-${{ github.repository }}-node-modules-
-    - uses: actions/download-artifact@v2
-      with:
-        name: artifact-${{ matrix.status }}
-        path: ./
-    - run: tar -zxvf ${{ matrix.dl }}-${{ matrix.status }}.tar.gz
-    - run: git status
-    - name: Check Git status
-      id: git
-      run: echo "::set-output name=status::$(git status | grep plain)"
-    - if: ${{ ( ( steps.git.outputs.status != '' && steps.git.outputs.status != '\n' ) && !contains(env.GITHUB_EVENT_NAME, 'workflow_')) || github.event.inputs.slack }}
-      run: yarn ${{ matrix.cmd }}
-      env:
-        SLACK_TOKEN: ${{ secrets[matrix.token] }}
-        SLACK_CHANNEL: ${{ secrets[matrix.channel] }}
-
-  plain-pubilsh: 
-    name: Publish Plain
-    needs: [ plain ]
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        dl: ['plain']
-        pre: ['plain']
-        status: [
-          {
-            from: vaccination,
-            pub: '⬆️💉📄'
-          },
-          {
-            from: case,
-            pub: '⬆️🦠📄'
-          }
-        ]
-    timeout-minutes: 2
-    steps:
-    - uses: actions/setup-node@v2
-      with:
-        node-version: 'lts/*'
-    - uses: actions/checkout@master
-    - id: node-cache
-      uses: actions/cache@v2
-      env:
-        cache-name: cache-node-modules
-      with:
-        path: node_modules
-        key: ${{ runner.os }}-${{ github.repository }}-node-modules-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-${{ github.repository }}-node-modules-
-    - uses: actions/download-artifact@v2
-      with:
-        name: artifact-${{ matrix.status.from }}
-        path: ./
-    - run: tar -zxvf ${{ matrix.dl }}-${{ matrix.status.from }}.tar.gz
-    - uses: corcc/publish@node
-      if: ${{ ( !contains(env.GITHUB_EVENT_NAME, 'workflow_') || !( !github.event.inputs.publish)) }}
-      with:
-        TZ: 'Asia/Seoul'
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-        TASK_NAME: ${{ matrix.status.pub }}
+    needs: [plain]
+    uses: ./.github/workflows/Slack.yml
+    with:
+      prev: '[ "plain" ]'
+      day: '[ "today" ]'
+      which: '[ "vaccination", "case" ]'
+    secrets:
+      SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
+      SLACK_TODAY: ${{ secrets.SLACK_TODAY }}
+  tweet:
+    needs: [plain]
+    uses: ./.github/workflows/Tweet.yml
+    with:
+      prev: '[ "plain" ]'
+      day: '[ "today" ]'
+      which: '[ "vaccination", "case" ]'
+    secrets:
+      TWITTER_CONSUMER_KEY: ${{ secrets.TWITTER_CONSUMER_KEY }}
+      TWITTER_CONSUMER_SECRET: ${{ secrets.TWITTER_CONSUMER_SECRET }}
+      TWITTER_ACCESS_TOKEN_KEY: ${{ secrets.TWITTER_ACCESS_TOKEN_KEY }}
+      TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
