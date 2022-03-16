@@ -22,7 +22,7 @@ function getSvg ({
 }: any) {
 	const svgString = badgen({
 		label: `${title}`, // <Text>
-		labelColor: 'ADF', // <Color RGB> or <Color Name> (default: '555')
+		labelColor: '2F2F2F', // <Color RGB> or <Color Name> (default: '555')
 		status: `${value}`, // <Text>, required
 		color: `${colors[title] ?? ''}`,
 		style: 'flat', // 'flat' or 'classic' (default: 'classic')
