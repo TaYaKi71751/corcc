@@ -1,44 +1,82 @@
 import Twitter from 'twitter';
+import TwitterText from 'twitter-text';
 const client = new Twitter({
 	consumer_key: `${process.env.TWITTER_CONSUMER_KEY}`,
 	consumer_secret: `${process.env.TWITTER_CONSUMER_SECRET}`,
 	access_token_key: `${process.env.TWITTER_ACCESS_TOKEN_KEY}`,
 	access_token_secret: `${process.env.TWITTER_ACCESS_TOKEN_SECRET}`
 });
-const MAX_TWEET_TEXT_BYTES = 140;
+export async function updateStatuses (
+	{
+		status,
+		replyId
+	}: {
+		status?: string,
+		replyId?: string
+	}
+) {
+	return await new Promise((resolve, reject) => {
+		client.post('statuses/update', {
+			status,
+			in_reply_to_status_id_str: replyId
+		}, function (e: any, t: Twitter.ResponseData, r: any) {
+			console.log(e || t);
+			if (e) {
+				reject(new Error(JSON.stringify(e)));
+			}
+			if (t) { resolve(t); }
+		});
+	});
+}
+export function splitText (text: string, split?: string) {
+	const {
+		valid,
+		validRangeStart,
+		validRangeEnd,
+		displayRangeEnd
+	} = TwitterText.parseTweet(text);
+	return {
+		valid,
+		status: (
+			valid
+				? text
+				: text.substring(
+					validRangeStart,
+					text.lastIndexOf(
+						split ?? '\n',
+						validRangeEnd + 1
+					)
+				)
+		),
+		remain: (
+			valid
+				? undefined
+				: text.substring(
+					validRangeEnd + 1,
+					displayRangeEnd + 1
+				)
+		)
+	};
+}
 export async function updateTweet ({
-	status,
+	text,
 	replyId
 }: {
-	status: string;
+	text: string;
 	replyId?: string;
 }) {
-	try {
-		const m = !(status.length < MAX_TWEET_TEXT_BYTES);
-		const n = status.lastIndexOf('\n', MAX_TWEET_TEXT_BYTES);
-		if (m && (n < 0)) {
-			throw Error('Need \\n to split Tweet');
-		}
-		const s = m ? status.substring(0, n) : status;
-		const o:any = {
-			status: s
-		};
-		if (replyId) {
-			o.in_reply_to_status_id_str = replyId;
-		}
-		console.log(o);
-		const result:any = await client.post('statuses/update', o);
-		if (m) {
-			const o = status.substring(n, status.length);
-			const tweetIdStr = result.id_str;
-			console.log(o);
-			await updateTweet({
-				status: o,
-				replyId: tweetIdStr
-			});
-		}
-	} catch (e:any) {
-		console.error(e);
-		throw e;
+	const { status, remain } = splitText(text);
+	let result: any;
+	if (status) {
+		result = await updateStatuses({
+			status,
+			replyId
+		});
+	}
+	if (remain) {
+		await updateTweet({
+			text: remain ?? '',
+			replyId: result.in_reply_to_status_id_str
+		});
 	}
 }
