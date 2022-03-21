@@ -55,3 +55,10 @@ jobs:
       with:
         name: artifact-${{ matrix.which.text }}
         path: plain-${{ matrix.which.text }}.tar.gz
+    # THIS WILL RUN WHILE RUN BY WORKFLOW_DISPATCH
+    - uses: corcc/publish@node
+      if: ${{ github.event_name == 'workflow_dispatch' }}
+      with:
+        TZ: 'Asia/Seoul'
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        TASK_NAME: ⬆️${{ matrix.which.emoji }}📄
