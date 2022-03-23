@@ -1,30 +1,30 @@
 {
-	"dataTime": "2022-03-22",
+	"dataTime": "2022-03-23",
 	"daily": {
-		"dataTime": "2022-03-22",
-		"firstCnt": "2249",
-		"secondCnt": "2239",
-		"thirdCnt": "47007",
-		"fourCnt": "8266"
+		"dataTime": "2022-03-23",
+		"firstCnt": "1783",
+		"secondCnt": "1207",
+		"thirdCnt": "28709",
+		"fourCnt": "10041"
 	},
 	"yesterday": {
-		"dataTime": "2022-03-21",
-		"firstCnt": "44929333",
-		"secondCnt": "44459483",
-		"thirdCnt": "32372202",
-		"fourCnt": "200078"
+		"dataTime": "2022-03-22",
+		"firstCnt": "44932359",
+		"secondCnt": "44462533",
+		"thirdCnt": "32420311",
+		"fourCnt": "209234"
 	},
 	"today": {
-		"dataTime": "2022-03-22",
-		"firstCnt": "44931582",
-		"secondCnt": "44461722",
-		"thirdCnt": "32419209",
-		"fourCnt": "208344"
+		"dataTime": "2022-03-23",
+		"firstCnt": "44934142",
+		"secondCnt": "44463740",
+		"thirdCnt": "32449020",
+		"fourCnt": "219275"
 	},
 	"60세이상 접종률": {
 		"firstCnt": "96.3",
 		"secondCnt": "95.7",
-		"thirdCnt": "88.9",
-		"fourCnt": "1.1"
+		"thirdCnt": "89",
+		"fourCnt": "1.2"
 	}
 }
