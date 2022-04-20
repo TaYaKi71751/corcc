@@ -1,8 +1,9 @@
 {
+	"dataTime": "2022-04-20",
 	"counter": {
 		"dataTime": "2022-04-20",
-		"confirmed": "16583220",
-		"deaths": "21520",
+		"confirmed": "10913",
+		"deaths": "16",
 		"recovered": "0"
 	},
 	"country": {
