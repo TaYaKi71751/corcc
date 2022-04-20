@@ -1,26 +1,31 @@
-import {
-	pwd,
-	PathType,
-	pathToString
-} from './type/Path';
 import fs from 'fs';
-export function Write ({
+import { dirname, join } from 'path';
+
+export function write ({
 	data,
-	path
+	path,
+	ext
 }: {
-	data:any;
-	path:PathType;
+	data:Buffer
+	path:string[]
+	ext:string[]
 }) {
-	const fullPathString: string = pathToString(path);
-	const pwdExceptedPathString = fullPathString.replace(pwd, '.');
-	try {
-		console.info(`Start write ${pwdExceptedPathString}`);
-		fs.writeFileSync(fullPathString, data);
-	} catch (e) {
-		console.info(`Error while writing ${pwdExceptedPathString} :`);
-		console.error(e);
-		return;
-	}
-	console.info(`Successfully writen ${pwdExceptedPathString}`);
-	return true;
+	ext.forEach((ext:string) => {
+		const outPath = join(
+			process.cwd(),
+			[path.filter((p) => (p)).join('/'),
+				ext].filter((e) => (e)).join('.')
+		);
+		const dirPath = dirname(outPath);
+		if (!fs.existsSync(dirPath)) { fs.mkdirSync(dirPath); }
+		try {
+			console.info(`Start write ${outPath}`);
+			fs.writeFileSync(outPath, data);
+		} catch (e) {
+			console.info(`Error while writing ${outPath} :`);
+			console.error(e);
+			return;
+		}
+		console.info(`Successfully writen ${outPath}`);
+	});
 }

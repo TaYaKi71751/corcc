@@ -22,7 +22,9 @@ function brdGubun (lang: string) {
 		ko: '13'
 	}[lang];
 }
-export function getUrl ({ lang }: any) {
+export function getUrl (
+	lang:string
+) {
 	const langPath = getLangPath(lang);
 	const protocol = `${scheme}:`;
 	const host = `${domain}`;

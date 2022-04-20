@@ -1,10 +1,8 @@
 import { request } from '@corcc/request';
 
-export async function fetchVaccinationBy ({
-	list
-}: {
-	list: string
-}) {
+export async function fetchVaccinationBy (
+	list:string
+) {
 	const options: any = {
 		protocol: 'https:',
 		hostname: 'nip.kdca.go.kr',

@@ -9,19 +9,13 @@ export async function fetchSaveCaseBy ({
 	lang: string,
 }) {
 	const name = 'case';
-	await fetchCaseBy({
-		lang
-	}).then((res: any) => {
+	await fetchCaseBy(lang).then((res: any) => {
 		console.log(res);
 		return parse(res);
-	}).catch((e: any) => {
-		throw e;
-	}).then((data: any) => {
-		Save({
-			name,
-			data
-		});
-	}).catch(() => { });
+	})
+		.catch((e: any) => { throw e; })
+		.then((data: any) =>	Save({ name, data }))
+		.catch((e:any) => { throw e; });
 }
 [
 	'en'

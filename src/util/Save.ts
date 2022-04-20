@@ -1,31 +1,23 @@
-import { Data } from '../type/Default';
+import { CaseData } from '../type/Case';
+import { VaccinationData } from '../type/Vaccination';
 import { writeRecurive } from './WriteRecurive';
 export function Save ({
 	data,
 	name
-}: Data) {
+}:{
+	data:CaseData|VaccinationData
+	name:string
+}) {
 	if (typeof data == 'undefined') {
 		throw new TypeError();
 	}
 	writeRecurive({
 		data,
-		path: {
-			path: `./artifacts/${name}`,
-			file: {
-				name,
-				ext: 'json'
-			}
-		}
+		path: ['artifacts', name]
 	});
 
 	writeRecurive({
 		data,
-		path: {
-			path: `./artifacts/latest/${name}`,
-			file: {
-				name,
-				ext: 'json'
-			}
-		}
+		path: ['artifacts', 'latest', name]
 	});
 }

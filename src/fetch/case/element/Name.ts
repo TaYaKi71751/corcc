@@ -1,8 +1,7 @@
-import { HTML } from '../../../type/Default';
-import { _$ } from '../../../util/html/Load';
+import * as HTML from 'node-html-parser';
 import { filterIncludesKeys } from '../../../util/object/Filter';
 
-const titles: any = {
+const titles:{[x:string]:string} = {
 	确: 'confirmed',
 	解: 'recovered',
 	死: 'deaths',
@@ -15,10 +14,16 @@ const titles: any = {
 };
 const ov = Object.values;
 
-export function parseCountryName ({
-	html
-}: HTML): string {
-	return _$(html)('.cityname').text();
+export function parseCountryName (
+	html:string
+): string {
+	const document = HTML.parse(html);
+	const name = document
+		.querySelector('.cityname')
+		?.text
+		?.trim();
+	if (typeof name == 'string') { return name; }
+	throw new Error(`${JSON.stringify(name)}`);
 }
 
 export function parseTitleName (title: string): string {

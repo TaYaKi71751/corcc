@@ -1,13 +1,11 @@
+import { VaccinationData } from '../../../type/Vaccination';
 import { yester } from '../../../util/date/Day';
 import { dateFormat } from '../../../util/date/Format';
 
-export function dayDate ({
-	tpcd,
-	body
-}: {
-    tpcd: string,
-    body: string
-}): string {
+export function dayDate (
+	tpcd:string,
+	body:VaccinationData
+): string {
 	let { dataTime }: any = body;
 	dataTime = Date.parse(dataTime);
 	if (tpcd.includes('yes')) {

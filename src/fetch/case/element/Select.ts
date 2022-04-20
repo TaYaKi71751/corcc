@@ -1,6 +1,4 @@
-export const selectors: {
-	[x: string]: string
-} = {
+export const selectors: {[x: string]: string} = {
 	counter: '.rpsa_detail > div > #mapAll',
 	country: '.rpsa_detail > div > div'
 };
