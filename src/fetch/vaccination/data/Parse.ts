@@ -1,39 +1,44 @@
+import { isDataTime } from '../../../type/Default';
+import { VaccinationData, isTpcd, isSidoNm } from '../../../type/Vaccination';
 import { dayDate } from '../time/Day';
 import { insertTime } from '../time/Insert';
 import { codeType } from '../Tpcd';
 
 const oe = Object.entries;
 const fe = Object.fromEntries;
-export function parseData (body: any) {
-	const { items }: any = body;
-	const { item }: any = items;
-	const itemData: any = {};
-	item.forEach((_item: any) => {
-		let { tpcd }: any = _item;
-		if (!tpcd) {
-			tpcd = _item.sidoNm;
+export function parseData (body:any) {
+	const { items }:any = body;
+	const { item }:any = items;
+	const itemData:any = {};
+	item.forEach((_item:VaccinationData) => {
+		let identifier:string|undefined;
+		if (
+			_item.tpcd &&
+			isTpcd(_item.tpcd) &&
+			codeType(_item.tpcd) !== _item.tpcd
+		) {
+			identifier = codeType(_item.tpcd);
 		}
-		tpcd = codeType(tpcd);
-		if (!tpcd) {
-			if (!tpcd.match(/^[(|)| |A-Z|a-z|가-힣|ㄱ-ㅎ|ㅏ-ㅣ|0-9]+$/).length) {
-				console.warn(`${tpcd} is may not a valid value`);
-			}
-			throw Error(`${tpcd} is not a valid value`);
+		if (
+			_item.sidoNm &&
+			isSidoNm(_item.sidoNm)
+		) {
+			identifier = _item.sidoNm;
 		}
-		itemData[tpcd] = fe(oe(_item).filter(([k, v]) => (
+		if (!identifier) { return; }
+		itemData[identifier] = fe(oe(_item).filter(([k, v]) => (
 			k != 'tpcd' && k != 'sidoNm'
 		)));
-		const dataTime = dayDate({
-			tpcd,
-			body
-		});
-		if (!tpcd.match(/(da).*?(y)/)) {
-			return;
-		}
-		itemData[tpcd] = insertTime({
+
+		const dataTime = dayDate(identifier, body);
+		if (
+			!isDataTime(dataTime) ||
+			!identifier.match(/(da).*?(y)/)
+		) { return; }
+		itemData[identifier] = insertTime(
 			dataTime,
-			itemData: itemData[tpcd]
-		});
+			itemData[identifier]
+		);
 	});
 	return itemData;
 }

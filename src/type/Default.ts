@@ -1,25 +1,7 @@
-import 'cheerio';
-type Data = {
-	data: JSON;
-	name: string;
+export type DataTime = string;
+export function isDataTime (dataTime:string|DataTime):dataTime is DataTime {
+	const m = (dataTime as DataTime).match(/[\\d|-]/);
+	const r = Boolean(m);
+	console.debug(m);
+	return r;
 }
-
-type Title = {
-	title: string;
-}
-
-type Value = {
-	value: bigint | number | string;
-}
-
-type DataTime = {
-	data: string | object;
-	time: Date | string;
-}
-
-type HTML = {
-	html: any;
-	selectors?: string | string[];
-}
-
-export { Data, HTML, DataTime, Title, Value };

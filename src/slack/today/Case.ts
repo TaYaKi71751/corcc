@@ -1,6 +1,12 @@
 import { postMessage } from '../../util/Slack';
-import { read } from '../../util/type/File';
-const caseTodayPath = 'plain/case/counter.message.txt';
+import fs from 'fs';
+const path = [
+	'plain',
+	'case',
+	['counter',
+		'message',
+		'txt'].join('.')
+].join('/');
 
-const text = read({ path: caseTodayPath });
+const text = fs.readFileSync(path).toString();
 postMessage({ text });

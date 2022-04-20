@@ -1,6 +1,13 @@
 import { updateTweet } from '../../util/Tweet';
-import { read } from '../../util/type/File';
-const vaccinationTodayPath = 'plain/vaccination/counter/today.message.txt';
+import fs from 'fs';
+const path = [
+	'plain',
+	'vaccination',
+	'counter',
+	['today',
+		'message',
+		'txt'].join('.')
+].join('/');
 
-const tweetText = read({ path: vaccinationTodayPath });
-updateTweet({ text: tweetText });
+const text = fs.readFileSync(path).toString();
+updateTweet({ text });

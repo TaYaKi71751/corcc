@@ -1,104 +1,79 @@
-
-import { _$ } from '../../util/html/Load';
 import { sortObject } from '../../util/object/Sort';
 import { filterNumber } from '../../util/string/Filter';
 import { insertTime } from '../vaccination/time/Insert';
 import { parseTime } from './date/Parse';
-import { parseTitleName } from './element/Name';
+import { parseCountryName, parseTitleName } from './element/Name';
 import { selectors as __s__ } from './element/Select';
-import * as cheerio from 'cheerio';
+import * as HTML from 'node-html-parser';
+import { DataTime } from '../../type/Default';
 const oe = Object.entries;
-const ov = Object.values;
 
-export function parseData ({
-	body
-}: {
+export function parseData (
 	body: string
-}) {
-	let d: any = {};
-	(function (b: any) {
-		let l: any = _$(b)('ul > li');
-		l = ov(l).slice(0, l.length);
-		l.forEach((e: any) => {
-			let t: any = _$(e)('span.tit');
-			t = t.text();
-			t = t.trim();
-			t = parseTitleName(t);
-			if (!t) {
-				return;
-			}
-			let n: any = _$(e)('span.num');
-			n = n.text();
-			n = filterNumber(n);
-			d[t] = n;
+):{[x:string]:any} {
+	console.debug('parseData()');
+	const d:string[][] = [];
+	const document: HTML.HTMLElement = HTML.parse(body);
+	document.querySelectorAll('ul > li')
+		.forEach((e: HTML.HTMLElement) => {
+			const k: any = parseTitleName(
+				`${e.querySelector('span.tit')
+					?.text
+					?.trim()}`
+			);
+			const v: any = filterNumber(
+				`${e?.querySelector('span.num')
+					?.text}`
+			);
+			if (k) { d.push([k, v]); }
 		});
-	})(body);
-	d = sortObject(d);
-	return d;
+	console.log(sortObject(Object.fromEntries(d)));
+	return sortObject(Object.fromEntries(d));
 }
 
-export function parseCountry ({
-	body,
-	selector
-}: {
+export function parseCountry (
 	body: string,
 	selector: string
-}) {
-	const d: any = {};
-	(function (b: string, s: string) {
-		let _: any = _$(b)(s);
-		_ = ov(_).slice(0, _.length);
-		_.forEach((e: any) => {
-			let c: any = _$(e)('.cityname');
-			c = c.text();
-			c = c.trim();
-			if (!c) {
-				return;
-			}
-			const r = parseData({
-				body: e
-			});
-			d[c] = r;
+) {
+	console.debug('parseCountry()');
+	const d:Array<[k:string, b:any]> = [];
+	const document: any = HTML.parse(body);
+	document.querySelectorAll(selector)
+		.forEach((e: HTML.HTMLElement) => {
+			const c = parseCountryName(e.toString());
+			const r = parseData(e.toString());
+			console.log(c, r);
+			if (c) { d.push([c, r]); }
 		});
-	})(body, selector);
-	return d;
+	return Object.fromEntries(d);
 }
 
-export function parseSelect ({
-	body,
-	selector
-}: {
+export function parseSelect (
 	body: string,
 	selector: string
-}) {
-	return (function (b: string, s: string) {
-		const _s: cheerio.Cheerio = _$(b)(s);
-		if (_s.length <= 1) {
-			let d: any = parseData({
-				body: _s.html() ?? ''
-			});
-			const t: any = parseTime(body);
-			d = insertTime({
-				dataTime: t,
-				itemData: d
-			});
-			return d;
-		}
-		const d: any = parseCountry({
-			body,
-			selector
-		});
+) {
+	const document = HTML.parse(body);
+	const r = document.querySelectorAll(selector);
+	if (r.length <= 1) {
+		let d:any = parseData(body);
+		const t:DataTime = parseTime(body);
+		d = insertTime(t, d);
 		return d;
-	})(body, selector);
+	}
+	const d:any = parseCountry(
+		body,
+		selector
+	);
+	return d;
 }
 
 export function parse (b: string) {
-	const caseData: any = {};
+	const caseData:Array<[k:string, v:any]> = [];
 	oe(__s__).forEach(([p, v]) => {
-		caseData[p] = parseSelect({
-			body: b,
-			selector: v
-		});
+		const o =	parseSelect(b, v);
+		caseData.push(
+			[p, o]
+		);
 	});
-	return caseData;
+	return Object.fromEntries(caseData);
 }

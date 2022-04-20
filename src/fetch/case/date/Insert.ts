@@ -1,8 +1,15 @@
-import { DataTime } from '../../../type/Default';
+import { DataTime, isDataTime } from '../../../type/Default';
+import { CaseData } from '../../../type/Case';
 
-export function inserTime ({ data, time }: DataTime): any {
-	return Object.assign(
-		{ dataTime: time },
-		data
-	);
+export function inserTime (dataTime:DataTime, data:CaseData):CaseData {
+	if (
+		isDataTime(dataTime)
+	) {
+		return Object.assign(
+			{ dataTime },
+			data
+		);
+	} else {
+		throw new Error('Invalid dataTime');
+	}
 }

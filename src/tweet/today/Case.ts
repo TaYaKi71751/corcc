@@ -1,6 +1,12 @@
 import { updateTweet } from '../../util/Tweet';
-import { read } from '../../util/type/File';
-const caseTodayPath = 'plain/case/counter.message.txt';
+import fs from 'fs';
+const path = [
+	'plain',
+	'case',
+	['counter',
+		'message',
+		'txt'].join('.')
+].join('/');
 
-const tweetText = read({ path: caseTodayPath });
-updateTweet({ text: tweetText });
+const text = fs.readFileSync(path).toString();
+updateTweet({ text });

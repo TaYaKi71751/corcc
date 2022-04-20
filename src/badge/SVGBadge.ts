@@ -1,12 +1,6 @@
-import { execSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
 import { emoji } from './Emoji';
-import {
-	pwd,
-	mkdirPath
-} from '../util/type/Path';
-import { tryCatch } from '../util/TryCatch';
 import { colors } from './Color';
 import { isNumberOnly } from '../util/string/Check';
 import { thousands } from '@taccl/thousands';
@@ -52,7 +46,7 @@ const saveBadges = (jsonPath: string) => {
 		};
 		const badge = (() => {
 			const file = ((j: s): s => {
-				return path.join(pwd, ((p: s, k: s) => {
+				return path.join(process.cwd(), ((p: s, k: s) => {
 					const r = (o: s, a: s, b: s): s => {
 						return o.replace(a, b);
 					};
@@ -84,16 +78,7 @@ const saveBadges = (jsonPath: string) => {
 				file, directory, svg
 			};
 		})();
-		tryCatch({
-			func: mkdirPath,
-			params: badge.directory,
-			catchFunc: () => { }
-		});
-		tryCatch({
-			func: execSync,
-			params: `echo '' > ${badge.directory}/.gitkeep`,
-			catchFunc: () => { }
-		});
+		if (!fs.existsSync(badge.directory)) { fs.mkdirSync(badge.directory); }
 		fs.writeFileSync(badge.file, badge.svg);
 	});
 };
