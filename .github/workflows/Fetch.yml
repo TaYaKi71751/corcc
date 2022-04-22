@@ -17,22 +17,16 @@ jobs:
         which: ${{ fromJson((github.event.inputs || inputs).which) }}
     timeout-minutes: 2
     steps:
+    - uses: actions/checkout@master
+    - uses: pnpm/action-setup@master
+      with:
+        version: latest
     - uses: actions/setup-node@v2
       with:
         node-version: 'lts/*'
-    - uses: actions/checkout@master
-    - id: node-cache
-      uses: actions/cache@v2
-      env:
-        cache-name: cache-node-modules
-      with:
-        path: node_modules
-        key: ${{ runner.os }}-${{ github.repository }}-node-modules-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-${{ github.repository }}-node-modules-
-    - if: steps.node-cache.outputs.cache-hit != 'true'
-      run: yarn install
-    - run: yarn fetch:${{ matrix.which.text }}
+        cache: 'pnpm'
+    - run: pnpm install
+    - run: pnpm fetch:${{ matrix.which.text }}
     - run: |
         cd ./artifacts/
         ls -la ./
