@@ -55,7 +55,7 @@ export function parseSelect (
 	const document = HTML.parse(body);
 	const r = document.querySelectorAll(selector);
 	if (r.length <= 1) {
-		let d:any = parseData(body);
+		let d:any = parseData(r.toString());
 		const t:DataTime = parseTime(body);
 		d = insertTime(t, d);
 		return d;
