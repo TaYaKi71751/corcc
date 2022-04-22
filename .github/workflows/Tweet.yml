@@ -40,21 +40,15 @@ jobs:
         which: ${{ fromJson((github.event.inputs || inputs).which) }}
         day: ${{ fromJson((github.event.inputs || inputs).day) }}
     steps:
+    - uses: actions/checkout@master
+    - uses: pnpm/action-setup@master
+      with:
+        version: latest
     - uses: actions/setup-node@v2
       with:
         node-version: 'lts/*'
-    - uses: actions/checkout@master
-    - id: node-cache
-      uses: actions/cache@v2
-      env:
-        cache-name: cache-node-modules
-      with:
-        path: node_modules
-        key: ${{ runner.os }}-${{ github.repository }}-node-modules-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-${{ github.repository }}-node-modules-
-    - if: steps.node-cache.outputs.cache-hit != 'true'
-      run: yarn install
+        cache: 'pnpm'
+    - run: pnpm install
     - id: before
       run: echo "::set-output name=hash::${{ hashFiles('./plain/**') }}"
     - uses: actions/download-artifact@v2
@@ -72,7 +66,7 @@ jobs:
     - run: echo "event_name"
       env:
         result: ${{ github.event_name }}
-    - run: yarn tweet:${{ matrix.day }}:${{ matrix.which }}
+    - run: pnpm tweet:${{ matrix.day }}:${{ matrix.which }}
       if: ${{ steps.before.outputs.hash != steps.after.outputs.hash || (github.event_name != 'schedule' && github.event_name != 'push') }}
       env:
         TWITTER_CONSUMER_KEY: ${{ secrets.TWITTER_CONSUMER_KEY }}

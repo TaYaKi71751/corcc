@@ -1,12 +1,12 @@
 on: 
   workflow_call:
     inputs:
-      clean:
+      force:
         type: boolean
         default: false
   workflow_dispatch:
     inputs:
-      clean:
+      force:
         type: boolean
         default: false
 env:
@@ -16,20 +16,14 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 2
     steps:
+    - uses: actions/checkout@master
+    - uses: pnpm/action-setup@master
+      with:
+        version: latest
     - uses: actions/setup-node@v2
       with:
         node-version: 'lts/*'
-    - uses: actions/checkout@master
-    - id: node-cache
-      uses: actions/cache@v2
-      env:
-        cache-name: cache-node-modules
-      with:
-        path: node_modules
-        key: ${{ runner.os }}-${{ github.repository }}-node-modules-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-${{ github.repository }}-node-modules-
-    - if: fromJson(env.inputs).clean != false
-      run: yarn cache clean
-    - if: steps.node-cache.outputs.cache-hit != 'true' || fromJson(env.inputs).clean != false
-      run: yarn install
+        cache: 'pnpm'
+    - if: fromJson(env.inputs).force != false
+      run: pnpm install --force
+    - run: pnpm install
