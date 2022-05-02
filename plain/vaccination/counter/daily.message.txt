@@ -1,6 +1,6 @@
 💉📅
-  📅 2022-05-01
-  first 1,260
-  second 1,116
-  third 5,876
-  four 74,960
+  📅 2022-05-02
+  first 10
+  second 14
+  third 96
+  four 1,055
