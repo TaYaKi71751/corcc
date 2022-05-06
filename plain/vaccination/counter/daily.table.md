@@ -1,3 +1,3 @@
 |dataTime|firstCnt|secondCnt|thirdCnt|fourCnt|
 |-|-|-|-|-|
-|2022-05-05|889|919|8454|150152|
+|2022-05-06|47|46|410|3036|
