@@ -1,11 +1,11 @@
 {
-	"dataTime": "2022-06-06",
+	"dataTime": "2022-06-07",
 	"firstCnt": "0",
-	"firstTot": "2018254",
-	"secondCnt": "0",
+	"firstTot": "2018253",
+	"secondCnt": "2",
 	"secondTot": "1994729",
-	"thirdCnt": "0",
-	"thirdTot": "1393255",
-	"fourCnt": "0",
-	"fourTot": "140184"
+	"thirdCnt": "5",
+	"thirdTot": "1393260",
+	"fourCnt": "16",
+	"fourTot": "140200"
 }
