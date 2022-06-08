@@ -1,6 +1,6 @@
 💉📅
-  📅 2022-06-07
-  first 37
-  second 144
-  third 267
-  four 508
+  📅 2022-06-08
+  first 344
+  second 964
+  third 3,393
+  four 15,201
