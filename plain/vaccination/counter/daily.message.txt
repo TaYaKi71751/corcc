@@ -1,6 +1,6 @@
 💉📅
-  📅 2022-07-21
-  first 578
-  second 541
-  third 4,316
-  four 79,901
+  📅 2022-07-22
+  first 586
+  second 567
+  third 4,793
+  four 80,090
