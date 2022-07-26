@@ -17,15 +17,23 @@ export async function fetchSaveCaseBy ({
 		.then((data: any) =>	Save({ name, data }))
 		.catch((e:any) => { throw e; });
 }
-[
-	'en'
-//	'cn'
-].forEach(async (lang: string, index: number, array: string[]) => {
-	await fetchSaveCaseBy({ lang })
-		.catch((e: any) => {
-			console.error(e);
-			if (index == array.length - 1) {
-				exit(-1);
-			}
-		});
-});
+
+function __main__ (retry?:number) {
+	[
+		'en'
+		//	'cn'
+	].forEach(async (lang: string, index: number, array: string[]) => {
+		await fetchSaveCaseBy({ lang })
+			.catch((e: any) => {
+				console.error(e);
+				if (retry && retry > 0) {
+					__main__(retry - 1);
+				} else {
+					console.error('Out of retry');
+					exit(e?.code || -1);
+				}
+			});
+	});
+}
+
+__main__(5);

@@ -19,5 +19,16 @@ export async function fetchVaccination () {
 	});
 }
 
-fetchVaccination()
-	.catch((e:any) => { console.error(e); exit(-1); });
+function __main__ (retry?:number) {
+	fetchVaccination()
+		.catch((e:any) => {
+			console.error(e);
+			if (retry && retry > 0) {
+				__main__(retry - 1);
+			} else {
+				console.error('Out of retry');
+				exit(e?.code || -1);
+			}
+		});
+}
+__main__(5);
