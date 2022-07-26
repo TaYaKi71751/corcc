@@ -10,8 +10,8 @@
 > [![](https://img.shields.io/badge/-Trello%20Board-blue.svg)](https://trello.com/b/NZn7oI0J/corcc)
 >
 > [![License: WTFPL](https://img.shields.io/badge/License-WTFPL-brightgreen.svg)](http://www.wtfpl.net/about/)
-> [![Vaccinations Update](https://github.com/corcc/actions/workflows/Vaccinations.yml/badge.svg)](https://github.com/corcc/corcc/actions/workflows/Vaccinations.yml)
-> [![Cases Update](https://github.com/corcc/actions/workflows/Cases.yml/badge.svg)](https://github.com/corcc/corcc/actions/workflows/Cases.yml)
+> [![Vaccinations Update](https://github.com/corcc/corcc/actions/workflows/Vaccinations.yml/badge.svg)](https://github.com/corcc/corcc/actions/workflows/Vaccinations.yml)
+> [![Cases Update](https://github.com/corcc/corcc/actions/workflows/Cases.yml/badge.svg)](https://github.com/corcc/corcc/actions/workflows/Cases.yml)
 > [![CodeQL](https://github.com/corcc/corcc/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/corcc/corcc/actions/workflows/codeql-analysis.yml)
 > 
 > **TZ : UTC+0900**
