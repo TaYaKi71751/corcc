@@ -10,32 +10,32 @@ jobs:
   fetch:
     uses: ./.github/workflows/Fetch.yml
     with:
-      which: '[ { "text": "vaccination", "emoji": "💉" } , { "text": "case", "emoji": "🦠" } ]'
+      which: '[ { "text": "vaccination", "emoji": "💉" } ]'
   badge:
     needs: [fetch]
     uses: ./.github/workflows/Badge.yml
     with:
       prev: '[ "fetch" ]'
-      which: '[ { "text": "vaccination", "emoji": "💉" } , { "text": "case", "emoji": "🦠" } ]'
+      which: '[ { "text": "vaccination", "emoji": "💉" } ]'
   plain:
     needs: [fetch,badge]
     uses: ./.github/workflows/Plain.yml
     with:
       prev: '[ "fetch" ]'
-      which: '[ { "text": "vaccination", "emoji": "💉" } , { "text": "case", "emoji": "🦠" } ]'
+      which: '[ { "text": "vaccination", "emoji": "💉" } ]'
   plain-publish:
     needs: [plain]
     uses: ./.github/workflows/PlainPublish.yml
     with:
       prev: '[ "plain" ]'
-      which: '[ { "text": "vaccination", "emoji": "💉" } , { "text": "case", "emoji": "🦠" } ]'
+      which: '[ { "text": "vaccination", "emoji": "💉" } ]'
   slack:
     needs: [plain]
     uses: ./.github/workflows/Slack.yml
     with:
       prev: '[ "plain" ]'
       day: '[ "today" ]'
-      which: '[ "vaccination", "case" ]'
+      which: '[ "vaccination" ]'
     secrets:
       SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
       SLACK_TODAY: ${{ secrets.SLACK_TODAY }}
@@ -45,7 +45,7 @@ jobs:
     with:
       prev: '[ "plain" ]'
       day: '[ "today" ]'
-      which: '[ "vaccination", "case" ]'
+      which: '[ "vaccination" ]'
     secrets:
       TWITTER_CONSUMER_KEY: ${{ secrets.TWITTER_CONSUMER_KEY }}
       TWITTER_CONSUMER_SECRET: ${{ secrets.TWITTER_CONSUMER_SECRET }}
