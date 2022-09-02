@@ -1,6 +1,6 @@
 💉📅
-  📅 2022-09-01
-  first 285
-  second 295
-  third 2,222
-  four 21,277
+  📅 2022-09-02
+  first 291
+  second 297
+  third 2,295
+  four 18,789
