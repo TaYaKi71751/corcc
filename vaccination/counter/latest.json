@@ -1,24 +1,24 @@
 {
-	"dataTime": "2022-09-15",
+	"dataTime": "2022-09-16",
 	"daily": {
-		"dataTime": "2022-09-15",
-		"firstCnt": "251",
-		"secondCnt": "478",
-		"thirdCnt": "1723",
-		"fourCnt": "11732"
+		"dataTime": "2022-09-16",
+		"firstCnt": "262",
+		"secondCnt": "445",
+		"thirdCnt": "1948",
+		"fourCnt": "12106"
 	},
 	"yesterday": {
-		"dataTime": "2022-09-14",
-		"firstCnt": "45108963",
-		"secondCnt": "44671284",
-		"thirdCnt": "33575519",
-		"fourCnt": "7307904"
+		"dataTime": "2022-09-15",
+		"firstCnt": "45109324",
+		"secondCnt": "44671869",
+		"thirdCnt": "33577366",
+		"fourCnt": "7319938"
 	},
 	"today": {
-		"dataTime": "2022-09-15",
-		"firstCnt": "45109214",
-		"secondCnt": "44671762",
-		"thirdCnt": "33577242",
-		"fourCnt": "7319636"
+		"dataTime": "2022-09-16",
+		"firstCnt": "45109586",
+		"secondCnt": "44672314",
+		"thirdCnt": "33579314",
+		"fourCnt": "7332044"
 	}
 }
