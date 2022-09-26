@@ -1,6 +1,6 @@
 
 const scheme = 'http';
-const domain = 'ncov.mohw.go.kr';
+const domain = 'ncov.kdca.go.kr';
 function getLangPath (lang: string) {
 	return {
 		cn: 'cn',
