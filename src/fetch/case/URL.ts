@@ -1,5 +1,5 @@
 
-const scheme = 'http';
+const scheme = 'https';
 const domain = 'ncov.kdca.go.kr';
 function getLangPath (lang: string) {
 	return {
