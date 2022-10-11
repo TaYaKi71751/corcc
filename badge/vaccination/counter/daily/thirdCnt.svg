@@ -1,14 +1,14 @@
-<svg width="77.9" height="20" viewBox="0 0 779 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="third: 1,730">
-  <title>third: 1,730</title>
+<svg width="66.9" height="20" viewBox="0 0 669 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="third: 383">
+  <title>third: 383</title>
   <g>
     <rect fill="#2F2F2F" width="359" height="200"/>
-    <rect fill="#" x="359" width="420" height="200"/>
+    <rect fill="#" x="359" width="310" height="200"/>
   </g>
   <g aria-hidden="true" fill="#fff" text-anchor="start" font-family="Verdana,DejaVu Sans,sans-serif" font-size="110">
     <text x="60" y="148" textLength="259" fill="#000" opacity="0.1">third</text>
     <text x="50" y="138" textLength="259">third</text>
-    <text x="414" y="148" textLength="320" fill="#000" opacity="0.1">1,730</text>
-    <text x="404" y="138" textLength="320">1,730</text>
+    <text x="414" y="148" textLength="210" fill="#000" opacity="0.1">383</text>
+    <text x="404" y="138" textLength="210">383</text>
   </g>
   
 </svg>
