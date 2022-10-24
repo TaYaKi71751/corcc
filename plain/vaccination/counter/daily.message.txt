@@ -1,6 +1,6 @@
 💉📅
-  📅 2022-10-21
-  first 176
-  second 284
-  third 1,958
-  four 4,254
+  📅 2022-10-24
+  first 1
+  second 3
+  third 57
+  four 42
