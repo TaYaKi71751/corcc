@@ -40,9 +40,9 @@ jobs:
     - uses: pnpm/action-setup@master
       with:
         version: latest
-    - uses: actions/setup-node@v2
+    - uses: actions/setup-node@main
       with:
-        node-version: 'lts/*'
+        node-version: 16
         cache: 'pnpm'
     - run: pnpm install
     - id: before
