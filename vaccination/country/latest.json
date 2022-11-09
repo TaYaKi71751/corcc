@@ -8,7 +8,12 @@
 		"thirdCnt": "482",
 		"thirdTot": "6076911",
 		"fourCnt": "369",
-		"fourTot": "1267486"
+		"fourTot": "1267486",
+		"winCnt": "9103",
+		"winTot": "233305",
+		"vrate": "0%",
+		"wrate": "0%",
+		"pplcnt": ""
 	},
 	"부산광역시": {
 		"firstCnt": "8",
@@ -18,7 +23,12 @@
 		"thirdCnt": "136",
 		"thirdTot": "2140909",
 		"fourCnt": "103",
-		"fourTot": "502248"
+		"fourTot": "502248",
+		"winCnt": "3639",
+		"winTot": "86728",
+		"vrate": "0%",
+		"wrate": "0%",
+		"pplcnt": ""
 	},
 	"대구광역시": {
 		"firstCnt": "8",
@@ -28,7 +38,12 @@
 		"thirdCnt": "56",
 		"thirdTot": "1405219",
 		"fourCnt": "60",
-		"fourTot": "266995"
+		"fourTot": "266995",
+		"winCnt": "1786",
+		"winTot": "36213",
+		"vrate": "0%",
+		"wrate": "0%",
+		"pplcnt": ""
 	},
 	"인천광역시": {
 		"firstCnt": "8",
@@ -38,7 +53,12 @@
 		"thirdCnt": "99",
 		"thirdTot": "1915365",
 		"fourCnt": "105",
-		"fourTot": "407786"
+		"fourTot": "407786",
+		"winCnt": "2277",
+		"winTot": "63681",
+		"vrate": "0%",
+		"wrate": "0%",
+		"pplcnt": ""
 	},
 	"광주광역시": {
 		"firstCnt": "6",
@@ -48,7 +68,12 @@
 		"thirdCnt": "29",
 		"thirdTot": "968976",
 		"fourCnt": "84",
-		"fourTot": "241054"
+		"fourTot": "241054",
+		"winCnt": "2273",
+		"winTot": "44201",
+		"vrate": "0%",
+		"wrate": "0%",
+		"pplcnt": ""
 	},
 	"대전광역시": {
 		"firstCnt": "6",
@@ -58,7 +83,12 @@
 		"thirdCnt": "40",
 		"thirdTot": "909142",
 		"fourCnt": "72",
-		"fourTot": "198152"
+		"fourTot": "198152",
+		"winCnt": "1709",
+		"winTot": "37450",
+		"vrate": "0%",
+		"wrate": "0%",
+		"pplcnt": ""
 	},
 	"울산광역시": {
 		"firstCnt": "4",
@@ -68,7 +98,12 @@
 		"thirdCnt": "24",
 		"thirdTot": "720545",
 		"fourCnt": "99",
-		"fourTot": "136918"
+		"fourTot": "136918",
+		"winCnt": "723",
+		"winTot": "18999",
+		"vrate": "0%",
+		"wrate": "0%",
+		"pplcnt": ""
 	},
 	"세종특별자치시": {
 		"firstCnt": "0",
@@ -78,7 +113,12 @@
 		"thirdCnt": "3",
 		"thirdTot": "211098",
 		"fourCnt": "5",
-		"fourTot": "35734"
+		"fourTot": "35734",
+		"winCnt": "262",
+		"winTot": "7374",
+		"vrate": "0%",
+		"wrate": "0%",
+		"pplcnt": ""
 	},
 	"경기도": {
 		"firstCnt": "54",
@@ -88,7 +128,12 @@
 		"thirdCnt": "476",
 		"thirdTot": "8708303",
 		"fourCnt": "496",
-		"fourTot": "1741353"
+		"fourTot": "1741353",
+		"winCnt": "11896",
+		"winTot": "295450",
+		"vrate": "0%",
+		"wrate": "0%",
+		"pplcnt": ""
 	},
 	"강원도": {
 		"firstCnt": "1",
@@ -98,7 +143,12 @@
 		"thirdCnt": "44",
 		"thirdTot": "1065187",
 		"fourCnt": "54",
-		"fourTot": "276480"
+		"fourTot": "276480",
+		"winCnt": "2295",
+		"winTot": "46062",
+		"vrate": "0%",
+		"wrate": "0%",
+		"pplcnt": ""
 	},
 	"충청북도": {
 		"firstCnt": "11",
@@ -108,7 +158,12 @@
 		"thirdCnt": "20",
 		"thirdTot": "1108528",
 		"fourCnt": "43",
-		"fourTot": "284045"
+		"fourTot": "284045",
+		"winCnt": "2459",
+		"winTot": "55670",
+		"vrate": "0%",
+		"wrate": "0%",
+		"pplcnt": ""
 	},
 	"충청남도": {
 		"firstCnt": "7",
@@ -118,7 +173,12 @@
 		"thirdCnt": "36",
 		"thirdTot": "1479772",
 		"fourCnt": "76",
-		"fourTot": "376192"
+		"fourTot": "376192",
+		"winCnt": "3183",
+		"winTot": "69291",
+		"vrate": "0%",
+		"wrate": "0%",
+		"pplcnt": ""
 	},
 	"전라북도": {
 		"firstCnt": "3",
@@ -128,7 +188,12 @@
 		"thirdCnt": "23",
 		"thirdTot": "1285790",
 		"fourCnt": "97",
-		"fourTot": "377690"
+		"fourTot": "377690",
+		"winCnt": "3988",
+		"winTot": "86378",
+		"vrate": "0%",
+		"wrate": "0%",
+		"pplcnt": ""
 	},
 	"전라남도": {
 		"firstCnt": "7",
@@ -138,7 +203,12 @@
 		"thirdCnt": "23",
 		"thirdTot": "1365268",
 		"fourCnt": "46",
-		"fourTot": "451804"
+		"fourTot": "451804",
+		"winCnt": "4685",
+		"winTot": "100047",
+		"vrate": "0%",
+		"wrate": "0%",
+		"pplcnt": ""
 	},
 	"경상북도": {
 		"firstCnt": "5",
@@ -148,7 +218,12 @@
 		"thirdCnt": "52",
 		"thirdTot": "1727240",
 		"fourCnt": "81",
-		"fourTot": "405461"
+		"fourTot": "405461",
+		"winCnt": "3210",
+		"winTot": "60030",
+		"vrate": "0%",
+		"wrate": "0%",
+		"pplcnt": ""
 	},
 	"경상남도": {
 		"firstCnt": "13",
@@ -158,7 +233,12 @@
 		"thirdCnt": "97",
 		"thirdTot": "2145749",
 		"fourCnt": "86",
-		"fourTot": "497244"
+		"fourTot": "497244",
+		"winCnt": "3430",
+		"winTot": "65410",
+		"vrate": "0%",
+		"wrate": "0%",
+		"pplcnt": ""
 	},
 	"제주특별자치도": {
 		"firstCnt": "6",
@@ -168,6 +248,11 @@
 		"thirdCnt": "38",
 		"thirdTot": "439144",
 		"fourCnt": "18",
-		"fourTot": "95022"
+		"fourTot": "95022",
+		"winCnt": "1160",
+		"winTot": "16268",
+		"vrate": "0%",
+		"wrate": "0%",
+		"pplcnt": ""
 	}
 }

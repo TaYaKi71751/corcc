@@ -5,20 +5,29 @@
 		"firstCnt": "175",
 		"secondCnt": "224",
 		"thirdCnt": "1678",
-		"fourCnt": "1894"
+		"fourCnt": "1894",
+		"winCnt": "58078",
+		"vrate": "0%",
+		"wrate": "0%"
 	},
 	"yesterday": {
 		"dataTime": "2022-11-08",
 		"firstCnt": "45123050",
 		"secondCnt": "44693097",
 		"thirdCnt": "33671468",
-		"fourCnt": "7559770"
+		"fourCnt": "7559770",
+		"winCnt": "1264479",
+		"vrate": "0%",
+		"wrate": "0%"
 	},
 	"today": {
 		"dataTime": "2022-11-09",
 		"firstCnt": "45123225",
 		"secondCnt": "44693321",
 		"thirdCnt": "33673146",
-		"fourCnt": "7561664"
+		"fourCnt": "7561664",
+		"winCnt": "1322557",
+		"vrate": "0%",
+		"wrate": "0%"
 	}
 }
