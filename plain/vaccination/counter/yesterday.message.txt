@@ -4,3 +4,6 @@
   second 44,693,097
   third 33,671,468
   four 7,559,770
+  win 1,264,479
+  vrate 0%
+  wrate 0%
