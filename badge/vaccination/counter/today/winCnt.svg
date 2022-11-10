@@ -1,14 +1,14 @@
-<svg width="96" height="20" viewBox="0 0 960 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="win: 1,322,557">
-  <title>win: 1,322,557</title>
+<svg width="103" height="20" viewBox="0 0 1030 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="win: 23,363,865">
+  <title>win: 23,363,865</title>
   <g>
     <rect fill="#2F2F2F" width="290" height="200"/>
-    <rect fill="#" x="290" width="670" height="200"/>
+    <rect fill="#" x="290" width="740" height="200"/>
   </g>
   <g aria-hidden="true" fill="#fff" text-anchor="start" font-family="Verdana,DejaVu Sans,sans-serif" font-size="110">
     <text x="60" y="148" textLength="190" fill="#000" opacity="0.1">win</text>
     <text x="50" y="138" textLength="190">win</text>
-    <text x="345" y="148" textLength="570" fill="#000" opacity="0.1">1,322,557</text>
-    <text x="335" y="138" textLength="570">1,322,557</text>
+    <text x="345" y="148" textLength="640" fill="#000" opacity="0.1">23,363,865</text>
+    <text x="335" y="138" textLength="640">23,363,865</text>
   </g>
   
 </svg>
