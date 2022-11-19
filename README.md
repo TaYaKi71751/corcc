@@ -19,7 +19,7 @@
 > ### FROM 
 >> - [ COVID-19 Vaccination ](https://nip.kdca.go.kr/irgd/cov19stats.do) (XML)
 >> 
->> - Cases in Korea by City/Province (**NOT-SECURED**) (HTML)
+>> - Cases in Korea by City/Province (HTML)
 >> 
 >>> (DISCONTINUED on 2021-11-17 => REASON : NO DATA )[Archive](https://web.archive.org/web/20211116205419/http://ncov.mohw.go.kr/en/bdBoardList.do?brdId=16&brdGubun=162&dataGubun=&ncvContSeq=&contSeq=&board_id=&gubun=)
 >>> 
@@ -32,9 +32,12 @@
 >>> 
 >>> by [KDCA](https://kdca.go.kr) - [ DATA.GO.KR_DESCRIPT ](https://www.data.go.kr/data/15078166/openapi.do)
 >> 
->> - [ Cases in Korea by City/Province (**NOT-SECURED**) ](http://ncov.mohw.go.kr/en/bdBoardList.do?brdGubun=162) 
+>> - [ Cases in Korea by City/Province ](https://ncov.kdca.go.kr/en/bdBoardList.do?brdGubun=162) 
 >>> 
->>> by [ South Korea 's Ministry of Health and Welfare (**NOT-SECURED**) ](http://mohw.go.kr/eng/)
+>>> from [ncov.kdca.go.kr](https://ncov.kdca.go.kr/en/) 
+>>> [ `Fix url.hostname in fetch:case` ](https://github.com/corcc/corcc/commit/edbdbe55670a217ed6ca80d0e52c8ae8e76b2d00)
+>>> [ `Use https on fetch:case` ](https://github.com/corcc/corcc/commit/c6239da6f7670abfa7cb6d3e3b333d9be9a360c2)
+
 > 
 > ### REF
 >> 
