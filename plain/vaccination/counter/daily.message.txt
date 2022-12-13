@@ -1,9 +1,9 @@
 💉📅
-  📅 2022-12-12
-  first 4
-  second 10
-  third 49
-  four 4
-  win 689
+  📅 2022-12-13
+  first 232
+  second 243
+  third 1,001
+  four 303
+  win 91,050
   vrate 0%
   wrate 0%
