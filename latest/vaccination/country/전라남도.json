@@ -1,16 +1,16 @@
 {
-	"dataTime": "2022-12-30",
-	"firstCnt": "8",
-	"firstTot": "1656136",
-	"secondCnt": "16",
-	"secondTot": "1641889",
+	"dataTime": "2023-01-02",
+	"firstCnt": "0",
+	"firstTot": "1657097",
+	"secondCnt": "0",
+	"secondTot": "1642840",
 	"thirdCnt": "0",
-	"thirdTot": "1366136",
+	"thirdTot": "1366784",
 	"fourCnt": "0",
-	"fourTot": "452368",
-	"winCnt": "3435",
-	"winTot": "281612",
-	"vrate": "91.8%",
-	"wrate": "16.7%",
-	"frate": "92.6%"
+	"fourTot": "452429",
+	"winCnt": "1",
+	"winTot": "286043",
+	"vrate": "91.9%",
+	"wrate": "17%",
+	"frate": "92.7%"
 }
