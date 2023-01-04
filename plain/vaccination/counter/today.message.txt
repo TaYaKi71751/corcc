@@ -5,5 +5,5 @@
   third 33,525,051
   four 7,541,241
   win 5,376,910
-  vrate 93.4%
-  wrate 12%
+  vrate 99.6%
+  wrate 12.8%
