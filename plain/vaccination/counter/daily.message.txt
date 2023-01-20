@@ -1,9 +1,9 @@
 💉📅
-  📅 2023-01-19
-  first 259
-  second 281
+  📅 2023-01-20
+  first 233
+  second 255
   third 0
   four 0
-  win 29,407
+  win 30,331
   vrate 0%
   wrate 0%
