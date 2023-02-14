@@ -1,15 +1,15 @@
 {
-	"firstCnt": "0",
-	"firstTot": "588579",
+	"firstCnt": "3",
+	"firstTot": "588576",
 	"secondCnt": "0",
-	"secondTot": "583135",
+	"secondTot": "583130",
 	"thirdCnt": "0",
-	"thirdTot": "437607",
+	"thirdTot": "437600",
 	"fourCnt": "0",
-	"fourTot": "94469",
-	"winCnt": "5",
-	"winTot": "83454",
-	"vrate": "88.8%",
+	"fourTot": "94468",
+	"winCnt": "140",
+	"winTot": "83595",
+	"vrate": "86.6%",
 	"wrate": "13.7%",
-	"frate": "89.6%"
+	"frate": "87.4%"
 }
