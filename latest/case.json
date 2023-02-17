@@ -1,104 +1,104 @@
 {
-	"dataTime": "2023-02-16",
+	"dataTime": "2023-02-17",
 	"counter": {
-		"dataTime": "2023-02-16",
-		"confirmed": "30397220",
-		"deaths": "33804",
+		"dataTime": "2023-02-17",
+		"confirmed": "30408656",
+		"deaths": "33832",
 		"recovered": "0"
 	},
 	"country": {
 		"Nation-wide": {
-			"confirmed": "30397220",
-			"deaths": "33804",
+			"confirmed": "30408656",
+			"deaths": "33832",
 			"recovered": "0"
 		},
 		"Seoul": {
-			"confirmed": "5902337",
-			"deaths": "6312",
+			"confirmed": "5904434",
+			"deaths": "6319",
 			"recovered": "0"
 		},
 		"Busan": {
-			"confirmed": "1810406",
-			"deaths": "2798",
+			"confirmed": "1811200",
+			"deaths": "2800",
 			"recovered": "0"
 		},
 		"Daegu": {
-			"confirmed": "1328790",
+			"confirmed": "1329388",
 			"deaths": "1969",
 			"recovered": "0"
 		},
 		"Incheon": {
-			"confirmed": "1766881",
-			"deaths": "1861",
+			"confirmed": "1767467",
+			"deaths": "1862",
 			"recovered": "0"
 		},
 		"Gwangju": {
-			"confirmed": "885475",
-			"deaths": "809",
+			"confirmed": "885814",
+			"deaths": "810",
 			"recovered": "0"
 		},
 		"Daejeon": {
-			"confirmed": "886259",
+			"confirmed": "886524",
 			"deaths": "932",
 			"recovered": "0"
 		},
 		"Ulsan": {
-			"confirmed": "652001",
+			"confirmed": "652263",
 			"deaths": "525",
 			"recovered": "0"
 		},
 		"Sejong": {
-			"confirmed": "240740",
+			"confirmed": "240826",
 			"deaths": "55",
 			"recovered": "0"
 		},
 		"Gyeonggi-do": {
-			"confirmed": "8216519",
-			"deaths": "8309",
+			"confirmed": "8219282",
+			"deaths": "8314",
 			"recovered": "0"
 		},
 		"Gangwon-do": {
-			"confirmed": "894900",
+			"confirmed": "895169",
 			"deaths": "1299",
 			"recovered": "0"
 		},
 		"Chungcheongbuk-do": {
-			"confirmed": "953177",
-			"deaths": "1014",
+			"confirmed": "953512",
+			"deaths": "1017",
 			"recovered": "0"
 		},
 		"Chungcheongnam-do": {
-			"confirmed": "1230154",
+			"confirmed": "1230579",
 			"deaths": "1548",
 			"recovered": "0"
 		},
 		"Jeollabuk-do": {
-			"confirmed": "1018406",
-			"deaths": "1200",
+			"confirmed": "1018850",
+			"deaths": "1201",
 			"recovered": "0"
 		},
 		"Jeollanam-do": {
-			"confirmed": "994312",
-			"deaths": "948",
+			"confirmed": "994743",
+			"deaths": "949",
 			"recovered": "0"
 		},
 		"Gyeongsangbuk-do": {
-			"confirmed": "1391333",
-			"deaths": "2061",
+			"confirmed": "1392015",
+			"deaths": "2063",
 			"recovered": "0"
 		},
 		"Gyeongsangnam-do": {
-			"confirmed": "1824475",
-			"deaths": "1883",
+			"confirmed": "1825311",
+			"deaths": "1887",
 			"recovered": "0"
 		},
 		"Jeju": {
-			"confirmed": "383600",
-			"deaths": "265",
+			"confirmed": "383816",
+			"deaths": "266",
 			"recovered": "0"
 		},
 		"Lazaretto": {
-			"confirmed": "17455",
+			"confirmed": "17463",
 			"deaths": "16",
 			"recovered": "0"
 		}
