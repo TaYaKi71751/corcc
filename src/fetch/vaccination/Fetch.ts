@@ -13,7 +13,13 @@ export async function fetchVaccinationBy (
 			Connection: 'keep-alive'
 		}
 	};
-	const response = await request(options);
-
-	return response.body;
+	try {
+		const response = await request(options);
+		return response.body;
+	} catch (err) {
+		console.error(
+			'[Error]',
+			err, '\n'
+		);
+	}
 }
