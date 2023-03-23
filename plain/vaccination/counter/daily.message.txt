@@ -1,9 +1,9 @@
 💉📅
-  📅 2023-03-21
-  first 68
-  second 89
+  📅 2023-03-22
+  first 72
+  second 72
   third 0
   four 0
-  win 4,798
+  win 4,740
   vrate 0%
   wrate 0%
