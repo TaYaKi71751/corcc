@@ -25,5 +25,5 @@ jobs:
         node-version: latest
         cache: 'pnpm'
     - if: fromJson(env.inputs).force != false
-      run: pnpm install --force
-    - run: pnpm install
+      run: pnpm install --force --no-frozen-lockfile
+    - run: pnpm install --no-frozen-lockfile

@@ -48,7 +48,7 @@ jobs:
       with:
         node-version: latest
         cache: 'pnpm'
-    - run: pnpm install
+    - run: pnpm install --no-frozen-lockfile
     - id: before
       run: echo "::set-output name=hash::${{ hashFiles('./plain/**') }}"
     - uses: actions/download-artifact@v2

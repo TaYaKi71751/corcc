@@ -25,7 +25,7 @@ jobs:
       with:
         node-version: latest
         cache: 'pnpm'
-    - run: pnpm install
+    - run: pnpm install --no-frozen-lockfile
     - run: pnpm fetch:${{ matrix.which.text }}
     - run: |
         cd ./artifacts/
