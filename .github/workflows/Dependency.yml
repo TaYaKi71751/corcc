@@ -22,7 +22,7 @@ jobs:
         version: latest
     - uses: actions/setup-node@main
       with:
-        node-version: latest
+        node-version: 16
         cache: 'pnpm'
     - if: fromJson(env.inputs).force != false
       run: pnpm install --force --no-frozen-lockfile

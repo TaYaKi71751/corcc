@@ -42,7 +42,7 @@ jobs:
         version: latest
     - uses: actions/setup-node@main
       with:
-        node-version: latest
+        node-version: 16
         cache: 'pnpm'
     - run: pnpm install --no-frozen-lockfile
     - id: before
