@@ -1,14 +1,14 @@
-<svg width="77.2" height="20" viewBox="0 0 772 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="wrate: 14%">
-  <title>wrate: 14%</title>
+<svg width="88.2" height="20" viewBox="0 0 882 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="wrate: 14.1%">
+  <title>wrate: 14.1%</title>
   <g>
     <rect fill="#2F2F2F" width="412" height="200"/>
-    <rect fill="#" x="412" width="360" height="200"/>
+    <rect fill="#" x="412" width="470" height="200"/>
   </g>
   <g aria-hidden="true" fill="#fff" text-anchor="start" font-family="Verdana,DejaVu Sans,sans-serif" font-size="110">
     <text x="60" y="148" textLength="312" fill="#000" opacity="0.1">wrate</text>
     <text x="50" y="138" textLength="312">wrate</text>
-    <text x="467" y="148" textLength="260" fill="#000" opacity="0.1">14%</text>
-    <text x="457" y="138" textLength="260">14%</text>
+    <text x="467" y="148" textLength="370" fill="#000" opacity="0.1">14.1%</text>
+    <text x="457" y="138" textLength="370">14.1%</text>
   </g>
   
 </svg>
