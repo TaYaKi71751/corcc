@@ -1,3 +1,3 @@
 |dataTime|firstCnt|secondCnt|thirdCnt|fourCnt|winCnt|vrate|wrate|
 |-|-|-|-|-|-|-|-|
-|2023-04-04|68|85|0|0|3745|0%|0%|
+|2023-04-05|72|98|0|0|4053|0%|0%|
