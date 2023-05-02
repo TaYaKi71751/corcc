@@ -2,8 +2,8 @@
   "scripts": {
     "lint:run": "eslint --ext .ts,.tsx .",
     "lint:fix": "eslint --fix --ext .ts,.tsx .",
-    "tweet:today:vaccination": "ts-node ./src/tweet/today/Vaccination",
-    "tweet:today:case": "ts-node ./src/tweet/today/Case",
+    "tweet:today:vaccination": "pip install --upgrade pip && pip install tweepy && python ./src/tweet/today/Vaccination.py",
+    "tweet:today:case": "pip install --upgrade pip && pip install tweepy && python ./src/tweet/today/Case.py",
     "tweet:today:all": "npm run tweet:today:case && npm run tweet:today:vaccination",
     "tweet:all": "npm run tweet:today:all",
     "slack:daily:vaccination": "ts-node ./src/slack/daily/Vaccination",

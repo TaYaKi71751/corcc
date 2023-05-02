@@ -44,6 +44,9 @@ jobs:
     - uses: pnpm/action-setup@master
       with:
         version: latest
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
     - uses: actions/setup-node@main
       with:
         node-version: 16
