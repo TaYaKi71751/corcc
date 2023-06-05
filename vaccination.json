@@ -1,9 +1,9 @@
 {
-	"dataTime": "2023-06-02",
+	"dataTime": "2023-06-10",
 	"counter": {
-		"dataTime": "2023-06-02",
+		"dataTime": "2023-06-10",
 		"daily": {
-			"dataTime": "2023-06-02",
+			"dataTime": "2023-06-10",
 			"firstCnt": "27",
 			"secondCnt": "40",
 			"thirdCnt": "0",
@@ -13,7 +13,7 @@
 			"wrate": "0%"
 		},
 		"yesterday": {
-			"dataTime": "2023-06-01",
+			"dataTime": "2023-06-09",
 			"firstCnt": "44769054",
 			"secondCnt": "44357586",
 			"thirdCnt": "33425150",
@@ -23,7 +23,7 @@
 			"wrate": "0%"
 		},
 		"today": {
-			"dataTime": "2023-06-02",
+			"dataTime": "2023-06-10",
 			"firstCnt": "44769081",
 			"secondCnt": "44357626",
 			"thirdCnt": "33425150",
@@ -34,7 +34,7 @@
 		}
 	},
 	"country": {
-		"dataTime": "2023-06-02",
+		"dataTime": "2023-06-10",
 		"서울특별시": {
 			"firstCnt": "8",
 			"firstTot": "8363973",
