@@ -170,21 +170,6 @@
 			"wrate": "13.4%",
 			"frate": "87.3%"
 		},
-		"강원도": {
-			"firstCnt": "5",
-			"firstTot": "1347778",
-			"secondCnt": "6",
-			"secondTot": "1337054",
-			"thirdCnt": "0",
-			"thirdTot": "1060932",
-			"fourCnt": "0",
-			"fourTot": "273387",
-			"winCnt": "72",
-			"winTot": "219032",
-			"vrate": "87%",
-			"wrate": "15.4%",
-			"frate": "87.7%"
-		},
 		"충청북도": {
 			"firstCnt": "7",
 			"firstTot": "1424825",
