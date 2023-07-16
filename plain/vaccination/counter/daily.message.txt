@@ -1,9 +1,9 @@
 💉📅
-  📅 2023-07-10
-  first 144
-  second 144
-  third 48
+  📅 2023-07-17
+  first 85
+  second 120
+  third 37
   four 0
-  win 1,374
+  win 1,224
   vrate 0%
   wrate 0%
