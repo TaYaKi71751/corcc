@@ -2,33 +2,33 @@
 	"dataTime": "2023-07-22",
 	"counter": {
 		"dataTime": "2023-07-22",
-		"confirmed": "32824817",
+		"confirmed": "32824760",
 		"deaths": "0",
 		"recovered": "0"
 	},
 	"country": {
 		"Nation-wide": {
-			"confirmed": "32824817",
+			"confirmed": "32824760",
 			"deaths": "0",
 			"recovered": "0"
 		},
 		"Seoul": {
-			"confirmed": "6429942",
+			"confirmed": "6429930",
 			"deaths": "0",
 			"recovered": "0"
 		},
 		"Busan": {
-			"confirmed": "1970548",
+			"confirmed": "1970543",
 			"deaths": "0",
 			"recovered": "0"
 		},
 		"Daegu": {
-			"confirmed": "1429400",
+			"confirmed": "1429399",
 			"deaths": "0",
 			"recovered": "0"
 		},
 		"Incheon": {
-			"confirmed": "1897738",
+			"confirmed": "1897732",
 			"deaths": "0",
 			"recovered": "0"
 		},
@@ -38,12 +38,12 @@
 			"recovered": "0"
 		},
 		"Daejeon": {
-			"confirmed": "956866",
+			"confirmed": "956864",
 			"deaths": "0",
 			"recovered": "0"
 		},
 		"Ulsan": {
-			"confirmed": "699463",
+			"confirmed": "699462",
 			"deaths": "0",
 			"recovered": "0"
 		},
@@ -53,7 +53,7 @@
 			"recovered": "0"
 		},
 		"Gyeonggi-do": {
-			"confirmed": "8843427",
+			"confirmed": "8843409",
 			"deaths": "0",
 			"recovered": "0"
 		},
@@ -68,27 +68,27 @@
 			"recovered": "0"
 		},
 		"Chungcheongnam-do": {
-			"confirmed": "1318065",
+			"confirmed": "1318062",
 			"deaths": "0",
 			"recovered": "0"
 		},
 		"Jeollabuk-do": {
-			"confirmed": "1097324",
+			"confirmed": "1097322",
 			"deaths": "0",
 			"recovered": "0"
 		},
 		"Jeollanam-do": {
-			"confirmed": "1076617",
+			"confirmed": "1076614",
 			"deaths": "0",
 			"recovered": "0"
 		},
 		"Gyeongsangbuk-do": {
-			"confirmed": "1494417",
+			"confirmed": "1494414",
 			"deaths": "0",
 			"recovered": "0"
 		},
 		"Gyeongsangnam-do": {
-			"confirmed": "1964540",
+			"confirmed": "1964539",
 			"deaths": "0",
 			"recovered": "0"
 		},
