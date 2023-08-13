@@ -1,97 +1,97 @@
 {
-	"dataTime": "2023-08-12",
+	"dataTime": "2023-08-13",
 	"Nation-wide": {
-		"confirmed": "33834562",
+		"confirmed": "33880303",
 		"deaths": "0",
 		"recovered": "0"
 	},
 	"Seoul": {
-		"confirmed": "6615935",
+		"confirmed": "6624103",
 		"deaths": "0",
 		"recovered": "0"
 	},
 	"Busan": {
-		"confirmed": "2054210",
+		"confirmed": "2057305",
 		"deaths": "0",
 		"recovered": "0"
 	},
 	"Daegu": {
-		"confirmed": "1481136",
+		"confirmed": "1482982",
 		"deaths": "0",
 		"recovered": "0"
 	},
 	"Incheon": {
-		"confirmed": "1945764",
+		"confirmed": "1948156",
 		"deaths": "0",
 		"recovered": "0"
 	},
 	"Gwangju": {
-		"confirmed": "994806",
+		"confirmed": "996491",
 		"deaths": "0",
 		"recovered": "0"
 	},
 	"Daejeon": {
-		"confirmed": "989876",
+		"confirmed": "991380",
 		"deaths": "0",
 		"recovered": "0"
 	},
 	"Ulsan": {
-		"confirmed": "723703",
+		"confirmed": "724743",
 		"deaths": "0",
 		"recovered": "0"
 	},
 	"Sejong": {
-		"confirmed": "267166",
+		"confirmed": "267493",
 		"deaths": "0",
 		"recovered": "0"
 	},
 	"Gyeonggi-do": {
-		"confirmed": "9072491",
+		"confirmed": "9083817",
 		"deaths": "0",
 		"recovered": "0"
 	},
 	"Gangwon-do": {
-		"confirmed": "982815",
+		"confirmed": "983916",
 		"deaths": "0",
 		"recovered": "0"
 	},
 	"Chungcheongbuk-do": {
-		"confirmed": "1051020",
+		"confirmed": "1052334",
 		"deaths": "0",
 		"recovered": "0"
 	},
 	"Chungcheongnam-do": {
-		"confirmed": "1358128",
+		"confirmed": "1360213",
 		"deaths": "0",
 		"recovered": "0"
 	},
 	"Jeollabuk-do": {
-		"confirmed": "1136362",
+		"confirmed": "1138585",
 		"deaths": "0",
 		"recovered": "0"
 	},
 	"Jeollanam-do": {
-		"confirmed": "1117478",
+		"confirmed": "1119211",
 		"deaths": "0",
 		"recovered": "0"
 	},
 	"Gyeongsangbuk-do": {
-		"confirmed": "1544956",
+		"confirmed": "1547465",
 		"deaths": "0",
 		"recovered": "0"
 	},
 	"Gyeongsangnam-do": {
-		"confirmed": "2035649",
+		"confirmed": "2038461",
 		"deaths": "0",
 		"recovered": "0"
 	},
 	"Jeju": {
-		"confirmed": "444208",
+		"confirmed": "444787",
 		"deaths": "0",
 		"recovered": "0"
 	},
 	"Lazaretto": {
-		"confirmed": "18859",
+		"confirmed": "18861",
 		"deaths": "0",
 		"recovered": "0"
 	}
