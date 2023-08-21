@@ -2,97 +2,97 @@
 	"dataTime": "2023-08-21",
 	"Nation-wide": {
 		"confirmed": "34179800",
-		"deaths": "0",
+		"deaths": "35687",
 		"recovered": "0"
 	},
 	"Seoul": {
 		"confirmed": "6679535",
-		"deaths": "0",
+		"deaths": "6644",
 		"recovered": "0"
 	},
 	"Busan": {
 		"confirmed": "2073735",
-		"deaths": "0",
+		"deaths": "2927",
 		"recovered": "0"
 	},
 	"Daegu": {
 		"confirmed": "1497206",
-		"deaths": "0",
+		"deaths": "2064",
 		"recovered": "0"
 	},
 	"Incheon": {
 		"confirmed": "1966704",
-		"deaths": "0",
+		"deaths": "1964",
 		"recovered": "0"
 	},
 	"Gwangju": {
 		"confirmed": "1006334",
-		"deaths": "0",
+		"deaths": "859",
 		"recovered": "0"
 	},
 	"Daejeon": {
 		"confirmed": "1001090",
-		"deaths": "0",
+		"deaths": "994",
 		"recovered": "0"
 	},
 	"Ulsan": {
 		"confirmed": "730136",
-		"deaths": "0",
+		"deaths": "545",
 		"recovered": "0"
 	},
 	"Sejong": {
 		"confirmed": "269980",
-		"deaths": "0",
+		"deaths": "58",
 		"recovered": "0"
 	},
 	"Gyeonggi-do": {
 		"confirmed": "9162219",
-		"deaths": "0",
+		"deaths": "8592",
 		"recovered": "0"
 	},
 	"Gangwon-do": {
 		"confirmed": "992936",
-		"deaths": "0",
+		"deaths": "1391",
 		"recovered": "0"
 	},
 	"Chungcheongbuk-do": {
 		"confirmed": "1061773",
-		"deaths": "0",
+		"deaths": "1089",
 		"recovered": "0"
 	},
 	"Chungcheongnam-do": {
 		"confirmed": "1373255",
-		"deaths": "0",
+		"deaths": "1637",
 		"recovered": "0"
 	},
 	"Jeollabuk-do": {
 		"confirmed": "1152065",
-		"deaths": "0",
+		"deaths": "1273",
 		"recovered": "0"
 	},
 	"Jeollanam-do": {
 		"confirmed": "1129440",
-		"deaths": "0",
+		"deaths": "1074",
 		"recovered": "0"
 	},
 	"Gyeongsangbuk-do": {
 		"confirmed": "1561714",
-		"deaths": "0",
+		"deaths": "2163",
 		"recovered": "0"
 	},
 	"Gyeongsangnam-do": {
 		"confirmed": "2054866",
-		"deaths": "0",
+		"deaths": "2081",
 		"recovered": "0"
 	},
 	"Jeju": {
 		"confirmed": "447934",
-		"deaths": "0",
+		"deaths": "316",
 		"recovered": "0"
 	},
 	"Lazaretto": {
 		"confirmed": "18878",
-		"deaths": "0",
+		"deaths": "16",
 		"recovered": "0"
 	}
 }
