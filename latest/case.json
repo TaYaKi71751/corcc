@@ -2,13 +2,13 @@
 	"dataTime": "2023-08-31",
 	"counter": {
 		"dataTime": "2023-08-31",
-		"confirmed": "34570821",
+		"confirmed": "34571873",
 		"deaths": "0",
 		"recovered": "0"
 	},
 	"country": {
 		"Nation-wide": {
-			"confirmed": "34570821",
+			"confirmed": "34571873",
 			"deaths": "0",
 			"recovered": "0"
 		},
