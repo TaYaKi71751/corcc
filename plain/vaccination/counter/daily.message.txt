@@ -1,9 +1,9 @@
 💉📅
-  📅 2023-09-11
-  first 57
-  second 45
-  third 8
+  📅 2023-09-18
+  first 55
+  second 40
+  third 2
   four 0
-  win 1,073
+  win 873
   vrate 0%
   wrate 0%
