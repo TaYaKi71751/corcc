@@ -1,5 +1,5 @@
-<svg width="60" height="20" viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="win: 281">
-  <title>win: 281</title>
+<svg width="60" height="20" viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="win: 390">
+  <title>win: 390</title>
   <g>
     <rect fill="#2F2F2F" width="290" height="200"/>
     <rect fill="#" x="290" width="310" height="200"/>
@@ -7,8 +7,8 @@
   <g aria-hidden="true" fill="#fff" text-anchor="start" font-family="Verdana,DejaVu Sans,sans-serif" font-size="110">
     <text x="60" y="148" textLength="190" fill="#000" opacity="0.1">win</text>
     <text x="50" y="138" textLength="190">win</text>
-    <text x="345" y="148" textLength="210" fill="#000" opacity="0.1">281</text>
-    <text x="335" y="138" textLength="210">281</text>
+    <text x="345" y="148" textLength="210" fill="#000" opacity="0.1">390</text>
+    <text x="335" y="138" textLength="210">390</text>
   </g>
   
 </svg>
