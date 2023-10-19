@@ -1,16 +1,6 @@
 {
-	"dataTime": "2023-10-16",
-	"firstCnt": "4",
-	"firstTot": "1424342",
-	"secondCnt": "2",
-	"secondTot": "1412449",
-	"thirdCnt": "0",
-	"thirdTot": "1101486",
-	"fourCnt": "0",
-	"fourTot": "278758",
-	"winCnt": "7",
-	"winTot": "233666",
-	"vrate": "88.4%",
-	"wrate": "15.9%",
-	"frate": "89.2%"
+	"dataTime": "2023-10-19",
+	"vcnCnt": "6110",
+	"vcnTot": "6110",
+	"vrate": "1.8%"
 }
