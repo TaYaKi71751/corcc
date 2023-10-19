@@ -2,7 +2,7 @@
 	"dataTime": "2023-10-19",
 	"daily": {
 		"dataTime": "2023-10-19",
-		"vcnCnt": "123481",
+		"vcnCnt": "227774",
 		"vrate": "0%"
 	},
 	"yesterday": {
@@ -12,7 +12,7 @@
 	},
 	"today": {
 		"dataTime": "2023-10-19",
-		"vcnCnt": "123481",
-		"vrate": "0.3%"
+		"vcnCnt": "227774",
+		"vrate": "0.5%"
 	}
 }
