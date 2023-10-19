@@ -1,9 +1,4 @@
 💉📅
-  📅 2023-10-16
-  first 68
-  second 42
-  third 0
-  four 0
-  win 334
+  📅 2023-10-19
+  vcn 123,481
   vrate 0%
-  wrate 0%
