@@ -1,109 +1,109 @@
 {
-	"dataTime": "2023-11-27",
+	"dataTime": "2023-11-28",
 	"counter": {
-		"dataTime": "2023-11-27",
+		"dataTime": "2023-11-28",
 		"daily": {
-			"dataTime": "2023-11-27",
-			"vcnCnt": "47186",
+			"dataTime": "2023-11-28",
+			"vcnCnt": "47348",
 			"vrate": "0%"
 		},
 		"yesterday": {
-			"dataTime": "2023-11-26",
-			"vcnCnt": "4182499",
+			"dataTime": "2023-11-27",
+			"vcnCnt": "4235872",
 			"vrate": "0%"
 		},
 		"today": {
-			"dataTime": "2023-11-27",
-			"vcnCnt": "4229685",
-			"vrate": "8.5%"
+			"dataTime": "2023-11-28",
+			"vcnCnt": "4283220",
+			"vrate": "8.6%"
 		}
 	},
 	"country": {
-		"dataTime": "2023-11-27",
+		"dataTime": "2023-11-28",
 		"서울특별시": {
-			"vcnCnt": "5718",
-			"vcnTot": "626797",
-			"vrate": "36.1%"
+			"vcnCnt": "5946",
+			"vcnTot": "633551",
+			"vrate": "36.5%"
 		},
 		"부산광역시": {
-			"vcnCnt": "2480",
-			"vcnTot": "249752",
-			"vrate": "33.3%"
+			"vcnCnt": "2432",
+			"vcnTot": "252534",
+			"vrate": "33.7%"
 		},
 		"대구광역시": {
-			"vcnCnt": "1248",
-			"vcnTot": "137516",
-			"vrate": "29.3%"
+			"vcnCnt": "1218",
+			"vcnTot": "138844",
+			"vrate": "29.6%"
 		},
 		"인천광역시": {
-			"vcnCnt": "1679",
-			"vcnTot": "180253",
-			"vrate": "36.2%"
+			"vcnCnt": "1692",
+			"vcnTot": "182212",
+			"vrate": "36.6%"
 		},
 		"광주광역시": {
-			"vcnCnt": "714",
-			"vcnTot": "102167",
-			"vrate": "43.4%"
+			"vcnCnt": "723",
+			"vcnTot": "102951",
+			"vrate": "43.7%"
 		},
 		"대전광역시": {
-			"vcnCnt": "670",
-			"vcnTot": "96586",
-			"vrate": "39.2%"
+			"vcnCnt": "693",
+			"vcnTot": "97404",
+			"vrate": "39.6%"
 		},
 		"울산광역시": {
-			"vcnCnt": "616",
-			"vcnTot": "58373",
-			"vrate": "33%"
+			"vcnCnt": "678",
+			"vcnTot": "59128",
+			"vrate": "33.5%"
 		},
 		"세종특별자치시": {
-			"vcnCnt": "179",
-			"vcnTot": "16606",
-			"vrate": "38.8%"
+			"vcnCnt": "139",
+			"vcnTot": "16764",
+			"vrate": "39.2%"
 		},
 		"경기도": {
-			"vcnCnt": "8029",
-			"vcnTot": "781821",
-			"vrate": "36.8%"
+			"vcnCnt": "8047",
+			"vcnTot": "790841",
+			"vrate": "37.2%"
 		},
 		"충청북도": {
-			"vcnCnt": "1363",
-			"vcnTot": "129101",
-			"vrate": "38.6%"
+			"vcnCnt": "1515",
+			"vcnTot": "130759",
+			"vrate": "39.1%"
 		},
 		"충청남도": {
-			"vcnCnt": "1613",
-			"vcnTot": "173537",
-			"vrate": "37.9%"
+			"vcnCnt": "1692",
+			"vcnTot": "175418",
+			"vrate": "38.3%"
 		},
 		"전라북도": {
-			"vcnCnt": "1683",
-			"vcnTot": "181433",
-			"vrate": "42.6%"
+			"vcnCnt": "1541",
+			"vcnTot": "183156",
+			"vrate": "43%"
 		},
 		"전라남도": {
-			"vcnCnt": "1673",
-			"vcnTot": "211921",
-			"vrate": "44.6%"
+			"vcnCnt": "1655",
+			"vcnTot": "213714",
+			"vrate": "45%"
 		},
 		"경상북도": {
-			"vcnCnt": "2641",
-			"vcnTot": "211077",
-			"vrate": "33.2%"
-		},
-		"경상남도": {
-			"vcnCnt": "2412",
-			"vcnTot": "223395",
-			"vrate": "33.2%"
-		},
-		"제주특별자치도": {
-			"vcnCnt": "579",
-			"vcnTot": "40809",
+			"vcnCnt": "2236",
+			"vcnTot": "213483",
 			"vrate": "33.6%"
 		},
-		"강원특별자치도": {
-			"vcnCnt": "1469",
-			"vcnTot": "125494",
+		"경상남도": {
+			"vcnCnt": "2276",
+			"vcnTot": "225836",
+			"vrate": "33.5%"
+		},
+		"제주특별자치도": {
+			"vcnCnt": "490",
+			"vcnTot": "41348",
 			"vrate": "34.1%"
+		},
+		"강원특별자치도": {
+			"vcnCnt": "1640",
+			"vcnTot": "127226",
+			"vrate": "34.6%"
 		}
 	}
 }
