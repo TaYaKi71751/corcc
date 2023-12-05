@@ -1,14 +1,14 @@
-<svg width="78.7" height="20" viewBox="0 0 787 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="vrate: 8.9%">
-  <title>vrate: 8.9%</title>
+<svg width="67.7" height="20" viewBox="0 0 677 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="vrate: 9%">
+  <title>vrate: 9%</title>
   <g>
     <rect fill="#2F2F2F" width="387" height="200"/>
-    <rect fill="#" x="387" width="400" height="200"/>
+    <rect fill="#" x="387" width="290" height="200"/>
   </g>
   <g aria-hidden="true" fill="#fff" text-anchor="start" font-family="Verdana,DejaVu Sans,sans-serif" font-size="110">
     <text x="60" y="148" textLength="287" fill="#000" opacity="0.1">vrate</text>
     <text x="50" y="138" textLength="287">vrate</text>
-    <text x="442" y="148" textLength="300" fill="#000" opacity="0.1">8.9%</text>
-    <text x="432" y="138" textLength="300">8.9%</text>
+    <text x="442" y="148" textLength="190" fill="#000" opacity="0.1">9%</text>
+    <text x="432" y="138" textLength="190">9%</text>
   </g>
   
 </svg>
