@@ -1,88 +1,88 @@
 {
-	"dataTime": "2024-01-09",
+	"dataTime": "2024-01-10",
 	"서울특별시": {
-		"vcnCnt": "338",
-		"vcnTot": "699496",
+		"vcnCnt": "318",
+		"vcnTot": "699832",
 		"vrate": "40.4%"
 	},
 	"부산광역시": {
-		"vcnCnt": "269",
-		"vcnTot": "277153",
+		"vcnCnt": "195",
+		"vcnTot": "277362",
 		"vrate": "37%"
 	},
 	"대구광역시": {
-		"vcnCnt": "136",
-		"vcnTot": "153716",
-		"vrate": "32.7%"
+		"vcnCnt": "81",
+		"vcnTot": "153801",
+		"vrate": "32.8%"
 	},
 	"인천광역시": {
-		"vcnCnt": "93",
-		"vcnTot": "201761",
-		"vrate": "40.4%"
+		"vcnCnt": "94",
+		"vcnTot": "201864",
+		"vrate": "40.5%"
 	},
 	"광주광역시": {
-		"vcnCnt": "43",
-		"vcnTot": "110872",
+		"vcnCnt": "30",
+		"vcnTot": "110906",
 		"vrate": "47.1%"
 	},
 	"대전광역시": {
-		"vcnCnt": "37",
-		"vcnTot": "104843",
+		"vcnCnt": "30",
+		"vcnTot": "104874",
 		"vrate": "42.6%"
 	},
 	"울산광역시": {
-		"vcnCnt": "62",
-		"vcnTot": "67709",
+		"vcnCnt": "35",
+		"vcnTot": "67748",
 		"vrate": "38.3%"
 	},
 	"세종특별자치시": {
-		"vcnCnt": "8",
-		"vcnTot": "18648",
+		"vcnCnt": "3",
+		"vcnTot": "18655",
 		"vrate": "43.6%"
 	},
 	"경기도": {
-		"vcnCnt": "579",
-		"vcnTot": "875038",
+		"vcnCnt": "466",
+		"vcnTot": "875568",
 		"vrate": "41.2%"
 	},
 	"충청북도": {
-		"vcnCnt": "82",
-		"vcnTot": "144205",
+		"vcnCnt": "50",
+		"vcnTot": "144257",
 		"vrate": "43.1%"
 	},
 	"충청남도": {
-		"vcnCnt": "110",
-		"vcnTot": "192292",
+		"vcnCnt": "80",
+		"vcnTot": "192362",
 		"vrate": "42%"
 	},
 	"전라북도": {
-		"vcnCnt": "94",
-		"vcnTot": "199584",
+		"vcnCnt": "65",
+		"vcnTot": "199645",
 		"vrate": "46.8%"
 	},
 	"전라남도": {
-		"vcnCnt": "67",
-		"vcnTot": "230873",
+		"vcnCnt": "93",
+		"vcnTot": "230965",
 		"vrate": "48.6%"
 	},
 	"경상북도": {
-		"vcnCnt": "146",
-		"vcnTot": "240994",
-		"vrate": "37.9%"
+		"vcnCnt": "174",
+		"vcnTot": "241178",
+		"vrate": "38%"
 	},
 	"경상남도": {
-		"vcnCnt": "316",
-		"vcnTot": "251911",
+		"vcnCnt": "212",
+		"vcnTot": "252149",
 		"vrate": "37.4%"
 	},
 	"제주특별자치도": {
-		"vcnCnt": "22",
-		"vcnTot": "46216",
+		"vcnCnt": "11",
+		"vcnTot": "46226",
 		"vrate": "38.1%"
 	},
 	"강원특별자치도": {
-		"vcnCnt": "99",
-		"vcnTot": "143752",
+		"vcnCnt": "76",
+		"vcnTot": "143850",
 		"vrate": "39.1%"
 	}
 }
