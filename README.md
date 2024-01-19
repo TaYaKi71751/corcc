@@ -26,6 +26,7 @@
 >>>  (CONTINUED)
 >>>  
 >>>  (en => cn => ko)
+>>>  (MOVED TO https://github.com/corcc/corcc-case-weekly)
 > 
 > ### DATA-REF 
 >> - [ COVID-19 Vaccination ](https://nip.kdca.go.kr/irgd/cov19stats.do?list=all) 
