@@ -1,18 +1,18 @@
 {
-	"dataTime": "2024-01-23",
+	"dataTime": "2024-01-24",
 	"daily": {
-		"dataTime": "2024-01-23",
-		"vcnCnt": "2093",
+		"dataTime": "2024-01-24",
+		"vcnCnt": "1908",
 		"vrate": "0%"
 	},
 	"yesterday": {
-		"dataTime": "2024-01-22",
-		"vcnCnt": "4874678",
+		"dataTime": "2024-01-23",
+		"vcnCnt": "4876999",
 		"vrate": "0%"
 	},
 	"today": {
-		"dataTime": "2024-01-23",
-		"vcnCnt": "4876771",
+		"dataTime": "2024-01-24",
+		"vcnCnt": "4878907",
 		"vrate": "9.8%"
 	}
 }
