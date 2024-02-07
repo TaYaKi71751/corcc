@@ -1,88 +1,88 @@
 {
-	"dataTime": "2024-02-06",
+	"dataTime": "2024-02-07",
 	"서울특별시": {
-		"vcnCnt": "228",
-		"vcnTot": "706040",
+		"vcnCnt": "194",
+		"vcnTot": "706242",
 		"vrate": "40.8%"
 	},
 	"부산광역시": {
-		"vcnCnt": "147",
-		"vcnTot": "281336",
+		"vcnCnt": "90",
+		"vcnTot": "281434",
 		"vrate": "37.6%"
 	},
 	"대구광역시": {
-		"vcnCnt": "51",
-		"vcnTot": "155607",
+		"vcnCnt": "24",
+		"vcnTot": "155638",
 		"vrate": "33.2%"
 	},
 	"인천광역시": {
-		"vcnCnt": "73",
-		"vcnTot": "203631",
+		"vcnCnt": "136",
+		"vcnTot": "203770",
 		"vrate": "40.8%"
 	},
 	"광주광역시": {
-		"vcnCnt": "15",
-		"vcnTot": "111633",
+		"vcnCnt": "13",
+		"vcnTot": "111641",
 		"vrate": "47.4%"
 	},
 	"대전광역시": {
-		"vcnCnt": "36",
-		"vcnTot": "105569",
+		"vcnCnt": "34",
+		"vcnTot": "105604",
 		"vrate": "42.9%"
 	},
 	"울산광역시": {
-		"vcnCnt": "34",
-		"vcnTot": "68692",
+		"vcnCnt": "38",
+		"vcnTot": "68728",
 		"vrate": "38.9%"
 	},
 	"세종특별자치시": {
-		"vcnCnt": "7",
-		"vcnTot": "18808",
+		"vcnCnt": "0",
+		"vcnTot": "18810",
 		"vrate": "44%"
 	},
 	"경기도": {
-		"vcnCnt": "333",
-		"vcnTot": "885379",
-		"vrate": "41.6%"
+		"vcnCnt": "348",
+		"vcnTot": "885781",
+		"vrate": "41.7%"
 	},
 	"충청북도": {
-		"vcnCnt": "51",
-		"vcnTot": "145483",
+		"vcnCnt": "33",
+		"vcnTot": "145517",
 		"vrate": "43.5%"
 	},
 	"충청남도": {
-		"vcnCnt": "158",
-		"vcnTot": "194024",
+		"vcnCnt": "88",
+		"vcnTot": "194120",
 		"vrate": "42.4%"
 	},
 	"전라남도": {
-		"vcnCnt": "63",
-		"vcnTot": "232625",
+		"vcnCnt": "64",
+		"vcnTot": "232691",
 		"vrate": "49%"
 	},
 	"경상북도": {
-		"vcnCnt": "89",
-		"vcnTot": "243364",
+		"vcnCnt": "45",
+		"vcnTot": "243404",
 		"vrate": "38.3%"
 	},
 	"경상남도": {
-		"vcnCnt": "169",
-		"vcnTot": "255893",
+		"vcnCnt": "180",
+		"vcnTot": "256095",
 		"vrate": "38%"
 	},
 	"제주특별자치도": {
-		"vcnCnt": "70",
-		"vcnTot": "46634",
+		"vcnCnt": "7",
+		"vcnTot": "46639",
 		"vrate": "38.5%"
 	},
 	"강원특별자치도": {
-		"vcnCnt": "86",
-		"vcnTot": "145614",
+		"vcnCnt": "67",
+		"vcnTot": "145680",
 		"vrate": "39.6%"
 	},
 	"전북특별자치도": {
-		"vcnCnt": "64",
-		"vcnTot": "201051",
+		"vcnCnt": "60",
+		"vcnTot": "201111",
 		"vrate": "47.3%"
 	}
 }
