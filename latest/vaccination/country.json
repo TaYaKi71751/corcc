@@ -1,88 +1,88 @@
 {
-	"dataTime": "2024-03-14",
+	"dataTime": "2024-03-15",
 	"서울특별시": {
-		"vcnCnt": "46",
-		"vcnTot": "707922",
+		"vcnCnt": "45",
+		"vcnTot": "707968",
 		"vrate": "40.9%"
 	},
 	"부산광역시": {
-		"vcnCnt": "45",
-		"vcnTot": "283233",
+		"vcnCnt": "57",
+		"vcnTot": "283300",
 		"vrate": "37.8%"
 	},
 	"대구광역시": {
-		"vcnCnt": "8",
-		"vcnTot": "156131",
+		"vcnCnt": "6",
+		"vcnTot": "156140",
 		"vrate": "33.3%"
 	},
 	"인천광역시": {
-		"vcnCnt": "11",
-		"vcnTot": "204740",
+		"vcnCnt": "15",
+		"vcnTot": "204826",
 		"vrate": "41%"
 	},
 	"광주광역시": {
 		"vcnCnt": "5",
-		"vcnTot": "111845",
+		"vcnTot": "111850",
 		"vrate": "47.5%"
 	},
 	"대전광역시": {
-		"vcnCnt": "1",
-		"vcnTot": "105812",
+		"vcnCnt": "6",
+		"vcnTot": "105818",
 		"vrate": "43%"
 	},
 	"울산광역시": {
-		"vcnCnt": "5",
-		"vcnTot": "69161",
+		"vcnCnt": "8",
+		"vcnTot": "69168",
 		"vrate": "39.2%"
 	},
 	"세종특별자치시": {
-		"vcnCnt": "4",
-		"vcnTot": "18960",
+		"vcnCnt": "3",
+		"vcnTot": "18962",
 		"vrate": "44.3%"
 	},
 	"경기도": {
-		"vcnCnt": "62",
-		"vcnTot": "890014",
+		"vcnCnt": "84",
+		"vcnTot": "890110",
 		"vrate": "41.8%"
 	},
 	"충청북도": {
-		"vcnCnt": "5",
-		"vcnTot": "145986",
+		"vcnCnt": "9",
+		"vcnTot": "145991",
 		"vrate": "43.6%"
 	},
 	"충청남도": {
-		"vcnCnt": "7",
-		"vcnTot": "194890",
+		"vcnCnt": "6",
+		"vcnTot": "194902",
 		"vrate": "42.5%"
 	},
 	"전라남도": {
-		"vcnCnt": "18",
-		"vcnTot": "233130",
+		"vcnCnt": "5",
+		"vcnTot": "233141",
 		"vrate": "49.1%"
 	},
 	"경상북도": {
-		"vcnCnt": "15",
-		"vcnTot": "244054",
+		"vcnCnt": "4",
+		"vcnTot": "244058",
 		"vrate": "38.4%"
 	},
 	"경상남도": {
-		"vcnCnt": "26",
-		"vcnTot": "257522",
+		"vcnCnt": "25",
+		"vcnTot": "257539",
 		"vrate": "38.2%"
 	},
 	"제주특별자치도": {
 		"vcnCnt": "3",
-		"vcnTot": "46745",
+		"vcnTot": "46744",
 		"vrate": "38.5%"
 	},
 	"강원특별자치도": {
-		"vcnCnt": "20",
-		"vcnTot": "146519",
+		"vcnCnt": "12",
+		"vcnTot": "146529",
 		"vrate": "39.8%"
 	},
 	"전북특별자치도": {
-		"vcnCnt": "13",
-		"vcnTot": "201660",
+		"vcnCnt": "12",
+		"vcnTot": "201671",
 		"vrate": "47.5%"
 	}
 }
