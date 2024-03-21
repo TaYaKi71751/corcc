@@ -1,88 +1,88 @@
 {
-	"dataTime": "2024-03-20",
+	"dataTime": "2024-03-21",
 	"서울특별시": {
-		"vcnCnt": "40",
-		"vcnTot": "708102",
+		"vcnCnt": "43",
+		"vcnTot": "708141",
 		"vrate": "40.9%"
 	},
 	"부산광역시": {
-		"vcnCnt": "54",
-		"vcnTot": "283479",
+		"vcnCnt": "36",
+		"vcnTot": "283517",
 		"vrate": "37.9%"
 	},
 	"대구광역시": {
 		"vcnCnt": "12",
-		"vcnTot": "156175",
+		"vcnTot": "156187",
 		"vrate": "33.3%"
 	},
 	"인천광역시": {
-		"vcnCnt": "11",
-		"vcnTot": "204934",
+		"vcnCnt": "10",
+		"vcnTot": "204955",
 		"vrate": "41%"
 	},
 	"광주광역시": {
-		"vcnCnt": "3",
-		"vcnTot": "111866",
+		"vcnCnt": "2",
+		"vcnTot": "111863",
 		"vrate": "47.5%"
 	},
 	"대전광역시": {
-		"vcnCnt": "6",
-		"vcnTot": "105834",
+		"vcnCnt": "3",
+		"vcnTot": "105840",
 		"vrate": "43%"
 	},
 	"울산광역시": {
-		"vcnCnt": "9",
-		"vcnTot": "69200",
+		"vcnCnt": "4",
+		"vcnTot": "69198",
 		"vrate": "39.2%"
 	},
 	"세종특별자치시": {
-		"vcnCnt": "1",
-		"vcnTot": "18972",
+		"vcnCnt": "7",
+		"vcnTot": "18976",
 		"vrate": "44.3%"
 	},
 	"경기도": {
-		"vcnCnt": "59",
-		"vcnTot": "890403",
+		"vcnCnt": "62",
+		"vcnTot": "890443",
 		"vrate": "41.8%"
 	},
 	"충청북도": {
-		"vcnCnt": "4",
-		"vcnTot": "146002",
+		"vcnCnt": "6",
+		"vcnTot": "146019",
 		"vrate": "43.6%"
 	},
 	"충청남도": {
-		"vcnCnt": "12",
-		"vcnTot": "194954",
+		"vcnCnt": "13",
+		"vcnTot": "194972",
 		"vrate": "42.6%"
 	},
 	"전라남도": {
-		"vcnCnt": "19",
-		"vcnTot": "233193",
+		"vcnCnt": "28",
+		"vcnTot": "233226",
 		"vrate": "49.1%"
 	},
 	"경상북도": {
-		"vcnCnt": "25",
-		"vcnTot": "244093",
+		"vcnCnt": "8",
+		"vcnTot": "244103",
 		"vrate": "38.4%"
 	},
 	"경상남도": {
-		"vcnCnt": "43",
-		"vcnTot": "257667",
+		"vcnCnt": "29",
+		"vcnTot": "257698",
 		"vrate": "38.2%"
 	},
 	"제주특별자치도": {
 		"vcnCnt": "0",
-		"vcnTot": "46753",
+		"vcnTot": "46752",
 		"vrate": "38.6%"
 	},
 	"강원특별자치도": {
-		"vcnCnt": "11",
-		"vcnTot": "146575",
+		"vcnCnt": "20",
+		"vcnTot": "146600",
 		"vrate": "39.8%"
 	},
 	"전북특별자치도": {
-		"vcnCnt": "9",
-		"vcnTot": "201705",
+		"vcnCnt": "2",
+		"vcnTot": "201713",
 		"vrate": "47.5%"
 	}
 }
