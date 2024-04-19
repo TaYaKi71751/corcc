@@ -19,9 +19,10 @@ jobs:
     - uses: actions/checkout@master
     - uses: pnpm/action-setup@master
       with:
-        version: latest
+        version: 8
     - uses: actions/setup-node@main
       with:
+        node-version: 16
         cache: 'pnpm'
     - run: pnpm install --no-frozen-lockfile
     - uses: actions/download-artifact@v2
