@@ -49,7 +49,6 @@ jobs:
         python-version: '3.10'
     - uses: actions/setup-node@main
       with:
-        node-version: 16
         cache: 'pnpm'
     - run: pnpm install --no-frozen-lockfile
     - id: before

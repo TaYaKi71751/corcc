@@ -23,7 +23,6 @@ jobs:
         version: latest
     - uses: actions/setup-node@main
       with:
-        node-version: 16
         cache: 'pnpm'
     - run: pnpm install --no-frozen-lockfile
     - run: pnpm fetch:${{ matrix.which.text }}
