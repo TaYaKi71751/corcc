@@ -1,88 +1,88 @@
 {
-	"dataTime": "2024-05-09",
+	"dataTime": "2024-05-14",
 	"서울특별시": {
-		"vcnCnt": "273",
-		"vcnTot": "7607",
+		"vcnCnt": "314",
+		"vcnTot": "8773",
 		"vrate": "0.1%"
 	},
 	"부산광역시": {
-		"vcnCnt": "83",
-		"vcnTot": "3424",
+		"vcnCnt": "132",
+		"vcnTot": "3882",
 		"vrate": "0.1%"
 	},
 	"대구광역시": {
-		"vcnCnt": "66",
-		"vcnTot": "1882",
+		"vcnCnt": "81",
+		"vcnTot": "2147",
 		"vrate": "0.1%"
 	},
 	"인천광역시": {
-		"vcnCnt": "58",
-		"vcnTot": "1852",
+		"vcnCnt": "55",
+		"vcnTot": "2047",
 		"vrate": "0.1%"
 	},
 	"광주광역시": {
-		"vcnCnt": "63",
-		"vcnTot": "1666",
+		"vcnCnt": "53",
+		"vcnTot": "1894",
 		"vrate": "0.1%"
 	},
 	"대전광역시": {
-		"vcnCnt": "37",
-		"vcnTot": "1090",
+		"vcnCnt": "17",
+		"vcnTot": "1191",
 		"vrate": "0.1%"
 	},
 	"울산광역시": {
-		"vcnCnt": "52",
-		"vcnTot": "1524",
-		"vrate": "0.1%"
+		"vcnCnt": "38",
+		"vcnTot": "1673",
+		"vrate": "0.2%"
 	},
 	"세종특별자치시": {
-		"vcnCnt": "17",
-		"vcnTot": "432",
+		"vcnCnt": "21",
+		"vcnTot": "489",
 		"vrate": "0.1%"
 	},
 	"경기도": {
-		"vcnCnt": "373",
-		"vcnTot": "11326",
+		"vcnCnt": "359",
+		"vcnTot": "12853",
 		"vrate": "0.1%"
 	},
 	"충청북도": {
-		"vcnCnt": "114",
-		"vcnTot": "1022",
+		"vcnCnt": "65",
+		"vcnTot": "1242",
 		"vrate": "0.1%"
 	},
 	"충청남도": {
-		"vcnCnt": "53",
-		"vcnTot": "1541",
+		"vcnCnt": "56",
+		"vcnTot": "1748",
 		"vrate": "0.1%"
 	},
 	"전라남도": {
-		"vcnCnt": "65",
-		"vcnTot": "1719",
+		"vcnCnt": "44",
+		"vcnTot": "1922",
 		"vrate": "0.1%"
 	},
 	"경상북도": {
-		"vcnCnt": "80",
-		"vcnTot": "1186",
-		"vrate": "0%"
+		"vcnCnt": "49",
+		"vcnTot": "1331",
+		"vrate": "0.1%"
 	},
 	"경상남도": {
 		"vcnCnt": "52",
-		"vcnTot": "1236",
+		"vcnTot": "1391",
 		"vrate": "0%"
 	},
 	"제주특별자치도": {
-		"vcnCnt": "25",
-		"vcnTot": "86",
+		"vcnCnt": "12",
+		"vcnTot": "175",
 		"vrate": "0%"
 	},
 	"강원특별자치도": {
-		"vcnCnt": "23",
-		"vcnTot": "910",
+		"vcnCnt": "43",
+		"vcnTot": "1094",
 		"vrate": "0.1%"
 	},
 	"전북특별자치도": {
-		"vcnCnt": "264",
-		"vcnTot": "5635",
-		"vrate": "0.3%"
+		"vcnCnt": "218",
+		"vcnTot": "6333",
+		"vrate": "0.4%"
 	}
 }
